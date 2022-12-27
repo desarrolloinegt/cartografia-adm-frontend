@@ -1,0 +1,96 @@
+<div class="card">
+  <div class="card-body">
+    <form>
+      <div class="form-group">
+        <mat-form-field class="full-width-input">
+          <p>
+            DPI*
+            <input
+              type="number"
+              matInput
+              placeholder="2320 55634 0103"
+              maxlength="13"
+              class="form-control"
+              required
+            />
+          </p>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field class="full-width-input">
+          <p>
+            Nombres*
+            <input
+              type="text"
+              matInput
+              placeholder="Primer Nombre, Segundo Nombre..."
+              class="form-control"
+              required
+            />
+          </p>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field class="full-width-input">
+          <p>
+            Apellidos*
+            <input
+              type="text"
+              matInput
+              placeholder="Primer Apellido, Segundo Apellido..."
+              class="form-control"
+              required
+            />
+          </p>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field class="full-width-input">
+          <p>
+            Email*
+            <input
+              type="email"
+              matInput
+              placeholder="ejemplo.correo@gmail.com"
+              class="form-control"
+              required
+            />
+          </p>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <button type="submit" mat-raised-button color="primary">
+          Guardar Usuario
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<br /><br />
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef>ID</th>
+    <td mat-cell *matCellDef="let element">{{ element.position }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Nombres</th>
+    <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="weight">
+    <th mat-header-cell *matHeaderCellDef>Apellidos</th>
+    <td mat-cell *matCellDef="let element">{{ element.last_name }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="symbol">
+    <th mat-header-cell *matHeaderCellDef>Email</th>
+    <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+
+//https://m2.material.io/components/buttons-floating-action-button/web#using-fabs
