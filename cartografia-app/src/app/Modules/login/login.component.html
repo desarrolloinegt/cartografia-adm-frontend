@@ -1,45 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CartografiaAPP</title>
-  </head>
-  <body>
-    <div class="login-form">
-      <mat-card>
-        <mat-card-header style="background-color: #CDE8F3">
-          <mat-card-content>
-            <img width="120" src="./assets/icon-login.png" />
-
-            <mat-form-field class="full-width-input">
-              <input
-                type="text"
-                matInput
-                placeholder="Ingrese su Usuario*"
-                required
-              />
-            </mat-form-field>
-            <mat-form-field class="full-width-input separator">
-              <input
-                type="password"
-                matInput
-                placeholder="Ingrese su Contraseña*"
-                required
-              />
-            </mat-form-field>
-            <button type="submit" mat-raised-button color="primary">
-              Ingresar
-            </button>
-            <br />
-            <br />
-            <button type="warn" mat-stroked-button color="warn">
-              ¿Olvidó su contraseña?
-            </button>
-          </mat-card-content>
-        </mat-card-header>
-      </mat-card>
-    </div>
-  </body>
-</html>
+<div class="login-form">
+  <mat-card>
+    <mat-card-header style="background-color: #cde8f3">
+      <mat-card-content>
+        <img width="120" src="./assets/icon-login.png" />
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <mat-form-field class="full-width-input">
+            <input
+              type="text"
+              matInput
+              placeholder="Ingrese su Usuario*"
+              formControlName="username"
+              required
+            />
+            <mat-error *ngIf="fieldInvalid('username')">
+              Por favor ingrese su Usuario
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width-input separator">
+            <input
+              type="password"
+              matInput
+              placeholder="Ingrese su Contraseña*"
+              required
+            />
+            <mat-error *ngIf="fieldInvalid('password')">
+              Por favor ingrese su Contraseña
+            </mat-error>
+          </mat-form-field>
+          <button type="submit" mat-raised-button color="primary">
+            Ingresar
+          </button>
+          <br />
+          <br />
+          <button type="warn" mat-stroked-button color="warn">
+            ¿Olvidó su contraseña?
+          </button>
+        </form>
+      </mat-card-content>
+    </mat-card-header>
+  </mat-card>
+</div>
