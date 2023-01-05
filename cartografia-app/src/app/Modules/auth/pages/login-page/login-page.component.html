@@ -1,0 +1,49 @@
+<div class="login-form">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-content>
+        <img width="120" src="./assets/icon-login.png" />
+        <form [formGroup]="loginForm" (ngSubmit)="sendLogin()">
+          <mat-form-field appearance="fill" class="full-width-input">
+            <mat-label>Ingrese su Usuario</mat-label>
+            <input
+              matInput
+              placeholder="user_example"
+              formControlName="username"
+              required
+            />
+            <!-- <mat-error *ngIf="username.invalid">{{ getErrorMessage() }}</mat-error> -->
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="full-width-input">
+            <mat-label>Ingrese su Contraseña</mat-label>
+            <input
+              formControlName="password"
+              required
+              matInput
+              [type]="hide ? 'password' : 'text'"
+            />
+            <button
+              mat-icon-button
+              matSuffix
+              (click)="hide = !hide"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide"
+            >
+              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <button type="submit" mat-raised-button color="primary">
+            Iniciar sesión
+          </button>
+          <br />
+          <br />
+          <button type="warn" mat-stroked-button color="warn">
+            ¿Olvidó su contraseña?
+          </button>
+        </form>
+      </mat-card-content>
+    </mat-card-header>
+  </mat-card>
+</div>
