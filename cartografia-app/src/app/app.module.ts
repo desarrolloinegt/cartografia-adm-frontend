@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppMaterialModule } from './app-material/app-material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { HeaderComponent } from './components';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -15,7 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     AppMaterialModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    HeaderComponent
   ],
 
   providers: [],

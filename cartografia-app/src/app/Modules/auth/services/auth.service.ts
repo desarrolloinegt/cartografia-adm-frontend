@@ -3,16 +3,15 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { ILogin } from '@core/interfaces/i-login';
+import { ApiService } from '@core/services/api.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private API_URL = 'https://de0f-190-61-99-218.ngrok.io/api/login';
   authState = new BehaviorSubject(false);
 
-  constructor(private http: HttpClient, private router: Router) {
-  }
+  constructor(private router: Router, private apiService: ApiService) {}
 
   ifLoggedIn() {
     const token = localStorage.getItem('token');
@@ -22,7 +21,7 @@ export class AuthService {
   }
 
   login(formData: ILogin): Observable<any> {
-    return this.http.post(this.API_URL, formData).pipe(
+    return this.apiService.store('login', formData).pipe(
       tap((resp: any) => {
         localStorage.setItem('token', resp.token);
       })
@@ -32,5 +31,9 @@ export class AuthService {
   logout() {
     localStorage.removeItem('token');
     this.router.navigateByUrl('auth/login');
+  }
+  
+  isAuthenticated() {
+    return this.authState.value;
   }
 }

@@ -5,14 +5,11 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { AppMaterialModule } from 'src/app/app-material/app-material.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { UserPageComponent } from './pages/user-page/user-page.component';
 import { HeaderComponent } from '@components/header';
-
 
 @NgModule({
   declarations: [
-    LoginPageComponent,
-    UserPageComponent
+    LoginPageComponent
   ],
   imports: [
     CommonModule,

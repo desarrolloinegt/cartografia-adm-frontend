@@ -4,6 +4,9 @@
 
 export const environment = {
   production: false,
+  api: {
+    host: 'https://418c-190-61-99-218.ngrok.io/api/'
+  },
 };
 
 /*

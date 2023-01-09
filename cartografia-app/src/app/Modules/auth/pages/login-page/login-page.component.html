@@ -12,7 +12,7 @@
               formControlName="username"
               required
             />
-            <!-- <mat-error *ngIf="username.invalid">{{ getErrorMessage() }}</mat-error> -->
+            <mat-error *ngIf="Username?.touched && Username?.hasError('required')"> Usuario es <strong>requerido</strong></mat-error> 
           </mat-form-field>
 
           <mat-form-field appearance="fill" class="full-width-input">
@@ -23,6 +23,7 @@
               matInput
               [type]="hide ? 'password' : 'text'"
             />
+            <mat-error *ngIf="Password?.touched && Password?.hasError('required')"> Contraseña es <strong>requerida</strong></mat-error>
             <button
               mat-icon-button
               matSuffix

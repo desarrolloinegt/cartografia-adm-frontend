@@ -1,0 +1,5 @@
+{
+    "exportall.config.folderListener": [
+        "/src/app/modules/user/pages/user-page"
+    ]
+}

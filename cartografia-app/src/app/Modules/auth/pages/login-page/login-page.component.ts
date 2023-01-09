@@ -1,13 +1,7 @@
 import { Component } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '@modules/auth/services';
-import { UiutilsService } from '@modules/auth/services/uiutils.service';
 
 @Component({
   selector: 'app-login-page',
@@ -22,7 +16,6 @@ export class LoginPageComponent {
   constructor(
     private auth: AuthService,
     private formBuilder: FormBuilder,
-    private ui: UiutilsService,
     private router: Router
   ) {
     this.buildForm();
@@ -38,23 +31,13 @@ export class LoginPageComponent {
 
   ngOnInit() {}
 
-  // getErrorMessage() {
-  //   if (
-  //     (this.username.hasError('required'), this.password.hasError('required'))
-  //   ) {
-  //     return 'Debe ingresar un usuario y/o contraseña';
-  //   }
-  //   return this.username.hasError('user') ? 'Usuario no registrado' : '';
-  // }
-
   sendLogin() {
     if (this.loginForm.valid) {
       this.auth.login(this.loginForm.value).subscribe(
         (resp) => {
           if (resp.status == true) {
             this.router.navigateByUrl('/home');
-          }
-          else {
+          } else {
             console.log('Error Inesperado');
           }
         },
