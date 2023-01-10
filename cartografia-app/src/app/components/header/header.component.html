@@ -11,7 +11,7 @@
 			</mat-list-item>
 			<div class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="isShowing || isExpanded">
 				<a mat-list-item href="...">Proyectos</a>
-				<a mat-list-item href="/auth/user">Usuarios</a>
+				<a mat-list-item href="/user">Usuarios</a>
 			</div>
       <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent">
         <mat-icon mat-list-icon>exit_to_app</mat-icon> 
