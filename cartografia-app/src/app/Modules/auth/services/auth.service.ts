@@ -8,7 +8,7 @@ import { ApiService } from '@core/services/api.service';
   providedIn: 'root',
 })
 export class AuthService {
-  authState = new BehaviorSubject(false);
+  authState = new BehaviorSubject(true);
 
   constructor(private router: Router, private apiService: ApiService) {}
 
@@ -30,6 +30,7 @@ export class AuthService {
   logout() {
     localStorage.removeItem('token');
     this.router.navigateByUrl('auth/login');
+    this.authState.next(false);
   }
   
   isAuthenticated() {
