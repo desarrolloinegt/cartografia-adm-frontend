@@ -25,3 +25,9 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+## Deploy en Github Pages
+El entorno ya se encuentra configurado con github pages, para hacer un deploy unicamente ejecutar el siguiente comando: 
+
+`ng deploy --base-href=/cartografia-app/`
