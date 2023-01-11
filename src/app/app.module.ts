@@ -8,6 +8,10 @@ import { AppMaterialModule } from './app-material/app-material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components';
+
+import { SpinnerModule } from '@core/spinner/spinner.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SpinnerInterceptor } from '@core/interceptors/spinner.interceptor';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -17,10 +21,13 @@ import { HeaderComponent } from './components';
     AppMaterialModule,
     ReactiveFormsModule,
     HttpClientModule,
-    HeaderComponent
+    HeaderComponent,
+    SpinnerModule
   ],
 
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

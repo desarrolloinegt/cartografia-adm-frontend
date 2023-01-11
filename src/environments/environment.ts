@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   api: {
-    host: 'https://50a1-190-61-99-218.ngrok.io/api/'
+    host: 'https://885a-190-61-99-218.ngrok.io/api/'
   },
 };
 

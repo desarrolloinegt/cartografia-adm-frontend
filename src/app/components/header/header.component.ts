@@ -1,9 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppMaterialModule } from 'src/app/app-material/app-material.module';
-import { AuthService } from '@modules/auth';
 import { Observable } from 'rxjs';
 import { MatSidenav } from '@angular/material/sidenav';
+import { AuthService } from '@modules/auth';
 
 @Component({
   selector: 'app-header',
