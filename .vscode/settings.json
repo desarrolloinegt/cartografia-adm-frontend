@@ -1,5 +1,8 @@
 {
     "exportall.config.folderListener": [
         "/src/app/modules/user/pages/user-page"
+    ],
+    "exportall.config.relExclusion": [
+        "/src/app/modules/roles/pages/roles-page/index.ts"
     ]
 }
