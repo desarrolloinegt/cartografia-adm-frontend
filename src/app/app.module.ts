@@ -22,7 +22,7 @@ import { SpinnerInterceptor } from '@core/interceptors/spinner.interceptor';
     ReactiveFormsModule,
     HttpClientModule,
     HeaderComponent,
-    SpinnerModule
+    SpinnerModule,
   ],
 
   providers: [

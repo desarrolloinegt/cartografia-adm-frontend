@@ -2,46 +2,18 @@ import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-
+import { UserService } from '@modules/user/services';
 export interface UserData {
   id: string;
-  name: string;
-  progress: string;
-  fruit: string;
+  DPI: string;
+  nombres: string;
+  apellidos: string;
+  username:string;
+  email:string;
+  codigo_usuario:string;
 }
 
-/** Constants used to fill up our data base. */
-const FRUITS: string[] = [
-  'blueberry',
-  'lychee',
-  'kiwi',
-  'mango',
-  'peach',
-  'lime',
-  'pomegranate',
-  'pineapple',
-];
-const NAMES: string[] = [
-  'Maia',
-  'Asher',
-  'Olivia',
-  'Atticus',
-  'Amelia',
-  'Jack',
-  'Charlotte',
-  'Theodore',
-  'Isla',
-  'Oliver',
-  'Isabella',
-  'Jasper',
-  'Cora',
-  'Levi',
-  'Violet',
-  'Arthur',
-  'Mia',
-  'Thomas',
-  'Elizabeth',
-];
+
 
 @Component({
   selector: 'app-user-page',
@@ -49,18 +21,20 @@ const NAMES: string[] = [
   styleUrls: ['./user-page.component.scss']
 })
 export class UserPageComponent {
-  displayedColumns: string[] = ['id', 'name', 'progress', 'fruit'];
+  displayedColumns: string[] = ['id','DPI', 'nombres', 'apellidos', 'username','email','codigo_usuario','options'];
   dataSource: MatTableDataSource<UserData>;
-
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor() {
+  constructor(private userServide:UserService) {
     // Create 100 users
-    const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
-
     // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
+    this.dataSource = new MatTableDataSource();
+  }
+  ngOnInit() {
+    this.userServide.getAllUsers().subscribe(data=>{
+      this.dataSource=data;
+    });
   }
 
   ngAfterViewInit() {
@@ -78,7 +52,7 @@ export class UserPageComponent {
   }
 }
 
-/** Builds and returns a new User. */
+/** Builds and returns a new User. 
 function createNewUser(id: number): UserData {
   const name =
     NAMES[Math.round(Math.random() * (NAMES.length - 1))] +
@@ -93,4 +67,4 @@ function createNewUser(id: number): UserData {
     fruit: FRUITS[Math.round(Math.random() * (FRUITS.length - 1))],
   };
 
-}
+}*/

@@ -6,7 +6,6 @@ import { HeaderComponent } from '@components/header';
 import { AppMaterialModule } from 'src/app/app-material/app-material.module';
 import { UserPageComponent } from './pages/user-page';
 
-
 @NgModule({
   declarations: [UserPageComponent],
   imports: [
