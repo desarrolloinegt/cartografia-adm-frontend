@@ -11,6 +11,9 @@ import { AuthService } from '@modules/auth/services';
 export class LoginPageComponent {
   hide = true;
 
+  public passwordType = 'password';
+  public loading = false;
+
   loginForm!: FormGroup;
 
   constructor(
@@ -33,6 +36,7 @@ export class LoginPageComponent {
 
   sendLogin() {
     if (this.loginForm.valid) {
+      this.loading = true;
       this.auth.login(this.loginForm.value).subscribe(
         (resp) => {
           if (resp.status == true) {
@@ -42,10 +46,15 @@ export class LoginPageComponent {
           }
         },
         (err) => {
+          this.loading = false;
           console.log(err);
         }
       );
     }
+  }
+
+  changePasswordType() {
+    this.passwordType = this.passwordType == 'text' ? 'password': 'text';
   }
 
   private buildForm() {

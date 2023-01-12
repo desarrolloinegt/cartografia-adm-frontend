@@ -1,51 +1,53 @@
 <app-auth-header></app-auth-header>
-<div class="login-form">
-  <mat-card>
-    <mat-card-header>
-      <mat-card-content>
-        <img width="120" src="./assets/icon-login.png" />
-        <form [formGroup]="loginForm" (ngSubmit)="sendLogin()">
-          <mat-form-field appearance="fill" class="full-width-input">
-            <mat-label>Ingrese su Usuario</mat-label>
-            <input
-              matInput
-              placeholder="user_example"
-              formControlName="username"
-              required
-            />
-            <mat-error *ngIf="Username?.touched && Username?.hasError('required')"> Usuario es <strong>requerido</strong></mat-error> 
-          </mat-form-field>
 
-          <mat-form-field appearance="fill" class="full-width-input">
-            <mat-label>Ingrese su Contraseña</mat-label>
-            <input
-              formControlName="password"
-              required
-              matInput
-              [type]="hide ? 'password' : 'text'"
-            />
-            <mat-error *ngIf="Password?.touched && Password?.hasError('required')"> Contraseña es <strong>requerida</strong></mat-error>
-            <button
-              mat-icon-button
-              matSuffix
-              (click)="hide = !hide"
-              [attr.aria-label]="'Hide password'"
-              [attr.aria-pressed]="hide"
-            >
-              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
-            </button>
-          </mat-form-field>
+<div class="frow-container" style="padding-top: 2em;">
+  <div class="frow">
+    <div class="col-xs-1-1 col-sm-6-12 col-md-4-12">
+      <mat-card style="padding: 0;" class="mat-elevation-z6">
+        <mat-card-header color="primary" class="my-header">
+          <mat-card-title style="width: 100%; margin-bottom: 0;">
+            <div class="frow">
+              <div class="col-xs-1-2 col-sm-1-2 col-md-1-2">
+                <h1 class="mat-h1">Bienvenidos</h1>
+              </div>
+            </div>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content style="padding: 2.5em 10%;">
+          <img width="120" src="./assets/icon-login.png" />
+          <br><br>
+          <form [formGroup]="loginForm" (ngSubmit)="sendLogin()">
+            <mat-form-field class="fluid" [style.fontSize.px]="14" appearance="outline">
+              <mat-label [style.fontSize.px]="16">Usuario</mat-label>
+              <input matInput type="text" formControlName="username"/>
+              <mat-error *ngIf="Username?.touched && Username?.hasError('required')"> Usuario es <strong>requerido</strong></mat-error> 
+              <mat-icon matSuffix>account_circle</mat-icon>
+            </mat-form-field>
 
-          <button type="submit" mat-raised-button color="primary" (click)="sendLogin()">
-            Iniciar sesión
-          </button>
-          <br />
-          <br />
-          <button type="warn" mat-stroked-button color="warn">
-            ¿Olvidó su contraseña?
-          </button>
-        </form>
-      </mat-card-content>
-    </mat-card-header>
-  </mat-card>
+            <mat-form-field class="fluid" [style.fontSize.px]="14" appearance="outline">
+              <mat-label [style.fontSize.px]="16">Contraseña</mat-label>
+              <input matInput type="{{passwordType}}" formControlName="password"/>
+              <a *ngIf="passwordType=='password'" matSuffix mat-icon-button aria-label="Clear" (click)="changePasswordType()">
+                <mat-icon>visibility</mat-icon>
+              </a>
+
+              <a *ngIf="passwordType=='text'" matSuffix mat-icon-button aria-label="Clear" (click)="changePasswordType()">
+                <mat-icon>visibility_off</mat-icon>
+              </a>
+              <mat-error *ngIf="Password?.touched && Password?.hasError('required')"> Contraseña es <strong>requerida</strong></mat-error> 
+            </mat-form-field>
+
+            <div class="login-buttons">
+              <button mat-raised-button color="accent" [disabled]="!loginForm.valid || loading" [class.spinner]="loading">
+                Ingresar
+              </button>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col-xs-1-1 col-sm-6-12 col-md-8-12"></div>
+  </div>
 </div>
+
+

@@ -1,27 +1,31 @@
-.login-form {
-  padding: 4rem 1rem;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.grid-container { 
+    margin: 20px;
+    justify-content: center;
+}
 
-  mat-card {
-    max-width: 600px;
-    margin: 2rem auto;
-    text-align: center;
-    height: 440px;
-    vertical-align: top;
-    border: 1px solid #000;
-    border-collapse: collapse;
-  }
-
-  mat-card-header {
-    height: 440px;
-    background-color: #cde8f3;
-  }
-
-  .full-width-input,
-  button {
+.full-width {
     width: 100%;
-  }
+}
+
+mat-card { 
+    max-width: 500px;
+    margin: 2em auto;
+    text-align: center;
+}
+
+.mat-mdc-card-header {
+    padding: 0% !important;
+}
+
+mat-form-field { 
+    display: block;
+}
+
+.login-buttons { 
+    padding-top: 1em;
+    text-align: center;
+    width: 100%;
+    > button {
+        width: 50%;
+    }
 }
