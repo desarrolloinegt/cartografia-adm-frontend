@@ -11,7 +11,7 @@ export class UserService {
   constructor(private apiService: ApiService) { }
 
   newUser(newUser: any): Observable<any> {
-    return this.apiService.store('user', newUser);
+    return this.apiService.store('registro', newUser);
   }
 
   getAllUsers(limit?:number, offset?:number){

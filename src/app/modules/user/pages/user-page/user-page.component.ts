@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { UserService } from '@modules/user/services';
+import { IUser } from '@core/interfaces/i-user';
 export interface UserData {
   id: string;
   DPI: string;
@@ -35,9 +36,7 @@ export class UserPageComponent {
     this.buildForm();
   }
   ngOnInit() {
-    this.userServide.getAllUsers().subscribe(data=>{
-      this.dataSource=data;
-    });
+    this.cargarUsuarios();
   }
 
 
@@ -51,6 +50,11 @@ export class UserPageComponent {
       password:['', [Validators.required,Validators.pattern(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=.*[$@$!%*?&])(?=[^A-Z]*[A-Z]).{8,30}$/)]],
       passwordConfirm:['',[Validators.required,Validators.pattern(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=.*[$@$!%*?&])(?=[^A-Z]*[A-Z]).{8,30}$/),PasswordValidation.MatchPassword]],
       username:['', [Validators.required]]
+    });
+  }
+  cargarUsuarios(){
+    this.userServide.getAllUsers().subscribe(data=>{
+      this.dataSource=data;
     });
   }
   get DPI() {
@@ -91,14 +95,32 @@ export class UserPageComponent {
       this.dataSource.paginator.firstPage();
     }
   }
-
+  user!:IUser;
   registerUser(){
-    
+    if(this.registerForm.valid){
+      this.user=this.registerForm.value;
+      console.log(this.user);
+      this.userServide.newUser(this.user).subscribe((resp)=>{
+        if(resp.status==true){
+          this.cargarUsuarios();
+        }
+      },(err) => {
+        this.loading = false;
+        console.log(err);
+      });
+    }
   }
+
+  editar(id:string,DPI:string,nombre:string,apellidos:string,email:string,codigo_usuario:string,username:string){
+
+  }
+  desactivar(id:string){
+
+  }
+
 }
 
 export class PasswordValidation {
-
   static MatchPassword(AC: AbstractControl) {
      const formGroup = AC.parent;
      if (formGroup) {
