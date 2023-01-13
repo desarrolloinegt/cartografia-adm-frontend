@@ -57,7 +57,7 @@ export class UserPageComponent {
   }
   cargarUsuarios() {
     this.userServide.getAllUsers().subscribe(data => {
-      this.dataSource = data;
+      this.dataSource =new MatTableDataSource(data);
     });
   }
   get DPI() {
@@ -105,6 +105,7 @@ export class UserPageComponent {
       this.userServide.newUser(this.user).subscribe((resp) => {
         if (resp.status == true) {
           this.cargarUsuarios();
+          Swal.fire('Ok!', resp.message, 'success')
         }
       }, (err) => {
         this.loading = false;
