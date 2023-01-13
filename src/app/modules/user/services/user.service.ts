@@ -22,4 +22,12 @@ export class UserService {
     }
     return this.apiService.getAll('usuarios');
   }
+
+  desactiveUser(id:number){
+    return this.apiService.desactive('usuario',id);
+  }
+
+  editUser(data:any): Observable<any>{
+    return this.apiService.patch('usuario/edit',data);
+  }
 }

@@ -5,14 +5,17 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { UserService } from '@modules/user/services';
 import { IUser } from '@core/interfaces/i-user';
+import Swal from 'sweetalert2';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { EditUserComponent } from '@modules/dialogs/edit-user/edit-user.component';
 export interface UserData {
   id: string;
   DPI: string;
   nombres: string;
   apellidos: string;
-  username:string;
-  email:string;
-  codigo_usuario:string;
+  username: string;
+  email: string;
+  codigo_usuario: string;
 }
 
 @Component({
@@ -21,17 +24,17 @@ export interface UserData {
   styleUrls: ['./user-page.component.scss']
 })
 export class UserPageComponent {
-  hide=true;
+  hide = true;
   public passwordType = 'password';
   public loading = false;
 
-  registerForm!:FormGroup;
-  displayedColumns: string[] = ['id','DPI', 'nombres', 'apellidos', 'username','email','codigo_usuario','options'];
+  registerForm!: FormGroup;
+  displayedColumns: string[] = ['id', 'DPI', 'nombres', 'apellidos', 'username', 'email', 'codigo_usuario', 'options'];
   dataSource: MatTableDataSource<UserData>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private userServide:UserService,private formBuilder: FormBuilder) {
+  constructor(private userServide: UserService, private formBuilder: FormBuilder, public dialogService: MatDialog) {
     this.dataSource = new MatTableDataSource();
     this.buildForm();
   }
@@ -40,21 +43,21 @@ export class UserPageComponent {
   }
 
 
-  private buildForm(){
-    this.registerForm=this.formBuilder.group({
-      DPI:['', [Validators.required,Validators.pattern(/^((\\+91-?)|0)?[0-9]{13}$/)]],
-      nombres:['', [Validators.required]],
-      apellidos:['', [Validators.required]],
-      email:['', [Validators.required,Validators.email]],
-      codigo_usuario:['', [Validators.required]],
-      password:['', [Validators.required,Validators.pattern(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=.*[$@$!%*?&])(?=[^A-Z]*[A-Z]).{8,30}$/)]],
-      passwordConfirm:['',[Validators.required,Validators.pattern(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=.*[$@$!%*?&])(?=[^A-Z]*[A-Z]).{8,30}$/),PasswordValidation.MatchPassword]],
-      username:['', [Validators.required]]
+  private buildForm() {
+    this.registerForm = this.formBuilder.group({
+      DPI: ['', [Validators.required, Validators.pattern(/^((\\+91-?)|0)?[0-9]{13}$/)]],
+      nombres: ['', [Validators.required]],
+      apellidos: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      codigo_usuario: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.pattern(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=.*[$@$!%*?&])(?=[^A-Z]*[A-Z]).{8,30}$/)]],
+      passwordConfirm: ['', [Validators.required, Validators.pattern(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=.*[$@$!%*?&])(?=[^A-Z]*[A-Z]).{8,30}$/), PasswordValidation.MatchPassword]],
+      username: ['', [Validators.required]]
     });
   }
-  cargarUsuarios(){
-    this.userServide.getAllUsers().subscribe(data=>{
-      this.dataSource=data;
+  cargarUsuarios() {
+    this.userServide.getAllUsers().subscribe(data => {
+      this.dataSource = data;
     });
   }
   get DPI() {
@@ -95,50 +98,77 @@ export class UserPageComponent {
       this.dataSource.paginator.firstPage();
     }
   }
-  user!:IUser;
-  registerUser(){
-    if(this.registerForm.valid){
-      this.user=this.registerForm.value;
-      console.log(this.user);
-      this.userServide.newUser(this.user).subscribe((resp)=>{
-        if(resp.status==true){
+  user!: IUser;
+  registerUser() {
+    if (this.registerForm.valid) {
+      this.user = this.registerForm.value;
+      this.userServide.newUser(this.user).subscribe((resp) => {
+        if (resp.status == true) {
           this.cargarUsuarios();
         }
-      },(err) => {
+      }, (err) => {
         this.loading = false;
         console.log(err);
       });
     }
   }
 
-  editar(id:string,DPI:string,nombre:string,apellidos:string,email:string,codigo_usuario:string,username:string){
-
+  editar(id: string, DPI: string, nombres: string, apellidos: string, email: string, codigo_usuario: string, username: string) {
+    const dialogRef = this.dialogService.open(EditUserComponent, {
+      height: '50rem',
+      width: '60rem',
+      data: { id: id, DPI: DPI, nombres: nombres, apellidos: apellidos, email: email, codigo_usuario: codigo_usuario, username: username }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result===1){
+        this.cargarUsuarios();
+      } 
+    });
   }
-  desactivar(id:string){
-
+  desactivar(id: string, username: string) {
+    Swal.fire({
+      title: '¿Esta seguro que desea Desactivar el usuario: ' + username + '?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Si',
+      denyButtonText: `No`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.userServide.desactiveUser(Number(id)).subscribe((resp) => {
+          if (resp.status == true) {
+            this.cargarUsuarios();
+            Swal.fire('Ok!', 'Usuario Desactivado', 'success')  
+          }
+        },(err) => {
+          this.loading = false;
+          console.log(err);
+        }); 
+      } else if (result.isDenied) {
+        Swal.fire('Cambios no guardados', '', 'info')
+      }
+    })
   }
-
 }
 
 export class PasswordValidation {
   static MatchPassword(AC: AbstractControl) {
-     const formGroup = AC.parent;
-     if (formGroup) {
-          const passwordControl = formGroup.get('password'); // to get value in input tag
-          const confirmPasswordControl = formGroup.get('passwordConfirm'); // to get value in input tag
+    const formGroup = AC.parent;
+    if (formGroup) {
+      const passwordControl = formGroup.get('password'); // to get value in input tag
+      const confirmPasswordControl = formGroup.get('passwordConfirm'); // to get value in input tag
 
-          if (passwordControl && confirmPasswordControl) {
-              const password = passwordControl.value;
-              const confirmPassword = confirmPasswordControl.value;
-              if (password !== confirmPassword) { 
-                  return { matchPassword: true };
-              } else {
-                  return null;
-              }
-          }
-     }
+      if (passwordControl && confirmPasswordControl) {
+        const password = passwordControl.value;
+        const confirmPassword = confirmPasswordControl.value;
+        if (password !== confirmPassword) {
+          return { matchPassword: true };
+        } else {
+          return null;
+        }
+      }
+    }
 
-     return null;
+    return null;
   }
 }
 

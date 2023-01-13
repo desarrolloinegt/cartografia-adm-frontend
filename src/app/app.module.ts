@@ -8,12 +8,14 @@ import { AppMaterialModule } from './app-material/app-material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components';
-
+import { MatDialogModule } from '@angular/material/dialog';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import { SpinnerModule } from '@core/spinner/spinner.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SpinnerInterceptor } from '@core/interceptors/spinner.interceptor';
+import { EditUserComponent } from './modules/dialogs/edit-user/edit-user.component';
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, EditUserComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -23,6 +25,8 @@ import { SpinnerInterceptor } from '@core/interceptors/spinner.interceptor';
     HttpClientModule,
     HeaderComponent,
     SpinnerModule,
+    MatDialogModule,
+    MatCheckboxModule
   ],
 
   providers: [

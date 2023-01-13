@@ -21,6 +21,9 @@ export class ApiService {
     return this.http.get(`${this.apiUrl}${path}/${id}`);
   }
 
+  desactive(path:string,id:number): Observable<any>{
+    return this.http.get(`${this.apiUrl}${path}/${id}`);
+  }
   store(path: string, data: any): Observable<any> {
     return this.http.post(`${this.apiUrl}${path}`, data);
   }
@@ -33,7 +36,7 @@ export class ApiService {
     return this.http.delete(`${this.apiUrl}${path}/${id}`);
   }
 
-  patch(path: string, data: any, id: number): Observable<any> {
-    return this.http.patch(`${this.apiUrl}${path}/${id}`, data);
+  patch(path: string, data: any): Observable<any> {
+    return this.http.patch(`${this.apiUrl}${path}`, data);
   }
 }
