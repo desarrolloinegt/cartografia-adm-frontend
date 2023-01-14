@@ -1,1 +1,27 @@
-<p>roles-page works!</p>
+<app-header></app-header>
+<br />
+<div class="card">
+    <div class="card-body">
+        <form>
+            <div class="form-group">
+                <mat-form-field appearance="outline" class="full-width-input">
+                    <mat-label>Ingrese el nombre del rol</mat-label>
+                    <input type="number" formControlName="DPI" matInput placeholder="qa" class="form-control"
+                        required />
+                    <!--<mat-error *ngIf="DPI?.touched && DPI?.hasError('required')">DPI es <strong>requerido</strong> </mat-error>
+              <mat-error *ngIf="DPI?.touched && DPI?.hasError('pattern')">DPI es debe contener<strong>13 digitos</strong> </mat-error>-->
+                </mat-form-field>
+            </div>
+            <mat-label>Permisos</mat-label>
+            <section class="example-section">
+                <span class="example-list-section">
+                    <ul>
+                        <li *ngFor="let permiso of permisos">
+                            <mat-checkbox class="example-margin">{{permiso.alias}}</mat-checkbox>
+                        </li>
+                    </ul>
+                </span>
+            </section>
+        </form>
+    </div>
+</div>

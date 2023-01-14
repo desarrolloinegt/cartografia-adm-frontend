@@ -1,12 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { UserService } from '@modules/user/services';
 import { IUser } from '@core/interfaces/i-user';
 import Swal from 'sweetalert2';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { EditUserComponent } from '@modules/dialogs/edit-user/edit-user.component';
 export interface UserData {
   id: string;
