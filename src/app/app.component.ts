@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { MatSidenav } from '@angular/material/sidenav';
+import { MatDrawer, MatSidenav } from '@angular/material/sidenav';
 import { AuthService } from '@modules/auth';
 
 @Component({
@@ -8,8 +8,13 @@ import { AuthService } from '@modules/auth';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  @ViewChild('appDrawer') appDrawer: MatDrawer; 
 
   constructor(private auth: AuthService) {}
+
+  get token() {
+    return localStorage.getItem('token') || '';
+  }
 
   ngOnInit() {
   }

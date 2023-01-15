@@ -1,4 +1,21 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #appDrawer class="sidenav">
+        <div style="text-align: center; padding-top: 1em;">
+            <mat-icon [style.fontSize.px]="32">account_circle</mat-icon>
+        </div>
+    </mat-sidenav>
+    <mat-sidenav-content style="background-color: white;">
+        <app-spinner></app-spinner>
+        <mat-toolbar color="primary" style="z-index: 99;" *ngIf="token != ''">
+            <button type="button" aria-label="Toggle sidenav" mat-icon-button>
+                <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+            </button>
+            <span>Portal Cartografia</span>
+            <span class="spacer"></span>
+        </mat-toolbar>
+        <div style="width: 100%; height: auto;">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
 
-
-<app-spinner></app-spinner>
-<router-outlet></router-outlet>

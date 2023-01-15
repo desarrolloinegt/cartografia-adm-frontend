@@ -1,17 +1,22 @@
-.contenedor-padre {
-    display: flex;
-    flex-flow: column;
+.sidenav-container { 
     height: 100%;
 }
 
-.barra {
-    flex: 0 1 auto;
-}
-
-.contenido {
+.spacer { 
     flex: 1 1 auto;
 }
 
-.padding-10 {
-    padding: 10px;
+.sidenav { 
+    width: 250px;
+    background-color: #fafafa;
+}
+
+.sidenav .mat-toolbar { 
+    background: inherit;
+}
+
+.mat-toolbar.mat-primary { 
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
