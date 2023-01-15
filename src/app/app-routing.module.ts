@@ -18,6 +18,10 @@ const routes: Routes = [
     loadChildren: () => import ('@modules/user').then((m)=> m.UserModule),
   },
   {
+    path: 'rol',
+    loadChildren: () => import ('@modules/roles').then((m)=> m.RolesModule),
+  },
+  {
     path: '',
     redirectTo: '/auth/login',
     pathMatch: 'full',

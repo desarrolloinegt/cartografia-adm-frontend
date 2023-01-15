@@ -11,7 +11,7 @@ export class UserService {
   constructor(private apiService: ApiService) { }
 
   newUser(newUser: any): Observable<any> {
-    return this.apiService.store('user', newUser);
+    return this.apiService.store('registro', newUser);
   }
 
   getAllUsers(limit?:number, offset?:number){
@@ -21,5 +21,13 @@ export class UserService {
       params=params.set('offset',offset);
     }
     return this.apiService.getAll('usuarios');
+  }
+
+  desactiveUser(id:number){
+    return this.apiService.desactive('usuario',id);
+  }
+
+  editUser(data:any): Observable<any>{
+    return this.apiService.patch('usuario/edit',data);
   }
 }
