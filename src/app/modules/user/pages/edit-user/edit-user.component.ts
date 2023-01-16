@@ -22,7 +22,6 @@ export class EditUserComponent {
   ngOnInit() {}
 
   editForm!: FormGroup;
-  displayedColumns: string[] = ['id', 'DPI', 'nombres', 'apellidos', 'username', 'email', 'codigo_usuario', 'options'];
   private buildForm() {
     this.editForm = this.formBuilder.group({
       id:[this.data.id,[Validators.required]],
