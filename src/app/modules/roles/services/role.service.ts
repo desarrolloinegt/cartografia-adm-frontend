@@ -11,4 +11,12 @@ export class RoleService {
   getPermisions(){
     return this.apiService.getAll('permisos');
   }
+  
+  createRol(nombre:any){
+    return this.apiService.store('rol',nombre);
+  }
+
+  assignPermisoToRol(data:any){
+    return this.apiService.store('asignarPermiso',data);
+  }
 }

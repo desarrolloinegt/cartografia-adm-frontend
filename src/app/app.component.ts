@@ -8,7 +8,7 @@ import { AuthService } from '@modules/auth';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  @ViewChild('appDrawer') appDrawer: MatDrawer; 
+  //@ViewChild('appDrawer') appDrawer: MatDrawer; 
 
   constructor(private auth: AuthService) {}
 

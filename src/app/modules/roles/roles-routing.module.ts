@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RolesPageComponent } from './pages';
+import { RolesEditComponent, RolesPageComponent } from './pages';
 
 const routes: Routes = [{
     path:'',
     component:RolesPageComponent
+  },{
+    path:'edit',
+    component:RolesEditComponent
   }
 ];
 

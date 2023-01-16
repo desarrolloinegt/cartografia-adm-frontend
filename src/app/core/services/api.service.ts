@@ -25,6 +25,7 @@ export class ApiService {
     return this.http.get(`${this.apiUrl}${path}/${id}`);
   }
   store(path: string, data: any): Observable<any> {
+    console.log(data);
     return this.http.post(`${this.apiUrl}${path}`, data);
   }
 

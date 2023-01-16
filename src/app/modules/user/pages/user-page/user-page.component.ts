@@ -7,7 +7,7 @@ import { UserService } from '@modules/user/services';
 import { IUser } from '@core/interfaces/i-user';
 import Swal from 'sweetalert2';
 import { MatDialog } from '@angular/material/dialog';
-import { EditUserComponent } from '@modules/dialogs/edit-user/edit-user.component';
+import { EditUserComponent } from '@modules/user/pages/edit-user/edit-user.component';
 export interface UserData {
   id: string;
   DPI: string;
