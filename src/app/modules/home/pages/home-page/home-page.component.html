@@ -1,4 +1,25 @@
 <app-header></app-header>
-<mat-card>
-  <h4>Proyectos Asignados</h4>
-</mat-card>
+
+<div class="frow-container" style="padding-top: 2em;">
+  <div class="frow">
+    <div class="col-xs-1-1 col-sm-6-12 col-md-4-12">
+      <mat-card style="padding: 0;">
+        <mat-card-header color="primary" class="my-header">
+          <mat-card-title style="width: 100%; margin-bottom: 0;">
+            <div class="frow">
+              <div class="col-xs-1-2 col-sm-1-2 col-md-1-2">
+                <h1 class="title-card">Proyectos Asignados</h1>
+              </div>
+            </div>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content style="padding: 2.5em 10%;">
+          <h2>{{projects}}</h2>
+          <!-- <h3>{{projects?.nombre_proyecto}}</h3>
+          <p>{{proyecto?.description}}</p> --> 
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col-xs-1-1 col-sm-6-12 col-md-8-12"></div>
+  </div>
+</div>

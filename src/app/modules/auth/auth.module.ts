@@ -6,11 +6,13 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { AppMaterialModule } from 'src/app/app-material/app-material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthHeaderComponent } from './components';
+import { LogoutComponent } from './pages/logout/logout.component';
 
 
 @NgModule({
   declarations: [
-    LoginPageComponent
+    LoginPageComponent,
+    LogoutComponent
   ],
   imports: [
     CommonModule,
