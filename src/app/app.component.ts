@@ -9,11 +9,16 @@ import { AuthService } from '@modules/auth';
 })
 export class AppComponent {
   //@ViewChild('appDrawer') appDrawer: MatDrawer; 
+  opened = true;
 
   constructor(private auth: AuthService) {}
 
   get token() {
     return localStorage.getItem('token') || '';
+  }
+
+  get usuario() {
+    return localStorage.getItem('usuario') || '';
   }
 
   ngOnInit() {

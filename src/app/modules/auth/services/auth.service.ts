@@ -14,7 +14,7 @@ export class AuthService {
 
   ifLoggedIn() {
     const token = localStorage.getItem('token');
-    if (token) {
+      if (token) {
       this.authState.next(true);
     }
   }
@@ -23,6 +23,7 @@ export class AuthService {
     return this.apiService.store('login', formData).pipe(
       tap((resp: any) => {
         localStorage.setItem('token', resp.token);
+        localStorage.setItem('usuario', resp.usuario);
         const validateUser = resp.token !== undefined;
         this.authState.next(validateUser);
       })
@@ -31,8 +32,13 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
-    this.router.navigateByUrl('auth/login');
-    this.authState.next(false);
+    localStorage.removeItem('projects');
+    localStorage.removeItem('usuario');
+
+    setTimeout(() => {
+      this.router.navigateByUrl('auth/login');
+      this.authState.next(false);
+    }, 1500);
   }
 
   isAuthenticated() {

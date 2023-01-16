@@ -11,6 +11,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+
 @NgModule({
   exports: [
     MatCardModule,
@@ -25,6 +27,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatExpansionModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
+    MatProgressBarModule
   ],
 })
 export class AppMaterialModule {}
