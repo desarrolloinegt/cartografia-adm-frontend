@@ -7,15 +7,15 @@
     <table mat-table [dataSource]="dataSource" matSort>
   
       <!-- ID Column -->
-      <ng-container matColumnDef="idRol">
+      <ng-container matColumnDef="rol_id">
         <th mat-header-cell *matHeaderCellDef> ID Rol</th>
-        <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.rol_id}} </td>
       </ng-container>
   
       <!-- Rol Column -->
-      <ng-container matColumnDef="rol">
+      <ng-container matColumnDef="nombre">
         <th mat-header-cell *matHeaderCellDef> Rol </th>
-        <td mat-cell *matCellDef="let row"> {{row.rol}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.nombre}} </td>
       </ng-container>
   
       <!-- Nombres Column -->
@@ -27,12 +27,12 @@
       <ng-container matColumnDef="options">
         <th mat-header-cell *matHeaderCellDef>Acciones</th>
         <td mat-cell *matCellDef="let row">
-          <button mat-icon-button (click)="editar(row.id,row.DPI,row.nombres,row.apellidos,row.email,row.codigo_usuario,row.username)"
+          <button mat-icon-button (click)="editar(row.rol_id,row.nombre,row.permisos)"
             matTooltip="Click para Editar" matTooltipPosition = "right" 
             color="primary" class="iconbutton">
           <mat-icon aria-label="Edit">edit</mat-icon>
           </button>
-          <button mat-icon-button matTooltip="Click para desactivar" (click)="desactivar(row.id,row.username)" color="warn" class="iconbutton">
+          <button mat-icon-button matTooltip="Click para desactivar" (click)="desactivar(row.rol_id,row.nombre,row.permisos)" color="warn" class="iconbutton">
             <mat-icon aria-label="Delete">delete</mat-icon>
           </button> 
         </td>

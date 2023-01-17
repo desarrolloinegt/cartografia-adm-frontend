@@ -19,4 +19,16 @@ export class RoleService {
   assignPermisoToRol(data:any){
     return this.apiService.store('asignarPermiso',data);
   }
+
+  getRolesPermisos(){
+    return this.apiService.getAll('asignacionesRolPermiso');
+  }
+
+  desactiveRole(id:number){
+    return this.apiService.desactive('rol',id);
+  }
+
+  editRole(data:any){
+    return this.apiService.patch('rol/edit',data);
+  }
 }

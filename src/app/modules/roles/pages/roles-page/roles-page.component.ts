@@ -2,35 +2,25 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatList, MatListOption } from '@angular/material/list';
+import { IPermiso } from '@core/interfaces/i-permiso';
+import { IRol } from '@core/interfaces/i-rol';
+import { IAsignacionRolPermiso } from '@core/interfaces/iasignacion-rol-permiso';
 import { RoleService } from '@modules/roles/services/role.service';
 import Swal from 'sweetalert2';
 
-export interface Permiso{
-  id:number,
-  alias:string,
-}
-
-export interface Rol{
-  nombre:string
-}
-
-export interface AsginacionRolPermiso{
-  rol_id:number,
-  permisos:number[]
-}
 @Component({
   selector: 'app-roles-page',
   templateUrl: './roles-page.component.html',
   styleUrls: ['./roles-page.component.scss']
 })
 export class RolesPageComponent {
-  public permisos:Permiso[]=[];
+  public permisos:IPermiso[]=[];
   idRol:number=0;
-  rol:Rol={
+  rol:IRol={
     nombre:''
   }
   selectedPermision!:number[];
-  asignacionPermisoRol:AsginacionRolPermiso={
+  asignacionPermisoRol:IAsignacionRolPermiso={
     rol_id:0,
     permisos:[]
   };

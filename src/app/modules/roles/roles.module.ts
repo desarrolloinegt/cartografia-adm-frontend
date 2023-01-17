@@ -7,9 +7,10 @@ import { AppMaterialModule } from 'src/app/app-material/app-material.module';
 import { RolesPageComponent } from './pages';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { RolesEditComponent } from './pages/roles-edit/roles-edit.component';
+import { RolesEditDialogComponent } from './pages/roles-edit-dialog/roles-edit-dialog.component';
 
 @NgModule({
-  declarations: [RolesPageComponent, RolesEditComponent],
+  declarations: [RolesPageComponent, RolesEditComponent, RolesEditDialogComponent],
   imports: [
     CommonModule,
     RolesRoutingModule,
