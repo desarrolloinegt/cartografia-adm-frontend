@@ -22,6 +22,14 @@ const routes: Routes = [
     loadChildren: () => import ('@modules/roles').then((m)=> m.RolesModule),
   },
   {
+    path: 'encuesta',
+    loadChildren: () => import ('@modules/encuesta').then((m)=>m.EncuestaModule),
+  },
+  {
+    path: 'project',
+    loadChildren: () => import ('@modules/project').then((m)=>m.ProjectModule),
+  },
+  {
     path: '',
     redirectTo: '/auth/login',
     pathMatch: 'full',
