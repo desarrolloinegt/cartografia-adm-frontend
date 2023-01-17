@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatList, MatListOption } from '@angular/material/list';
-import { IPermiso } from '@core/interfaces/i-permiso';
-import { IRol } from '@core/interfaces/i-rol';
-import { IAsignacionRolPermiso } from '@core/interfaces/iasignacion-rol-permiso';
+import { IPermiso } from '@core/interfaces/i-permission';
+import { IRol } from '@core/interfaces/i-role';
+import { IAsignacionRolPermiso } from '@core/interfaces/i-permission-assignment';
 import { RoleService } from '@modules/roles/services/role.service';
 import Swal from 'sweetalert2';
 

@@ -1,5 +1,5 @@
 import { IPermission } from "./i-permission";
 
-export interface IRol {  
+export interface IRole {  
     nombre: string;
 }
