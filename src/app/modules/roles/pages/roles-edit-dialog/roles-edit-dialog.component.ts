@@ -2,8 +2,8 @@ import { Component,Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef,MatDialogClose } from '@angular/material/dialog';
 import { MatListOption } from '@angular/material/list';
-import { IPermiso } from '@core/interfaces/i-permission';
-import { IAsignacionRolPermiso } from '@core/interfaces/i-permission-assignment';
+import { IPermission } from '@core/interfaces/i-permission';
+import { IPermissionAssignment} from '@core/interfaces/i-permission-assignment';
 import { RoleService } from '@modules/roles/services/role.service';
 import Swal from 'sweetalert2';
 import { RolesPermiso } from '../roles-edit/roles-edit.component';
@@ -16,9 +16,9 @@ export class RolesEditDialogComponent {
   editForm!:FormGroup;
   public checked = false;
   selectedPermision:number[]=[];
-  public permisosList:IPermiso[]=[];
-  public defaultPermisos:IPermiso[]=[];
-  asignacionPermisoRolEditado:IAsignacionRolPermiso={
+  public permisosList:IPermission[]=[];
+  public defaultPermisos:IPermission[]=[];
+  asignacionPermisoRolEditado:IPermissionAssignment={
     rol_id:0,
     permisos:[]
   };

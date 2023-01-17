@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatList, MatListOption } from '@angular/material/list';
-import { IPermiso } from '@core/interfaces/i-permission';
-import { IRol } from '@core/interfaces/i-role';
-import { IAsignacionRolPermiso } from '@core/interfaces/i-permission-assignment';
+import { IPermission } from '@core/interfaces/i-permission';
+import { IRole } from '@core/interfaces/i-role';
+import { IPermissionAssignment } from '@core/interfaces/i-permission-assignment';
 import { RoleService } from '@modules/roles/services/role.service';
 import Swal from 'sweetalert2';
 
@@ -14,13 +14,13 @@ import Swal from 'sweetalert2';
   styleUrls: ['./roles-page.component.scss']
 })
 export class RolesPageComponent {
-  public permisos:IPermiso[]=[];
+  public permisos:IPermission[]=[];
   idRol:number=0;
-  rol:IRol={
+  rol:IRole={
     nombre:''
   }
   selectedPermision!:number[];
-  asignacionPermisoRol:IAsignacionRolPermiso={
+  asignacionPermisoRol:IPermissionAssignment={
     rol_id:0,
     permisos:[]
   };
