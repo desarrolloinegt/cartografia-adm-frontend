@@ -3,10 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef,MatDialogClose } from '@angular/material/dialog';
 import { MatListOption } from '@angular/material/list';
 import { IPermission } from '@core/interfaces/i-permission';
-import { IPermissionAssignment} from '@core/interfaces/i-permission-assignment';
+import { IPermissionAssignment, IPermissionAssignmetList} from '@core/interfaces/i-permission-assignment';
 import { RoleService } from '@modules/roles/services/role.service';
 import Swal from 'sweetalert2';
-import { RolesPermiso } from '../roles-page';
 @Component({
   selector: 'app-roles-edit-dialog',
   templateUrl: './roles-edit-dialog.component.html',
@@ -23,7 +22,7 @@ export class RolesEditDialogComponent {
     permisos:[]
   };
 
-  constructor(private roleService:RoleService,public dialogRef:MatDialogRef<string>, @Inject(MAT_DIALOG_DATA) public data: RolesPermiso, private formBuilder: FormBuilder) {
+  constructor(private roleService:RoleService,public dialogRef:MatDialogRef<string>, @Inject(MAT_DIALOG_DATA) public data: IPermissionAssignmetList, private formBuilder: FormBuilder) {
    
     this.buildForm();
     this.getPermisos();

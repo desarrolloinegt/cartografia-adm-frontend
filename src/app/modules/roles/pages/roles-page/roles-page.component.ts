@@ -4,15 +4,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { IPermissionAssignment } from '@core/interfaces/i-permission-assignment';
+import { IPermissionAssignment, IPermissionAssignmetList } from '@core/interfaces/i-permission-assignment';
 import { RoleService } from '@modules/roles/services/role.service';
 import Swal from 'sweetalert2';
 import { RolesEditDialogComponent } from '../roles-edit-dialog/roles-edit-dialog.component';
-export interface RolesPermiso{
-  rol_id:number,
-  nombre:string,
-  permisos:[]
-}
 @Component({
   selector: 'app-roles-page',
   templateUrl: './roles-page.component.html',
@@ -22,8 +17,8 @@ export class RolesPageComponent {
   
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  dataSource: MatTableDataSource<IPermissionAssignment>;
-  rolesPermiso:RolesPermiso={
+  dataSource: MatTableDataSource<IPermissionAssignmetList>;
+  rolesPermiso:IPermissionAssignmetList={
     rol_id:0,
     nombre:'',
     permisos:[]
