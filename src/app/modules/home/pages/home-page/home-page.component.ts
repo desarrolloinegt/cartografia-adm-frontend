@@ -9,10 +9,11 @@ import { AuthService } from '@modules/auth';
   styleUrls: ['./home-page.component.scss'],
 })
 export class HomePageComponent {
-  public projects: string = '';
+  //public projects: any;
+  public projects: IProject[] = [];
 
   constructor(private auth: AuthService, private router: Router) {
     this.projects = JSON.parse(localStorage.getItem('projects')|| "[]");
-    console.log(this.projects [0][0]);
+    console.log(this.projects);
   }
 }

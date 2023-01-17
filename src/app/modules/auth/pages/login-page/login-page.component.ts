@@ -22,6 +22,10 @@ export class LoginPageComponent {
     private router: Router
   ) {
     this.buildForm();
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.router.navigateByUrl('/home');
+    }
   }
 
   get Username() {
@@ -56,7 +60,7 @@ export class LoginPageComponent {
   }
 
   changePasswordType() {
-    this.passwordType = this.passwordType == 'text' ? 'password': 'text';
+    this.passwordType = this.passwordType == 'text' ? 'password' : 'text';
   }
 
   private buildForm() {

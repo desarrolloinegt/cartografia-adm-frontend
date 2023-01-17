@@ -1,5 +1,5 @@
 <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #appDrawer [(opened)]="opened" class="sidenav" mode="side">
+    <mat-sidenav [(opened)]="opened" class="sidenav" mode="side" *ngIf="token != ''">
         <div style="text-align: center; padding-top: 1em;">
             <mat-icon class="icon-user" [style.fontSize.px]="32">account_circle</mat-icon>
             <h4 style="padding-bottom: 20px;"><strong>{{usuario}}</strong></h4>
@@ -11,6 +11,10 @@
                 <span [style.fontSize.px]="14">Inicio</span>
             </a>
             
+            <a mat-list-item class="menu-list-item" routerLink="'user'"> 
+                <mat-icon class="routeIcon menu-icon">person</mat-icon>
+                <span [style.fontSize.px]="14">Usuarios</span>
+            </a>
 
 
             <a mat-list-item class="menu-list-item" [routerLink]="['auth/logout']"> 

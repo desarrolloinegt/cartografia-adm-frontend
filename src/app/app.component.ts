@@ -1,6 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
-import { MatDrawer, MatSidenav } from '@angular/material/sidenav';
-import { AuthService } from '@modules/auth';
+import { Component } from '@angular/core';
+import { Route, Router, Routes } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +7,9 @@ import { AuthService } from '@modules/auth';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  //@ViewChild('appDrawer') appDrawer: MatDrawer; 
   opened = true;
 
-  constructor(private auth: AuthService) {}
+  constructor(private router: Router) {}
 
   get token() {
     return localStorage.getItem('token') || '';
@@ -21,30 +19,5 @@ export class AppComponent {
     return localStorage.getItem('usuario') || '';
   }
 
-  ngOnInit() {
-  }
-
-  logout() {
-    this.auth.logout();
-  }
-
-
-  @ViewChild('sidenav')
-  sidenav!: MatSidenav;
-  isExpanded = true;
-  showSubmenu: boolean = false;
-  isShowing = false;
-  showSubSubMenu: boolean = false;
-
-  mouseenter() {
-    if (!this.isExpanded) {
-      this.isShowing = true;
-    }
-  }
-
-  mouseleave() {
-    if (!this.isExpanded) {
-      this.isShowing = false;
-    }
-  }
+  ngOnInit() {}
 }
