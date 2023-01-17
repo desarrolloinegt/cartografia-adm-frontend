@@ -1,9 +1,10 @@
-import { Component,ViewChild } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { Component, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { IPermissionAssignment } from '@core/interfaces/i-permission-assignment';
 import { RoleService } from '@modules/roles/services/role.service';
 import Swal from 'sweetalert2';
 import { RolesEditDialogComponent } from '../roles-edit-dialog/roles-edit-dialog.component';
@@ -21,7 +22,7 @@ export class RolesPageComponent {
   
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  dataSource: MatTableDataSource<RolesPermiso>;
+  dataSource: MatTableDataSource<IPermissionAssignment>;
   rolesPermiso:RolesPermiso={
     rol_id:0,
     nombre:'',
@@ -86,5 +87,4 @@ export class RolesPageComponent {
       }
     })
   }
-
 }
