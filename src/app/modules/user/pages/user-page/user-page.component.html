@@ -1,6 +1,9 @@
-
-<br /><br />
-
+<div class="header">
+  <h1>Usuarios</h1>
+  <a mat-fab color="accent" routerLink="create">
+    <mat-icon aria-label="add">add</mat-icon>
+  </a>
+</div>
 <mat-form-field>
   <mat-label>Buscar...</mat-label>
   <input matInput (keyup)="applyFilter($event)" placeholder="Ejemplo: example_user" #input>
