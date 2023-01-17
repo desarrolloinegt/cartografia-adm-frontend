@@ -1,22 +1,21 @@
 import { Component,Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserService } from '@modules/user';
-import { MAT_DIALOG_DATA, MatDialogRef,MatDialogClose } from '@angular/material/dialog';
-import { PasswordValidation } from '@modules/user/pages/user-page';
+import { MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { UserService } from '@modules/user/services';
 import Swal from 'sweetalert2';
-import { Dialog } from '@angular/cdk/dialog';
+import { PasswordValidation } from '../user-page';
 
 @Component({
-  selector: 'app-edit-user',
-  templateUrl: './edit-user.component.html',
-  styleUrls: ['./edit-user.component.scss']
+  selector: 'app-edit-user-dialog',
+  templateUrl: './edit-user-dialog.component.html',
+  styleUrls: ['./edit-user-dialog.component.scss']
 })
-export class EditUserComponent {
+export class EditUserDialogComponent {
   hide = true;
   public passwordType = 'password';
   public loading = false;
   public checked = false;
-  constructor(public dialogRef:MatDialogRef<EditUserComponent>, @Inject(MAT_DIALOG_DATA) public data: any,private userService: UserService, private formBuilder: FormBuilder) {
+  constructor(public dialogRef:MatDialogRef<EditUserDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any,private userService: UserService, private formBuilder: FormBuilder) {
     this.buildForm();
   }
   ngOnInit() {}

@@ -6,7 +6,7 @@ import { IPermiso } from '@core/interfaces/i-permiso';
 import { IAsignacionRolPermiso } from '@core/interfaces/iasignacion-rol-permiso';
 import { RoleService } from '@modules/roles/services/role.service';
 import Swal from 'sweetalert2';
-import { RolesPermiso } from '../roles-edit/roles-edit.component';
+import { RolesPermiso } from '../roles-page';
 @Component({
   selector: 'app-roles-edit-dialog',
   templateUrl: './roles-edit-dialog.component.html',

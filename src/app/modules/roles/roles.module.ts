@@ -6,11 +6,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppMaterialModule } from 'src/app/app-material/app-material.module';
 import { RolesPageComponent } from './pages';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import { RolesEditComponent } from './pages/roles-edit/roles-edit.component';
 import { RolesEditDialogComponent } from './pages/roles-edit-dialog/roles-edit-dialog.component';
+import { NewRolePageComponent } from './pages/new-role-page/new-role-page.component';
 
 @NgModule({
-  declarations: [RolesPageComponent, RolesEditComponent, RolesEditDialogComponent],
+  declarations: [RolesPageComponent, RolesEditDialogComponent, NewRolePageComponent],
   imports: [
     CommonModule,
     RolesRoutingModule,

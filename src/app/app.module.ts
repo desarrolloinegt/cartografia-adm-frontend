@@ -13,10 +13,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { SpinnerModule } from '@core/spinner/spinner.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SpinnerInterceptor } from '@core/interceptors/spinner.interceptor';
-import { EditUserComponent } from './modules/user/pages/edit-user/edit-user.component';
 
 @NgModule({
-  declarations: [AppComponent, EditUserComponent,],
+  declarations: [AppComponent,],
   imports: [
     BrowserModule,
     AppRoutingModule,
