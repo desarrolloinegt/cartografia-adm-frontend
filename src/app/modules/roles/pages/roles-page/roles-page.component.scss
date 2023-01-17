@@ -1,18 +1,40 @@
+table {
+  width: 100%;
+  padding: 1em;
+}
 
-  
-  .full-width-input,
-  button {
-    width: 100%;
-  }
-  .example-section {
-    margin: 12px 12px;
-  }
-  
-  .example-margin {
-    margin: 0 12px;
-  }
-  
-  ul {
-    list-style-type: none;
-    margin-top: 4px;
-  }
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.full-width-input {
+  width: 100% auto;
+  padding: 1em;
+}
+.example-section {
+  margin: 12px 12px;
+}
+
+.example-margin {
+  margin: 0 12px;
+}
+
+ul {
+  list-style-type: none;
+  margin-top: 4px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin: 1.5rem;
+  padding: 0 0.4rem;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.header h1 {
+  display: inline;
+  padding-top: .6rem;
+  font-weight: 400;
+}

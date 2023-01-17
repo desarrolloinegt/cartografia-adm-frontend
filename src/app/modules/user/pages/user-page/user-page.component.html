@@ -1,11 +1,16 @@
-
-<br /><br />
+<div class="header">
+  <h1>Usuarios</h1>
+  <a mat-fab  color="accent" routerLink="/user/create">
+    <mat-icon  aria-label="add" oncli>add</mat-icon>
+  </a>
+</div>
 
 <mat-form-field>
   <mat-label>Buscar...</mat-label>
   <input matInput (keyup)="applyFilter($event)" placeholder="Ejemplo: example_user" #input>
 </mat-form-field>
 
+<mat-label>Crear Usuario</mat-label>
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort>
 
