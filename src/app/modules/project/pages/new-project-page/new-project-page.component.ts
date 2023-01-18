@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatListOption } from '@angular/material/list';
+import { IEncuesta } from '@core/interfaces/i-encuesta';
+import { IUpm } from '@core/interfaces/i-upm';
+import { EncuestaService } from '@modules/encuesta/services/encuesta.service';
 import { ProjectService } from '@modules/project/services/project.service';
 import Swal from 'sweetalert2';
 
@@ -10,15 +14,20 @@ import Swal from 'sweetalert2';
 })
 export class NewProjectPageComponent {
   projectForm!:FormGroup;
-  constructor(private projectService: ProjectService, private formBuilder: FormBuilder) { 
+  encuestas:IEncuesta[]=[];
+  upmSelected!:number[];
+  upms:IUpm[]=[];
+  constructor(private projectService: ProjectService, private formBuilder: FormBuilder,private encuestaService:EncuestaService) { 
     this.buildForm();
+    this.cargarEncuestas();
   }
 
   private buildForm(){
     this.projectForm=this.formBuilder.group({
       nombre:['',Validators.required],
       fecha:['',Validators.required],
-      encuesta:['',[Validators.required]]
+      encuesta:['',[Validators.required]],
+      upms:['',[Validators.required]]
     });
   }
   get Nombre() {
@@ -30,6 +39,12 @@ export class NewProjectPageComponent {
 
   get Encuesta() {
     return this.projectForm.get('encuesta');
+  }
+
+  cargarEncuestas(){
+    this.encuestaService.getEncuestas().subscribe((data)=>{
+        this.encuestas=data;
+    });
   }
 
   createProject(){ 
@@ -45,5 +60,8 @@ export class NewProjectPageComponent {
         });
       }
     });*/
+  }
+  permisoSelected(options: MatListOption[]){
+    this.upmSelected=options.map(o=>o.value);
   }
 }

@@ -14,9 +14,15 @@
           </mat-card-title>
         </mat-card-header>
         <mat-card-content style="padding: 2.5em 10%;">
-          <h2 *ngFor="let item of projects">{{item.nombre_proyecto}}</h2>
-          <!-- <h3>{{projects?.nombre_proyecto}}</h3>
-          <p>{{proyecto?.description}}</p> --> 
+          <div *ngFor="let project of projects">
+            <mat-label *ngFor="let item1 of project.proyecto">
+              <h2>{{item1.nombre_proyecto}}</h2>
+            </mat-label>
+            <p *ngFor="let item of project.roles">
+              Rol: {{item.nombre}}
+            </p>
+            <br>
+          </div>
         </mat-card-content>
       </mat-card>
     </div>

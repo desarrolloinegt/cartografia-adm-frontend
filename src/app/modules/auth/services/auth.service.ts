@@ -41,4 +41,8 @@ export class AuthService {
   isAuthenticated() {
     return this.authState.value;
   }
+
+  getProjects(id:number):Observable<any>{
+    return this.apiService.getById('projectsAssing',id);
+  }
 }

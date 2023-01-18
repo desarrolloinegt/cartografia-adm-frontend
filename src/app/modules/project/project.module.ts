@@ -8,6 +8,7 @@ import { AppMaterialModule } from 'src/app/app-material/app-material.module';
 import { NewProjectPageComponent } from './pages/new-project-page/new-project-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from '@components/header';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { HeaderComponent } from '@components/header';
     ProjectRoutingModule,
     AppMaterialModule,
     ReactiveFormsModule,
-    HeaderComponent
+    HeaderComponent,
+    MatSelectModule
   ]
 })
 export class ProjectModule { }

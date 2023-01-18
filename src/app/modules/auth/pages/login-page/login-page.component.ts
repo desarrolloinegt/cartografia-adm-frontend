@@ -46,6 +46,7 @@ export class LoginPageComponent {
           if (resp.status == true) {
             this.router.navigateByUrl('/home');
             console.log(resp.proyectos);
+            localStorage.setItem('id', resp.id);
             localStorage.setItem('projects', JSON.stringify(resp.proyectos));
           } else {
             console.log('Error Inesperado');

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { IProject } from '@core/interfaces/i-project';
+import { IPermission } from '@core/interfaces/i-permission';
+import { IProject, IProjectAssignment } from '@core/interfaces/i-project';
 import { AuthService } from '@modules/auth';
 
 @Component({
@@ -10,10 +11,21 @@ import { AuthService } from '@modules/auth';
 })
 export class HomePageComponent {
   //public projects: any;
-  public projects: IProject[] = [];
-
+  public projects: IProjectAssignment[] = [];
+  public permisos:IPermission[]=[]
+  id:number=0;
   constructor(private auth: AuthService, private router: Router) {
-    this.projects = JSON.parse(localStorage.getItem('projects')|| "[]");
-    console.log(this.projects);
+    this.id=Number(localStorage.getItem('id'));
+    this.getProject();
+    
+  }
+
+  getProject(){
+    this.auth.getProjects(this.id).subscribe((data)=>{
+      this.projects=data
+      this.projects.forEach((data)=>{
+        this.permisos=data.permisos
+      })
+    });
   }
 }
