@@ -3,8 +3,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { IEncuesta } from '@core/interfaces/i-encuesta';
 import { SurveyService } from '@modules/surveys/services';
 import Swal from 'sweetalert2';
+import { SurveyEditDialogComponent } from '../survey-edit-dialog';
 
 @Component({
   selector: 'app-survey-pages',
@@ -16,7 +18,11 @@ export class SurveyPagesComponent {
   @ViewChild(MatSort) sort!: MatSort;
   dataSource: MatTableDataSource<string>;
   displayedColumns: string[] = ['id', 'nombre', 'descripcion','options'];
-
+  surveyData:IEncuesta={
+    id:0,
+    nombre:'',
+    descripcion:''
+  }
   constructor(private surveyService:SurveyService, public dialogService: MatDialog) {
     this.dataSource = new MatTableDataSource();
   }
@@ -28,20 +34,20 @@ export class SurveyPagesComponent {
       this.dataSource.paginator.firstPage();
     }
   }
-  editar(id:string, nombre: string, permisos:[]) {
-    /*this.rolesPermiso.nombre=nombre;
-    this.rolesPermiso.rol_id=Number(id);
-    this.rolesPermiso.permisos=permisos;
-    const dialogRef = this.dialogService.open(RolesEditDialogComponent, {
-      height: '50rem',
-      width: '60rem',
-      data: this.rolesPermiso
+  editar(id:string, nombre: string, descripcion:string) {
+    this.surveyData.nombre=nombre;
+    this.surveyData.descripcion=descripcion;
+    this.surveyData.id=Number(id);
+    const dialogRef = this.dialogService.open(SurveyEditDialogComponent, {
+      height: '30rem',
+      width: '50rem',
+      data: this.surveyData
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result===1){
-        this.cargarRoles();
+        this.cargarEncuestas();
       } 
-    });*/
+    });
   }
   ngOnInit() {
     this.cargarEncuestas();

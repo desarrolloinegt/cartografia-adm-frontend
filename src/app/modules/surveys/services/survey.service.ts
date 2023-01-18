@@ -19,4 +19,8 @@ export class SurveyService {
   create(data:any){
     return this.apiService.store('encuesta',data);
   }
+
+  editSurvey(data:any){
+    return this.apiService.patch('encuesta/edit',data);
+  }
 }
