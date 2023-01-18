@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatListOption } from '@angular/material/list';
 import { IEncuesta } from '@core/interfaces/i-encuesta';
 import { IUpm } from '@core/interfaces/i-upm';
-import { EncuestaService } from '@modules/encuesta/services/encuesta.service';
 import { ProjectService } from '@modules/project/services/project.service';
+import { SurveyService } from '@modules/surveys';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -17,7 +17,7 @@ export class NewProjectPageComponent {
   encuestas:IEncuesta[]=[];
   upmSelected!:number[];
   upms:IUpm[]=[];
-  constructor(private projectService: ProjectService, private formBuilder: FormBuilder,private encuestaService:EncuestaService) { 
+  constructor(private projectService: ProjectService, private formBuilder: FormBuilder,private surveyService:SurveyService) { 
     this.buildForm();
     this.cargarEncuestas();
   }
@@ -42,7 +42,7 @@ export class NewProjectPageComponent {
   }
 
   cargarEncuestas(){
-    this.encuestaService.getEncuestas().subscribe((data)=>{
+    this.surveyService.getSurveys().subscribe((data)=>{
         this.encuestas=data;
     });
   }
