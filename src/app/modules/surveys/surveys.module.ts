@@ -2,9 +2,20 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SurveysRoutingModule } from './surveys-routing.module';
+import { HeaderComponent } from '@components/header';
+import { AppMaterialModule } from 'src/app/app-material/app-material.module';
+import { SurveyPagesComponent } from './pages';
+import { NewSurveyPagesComponent } from './pages/new-survey-pages/new-survey-pages.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SurveyEditDialogComponent } from './pages/survey-edit-dialog/survey-edit-dialog.component';
 
 @NgModule({
-  declarations: [],
-  imports: [CommonModule, SurveysRoutingModule],
+  declarations: [SurveyPagesComponent, NewSurveyPagesComponent, SurveyEditDialogComponent],
+  imports: [
+    CommonModule,
+    SurveysRoutingModule,
+    HeaderComponent,AppMaterialModule,
+    ReactiveFormsModule
+  ]
 })
 export class SurveysModule {}

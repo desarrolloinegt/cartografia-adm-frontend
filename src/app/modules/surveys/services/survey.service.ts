@@ -11,4 +11,12 @@ export class SurveyService {
   getSurveys(){
     return this.apiService.getAll('encuestas');
   }
+
+  desactiveSurvey(id:number){
+    return this.apiService.desactive('encuesta',id)
+  }
+
+  create(data:any){
+    return this.apiService.store('encuesta',data);
+  }
 }
