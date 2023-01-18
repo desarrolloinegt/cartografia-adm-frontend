@@ -1,6 +1,6 @@
 <app-header></app-header>
 <div class="header">
-    <h1>Encuesta</h1>
+    <h1>Proyectos</h1>
     <a mat-fab color="accent" routerLink="create">
         <mat-icon aria-label="add" oncli>add</mat-icon>
     </a>
@@ -44,7 +44,7 @@
                     <mat-icon aria-label="Edit">edit</mat-icon>
                 </button>
                 <button mat-icon-button matTooltip="Click para desactivar"
-                    (click)="desactivar(row.rol_id,row.nombre,row.permisos)" color="warn" class="iconbutton">
+                    (click)="desactivar(row.id,row.nombre)" color="warn" class="iconbutton">
                     <mat-icon aria-label="Delete">delete</mat-icon>
                 </button>
             </td>

@@ -53,23 +53,23 @@ export class ProjectPageComponent {
       this.dataSource=new MatTableDataSource(data);
     });
   }
-  desactivar(id: string, rol: string,permisos:[]) {
+  desactivar(id: string, nombre: string) {
     Swal.fire({
-      title: '¿Esta seguro que desea Desactivar el Proyecto: ' + rol + '?',
+      title: '¿Esta seguro que desea Desactivar el Proyecto: ' + nombre + '?',
       showDenyButton: true,
       showCancelButton: true,
       confirmButtonText: 'Si',
       denyButtonText: `No`,
     }).then((result) => {
       if (result.isConfirmed) {
-        /*this.roleService.desactiveRole(Number(id)).subscribe((resp) => {
+        this.projectService.desactiveProyect(Number(id)).subscribe((resp) => {
           if (resp.status == true) {
-            this.cargarRoles();
-            Swal.fire('Ok!', 'Rol Desactivado', 'success')  
+            this.cargarProyectos();
+            Swal.fire('Ok!', 'Proyecto Desactivado', 'success')  
           }
         },(err) => {
           console.log(err);
-        }); */
+        }); 
       } else if (result.isDenied) {
         Swal.fire('Cambios no guardados', '', 'info')
       }
