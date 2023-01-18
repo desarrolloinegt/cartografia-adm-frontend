@@ -4,3 +4,8 @@ export interface IUpm {
     descripcion:string,
     municipio:string
 }
+
+export interface IUpmAssignment{
+    proyecto_id:number,
+    upms:number[]
+}

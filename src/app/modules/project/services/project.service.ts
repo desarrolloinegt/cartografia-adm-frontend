@@ -19,4 +19,12 @@ export class ProjectService {
   getUpms(){
     return this.apiService.getAll('upms')
   }
+
+  createProject(data:any){
+    return this.apiService.store('proyecto',data);
+  }
+
+  assignUpmToProject(data:any){
+    return this.apiService.store('asginarUpmsProyecto',data)
+  }
 }
