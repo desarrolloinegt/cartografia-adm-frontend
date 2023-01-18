@@ -3,10 +3,9 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatListOption } from '@angular/material/list';
 import { IEncuesta } from '@core/interfaces/i-encuesta';
-import { IProject, IProjectCreate, IProjectList } from '@core/interfaces/i-project';
-import { IUpm, IUpmAssignment } from '@core/interfaces/i-upm';
-import { EncuestaService } from '@modules/encuesta/services/encuesta.service';
+import { IUpm } from '@core/interfaces/i-upm';
 import { ProjectService } from '@modules/project/services/project.service';
+import { SurveyService } from '@modules/surveys';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -57,7 +56,7 @@ export class NewProjectPageComponent {
   }
 
   cargarEncuestas(){
-    this.encuestaService.getEncuestas().subscribe((data)=>{
+    this.surveyService.getSurveys().subscribe((data)=>{
         this.encuestas=data;
     });
   }

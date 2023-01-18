@@ -22,8 +22,8 @@ const routes: Routes = [
     loadChildren: () => import ('@modules/roles').then((m)=> m.RolesModule),
   },
   {
-    path: 'encuesta',
-    loadChildren: () => import ('@modules/encuesta').then((m)=>m.EncuestaModule),
+    path: 'surveys',
+    loadChildren: () => import ('@modules/surveys').then((m)=>m.SurveysModule),
   },
   {
     path: 'project',

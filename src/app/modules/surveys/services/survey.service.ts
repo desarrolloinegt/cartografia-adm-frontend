@@ -4,12 +4,11 @@ import { ApiService } from '@core/services/api.service';
 @Injectable({
   providedIn: 'root'
 })
-export class EncuestaService {
+export class SurveyService {
 
-  constructor(private apiService:ApiService) { }
+  constructor(private apiService: ApiService) { }
 
-
-  getEncuestas(){
+  getSurveys(){
     return this.apiService.getAll('encuestas');
   }
 }
