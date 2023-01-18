@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatListOption } from '@angular/material/list';
 import { IEncuesta } from '@core/interfaces/i-encuesta';
-import { IUpm } from '@core/interfaces/i-upm';
+import { IProjectCreate } from '@core/interfaces/i-project';
+import { IUpm, IUpmAssignment } from '@core/interfaces/i-upm';
 import { ProjectService } from '@modules/project/services/project.service';
 import { SurveyService } from '@modules/surveys';
 import Swal from 'sweetalert2';
@@ -30,7 +31,7 @@ export class NewProjectPageComponent {
     proyecto_id:0,
     upms:[]
   }
-  constructor(private projectService: ProjectService, private formBuilder: FormBuilder,private encuestaService:EncuestaService) { 
+  constructor(private projectService: ProjectService, private formBuilder: FormBuilder,private surveyService:SurveyService) { 
     this.buildForm();
     this.cargarEncuestas();
     this.cargarUpms();
