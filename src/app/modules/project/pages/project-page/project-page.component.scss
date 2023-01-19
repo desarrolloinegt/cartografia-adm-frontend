@@ -39,3 +39,18 @@ ul {
   padding-top: .6rem;
   font-weight: 400;
 }
+
+.progres{
+  text-decoration: none;
+  cursor: none;
+}
+.progres:hover,.progres:focus,.progres:active{
+  background: none;
+  color: none;
+  cursor:default;
+}
+.progres::-moz-focus-outer{
+  background: none;
+  color: none;
+  cursor: none;
+}

@@ -6,19 +6,10 @@
         <form [formGroup]="editForm" (submit)="submit()">
             <div class="form-group">
                 <mat-form-field appearance="outline" class="full-width-input">
-                    <mat-label>Nombre del rol</mat-label>
-                    <input type="text"  formControlName="nombre" matInput placeholder="admin"
+                    <mat-label>Año</mat-label>
+                    <input type="number" formControlName="year" matInput
                         class="form-control" required />
-                    <mat-error *ngIf="Nombre?.touched && Nombre?.hasError('required')">Nombre es <strong>requerido</strong>
-                    </mat-error>
-                </mat-form-field>
-            </div>
-            <div class="form-group">
-                <mat-form-field appearance="outline" class="full-width-input">
-                    <mat-label>Fecha</mat-label>
-                    <input type="date" formControlName="fecha" matInput
-                        class="form-control" required />
-                    <mat-error *ngIf="Fecha?.touched && Fecha?.hasError('required')">Fecha es <strong>requerida</strong>
+                    <mat-error *ngIf="Year?.touched && Year?.hasError('required')">Año es <strong>requerida</strong>
                     </mat-error>
                 </mat-form-field>
             </div>
@@ -26,7 +17,7 @@
                 <mat-form-field appearance="outline" class="full-width-input">
                     <mat-label>Seleccion una encuesta</mat-label>
                     <mat-select [value]="selectedSurvey" formControlName="encuesta_id">
-                        <mat-option   *ngFor="let encuesta of encuestas" [value]="encuesta.id">{{encuesta.nombre}}</mat-option>
+                        <mat-option   *ngFor="let encuesta of encuestas" [value]="encuesta.id+','+encuesta.nombre">{{encuesta.nombre}}</mat-option>
                     </mat-select>
                     <mat-error *ngIf="Encuesta?.touched && Encuesta?.hasError('required')">Encuesta es <strong>requerida</strong>
                     </mat-error>                    

@@ -11,6 +11,7 @@ import { HeaderComponent } from '@components/header';
 import { MatSelectModule } from '@angular/material/select';
 import { ProjectEditDialogComponent } from './pages/project-edit-dialog/project-edit-dialog.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     ReactiveFormsModule,
     HeaderComponent,
     MatSelectModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatTooltipModule
   ]
 })
 export class ProjectModule { }

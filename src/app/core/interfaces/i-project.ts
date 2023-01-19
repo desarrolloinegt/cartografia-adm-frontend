@@ -19,6 +19,6 @@ export interface IProjectList extends Omit<IProject,'nombre_proyecto|permission|
 
 export interface IProjectCreate {
     nombre:string,
-    fecha:Date,
+    year:string,
     encuesta_id:number
 }

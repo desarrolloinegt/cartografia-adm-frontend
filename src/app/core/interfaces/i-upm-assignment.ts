@@ -6,7 +6,8 @@ export interface IUpmAssignment{
 export interface IUpmAssignmentList  {
     id:number,
     nombre:string,
-    fecha:string,
+    year:string,
+    progreso:number,
     encuesta:string
     upms:[]
 }

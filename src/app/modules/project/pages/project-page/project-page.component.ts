@@ -18,18 +18,20 @@ export class ProjectPageComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   dataSource: MatTableDataSource<IProjectList>;
-  displayedColumns: string[] = ['id', 'nombre', 'fecha', 'encuesta','upms','options'];
+  displayedColumns: string[] = ['id', 'nombre', 'year', 'encuesta','upms','progreso','options'];
   date=new Date((new Date()).getDate());
   
   dataEdit:IUpmAssignmentList={
     id:0,
     nombre:'',
-    fecha:'',
+    year:'',
     upms:[],
-    encuesta:''
+    encuesta:'',
+    progreso:0
   }
   constructor(private projectService:ProjectService, public dialogService: MatDialog) {
     this.dataSource = new MatTableDataSource();
+    this.cargarProyectos();
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -39,13 +41,13 @@ export class ProjectPageComponent {
       this.dataSource.paginator.firstPage();
     }
   }
-  editar(id:string, nombre: string,fecha:string,encuesta:string, upms:[]) {
+  editar(id:string, nombre: string,fecha:string,encuesta:string, upms:[],progres:string) {
     this.dataEdit.nombre=nombre;
     this.dataEdit.id=Number(id);
     this.dataEdit.upms=upms;
     this.dataEdit.encuesta=encuesta;
-    this.dataEdit.fecha=fecha;
-    console.log(this.dataEdit.fecha)
+    this.dataEdit.year=fecha;
+    this.dataEdit.progreso=Number(progres);
     const dialogRef = this.dialogService.open(ProjectEditDialogComponent, {
       height: '50rem',
       width: '60rem',
@@ -58,7 +60,7 @@ export class ProjectPageComponent {
     });
   }
   ngOnInit() {
-    this.cargarProyectos();
+    
   }
 
   cargarProyectos(){
@@ -79,6 +81,28 @@ export class ProjectPageComponent {
           if (resp.status == true) {
             this.cargarProyectos();
             Swal.fire('Ok!', 'Proyecto Desactivado', 'success')  
+          }
+        },(err) => {
+          console.log(err);
+        }); 
+      } else if (result.isDenied) {
+        Swal.fire('Cambios no guardados', '', 'info')
+      }
+    })
+  }
+  finalizarProject(id:string,nombre:string){
+    Swal.fire({
+      title: '¿Esta seguro que desea Finalizar el Proyecto: ' + nombre +'?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Si',
+      denyButtonText: `No`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.projectService.projectFinish(Number(id)).subscribe((resp) => {
+          if (resp.status == true) {
+            this.cargarProyectos();
+            Swal.fire('Ok!', 'Proyecto Finalizado', 'success')  
           }
         },(err) => {
           console.log(err);

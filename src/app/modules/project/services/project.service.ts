@@ -31,4 +31,8 @@ export class ProjectService {
   editProject(data:any){
     return this.apiService.patch('proyecto/edit',data);
   }
+
+  projectFinish(id:number){
+    return this.apiService.desactive('finalizarProyecto',id);
+  }
 }
