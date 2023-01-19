@@ -30,4 +30,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Deploy en Github Pages
 El entorno ya se encuentra configurado con github pages, para hacer un deploy unicamente ejecutar el siguiente comando: 
 
-`ng deploy --base-href=/cartografia-app/`
+`ng deploy --base-href=/cartografaia-adm-frontend/`
