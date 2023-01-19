@@ -25,25 +25,25 @@
                 <mat-form-field appearance="outline" class="full-width-input">
                     <mat-label>Seleccion una encuesta</mat-label>
                     <mat-select formControlName="encuesta">
-                        <mat-option *ngFor="let encuesta of encuestas" value="encuesta.id">{{encuesta.nombre}}</mat-option>
+                        <mat-option *ngFor="let encuesta of encuestas" [value]="encuesta.id">{{encuesta.nombre}}</mat-option>
                     </mat-select>
                     <mat-error *ngIf="Encuesta?.touched && Encuesta?.hasError('required')">Encuesta es <strong>requerida</strong>
                     </mat-error>                    
-            
                 </mat-form-field>
             </div>
-            <div class="example-section">
-                <mat-label>Permisos</mat-label>
-                <mat-selection-list formControlName="upms" #upmList (selectionChange)="permisoSelected(upmList.selectedOptions.selected)">
-                    <mat-list-option  *ngFor="let upm of upms" [value]="upm.id" >
-                      {{upm.nombre}}, {{upm.municipio}}
-                    </mat-list-option>
-                </mat-selection-list>
-            </div>
+            
             <div class="form-group">
                 <button type="submit" [disabled]="!projectForm.valid" mat-raised-button color="primary">
                     Guardar Proyecto
                 </button>
+            </div>
+            <div class="example-section">
+                <mat-label>UPM's</mat-label>
+                <mat-selection-list formControlName="upms" #upmList (selectionChange)="upmSelecteds(upmList.selectedOptions.selected)">
+                    <mat-list-option  *ngFor="let upm of upms" [value]="upm.id" >
+                      {{upm.nombre}}, {{upm.municipio}}
+                    </mat-list-option>
+                </mat-selection-list>
             </div>
         </form>
     </div>

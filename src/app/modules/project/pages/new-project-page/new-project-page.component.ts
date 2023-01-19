@@ -1,8 +1,11 @@
+import { DatePipe, formatDate } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatListOption } from '@angular/material/list';
 import { IEncuesta } from '@core/interfaces/i-encuesta';
+import { IProjectCreate } from '@core/interfaces/i-project';
 import { IUpm } from '@core/interfaces/i-upm';
+import { IUpmAssignment } from '@core/interfaces/i-upm-assignment';
 import { ProjectService } from '@modules/project/services/project.service';
 import { SurveyService } from '@modules/surveys';
 import Swal from 'sweetalert2';
@@ -17,15 +20,28 @@ export class NewProjectPageComponent {
   encuestas:IEncuesta[]=[];
   upmSelected!:number[];
   upms:IUpm[]=[];
+  pipe = new DatePipe('es-GT');
+  date=new Date((new Date()).getDate());
+  now=Date.now();
+  project:IProjectCreate={
+    nombre:'',
+    encuesta_id:0,
+    fecha:this.date
+  };
+  upmAsignment:IUpmAssignment={
+    proyecto_id:0,
+    upms:[]
+  }
   constructor(private projectService: ProjectService, private formBuilder: FormBuilder,private surveyService:SurveyService) { 
     this.buildForm();
     this.cargarEncuestas();
+    this.cargarUpms();
   }
 
   private buildForm(){
     this.projectForm=this.formBuilder.group({
       nombre:['',Validators.required],
-      fecha:['',Validators.required],
+      fecha:['',[Validators.required]],
       encuesta:['',[Validators.required]],
       upms:['',[Validators.required]]
     });
@@ -46,22 +62,32 @@ export class NewProjectPageComponent {
         this.encuestas=data;
     });
   }
-
-  createProject(){ 
-    /*this.roleService.createRol(this.rol).subscribe((resp)=>{
-      if(resp.status==true){
-        this.asignacionPermisoRol.rol_id=resp.id_rol;
-        this.roleService.assignPermisoToRol(this.asignacionPermisoRol).subscribe((res)=>{
-          if(res.status==true){
-            Swal.fire('Ok!', res.message, 'success');
-          }
-        },(err) => {
-          console.log(err);
-        });
-      }
-    });*/
+  cargarUpms(){
+    this.projectService.getUpms().subscribe((data)=>{
+      this.upms=data
+    });
   }
-  permisoSelected(options: MatListOption[]){
+  createProject(){ 
+    if(this.projectForm.valid){
+      this.project.nombre=this.Nombre?.value;
+      this.project.encuesta_id=this.Encuesta?.value;
+      this.project.fecha=this.Fecha?.value;
+      this.upmAsignment.upms=this.upmSelected;
+      this.projectService.createProject(this.project).subscribe((resp)=>{
+        if(resp.status==true){
+          this.upmAsignment.proyecto_id=resp.id;
+          this.projectService.assignUpmToProject(this.upmAsignment).subscribe((res)=>{
+            if(res.status==true){
+              Swal.fire('Ok!','Proyecto creado Correctamente', 'success');
+            }
+          },(err) => {
+            console.log(err);
+          });
+        }
+      });
+    }
+  }   
+  upmSelecteds(options: MatListOption[]){
     this.upmSelected=options.map(o=>o.value);
   }
 }

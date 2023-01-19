@@ -9,7 +9,7 @@ export class ProjectService {
   constructor(private apiService:ApiService) { }
 
   getProjects(){
-    return this.apiService.getAll('proyectos');
+    return this.apiService.getAll('obtenerUpmsProyecto');
   }
 
   desactiveProyect(id:number){
@@ -18,5 +18,17 @@ export class ProjectService {
 
   getUpms(){
     return this.apiService.getAll('upms')
+  }
+
+  createProject(data:any){
+    return this.apiService.store('proyecto',data);
+  }
+
+  assignUpmToProject(data:any){
+    return this.apiService.store('asginarUpmsProyecto',data)
+  }
+
+  editProject(data:any){
+    return this.apiService.patch('proyecto/edit',data);
   }
 }

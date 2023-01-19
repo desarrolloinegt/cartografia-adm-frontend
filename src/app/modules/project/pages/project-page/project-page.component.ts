@@ -4,8 +4,10 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { IProject, IProjectList } from '@core/interfaces/i-project';
+import { IUpmAssignmentList } from '@core/interfaces/i-upm-assignment';
 import { ProjectService } from '@modules/project/services/project.service';
 import Swal from 'sweetalert2';
+import { ProjectEditDialogComponent } from '../project-edit-dialog';
 
 @Component({
   selector: 'app-project-page',
@@ -16,8 +18,16 @@ export class ProjectPageComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   dataSource: MatTableDataSource<IProjectList>;
-  displayedColumns: string[] = ['id', 'nombre', 'fecha', 'encuesta','options'];
-
+  displayedColumns: string[] = ['id', 'nombre', 'fecha', 'encuesta','upms','options'];
+  date=new Date((new Date()).getDate());
+  
+  dataEdit:IUpmAssignmentList={
+    id:0,
+    nombre:'',
+    fecha:'',
+    upms:[],
+    encuesta:''
+  }
   constructor(private projectService:ProjectService, public dialogService: MatDialog) {
     this.dataSource = new MatTableDataSource();
   }
@@ -29,20 +39,23 @@ export class ProjectPageComponent {
       this.dataSource.paginator.firstPage();
     }
   }
-  editar(id:string, nombre: string, permisos:[]) {
-    /*this.rolesPermiso.nombre=nombre;
-    this.rolesPermiso.rol_id=Number(id);
-    this.rolesPermiso.permisos=permisos;
-    const dialogRef = this.dialogService.open(RolesEditDialogComponent, {
+  editar(id:string, nombre: string,fecha:string,encuesta:string, upms:[]) {
+    this.dataEdit.nombre=nombre;
+    this.dataEdit.id=Number(id);
+    this.dataEdit.upms=upms;
+    this.dataEdit.encuesta=encuesta;
+    this.dataEdit.fecha=fecha;
+    console.log(this.dataEdit.fecha)
+    const dialogRef = this.dialogService.open(ProjectEditDialogComponent, {
       height: '50rem',
       width: '60rem',
-      data: this.rolesPermiso
+      data: this.dataEdit
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result===1){
-        this.cargarRoles();
+        this.cargarProyectos();
       } 
-    });*/
+    });
   }
   ngOnInit() {
     this.cargarProyectos();
