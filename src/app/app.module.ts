@@ -15,7 +15,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SpinnerInterceptor } from '@core/interceptors/spinner.interceptor';
 
 @NgModule({
-  declarations: [AppComponent,],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
