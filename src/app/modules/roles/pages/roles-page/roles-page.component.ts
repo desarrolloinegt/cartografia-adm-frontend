@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { IPermissionAssignment, IPermissionAssignmetList } from '@core/interfaces/i-permission-assignment';
+import { IPermissionAssignmetList } from '@core/interfaces/i-permission-assignment';
 import { RoleService } from '@modules/roles/services/role.service';
 import Swal from 'sweetalert2';
 import { RolesEditDialogComponent } from '../roles-edit-dialog/roles-edit-dialog.component';

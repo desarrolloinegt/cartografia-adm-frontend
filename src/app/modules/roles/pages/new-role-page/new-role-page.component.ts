@@ -7,7 +7,6 @@ import { IRole } from '@core/interfaces/i-role';
 import { IPermissionAssignment } from '@core/interfaces/i-permission-assignment';
 import { RoleService } from '@modules/roles/services/role.service';
 import Swal from 'sweetalert2';
-import { IUpmAssignment } from '@core/interfaces/i-upm';
 @Component({
   selector: 'app-new-role-page',
   templateUrl: './new-role-page.component.html',

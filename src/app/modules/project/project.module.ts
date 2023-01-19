@@ -9,12 +9,15 @@ import { NewProjectPageComponent } from './pages/new-project-page/new-project-pa
 import { ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from '@components/header';
 import { MatSelectModule } from '@angular/material/select';
+import { ProjectEditDialogComponent } from './pages/project-edit-dialog/project-edit-dialog.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 @NgModule({
   declarations: [
     ProjectPageComponent,
     NewProjectPageComponent,
+    ProjectEditDialogComponent,
     
   ],
   imports: [
@@ -23,7 +26,8 @@ import { MatSelectModule } from '@angular/material/select';
     AppMaterialModule,
     ReactiveFormsModule,
     HeaderComponent,
-    MatSelectModule
+    MatSelectModule,
+    MatCheckboxModule
   ]
 })
 export class ProjectModule { }
