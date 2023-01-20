@@ -5,7 +5,7 @@
         <form [formGroup]="projectForm" (submit)="createProject()">
             <div class="form-group">
                 <mat-form-field appearance="outline" class="full-width-input">
-                    <mat-label [style.fontSize.px]="16">Seleccione un Proyecto</mat-label>
+                    <mat-label [style.fontSize.px]="16">Seleccione una Encuesta</mat-label>
                     <mat-select formControlName="encuesta">
                         <mat-option *ngFor="let encuesta of encuestas"  [value]="encuesta.id+','+encuesta.nombre">{{encuesta.nombre}}</mat-option>
                     </mat-select>
@@ -32,7 +32,7 @@
                 <mat-label>UPM's</mat-label>
                 <mat-selection-list formControlName="upms" #upmList (selectionChange)="upmSelecteds(upmList.selectedOptions.selected)">
                     <mat-list-option  *ngFor="let upm of upms" [value]="upm.id"  >
-                      {{upm.nombre}}, {{upm.municipio}}
+                        {{upm.nombre}}, {{upm.municipio}}
                     </mat-list-option>
                 </mat-selection-list>
             </div>
