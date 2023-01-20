@@ -13,6 +13,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { SpinnerModule } from '@core/spinner/spinner.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SpinnerInterceptor } from '@core/interceptors/spinner.interceptor';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,7 +31,7 @@ import { SpinnerInterceptor } from '@core/interceptors/spinner.interceptor';
   ],
 
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true},
   ],
   bootstrap: [AppComponent],
 })
