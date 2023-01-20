@@ -5,7 +5,7 @@
         <form [formGroup]="rolForm" (submit)="createRol()">
             <div class="form-group">
                 <mat-form-field appearance="outline" class="full-width-input">
-                    <mat-label>Ingrese el nombre del rol</mat-label>
+                    <mat-label [style.fontSize.px]="16">Ingrese Nombre del Rol</mat-label>
                     <input type="text" formControlName="nombre" matInput placeholder="qa" class="form-control"
                         required />
                     <mat-error *ngIf="Nombre?.touched && Nombre?.hasError('required')">Nombre de Rol es <strong>requerido</strong>
