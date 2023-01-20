@@ -4,8 +4,8 @@
     <div class="card-body">
         <form [formGroup]="surveyForm" (submit)="createSurvey()">
             <div class="form-group">
-                <mat-form-field appearance="outline" class="full-width-input">
-                    <mat-label>Ingrese el nombre del la Encuesta</mat-label>
+                <mat-form-field  appearance="outline" class="full-width-input">
+                    <mat-label >Ingrese el nombre del la Encuesta</mat-label>
                     <input type="text" formControlName="nombre" matInput placeholder="ENEI" class="form-control"
                         required />
                     <mat-error *ngIf="Nombre?.touched && Nombre?.hasError('required')">Nombre de Encuesta es

@@ -29,44 +29,62 @@
     </ng-container>
 
     <!-- Nombres Column -->
-    <ng-container matColumnDef="fecha">
-      <th mat-header-cell *matHeaderCellDef>Fecha</th>
-      <td mat-cell *matCellDef="let row">{{ row.fecha }}</td>
+    <ng-container matColumnDef="year">
+      <th mat-header-cell *matHeaderCellDef>Año</th>
+      <td mat-cell *matCellDef="let row">{{ row.year }}</td>
     </ng-container>
-    <!-- Nombres Column -->
+    <!-- encuesta Column -->
     <ng-container matColumnDef="encuesta">
       <th mat-header-cell *matHeaderCellDef>Encuesta</th>
       <td mat-cell *matCellDef="let row">{{ row.encuesta }}</td>
     </ng-container>
 
-    <!-- Nombres Column -->
+    <!-- upms Column -->
     <ng-container matColumnDef="upms">
       <th mat-header-cell *matHeaderCellDef>UPM's</th>
       <td mat-cell *matCellDef="let row">{{ row.upms }}</td>
     </ng-container>
 
+    <!-- progres Column -->
+    <ng-container matColumnDef="progreso">
+      <th mat-header-cell *matHeaderCellDef>Estado</th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-stroked-button color="warn" class="progres" *ngIf="row.progreso==0" >En progreso</button>
+        <button mat-stroked-button color="primary" class="progres" *ngIf="row.progreso==1">Finalizado</button>
+        
+      </td>
+    </ng-container>
     <ng-container matColumnDef="options">
       <th mat-header-cell *matHeaderCellDef>Acciones</th>
       <td mat-cell *matCellDef="let row">
-        <button
+        <button *ngIf="row.progreso==0"
           mat-icon-button
-          (click)="editar(row.id, row.nombre,row.fecha,row.encuesta, row.upms)"
-          matTooltip="Click para Editar"
+          (click)="editar(row.id, row.nombre, row.year, row.encuesta, row.upms,row.progreso)"
+          matTooltip="Editar"
           matTooltipPosition="right"
           color="primary"
           class="iconbutton"
+          matTooltipPosition="above"
         >
           <mat-icon aria-label="Edit">edit</mat-icon>
         </button>
         <button
           mat-icon-button
-          matTooltip="Click para desactivar"
+          matTooltip="Desactivar"
           (click)="desactivar(row.id, row.nombre)"
           color="warn"
           class="iconbutton"
+          matTooltipPosition="above"
         >
           <mat-icon aria-label="Delete">delete</mat-icon>
         </button>
+        <button (click)="finalizarProject(row.id,row.nombre)" matTooltip="Finalizar Proyecto"
+          matTooltipPosition="below" 
+          *ngIf="row.progreso==0" 
+          mat-icon-button
+          >
+          <mat-icon aria-label="Home">done</mat-icon>
+        </button> 
       </td>
     </ng-container>
 

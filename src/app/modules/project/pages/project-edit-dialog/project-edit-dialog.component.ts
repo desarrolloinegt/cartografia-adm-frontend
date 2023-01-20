@@ -22,20 +22,20 @@ export class ProjectEditDialogComponent {
   selectedUpms: number[] = [];
   public upmsList: IUpm[] = [];
   date = new Date((new Date()).getDate());
-  selectedSurvey:number=0;
+  selectedSurvey:string='';
   asignacionPermisoRolEditado: IUpmAssignmentList = {
     id: 0,
     upms: [],
     encuesta: '',
-    fecha: '',
-    nombre: ''
+    year: '',
+    nombre: '',
+    progreso:0
   };
 
   constructor(private surveyService: SurveyService, private projectService: ProjectService, public dialogRef: MatDialogRef<string>, @Inject(MAT_DIALOG_DATA) public data: IUpmAssignmentList, private formBuilder: FormBuilder) {
     this.buildForm();
     this.getUpms();
     this.getSurveys();
-    this.dateDefault();
   }
 
   submit() {
@@ -44,11 +44,11 @@ export class ProjectEditDialogComponent {
 
   private buildForm() {
     this.editForm = this.formBuilder.group({
+      nombre:[this.data.nombre,[Validators.required]],
       proyecto_id: [this.data.id, [Validators.required]],
-      nombre: [this.data.nombre, [Validators.required]],
-      fecha: [this.data.fecha, Validators.required],
+      year: [this.data.year, [Validators.required,Validators.pattern(/^((\\+91-?)|0)?[0-9]{4}$/)]],
       upms: [{ value: [], disabled: true }, [Validators.required]],
-      encuesta_id: ['', Validators.required]
+      encuesta_id: ['', Validators.required],
     });
   }
 
@@ -62,8 +62,8 @@ export class ProjectEditDialogComponent {
   get Encuesta() {
     return this.editForm.get('encuesta_id');
   }
-  get Fecha() {
-    return this.editForm.get('fecha');
+  get Year() {
+    return this.editForm.get('year');
   }
   get Upms() {
     return this.editForm.get('upms');
@@ -89,6 +89,9 @@ export class ProjectEditDialogComponent {
         this.Upms.setValue("");
         this.Upms.enable();
       }
+      let valueEncuesta = this.Encuesta?.value.split(',');
+      this.Encuesta?.setValue(valueEncuesta[0]);
+      this.Nombre?.setValue(valueEncuesta[1]+' '+this.Year?.value);
       this.projectService.editProject(this.editForm.value).subscribe((resp)=>{
         if(resp.status==true){
           Swal.fire('Ok!', resp.message, 'success');
@@ -119,13 +122,10 @@ export class ProjectEditDialogComponent {
       }
     }
   }
-  dateDefault(){
-    this.Fecha?.setValue(this.data.fecha);
-  }
   defaulSurvey() {
     for (let i = 0; i < this.encuestas.length; i++) {
       if (this.encuestas[i].nombre == this.data.encuesta) {
-        this.selectedSurvey=this.encuestas[i].id;
+        this.selectedSurvey=this.encuestas[i].id+','+this.encuestas[i].nombre;
       }
     }
   }
