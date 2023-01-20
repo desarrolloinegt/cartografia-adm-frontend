@@ -1,7 +1,7 @@
 import { Component,Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { IEncuesta } from '@core/interfaces/i-encuesta';
+import { ISurvey } from '@core/interfaces/i-survey';
 import { SurveyService } from '@modules/surveys/services';
 import Swal from 'sweetalert2';
 
@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 export class SurveyEditDialogComponent {
   editForm!:FormGroup;
 
-  constructor(private surveyService:SurveyService,public dialogRef:MatDialogRef<IEncuesta>, @Inject(MAT_DIALOG_DATA) public data: IEncuesta, private formBuilder: FormBuilder) {
+  constructor(private surveyService:SurveyService,public dialogRef:MatDialogRef<ISurvey>, @Inject(MAT_DIALOG_DATA) public data: ISurvey, private formBuilder: FormBuilder) {
     this.buildForm();
   }
   
