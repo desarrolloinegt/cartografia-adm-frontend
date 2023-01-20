@@ -10,12 +10,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SurveyEditDialogComponent } from './pages/survey-edit-dialog/survey-edit-dialog.component';
 
 @NgModule({
-  declarations: [SurveyPagesComponent, NewSurveyPagesComponent, SurveyEditDialogComponent],
+  declarations: [
+    SurveyPagesComponent,
+    NewSurveyPagesComponent,
+    SurveyEditDialogComponent,
+  ],
   imports: [
     CommonModule,
     SurveysRoutingModule,
-    HeaderComponent,AppMaterialModule,
-    ReactiveFormsModule
-  ]
+    HeaderComponent,
+    AppMaterialModule,
+    ReactiveFormsModule,
+  ],
 })
 export class SurveysModule {}

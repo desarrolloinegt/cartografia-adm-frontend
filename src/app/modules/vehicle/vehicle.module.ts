@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { VehicleRoutingModule } from './vehicle-routing.module';
 import { VehiclePageComponent } from './pages/vehicle-page/vehicle-page.component';
+import { HeaderComponent } from '@components/header';
+import { AppMaterialModule } from 'src/app/app-material/app-material.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +14,10 @@ import { VehiclePageComponent } from './pages/vehicle-page/vehicle-page.componen
   ],
   imports: [
     CommonModule,
-    VehicleRoutingModule
-  ]
+    VehicleRoutingModule,
+    HeaderComponent,
+    AppMaterialModule,
+    ReactiveFormsModule,
+  ],
 })
 export class VehicleModule { }

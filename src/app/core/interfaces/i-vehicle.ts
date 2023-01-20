@@ -1,5 +1,5 @@
-export interface IVehicle { 
-    placa: string,
-    modelo: string,
-    year: Date
+export interface IVehicle {
+    license: string;
+    model: string;
+    year: string;
 }
