@@ -29,6 +29,17 @@ const routes: Routes = [
     path: 'project',
     loadChildren: () => import ('@modules/project').then((m)=>m.ProjectModule),
   },
+
+  {
+    path: 'group',
+    loadChildren: () => import ('@modules/groups').then((m)=>m.GroupsModule),
+  },
+
+  {
+    path: 'vehicle',
+    loadChildren: ()=>import ('@modules/vehicle').then((m)=>m.VehicleModule),
+  },
+  
   {
     path: '',
     redirectTo: '/auth/login',
