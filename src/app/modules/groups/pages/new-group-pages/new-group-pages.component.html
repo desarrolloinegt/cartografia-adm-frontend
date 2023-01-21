@@ -1,0 +1,52 @@
+<app-header></app-header>
+<br>
+<div class="card">
+    <div class="card-body">
+        <form [formGroup]="groupForm" (submit)="createGroup()">
+            <div class="form-group">
+                <mat-form-field  appearance="outline" class="full-width-input">
+                    <mat-label [style.fontSize.px]="16">Ingrese el Nombre del Grupo</mat-label>
+                    <input type="text" formControlName="nombre" matInput placeholder="Grupo Supervisores ENEI" class="form-control"
+                        required />
+                    <mat-error *ngIf="Nombre?.touched && Nombre?.hasError('required')">Nombre de Encuesta es
+                        <strong>requerido</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field appearance="outline" class="full-width-input">
+                    <mat-label [style.fontSize.px]="16">Descripcion</mat-label>
+                    <input type="text" formControlName="descripcion" placeholder="Proyecto 2026" matInput class="form-control" required />
+                    <mat-error *ngIf="Descripcion?.touched && Descripcion?.hasError('required')">Descripcion es <strong>requerida</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field appearance="outline" class="full-width-input">
+                    <mat-label [style.fontSize.px]="16">Seleccione un proyecto</mat-label>
+                    <mat-select formControlName="proyecto_id">
+                        <mat-option *ngFor="let project of projects"  [value]="project.id">{{project.nombre}}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="ProyectoId?.touched && ProyectoId?.hasError('required')">Proyecto es <strong>requerida</strong>
+                    </mat-error>                    
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field appearance="outline" class="full-width-input">
+                    <mat-label [style.fontSize.px]="16">Seleccione la jerarquia</mat-label> 
+                    <mat-select formControlName="jerarquia">
+                        <mat-option *ngFor="let id of jerarquias"  [value]="id">{{id}}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="Jerarquia?.touched && Jerarquia?.hasError('required')">Jerarquia es <strong>requerida</strong>
+                    </mat-error>                    
+                </mat-form-field>
+            </div>
+            
+            <div class="form-group">
+                <button type="submit" [disabled]="!groupForm.valid" mat-raised-button color="primary">
+                    Guardar Grupo
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

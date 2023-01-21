@@ -8,22 +8,14 @@ table {
     width: 100%;
   }
   
+  td,
+  th {
+    width: 25%;
+  }
+  
   .full-width-input {
     width: 100% auto;
     padding: 1em;
-  }
-  
-  .example-section {
-    margin: 12px 12px;
-  }
-  
-  .example-margin {
-    margin: 0 12px;
-  }
-  
-  ul {
-    list-style-type: none;
-    margin-top: 4px;
   }
   
   .header {
@@ -32,4 +24,10 @@ table {
     margin: 1.5rem;
     padding: 0 0.4rem;
     font-family: Roboto, "Helvetica Neue", sans-serif;
+  }
+  
+  .header h1 {
+    display: inline;
+    padding-top: .6rem;
+    font-weight: 400;
   }

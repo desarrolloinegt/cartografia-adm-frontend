@@ -2,7 +2,7 @@ import { DatePipe, formatDate } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatListOption } from '@angular/material/list';
-import { IEncuesta } from '@core/interfaces/i-encuesta';
+import { ISurvey } from '@core/interfaces/i-survey';
 import { IProjectCreate } from '@core/interfaces/i-project';
 import { IUpm } from '@core/interfaces/i-upm';
 import { IUpmAssignment } from '@core/interfaces/i-upm-assignment';
@@ -17,7 +17,7 @@ import Swal from 'sweetalert2';
 })
 export class NewProjectPageComponent {
   projectForm!: FormGroup;
-  encuestas: IEncuesta[] = [];
+  encuestas: ISurvey[] = [];
   upmSelected!: number[];
   upms: IUpm[] = [];
   pipe = new DatePipe('es-GT');

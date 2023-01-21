@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatListOption } from '@angular/material/list';
-import { IEncuesta } from '@core/interfaces/i-encuesta';
+import { ISurvey } from '@core/interfaces/i-survey';
 import { IUpm } from '@core/interfaces/i-upm';
 import { IUpmAssignmentList } from '@core/interfaces/i-upm-assignment';
 import { ProjectService } from '@modules/project/services/project.service';
@@ -16,7 +16,7 @@ import Swal from 'sweetalert2';
 })
 export class ProjectEditDialogComponent {
   editForm!: FormGroup;
-  encuestas: IEncuesta[] = [];
+  encuestas: ISurvey[] = [];
   upmSelected!: number[];
   public checked = false;
   selectedUpms: number[] = [];
@@ -29,7 +29,7 @@ export class ProjectEditDialogComponent {
     encuesta: '',
     year: '',
     nombre: '',
-    progreso:0
+    progreso:0,
   };
 
   constructor(private surveyService: SurveyService, private projectService: ProjectService, public dialogRef: MatDialogRef<string>, @Inject(MAT_DIALOG_DATA) public data: IUpmAssignmentList, private formBuilder: FormBuilder) {

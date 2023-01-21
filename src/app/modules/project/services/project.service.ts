@@ -11,7 +11,9 @@ export class ProjectService {
   getProjects(){
     return this.apiService.getAll('obtenerUpmsProyecto');
   }
-
+  getProjectView(){
+    return this.apiService.getAll('proyectos');
+  }
   desactiveProyect(id:number){
     return this.apiService.desactive('proyecto',id);
   }

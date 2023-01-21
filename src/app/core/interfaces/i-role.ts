@@ -7,3 +7,9 @@ export interface IRole {
 export interface IroleByUser extends IRole{
     id:number,
 }
+
+export interface IRoleList{
+    id:number,
+    nombre:string,
+    checked:boolean
+}

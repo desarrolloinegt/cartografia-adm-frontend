@@ -22,3 +22,8 @@ export interface IProjectCreate {
     year:string,
     encuesta_id:number
 }
+
+export interface IProjectListView extends IProjectCreate{
+    id:number,
+    progreso:number
+}

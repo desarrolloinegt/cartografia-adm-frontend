@@ -8,6 +8,6 @@ export interface IUpmAssignmentList  {
     nombre:string,
     year:string,
     progreso:number,
-    encuesta:string
+    encuesta:string,
     upms:[]
 }

@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { IEncuesta } from '@core/interfaces/i-encuesta';
+import { ISurvey } from '@core/interfaces/i-survey';
 import { SurveyService } from '@modules/surveys/services';
 import Swal from 'sweetalert2';
 import { SurveyEditDialogComponent } from '../survey-edit-dialog';
@@ -18,7 +18,7 @@ export class SurveyPagesComponent {
   @ViewChild(MatSort) sort!: MatSort;
   dataSource: MatTableDataSource<string>;
   displayedColumns: string[] = ['id', 'nombre', 'descripcion','options'];
-  surveyData:IEncuesta={
+  surveyData:ISurvey={
     id:0,
     nombre:'',
     descripcion:''
