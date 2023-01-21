@@ -14,7 +14,7 @@ import { SpinnerModule } from '@core/spinner/spinner.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SpinnerInterceptor } from '@core/interceptors/spinner.interceptor';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
-
+import {MatMenuModule} from '@angular/material/menu';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -28,6 +28,7 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
     SpinnerModule,
     MatDialogModule,
     MatCheckboxModule,
+    MatMenuModule
   ],
 
   providers: [

@@ -29,7 +29,7 @@ export class ProjectEditDialogComponent {
     encuesta: '',
     year: '',
     nombre: '',
-    progreso:0
+    progreso:0,
   };
 
   constructor(private surveyService: SurveyService, private projectService: ProjectService, public dialogRef: MatDialogRef<string>, @Inject(MAT_DIALOG_DATA) public data: IUpmAssignmentList, private formBuilder: FormBuilder) {

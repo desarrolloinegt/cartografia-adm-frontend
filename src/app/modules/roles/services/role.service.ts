@@ -31,4 +31,8 @@ export class RoleService {
   editRole(data:any){
     return this.apiService.patch('rol/edit',data);
   }
+
+  getRoles(){
+    return this.apiService.getAll('roles');
+  }
 }

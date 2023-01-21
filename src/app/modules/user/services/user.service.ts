@@ -23,6 +23,10 @@ export class UserService {
     return this.apiService.getAll('usuarios');
   }
 
+  getAllUserListView(){
+    return this.apiService.getAll('usuariosList');
+  }
+
   desactiveUser(id:number){
     return this.apiService.desactive('usuario',id);
   }

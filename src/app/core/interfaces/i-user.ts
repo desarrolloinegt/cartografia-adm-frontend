@@ -8,3 +8,9 @@ export interface IUser {
   username: string;
 }
 
+export interface IUserList{
+  id:number,
+  username:string,
+  checked:boolean
+}
+

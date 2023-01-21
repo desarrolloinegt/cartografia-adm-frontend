@@ -25,16 +25,17 @@
                 <mat-icon class="routeIcon menu-icon">supervisor_account</mat-icon>
                 <span [style.fontSize.px]="14">Roles</span>
             </a>
-
+        
             <a mat-list-item class="menu-list-item" routerLink="surveys"> 
                 <mat-icon class="routeIcon menu-icon">question_answer</mat-icon>
                 <span [style.fontSize.px]="14">Encuestas</span>
             </a>
-
-            <a mat-list-item class="menu-list-item" routerLink="group"> 
-                <mat-icon class="routeIcon menu-icon">group</mat-icon>
-                <span [style.fontSize.px]="14">Grupos</span>
-            </a>
+            <mat-nav-list >
+                <a mat-list-item class="menu-list-item" routerLink="group"> 
+                    <mat-icon class="routeIcon menu-icon">group</mat-icon>
+                    <span [style.fontSize.px]="14">Grupos</span>
+                </a>
+            </mat-nav-list>
 
             <a mat-list-item class="menu-list-item" routerLink="vehicle"> 
                 <mat-icon class="routeIcon menu-icon">commute</mat-icon>
