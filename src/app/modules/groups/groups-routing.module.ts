@@ -4,6 +4,7 @@ import { GroupPagesComponent } from './pages';
 import { GroupRolePagesComponent } from './pages-group-role/group-role-pages/group-role-pages.component';
 import { NewGroupRolePagesComponent } from './pages-group-role/new-group-role-pages/new-group-role-pages.component';
 import { GroupUserPagesComponent } from './pages-group-user/group-user-pages/group-user-pages.component';
+import { NewGroupUserPagesComponent } from './pages-group-user/new-group-user-pages/new-group-user-pages.component';
 import { NewGroupPagesComponent } from './pages/new-group-pages';
 
 const routes: Routes = [
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path:'user',
     component:GroupUserPagesComponent,  
+  },
+  {
+    path:'user/assignmentGroupUsers',
+    component:NewGroupUserPagesComponent,  
   },
 ];
 

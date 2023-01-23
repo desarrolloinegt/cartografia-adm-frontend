@@ -24,14 +24,30 @@ export class GroupService {
     return this.apiService.getAll('obtenerGruposRoles');
   }
 
+  getGroupWithoutRoles(){
+    return this.apiService.getAll('obtenerGrupoSinRol');
+  }
+
   editGroupRoles(data:any){
     return this.apiService.patch('asignacionGrupoRol/edit',data)
   }
+  assignGroupRoles(data:any){
+    return this.apiService.store('asignarGrupoRol',data);
+  }
+
 
   getGroupsUsers(){
     return this.apiService.getAll('obtenerGrupoUsuarios');
   }
+  getGroupWithoutUsers(){
+    return this.apiService.getAll('obtenerGrupoSinUsuarios');
+  }
   editGroupUsers(data:any){
     return this.apiService.patch('asignacionGrupoUsuario/edit',data);
   }
+  assignGroupUsers(data:any){
+    return this.apiService.store('asignarGrupoUsuario',data)
+  }
+ 
+ 
 }
