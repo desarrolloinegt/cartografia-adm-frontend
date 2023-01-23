@@ -6,11 +6,15 @@ import { VehiclePageComponent } from './pages/vehicle-page/vehicle-page.componen
 import { HeaderComponent } from '@components/header';
 import { AppMaterialModule } from 'src/app/app-material/app-material.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NewVehiclePageComponent } from './pages/new-vehicle-page/new-vehicle-page.component';
+import { VehicleEditDialogComponent } from './pages/vehicle-edit-dialog/vehicle-edit-dialog.component';
 
 
 @NgModule({
   declarations: [
-    VehiclePageComponent
+    VehiclePageComponent,
+    NewVehiclePageComponent,
+    VehicleEditDialogComponent
   ],
   imports: [
     CommonModule,

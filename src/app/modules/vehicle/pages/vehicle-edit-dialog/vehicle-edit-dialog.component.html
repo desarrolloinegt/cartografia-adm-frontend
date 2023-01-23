@@ -1,0 +1,48 @@
+<div class="card">
+    <h3 mat-dialog-title>Vehiculo: {{data.model}}</h3>
+    <br>
+    <br>
+    <div class="card-body">
+        <form [formGroup]="editForm" (submit)="submit()">
+            <div class="form-group">
+                <mat-form-field appearance="outline" class="full-width-input">
+                    <mat-label>Placa del Vehiculo </mat-label>
+                    <input type="text" formControlName="nombre" matInput placeholder="admin"
+                        class="form-control" required />
+                    <mat-error *ngIf="lisence?.touched && lisence?.hasError('required')">Placa es <strong>requerida</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="form-group">
+                <mat-form-field appearance="outline" class="full-width-input">
+                    <mat-label>Modelo del Vehiculo</mat-label>
+                    <input type="text" formControlName="descripcion" matInput placeholder="admin"
+                        class="form-control" required />
+                    <mat-error *ngIf="model?.touched && model?.hasError('required')">Modelo es <strong>requerido</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            
+            <div class="form-group">
+                <mat-form-field appearance="outline" class="full-width-input">
+                    <mat-label>Año del Modelo</mat-label>
+                    <input type="text" formControlName="descripcion" matInput placeholder="admin"
+                        class="form-control" required />
+                    <mat-error *ngIf="year?.touched && year?.hasError('required')">Año es <strong>requerido</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" (click)="editSurvey()" [disabled]="!editForm.valid" mat-stroked-button color="primary">
+                    Editar Vehiculo
+                </button>
+                <button type="submit" (click)="cancelEdit()" mat-stroked-button color="warn">
+                    Cancelar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+

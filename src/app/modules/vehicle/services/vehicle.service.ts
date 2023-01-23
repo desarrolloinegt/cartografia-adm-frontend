@@ -11,4 +11,16 @@ export class VehicleService {
   getVehicle() {
     return this.apiService.getAll('vehiculos');
   }
+
+  createVehicle(data:any) {
+    return this.apiService.store('vehiculo', data);
+  }
+
+  editVechicle(data:any) {
+    return this.apiService.patch('vehiculo/edit', data);
+  }
+
+  desactiVehicle(id:number) { 
+    return this.apiService.desactive('vehiculo/id', id);
+  }
 }

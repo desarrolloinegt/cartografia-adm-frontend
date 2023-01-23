@@ -5,6 +5,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { IVehicle } from '@core/interfaces/i-vehicle';
 import { VehicleService } from '@modules/vehicle/services';
+import Swal from 'sweetalert2';
+import { VehicleEditDialogComponent } from '../vehicle-edit-dialog';
 
 @Component({
   selector: 'app-vehicle-page',
@@ -33,7 +35,7 @@ export class VehiclePageComponent {
       this.dataSource.paginator.firstPage();
     }
   }
-
+  
   ngOnInit() {
     this.cargarVehiculo();
   }
@@ -42,5 +44,44 @@ export class VehiclePageComponent {
     this.vehicleService.getVehicle().subscribe((data)=>{
       this.dataSource = new MatTableDataSource(data);
     });
+  }
+
+  editar(placa: string,  modelo:string, anio:string) {
+    this.vehicleData.license=placa;
+    this.vehicleData.model = modelo;
+    this.vehicleData.year = anio;
+    const dialogRef = this.dialogService.open(VehicleEditDialogComponent, {
+      height: '30rem',
+      width: '50rem',
+      data: this.vehicleData
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result===1){
+        this.cargarVehiculo();
+      } 
+    });
+  }
+
+  desactivar(placa: string, model: string) {
+    Swal.fire({
+      title: '¿Esta seguro que desea Desactivar el Vehiculo: ' + placa + '?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Si',
+      denyButtonText: `No`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.vehicleService.desactiVehicle(Number(placa)).subscribe((resp) => {
+          if (resp.status == true) {
+            this.cargarVehiculo();
+            Swal.fire('Ok!', resp.message, 'success')  
+          }
+        },(err) => {
+          console.log(err);
+        }); 
+      } else if (result.isDenied) {
+        Swal.fire('Cambios no guardados', '', 'info')
+      }
+    })
   }
 }

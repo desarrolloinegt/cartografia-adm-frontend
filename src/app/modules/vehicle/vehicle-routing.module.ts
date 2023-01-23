@@ -1,11 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { VehiclePageComponent } from './pages';
+import { NewVehiclePageComponent, VehiclePageComponent } from './pages';
 
 const routes: Routes = [
   {
     path: '',
     component: VehiclePageComponent
+  },
+  {
+    path: 'create',
+    component: NewVehiclePageComponent
   },
 ];
 
