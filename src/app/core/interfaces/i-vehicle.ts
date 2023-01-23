@@ -1,5 +1,6 @@
 export interface IVehicle {
-    license: string;
-    model: string;
+    id: number;
+    placa: string;
+    modelo: string;
     year: string;
 }

@@ -22,23 +22,23 @@ export class VehicleEditDialogComponent {
     this.buildForm();
   }
 
-  submit(){
-  }
+  submit() {}
 
-  private buildForm() { 
-    this.editForm =  this.formBuilder.group({
-      lisence:[this.data.license, [Validators.required]],
-      model:[this.data.model, [Validators.required]],
-      year:[this.data.year, [Validators.required]]
+  private buildForm() {
+    this.editForm = this.formBuilder.group({
+      id: [this.data.id, [Validators.required]],
+      placa: [this.data.placa, [Validators.required]],
+      modelo: [this.data.modelo, [Validators.required]],
+      year: [this.data.year, [Validators.required]],
     });
   }
 
-  get lisence() {
-    return this.editForm.get('lisence');
+  get placa() {
+    return this.editForm.get('placa');
   }
 
-  get model() {
-    return this.editForm.get('model');
+  get modelo() {
+    return this.editForm.get('modelo');
   }
 
   get year() {
@@ -46,19 +46,22 @@ export class VehicleEditDialogComponent {
   }
 
   editSurvey() {
-    if(this.editForm.valid) {
-      this.vehicleService.editVechicle(this.editForm.value).subscribe((resp)=>{
-        if(resp.status==true){
-          Swal.fire('Ok!', resp.message, 'success');
-          this.dialogRef.close(1);
+    if (this.editForm.valid) {
+      this.vehicleService.editVechicle(this.editForm.value).subscribe(
+        (resp) => {
+          if (resp.status == true) {
+            Swal.fire('Ok!', resp.message, 'success');
+            this.dialogRef.close(1);
+          }
+        },
+        (error) => {
+          console.log(error);
         }
-      }, (error) => {
-        console.log(error);
-      });
+      );
     }
   }
 
-  cancelEdit(){
+  cancelEdit() {
     this.dialogRef.close();
   }
 }

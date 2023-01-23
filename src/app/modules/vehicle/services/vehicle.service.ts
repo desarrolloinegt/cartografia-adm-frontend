@@ -21,6 +21,6 @@ export class VehicleService {
   }
 
   desactiVehicle(id:number) { 
-    return this.apiService.desactive('vehiculo/id', id);
+    return this.apiService.desactive('vehiculo', id);
   }
 }

@@ -1,5 +1,5 @@
 <div class="card">
-    <h3 mat-dialog-title>Vehiculo: {{data.model}}</h3>
+    <h3 mat-dialog-title>Vehiculo: {{data.modelo}}</h3>
     <br>
     <br>
     <div class="card-body">
@@ -7,9 +7,9 @@
             <div class="form-group">
                 <mat-form-field appearance="outline" class="full-width-input">
                     <mat-label>Placa del Vehiculo </mat-label>
-                    <input type="text" formControlName="nombre" matInput placeholder="admin"
+                    <input type="text" formControlName="placa" matInput
                         class="form-control" required />
-                    <mat-error *ngIf="lisence?.touched && lisence?.hasError('required')">Placa es <strong>requerida</strong>
+                    <mat-error *ngIf="placa?.touched && placa?.hasError('required')">Placa es <strong>requerida</strong>
                     </mat-error>
                 </mat-form-field>
             </div>
@@ -17,9 +17,9 @@
             <div class="form-group">
                 <mat-form-field appearance="outline" class="full-width-input">
                     <mat-label>Modelo del Vehiculo</mat-label>
-                    <input type="text" formControlName="descripcion" matInput placeholder="admin"
+                    <input type="text" formControlName="modelo" matInput
                         class="form-control" required />
-                    <mat-error *ngIf="model?.touched && model?.hasError('required')">Modelo es <strong>requerido</strong>
+                    <mat-error *ngIf="modelo?.touched && modelo?.hasError('required')">Modelo es <strong>requerido</strong>
                     </mat-error>
                 </mat-form-field>
             </div>
@@ -27,7 +27,7 @@
             <div class="form-group">
                 <mat-form-field appearance="outline" class="full-width-input">
                     <mat-label>Año del Modelo</mat-label>
-                    <input type="text" formControlName="descripcion" matInput placeholder="admin"
+                    <input type="text" formControlName="year" matInput
                         class="form-control" required />
                     <mat-error *ngIf="year?.touched && year?.hasError('required')">Año es <strong>requerido</strong>
                     </mat-error>

@@ -17,10 +17,11 @@ export class VehiclePageComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   dataSource: MatTableDataSource<string>;
-  displayedColumns: string[] = ['license', 'model', 'year', 'options'];
+  displayedColumns: string[] = ['placa', 'modelo', 'year', 'options'];
   vehicleData: IVehicle = {
-    license: '',
-    model: '',
+    id: 0,
+    placa: '',
+    modelo: '',
     year: '',
   };
 
@@ -46,10 +47,11 @@ export class VehiclePageComponent {
     });
   }
 
-  editar(placa: string,  modelo:string, anio:string) {
-    this.vehicleData.license=placa;
-    this.vehicleData.model = modelo;
-    this.vehicleData.year = anio;
+  editar(id: number, placa: string,  modelo:string, year:string) {
+    this.vehicleData.id = id;
+    this.vehicleData.placa=placa;
+    this.vehicleData.modelo = modelo;
+    this.vehicleData.year = year;
     const dialogRef = this.dialogService.open(VehicleEditDialogComponent, {
       height: '30rem',
       width: '50rem',
@@ -62,16 +64,16 @@ export class VehiclePageComponent {
     });
   }
 
-  desactivar(placa: string, model: string) {
+  desactivar(id: number, modelo: string) {
     Swal.fire({
-      title: '¿Esta seguro que desea Desactivar el Vehiculo: ' + placa + '?',
+      title: '¿Esta seguro que desea Desactivar el Vehiculo: ' + modelo + '?',
       showDenyButton: true,
       showCancelButton: true,
       confirmButtonText: 'Si',
       denyButtonText: `No`,
     }).then((result) => {
       if (result.isConfirmed) {
-        this.vehicleService.desactiVehicle(Number(placa)).subscribe((resp) => {
+        this.vehicleService.desactiVehicle(Number(id)).subscribe((resp) => {
           if (resp.status == true) {
             this.cargarVehiculo();
             Swal.fire('Ok!', resp.message, 'success')  

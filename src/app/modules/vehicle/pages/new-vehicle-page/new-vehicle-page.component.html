@@ -1,42 +1,69 @@
 <app-header></app-header>
-<br>
+<br />
 <div class="card">
     <div class="card-body">
-        <form [formGroup]="vehicleForm" (submit)="createVehicle()">
-            <div class="form-group">
-                <mat-form-field  appearance="outline" class="full-width-input">
-                    <mat-label [style.fontSize.px]="16">Placa</mat-label>
-                    <input type="text" formControlName="nombre" matInput placeholder="P216FMV" class="form-control"
-                        required />
-                    <mat-error *ngIf="lisence?.touched && lisence?.hasError('required')">Placa del vehiculo es
-                        <strong>requerida</strong>
-                    </mat-error>
-                </mat-form-field>
-            </div>
-            <div class="form-group">
-                <mat-form-field appearance="outline" class="full-width-input">
-                    <mat-label [style.fontSize.px]="16">Modelo</mat-label>
-                    <input type="text" formControlName="descripcion" placeholder="BMW X5" matInput class="form-control" required />
-                    <mat-error *ngIf="model?.touched && model?.hasError('required')">Modelo del vehiculo es <strong>requerido</strong>
-                    </mat-error>
-                </mat-form-field>
-            </div>
+    <form [formGroup]="vehicleForm" (submit)="createVehicle()">
+        <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width-input">
+            <mat-label [style.fontSize.px]="16">Ingrese la Placa del Vehiculo</mat-label>
+            <input
+            type="text"
+            formControlName="placa"
+            matInput
+            placeholder="P216FMV"
+            class="form-control"
+            required
+            />
+          <mat-error *ngIf="placa?.touched && placa?.hasError('required')"
+            >Placa del vehiculo es
+            <strong>requerida</strong>
+            </mat-error>
+        </mat-form-field>
+        </div>
+        <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width-input">
+            <mat-label [style.fontSize.px]="16">Ingrese el Modelo del Vehiculo</mat-label>
+            <input
+            type="text"
+            formControlName="modelo"
+            placeholder="BMW X5"    
+            matInput
+            class="form-control"
+            required
+            />
+          <mat-error *ngIf="modelo?.touched && modelo?.hasError('required')"
+            >Modelo del vehiculo es <strong>requerido</strong>
+            </mat-error>
+        </mat-form-field>
+        </div>
 
-            <div class="form-group">
-                <mat-form-field appearance="outline" class="full-width-input">
-                    <mat-label [style.fontSize.px]="16">Año</mat-label>
-                    <input type="text" formControlName="descripcion" placeholder="2018" matInput class="form-control" required />
-                    <mat-error *ngIf="year?.touched && year?.hasError('required')">Año del vehiculo es <strong>requerido</strong>
-                    </mat-error>
-                </mat-form-field>
-            </div>
-            
-            <div class="form-group">
-                <button type="submit" [disabled]="!vehicleForm.valid" mat-raised-button color="primary">
-                    Guardar Vehiculo
-                </button>
-            </div>
-        </form>
+        <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width-input">
+            <mat-label [style.fontSize.px]="16">Año</mat-label>
+            <input
+            type="text"
+            formControlName="year"
+            placeholder="2018"
+            matInput
+            class="form-control"
+            required
+            />
+          <mat-error *ngIf="year?.touched && year?.hasError('required')"
+            >Año del vehiculo es <strong>requerido</strong>
+            </mat-error>
+        </mat-form-field>
+        </div>
+
+        <div class="form-group">
+        <button
+            type="submit"
+            [disabled]="!vehicleForm.valid"
+            mat-raised-button
+            color="primary"
+        >
+            Guardar Vehiculo
+        </button>
+        </div>
+    </form>
     </div>
 </div>
-
