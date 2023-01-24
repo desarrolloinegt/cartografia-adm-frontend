@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { GroupsRoutingModule } from './groups-routing.module';
 import { AppMaterialModule } from 'src/app/app-material/app-material.module';
-import { HeaderComponent } from '@components/header';
 import {  MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { GroupPagesComponent } from './pages/group-pages/group-pages.component';
@@ -26,7 +25,6 @@ import { GroupUserEditDialogComponent } from './pages-group-user/group-user-edit
     CommonModule,
     GroupsRoutingModule,
     AppMaterialModule,
-    HeaderComponent,
     MatIconModule,
     MatTooltipModule,
     ReactiveFormsModule,

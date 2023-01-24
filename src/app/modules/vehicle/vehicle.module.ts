@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { VehicleRoutingModule } from './vehicle-routing.module';
 import { VehiclePageComponent } from './pages/vehicle-page/vehicle-page.component';
-import { HeaderComponent } from '@components/header';
 import { AppMaterialModule } from 'src/app/app-material/app-material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NewVehiclePageComponent } from './pages/new-vehicle-page/new-vehicle-page.component';
@@ -19,7 +18,6 @@ import { VehicleEditDialogComponent } from './pages/vehicle-edit-dialog/vehicle-
   imports: [
     CommonModule,
     VehicleRoutingModule,
-    HeaderComponent,
     AppMaterialModule,
     ReactiveFormsModule,
   ],

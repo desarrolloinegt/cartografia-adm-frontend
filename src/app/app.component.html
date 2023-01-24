@@ -30,12 +30,19 @@
                 <mat-icon class="routeIcon menu-icon">question_answer</mat-icon>
                 <span [style.fontSize.px]="14">Encuestas</span>
             </a>
-            <mat-nav-list >
-                <a mat-list-item class="menu-list-item" routerLink="group"> 
-                    <mat-icon class="routeIcon menu-icon">group</mat-icon>
-                    <span [style.fontSize.px]="14">Grupos</span>
+
+            <mat-expansion-panel>
+                <mat-expansion-panel-header mat-list-item class="menu-list-item" routerLink="group">
+                <mat-nav-list >
+                        <mat-icon class="routeIcon menu-icon">group</mat-icon>
+                        <span [style.fontSize.px]="14">Grupos</span>
+                </mat-nav-list>
+                </mat-expansion-panel-header>
+                <a mat-list-item class="menu-list-item" routerLink="rol"> 
+                    <mat-icon class="routeIcon menu-icon">supervisor_account</mat-icon>
+                    <span [style.fontSize.px]="14">Roles</span>
                 </a>
-            </mat-nav-list>
+            </mat-expansion-panel> 
 
             <a mat-list-item class="menu-list-item" routerLink="vehicle"> 
                 <mat-icon class="routeIcon menu-icon">commute</mat-icon>
@@ -46,6 +53,7 @@
                 <mat-icon class="routeIcon menu-icon">exit_to_app</mat-icon>
                 <span [style.fontSize.px]="14">Salir</span>
             </a>
+
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content style="background-color: white;">

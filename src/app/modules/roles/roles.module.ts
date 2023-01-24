@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RolesRoutingModule } from './roles-routing.module';
-import { HeaderComponent } from '@components/header';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppMaterialModule } from 'src/app/app-material/app-material.module';
 import { RolesPageComponent } from './pages';
@@ -14,7 +13,6 @@ import { NewRolePageComponent } from './pages/new-role-page/new-role-page.compon
   imports: [
     CommonModule,
     RolesRoutingModule,
-    HeaderComponent,
     ReactiveFormsModule,
     AppMaterialModule,
     MatCheckboxModule,

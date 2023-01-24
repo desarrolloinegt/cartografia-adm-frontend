@@ -7,7 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppMaterialModule } from './app-material/app-material.module';
 import {  ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { HeaderComponent } from './components';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { SpinnerModule } from '@core/spinner/spinner.module';
@@ -24,7 +23,6 @@ import {MatMenuModule} from '@angular/material/menu';
     AppMaterialModule,
     ReactiveFormsModule,
     HttpClientModule,
-    HeaderComponent,
     SpinnerModule,
     MatDialogModule,
     MatCheckboxModule,

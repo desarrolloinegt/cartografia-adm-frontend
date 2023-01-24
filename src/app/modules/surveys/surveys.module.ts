@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SurveysRoutingModule } from './surveys-routing.module';
-import { HeaderComponent } from '@components/header';
 import { AppMaterialModule } from 'src/app/app-material/app-material.module';
 import { SurveyPagesComponent } from './pages';
 import { NewSurveyPagesComponent } from './pages/new-survey-pages/new-survey-pages.component';
@@ -18,7 +17,6 @@ import { SurveyEditDialogComponent } from './pages/survey-edit-dialog/survey-edi
   imports: [
     CommonModule,
     SurveysRoutingModule,
-    HeaderComponent,
     AppMaterialModule,
     ReactiveFormsModule,
   ],
