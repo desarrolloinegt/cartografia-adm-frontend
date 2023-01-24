@@ -15,6 +15,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SpinnerInterceptor } from '@core/interceptors/spinner.interceptor';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import {MatMenuModule} from '@angular/material/menu';
+import { HttpErrorInterceptor } from '@core/interceptors/HttpErrorInterceptor.interceptor';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -33,6 +34,7 @@ import {MatMenuModule} from '@angular/material/menu';
 
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true},
+    {provide:HTTP_INTERCEPTORS,useClass:HttpErrorInterceptor,multi:true}
   ],
   bootstrap: [AppComponent],
 })
