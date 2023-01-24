@@ -17,7 +17,6 @@ export class HomePageComponent {
   constructor(private auth: AuthService, private router: Router) {
     this.id=Number(localStorage.getItem('id'));
     this.getProject();
-    
   }
 
   getProject(){
