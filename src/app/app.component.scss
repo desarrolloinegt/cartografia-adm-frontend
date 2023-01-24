@@ -7,7 +7,7 @@
 }
 
 .sidenav { 
-    width: 250px;
+    width: 290px;
     background-color: #fafafa;
 }
 
@@ -32,3 +32,15 @@
     height: 18px;
     font-size: 1em;
 }
+.panel{
+    display: flex;
+    flex-direction: column;
+    align-items: initial;
+    margin: 0;
+    width: 50rem;
+}
+a{
+    margin: 0;
+    width: 80rem;
+}
+
