@@ -1,4 +1,4 @@
-/*html {
+html {
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
 }
@@ -241,7 +241,7 @@ button {
   transition: transform 0.1s, background 0.4s, border-color 0.4s, color 0.4s,
     box-shadow 0.4s, -webkit-transform 0.1s;
 }
-[type="button"]:active,
+/* [type="button"]:active,
 [type="button"]:focus,
 [type="button"]:hover,
 [type="reset"]:active,
@@ -258,7 +258,7 @@ button:hover {
   outline: none;
   color: #fff;
   text-decoration: none;
-}
+} */
 [type="button"]:active,
 [type="reset"]:active,
 [type="submit"]:active,
@@ -426,7 +426,7 @@ legend {
 .label,
 label {
   margin-bottom: 20px;
-  width: 100%;
+  /* width: 100%; */
 }
 label {
   cursor: pointer;
@@ -3316,4 +3316,3 @@ textarea:disabled {
   white-space: nowrap !important;
   border: 0 !important;
 }
-*/
