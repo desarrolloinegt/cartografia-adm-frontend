@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { IGroup } from '@core/interfaces/i-group';
+import { IRoleList } from '@core/interfaces/i-role';
+import { GroupService } from '@modules/groups/services';
 import { RoleService } from '@modules/roles/services/role.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-new-group-role-pages',
@@ -9,41 +13,49 @@ import { RoleService } from '@modules/roles/services/role.service';
 })
 export class NewGroupRolePagesComponent {
   rolForm!:FormGroup;
-  constructor(private roleService: RoleService, private formBuilder: FormBuilder) {
+  grupos:IGroup[]=[];
+  roles:IRoleList[]=[]
+  constructor(private roleService: RoleService, private groupService:GroupService,private formBuilder: FormBuilder) {
     this.cargarRoles();
-    
+    this.cargarGrupos();
     this.buildForm();
   }
-  cargarRoles(){
-  }
-
   private buildForm(){
     this.rolForm=this.formBuilder.group({
-      grupo:['', Validators.required],
+      grupo_id:['', Validators.required],
       roles:['',[Validators.required]]
     });
   }
   get Grupo() {
-    return this.rolForm.get('grupo');
+    return this.rolForm.get('grupo_id');
   }
   get Roles() {
     return this.rolForm.get('roles');
   }
 
+  cargarRoles(){
+    this.roleService.getRoles().subscribe(data=>{
+      this.roles=data;
+      this.roles.forEach(rol=>{
+        rol.checked=false;
+      })
+    })
+  }
+
+  cargarGrupos(){
+    this.groupService.getGroupWithoutRoles().subscribe(data=>{
+      this.grupos=data;
+    })
+  }
+
   createAssignment(){ 
-    /*this.asignacionPermisoRol.permisos=this.selectedPermision;
-    this.rol.nombre=this.Nombre?.value;
-    this.roleService.createRol(this.rol).subscribe((resp)=>{
+    this.groupService.assignGroupRoles(this.rolForm.value).subscribe((resp)=>{
       if(resp.status==true){
-        this.asignacionPermisoRol.rol_id=resp.id_rol;
-        this.roleService.assignPermisoToRol(this.asignacionPermisoRol).subscribe((res)=>{
-          if(res.status==true){
-            Swal.fire('Ok!', res.message, 'success');
-          }
-        },(err) => {
-          console.log(err);
-        });
-      }
-    });*/
+            Swal.fire('Ok!', resp.message, 'success');
+            this.cargarGrupos();
+        }
+      },(err) => {
+        console.log(err);
+      });
   }
 }

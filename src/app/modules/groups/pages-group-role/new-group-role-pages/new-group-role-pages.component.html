@@ -4,26 +4,27 @@
         <form [formGroup]="rolForm" (submit)="createAssignment()">
             <div class="form-group">
                 <mat-form-field appearance="outline" class="full-width-input">
-                    <mat-label [style.fontSize.px]="16">Ingrese Nombre del Rol</mat-label>
-                    <input type="text" formControlName="nombre" matInput placeholder="qa" class="form-control"
-                        required />
+                    <mat-label [style.fontSize.px]="16">Seleccione un Grupo</mat-label>
+                    <mat-select formControlName="grupo_id">
+                        <mat-option *ngFor="let grupo of grupos"  [value]="grupo.id">{{grupo.nombre}}</mat-option>
+                    </mat-select>
                     <mat-error *ngIf="Grupo?.touched && Grupo?.hasError('required')">Grupo es <strong>requerido</strong>
-                    </mat-error>
+                    </mat-error>                    
                 </mat-form-field>
             </div>
             <div class="form-group">
                 <button type="submit" [disabled]="!rolForm.valid" mat-raised-button color="primary">
-                    Guardar Rol
+                    Asignar Roles
                 </button>
             </div>
-            <!--<div class="example-section">
-                <mat-label>Permisos</mat-label>
-                <mat-selection-list formControlName="permisos" #permisosList (selectionChange)="permisoSelected(permisosList.selectedOptions.selected)">
-                    <mat-list-option  *ngFor="let permiso of permisos" [value]="permiso.id" >
-                      {{permiso.alias}}
+            <div class="example-section">
+                <mat-label>Roles</mat-label>
+                <mat-selection-list formControlName="roles" >
+                    <mat-list-option  [selected]="rol.checked" *ngFor="let rol of roles" [value]="rol.id" >
+                      {{rol.nombre}}
                     </mat-list-option>
                 </mat-selection-list>
-            </div>-->
+            </div>
         </form>
     </div>
 </div>
