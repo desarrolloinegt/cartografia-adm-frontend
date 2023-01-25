@@ -19,5 +19,9 @@ export class AppComponent {
     return localStorage.getItem('usuario') || '';
   }
 
+  get project(){
+    return localStorage.getItem('project')||'';
+  }
+
   ngOnInit() {}
 }

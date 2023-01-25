@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppMaterialModule } from 'src/app/app-material/app-material.module';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-auth-header',
   standalone: true,

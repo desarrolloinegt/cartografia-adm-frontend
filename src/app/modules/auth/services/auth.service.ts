@@ -29,7 +29,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
-    localStorage.removeItem('projects');
+    localStorage.removeItem('project');
     localStorage.removeItem('usuario');
 
     setTimeout(() => {
@@ -44,5 +44,9 @@ export class AuthService {
 
   getProjects(id:number):Observable<any>{
     return this.apiService.getById('projectsAssing',id);
+  }
+
+  getPermissions(project:string,usuario_id:number){
+    return this.apiService.store('obtenerPermisos',{proyecto:project,usuario_id:usuario_id});
   }
 }

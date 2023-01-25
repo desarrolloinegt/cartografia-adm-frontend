@@ -14,33 +14,33 @@
       </h4>
       <mat-divider></mat-divider>
     </div>
-    <mat-nav-list>
+    <mat-nav-list >
       <a mat-list-item class="menu-list-item" routerLink="home">
         <mat-icon class="routeIcon menu-icon">home</mat-icon>
         <span [style.fontSize.px]="14">Inicio</span>
       </a>
 
-      <a mat-list-item class="menu-list-item" routerLink="user">
+      <a mat-list-item *ngxPermissionsOnly="['crear-usuario']" class="menu-list-item" routerLink="user">
         <mat-icon class="routeIcon menu-icon">person</mat-icon>
         <span [style.fontSize.px]="14">Usuarios</span>
       </a>
 
-      <a mat-list-item class="menu-list-item" routerLink="project">
+      <a mat-list-item *ngxPermissionsOnly="['crear-usuario']" class="menu-list-item" routerLink="project">
         <mat-icon class="routeIcon menu-icon">folder</mat-icon>
         <span [style.fontSize.px]="14">Proyectos</span>
       </a>
 
-      <a mat-list-item class="menu-list-item" routerLink="rol">
+      <a mat-list-item *ngxPermissionsOnly="['crear-usuario']" class="menu-list-item" routerLink="rol">
         <mat-icon class="routeIcon menu-icon">supervisor_account</mat-icon>
         <span [style.fontSize.px]="14">Roles</span>
       </a>
 
-      <a mat-list-item class="menu-list-item" routerLink="surveys">
+      <a mat-list-item *ngxPermissionsOnly="['crear-usuario']" class="menu-list-item" routerLink="surveys">
         <mat-icon class="routeIcon menu-icon">question_answer</mat-icon>
         <span [style.fontSize.px]="14">Encuestas</span>
       </a>
 
-      <mat-expansion-panel>
+      <mat-expansion-panel *ngxPermissionsOnly="['crear-usuario']">
         <mat-expansion-panel-header
           mat-list-item
           class="menu-list-item panel-header"
@@ -50,15 +50,11 @@
             <span [style.fontSize.px]="14">Grupos</span>
           </mat-nav-list>
         </mat-expansion-panel-header>
-        <a mat-list-item class="menu-list-item" routerLink="group/create">
-          <mat-icon class="routeIcon menu-icon">create</mat-icon>
-          <span [style.fontSize.px]="14">Crear Grupo</span>
-        </a>
         <a mat-list-item class="menu-list-item" routerLink="group">
           <mat-icon class="routeIcon menu-icon">visibility</mat-icon>
           <span [style.fontSize.px]="14">Ver Grupos</span>
         </a>
-        <mat-expansion-panel class="panel">
+        <mat-expansion-panel  class="panel">
           <mat-expansion-panel-header
             mat-list-item
             class="menu-list-item panel-header"
@@ -100,7 +96,7 @@
         </mat-expansion-panel>
       </mat-expansion-panel>
 
-      <a mat-list-item class="menu-list-item" routerLink="vehicle">
+      <a mat-list-item *ngxPermissionsOnly="['crear-usuario']" class="menu-list-item" routerLink="vehicle">
         <mat-icon class="routeIcon menu-icon">commute</mat-icon>
         <span [style.fontSize.px]="14">Vehículos</span>
       </a>
@@ -113,7 +109,7 @@
   </mat-sidenav>
   <mat-sidenav-content style="background-color: white">
     <app-spinner></app-spinner>
-    <mat-toolbar color="primary" style="z-index: 99" *ngIf="token != ''">
+    <mat-toolbar color="primary" style="z-index: 99" *ngIf="token != '' ">
       <button
         type="button"
         aria-label="Toggle sidenav"
