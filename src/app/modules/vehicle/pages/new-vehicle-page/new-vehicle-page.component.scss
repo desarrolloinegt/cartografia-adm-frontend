@@ -1,6 +1,9 @@
 .full-width-input,
 button {
     width: 100%;
+    max-width: 98%;
+    margin: 0 auto;
+    display: flex;
 }
 .example-section {
     margin: 12px 12px;

@@ -1,11 +1,13 @@
 <br />
+<br />
+<br />
 <div class="card">
   <div class="card-body">
     <form [formGroup]="registerForm" (ngSubmit)="registerUser()" >
       <div class="form-group">
         <mat-form-field appearance="outline" class="full-width-input">
           <mat-label [style.fontSize.px]="16">Ingrese su DPI</mat-label>
-          <input type="number" formControlName="DPI" matInput placeholder="2320 55634 0103" class="form-control" required />
+          <input type="number" formControlName="DPI" matInput placeholder="2320 55634 0103"  required />
           <mat-error *ngIf="DPI?.touched && DPI?.hasError('required')">DPI es <strong>requerido</strong> </mat-error>
           <mat-error *ngIf="DPI?.touched && DPI?.hasError('pattern')">DPI debe contener<strong> 13 digitos</strong> </mat-error>  
         </mat-form-field>

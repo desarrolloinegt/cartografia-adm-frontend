@@ -1,4 +1,6 @@
 <br />
+<br />
+<br />
 <div class="card">
     <div class="card-body">
         <form [formGroup]="rolForm" (submit)="createRol()">
@@ -16,6 +18,8 @@
                     Guardar Rol
                 </button>
             </div>
+            <br />
+            <br />
             <div class="example-section">
                 <mat-label>Permisos</mat-label>
                 <mat-selection-list formControlName="permisos" #permisosList (selectionChange)="permisoSelected(permisosList.selectedOptions.selected)">
