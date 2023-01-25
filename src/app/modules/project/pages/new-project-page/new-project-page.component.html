@@ -23,19 +23,17 @@
                     <mat-error *ngIf="Year?.touched && Year?.hasError('pattern')"> <strong>Año debe tener 4 numeros</strong>
                     </mat-error>
                 </mat-form-field>
-            </div>            
+            </div>  
+            <div class="form-group">
+                <mat-form-field appearance="outline" class="full-width-input">
+                    <mat-label [style.fontSize.px]="16">Descripcion(Opcional)</mat-label>
+                    <input type="text" formControlName="descripcion" matInput class="form-control" placeholder="Proyecto del año 2023"/>
+                </mat-form-field>
+            </div>          
             <div class="form-group">
                 <button type="submit" [disabled]="!projectForm.valid" mat-raised-button color="primary">
                     Guardar Proyecto
                 </button>
-            </div>
-            <div class="example-section">
-                <mat-label>UPM's</mat-label>
-                <mat-selection-list formControlName="upms" #upmList (selectionChange)="upmSelecteds(upmList.selectedOptions.selected)">
-                    <mat-list-option  *ngFor="let upm of upms" [value]="upm.id"  >
-                        {{upm.nombre}}, {{upm.municipio}}
-                    </mat-list-option>
-                </mat-selection-list>
             </div>
         </form>
     </div>

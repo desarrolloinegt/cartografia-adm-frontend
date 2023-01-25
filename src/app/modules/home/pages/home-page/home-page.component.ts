@@ -17,6 +17,7 @@ export class HomePageComponent {
   id:number=0;
   constructor(private permissionService:NgxPermissionsService,private auth: AuthService, private router: Router) {
     this.dataSource=new MatTableDataSource();
+    this.permissionService.flushPermissions();
   }
 
   ngOnInit(){

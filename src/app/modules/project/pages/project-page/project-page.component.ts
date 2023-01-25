@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { IProject, IProjectList } from '@core/interfaces/i-project';
+import { IProject, IProjectList, IProjectListView } from '@core/interfaces/i-project';
 import { IUpmAssignmentList } from '@core/interfaces/i-upm-assignment';
 import { ProjectService } from '@modules/project/services/project.service';
 import Swal from 'sweetalert2';
@@ -17,8 +17,8 @@ import { ProjectEditDialogComponent } from '../project-edit-dialog';
 export class ProjectPageComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  dataSource: MatTableDataSource<IProjectList>;
-  displayedColumns: string[] = ['id', 'nombre', 'year', 'encuesta','upms','progreso','options'];
+  dataSource: MatTableDataSource<IProjectListView>;
+  displayedColumns: string[] = ['id', 'nombre', 'year', 'encuesta','progreso','descripcion','options'];
   date=new Date((new Date()).getDate());
   
   dataEdit:IUpmAssignmentList={
@@ -64,7 +64,7 @@ export class ProjectPageComponent {
   }
 
   cargarProyectos(){
-    this.projectService.getProjects().subscribe((data)=>{ 
+    this.projectService.getProjectView().subscribe((data)=>{ 
       this.dataSource=new MatTableDataSource(data);
     });
   }

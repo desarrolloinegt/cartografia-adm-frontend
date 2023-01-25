@@ -24,9 +24,8 @@ export class NewGroupPagesComponent {
   private buildForm(){
     this.groupForm=this.formBuilder.group({
       nombre:['',Validators.required],
-      descripcion:['',[Validators.required]],
+      descripcion:[''],
       proyecto_id:['',[Validators.required]],
-      jerarquia:[0,[Validators.required]]
     });
   }
   get Nombre() {

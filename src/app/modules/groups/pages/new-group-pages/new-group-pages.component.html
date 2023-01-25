@@ -17,9 +17,7 @@
             <div class="form-group">
                 <mat-form-field appearance="outline" class="full-width-input">
                     <mat-label [style.fontSize.px]="16">Descripcion</mat-label>
-                    <input type="text" formControlName="descripcion" placeholder="Proyecto 2026" matInput class="form-control" required />
-                    <mat-error *ngIf="Descripcion?.touched && Descripcion?.hasError('required')">Descripcion es <strong>requerida</strong>
-                    </mat-error>
+                    <input type="text" formControlName="descripcion" placeholder="Proyecto 2026" matInput class="form-control" />
                 </mat-form-field>
             </div>
             <div class="form-group">
@@ -32,17 +30,6 @@
                     </mat-error>                    
                 </mat-form-field>
             </div>
-            <div class="form-group">
-                <mat-form-field appearance="outline" class="full-width-input">
-                    <mat-label [style.fontSize.px]="16">Seleccione la jerarquia</mat-label> 
-                    <mat-select formControlName="jerarquia">
-                        <mat-option *ngFor="let id of jerarquias"  [value]="id">{{id}}</mat-option>
-                    </mat-select>
-                    <mat-error *ngIf="Jerarquia?.touched && Jerarquia?.hasError('required')">Jerarquia es <strong>requerida</strong>
-                    </mat-error>                    
-                </mat-form-field>
-            </div>
-            
             <div class="form-group">
                 <button type="submit" [disabled]="!groupForm.valid" mat-raised-button color="primary">
                     Guardar Grupo
