@@ -2,9 +2,7 @@
     height: 100%;
 }
 
-.spacer { 
-    flex: 1 1 auto;
-}
+
 
 .sidenav { 
     width: 290px;
@@ -42,5 +40,10 @@
 a{
     margin: 0;
     width: 80rem;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 

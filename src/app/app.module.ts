@@ -15,6 +15,7 @@ import { SpinnerInterceptor } from '@core/interceptors/spinner.interceptor';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import {MatMenuModule} from '@angular/material/menu';
 import { HttpErrorInterceptor } from '@core/interceptors/HttpErrorInterceptor.interceptor';
+import { NgxPermissionsModule } from 'ngx-permissions';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -27,7 +28,8 @@ import { HttpErrorInterceptor } from '@core/interceptors/HttpErrorInterceptor.in
     SpinnerModule,
     MatDialogModule,
     MatCheckboxModule,
-    MatMenuModule
+    MatMenuModule,
+    NgxPermissionsModule.forRoot()
   ],
 
   providers: [

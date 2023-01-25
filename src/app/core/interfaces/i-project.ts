@@ -1,9 +1,7 @@
 import { IPermission } from "./i-permission";
 import { IRole, IroleByUser } from "./i-role";
 export interface IProjectAssignment {
-    proyecto:IProject[];
-    roles: IroleByUser[];
-    permisos: IPermission[];  
+    nombre:string;  
 }
 
 export interface IProject{
