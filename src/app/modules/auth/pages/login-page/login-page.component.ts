@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '@modules/auth/services';
+import { NgxPermissionsService } from 'ngx-permissions';
 
 @Component({
   selector: 'app-login-page',
@@ -13,13 +14,14 @@ export class LoginPageComponent {
 
   public passwordType = 'password';
   public loading = false;
-
+  permissionsAdmin:string[]=[];
   loginForm!: FormGroup;
 
   constructor(
     private auth: AuthService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private permissionService:NgxPermissionsService
   ) {
     this.buildForm();
     const token = localStorage.getItem('token');
@@ -47,7 +49,7 @@ export class LoginPageComponent {
             this.router.navigateByUrl('/home');
             console.log(resp.proyectos);
             localStorage.setItem('id', resp.id);
-            localStorage.setItem('projects', JSON.stringify(resp.proyectos));
+            this.charguePermissionAdmin(resp.id);
           } else {
             console.log('Error Inesperado');
           }
@@ -59,6 +61,12 @@ export class LoginPageComponent {
     }
   }
 
+  charguePermissionAdmin(id:string){
+    this.auth.getPermissionAdmin(Number(id)).subscribe(data=>{
+      this.permissionsAdmin=data;
+      this.permissionService.addPermission(this.permissionsAdmin);
+    })
+  }
   changePasswordType() {
     this.passwordType = this.passwordType == 'text' ? 'password' : 'text';
   }

@@ -6,10 +6,10 @@
         <form [formGroup]="rolForm" (submit)="createRol()">
             <div class="form-group">
                 <mat-form-field appearance="outline" class="full-width-input">
-                    <mat-label [style.fontSize.px]="16">Ingrese Nombre del Rol</mat-label>
+                    <mat-label [style.fontSize.px]="16">Ingrese Nombre de la politica</mat-label>
                     <input type="text" formControlName="nombre" matInput placeholder="qa" class="form-control"
                         required />
-                    <mat-error *ngIf="Nombre?.touched && Nombre?.hasError('required')">Nombre de Rol es <strong>requerido</strong>
+                    <mat-error *ngIf="Nombre?.touched && Nombre?.hasError('required')">Nombre de politica es <strong>requerido</strong>
                     </mat-error>
                 </mat-form-field>
             </div>
@@ -17,7 +17,7 @@
                 <button type="submit"
                 *ngxPermissionsOnly="['crear-rol']"
                 [disabled]="!rolForm.valid" mat-raised-button color="primary">
-                    Guardar Rol
+                    Guardar Politica
                 </button>
             </div>
             <br />

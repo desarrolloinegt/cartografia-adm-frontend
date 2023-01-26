@@ -6,10 +6,10 @@
         <form [formGroup]="editForm" (submit)="submit()">
             <div class="form-group">
                 <mat-form-field  appearance="outline" class="full-width-input">
-                    <mat-label [style.fontSize.px]="16">Ingrese el Nombre del Grupo</mat-label>
+                    <mat-label [style.fontSize.px]="16">Ingrese el Nombre del rol</mat-label>
                     <input type="text" formControlName="nombre" matInput placeholder="Grupo Supervisores ENEI" class="form-control"
                         required />
-                    <mat-error *ngIf="Nombre?.touched && Nombre?.hasError('required')">Nombre de Encuesta es
+                    <mat-error *ngIf="Nombre?.touched && Nombre?.hasError('required')">Nombre de rol es
                         <strong>requerido</strong>
                     </mat-error>
                 </mat-form-field>

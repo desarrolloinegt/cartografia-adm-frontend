@@ -7,6 +7,7 @@ import { AppMaterialModule } from 'src/app/app-material/app-material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthHeaderComponent } from './components';
 import { LogoutComponent } from './pages/logout/logout.component';
+import { NgxPermissionsModule } from 'ngx-permissions';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { LogoutComponent } from './pages/logout/logout.component';
     AuthRoutingModule,
     AppMaterialModule,
     ReactiveFormsModule,
-    AuthHeaderComponent
+    AuthHeaderComponent,
+    NgxPermissionsModule
   ]
 })
 export class AuthModule { }

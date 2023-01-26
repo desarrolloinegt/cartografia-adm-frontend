@@ -1,5 +1,5 @@
 <div class="header">
-  <h1>Grupos</h1>
+  <h1>Roles</h1>
   <a mat-fab color="accent" routerLink="create">
     <mat-icon aria-label="add">add</mat-icon>
   </a>
@@ -46,7 +46,7 @@
         *ngxPermissionsOnly="['editar-grupo']"
           mat-icon-button
           (click)="editar(row.id, row.nombre, row.descripcion,row.jerarquia,row.proyecto_id)"
-          matTooltip="Click para Editar"
+          matTooltip="Editar"
           matTooltipPosition="right"
           color="primary"
           class="iconbutton"
@@ -56,7 +56,7 @@
         <button
         *ngxPermissionsOnly="['desactivar-grupo']"
           mat-icon-button
-          matTooltip="Click para desactivar"
+          matTooltip="Desactivar"
           (click)="desactivar(row.id, row.nombre)"
           color="warn"
           class="iconbutton"
@@ -66,7 +66,7 @@
         <button
         *ngxPermissionsOnly="['ver-usuario-grupo']"
           mat-icon-button
-          matTooltip="Click para ver usuarios"
+          matTooltip="Ver usuarios"
           (click)="verUsuarios(row.id, row.nombre)"
           color="primary"
           class="iconbutton"
@@ -76,7 +76,7 @@
         <button
         *ngxPermissionsOnly="['ver-rol-grupo']"
           mat-icon-button
-          matTooltip="Click para ver roles"
+          matTooltip="Ver politicas"
           (click)="verRoles(row.id, row.nombre)"
           color="primary"
           class="iconbutton"
