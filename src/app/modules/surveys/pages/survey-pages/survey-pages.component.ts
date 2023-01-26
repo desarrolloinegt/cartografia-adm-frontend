@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ISurvey } from '@core/interfaces/i-survey';
 import { SurveyService } from '@modules/surveys/services';
+import { NgxPermissionsService } from 'ngx-permissions';
 import Swal from 'sweetalert2';
 import { SurveyEditDialogComponent } from '../survey-edit-dialog';
 

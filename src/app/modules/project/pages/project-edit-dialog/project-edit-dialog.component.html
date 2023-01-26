@@ -4,6 +4,17 @@
     <br>
     <div class="card-body">
         <form [formGroup]="editForm" (submit)="submit()">
+            
+            <div class="form-group">
+                <mat-form-field appearance="outline" class="full-width-input">
+                    <mat-label>Seleccione una encuesta</mat-label>
+                    <mat-select [value]="selectedSurvey" formControlName="encuesta_id">
+                        <mat-option   *ngFor="let encuesta of encuestas" [value]="encuesta.id+','+encuesta.nombre">{{encuesta.nombre}}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="Encuesta?.touched && Encuesta?.hasError('required')">Encuesta es <strong>requerida</strong>
+                    </mat-error>                    
+                </mat-form-field>
+            </div>
             <div class="form-group">
                 <mat-form-field appearance="outline" class="full-width-input">
                     <mat-label>Año</mat-label>
@@ -15,29 +26,16 @@
             </div>
             <div class="form-group">
                 <mat-form-field appearance="outline" class="full-width-input">
-                    <mat-label>Seleccion una encuesta</mat-label>
-                    <mat-select [value]="selectedSurvey" formControlName="encuesta_id">
-                        <mat-option   *ngFor="let encuesta of encuestas" [value]="encuesta.id+','+encuesta.nombre">{{encuesta.nombre}}</mat-option>
-                    </mat-select>
-                    <mat-error *ngIf="Encuesta?.touched && Encuesta?.hasError('required')">Encuesta es <strong>requerida</strong>
-                    </mat-error>                    
+                    <mat-label>Descripcion(Opcional)</mat-label>
+                    <input type="text" formControlName="descripcion" matInput
+                        class="form-control" />
                 </mat-form-field>
             </div>
             <div class="form-group">
-                <mat-checkbox [checked]="checked" (change)="changeUpmStatus($event.checked)" class="example-margin" >
-                    Cambiar UPM's
-                </mat-checkbox>
-            </div>
-            <div class="example-section">
-                <mat-label>UPM's</mat-label>
-                <mat-selection-list formControlName="upms" #UpmLis (selectionChange)="permisoSelected(UpmLis.selectedOptions.selected)">
-                    <mat-list-option [selected]="upm.checked"  *ngFor="let upm of upmsList" [value]="upm.id" >
-                      {{upm.nombre}}, {{upm.municipio}}
-                    </mat-list-option>
-                </mat-selection-list>
-            </div>
-            <div class="form-group">
-                <button type="submit" (click)="editProject()" [disabled]="!editForm.valid" mat-stroked-button color="primary">
+                <button type="submit"
+                 (click)="editProject()" 
+                 *ngxPermissionsOnly="['editar-proyecto']"
+                 [disabled]="!editForm.valid" mat-stroked-button color="primary">
                     Editar Proyecto
                 </button>
                 <button type="submit" (click)="cancelEdit()" mat-stroked-button color="warn">

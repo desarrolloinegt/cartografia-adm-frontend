@@ -31,7 +31,9 @@
                 </mat-form-field>
             </div>
             <div class="form-group">
-                <button type="submit" [disabled]="!groupForm.valid" mat-raised-button color="primary">
+                <button type="submit" 
+                *ngxPermissionsOnly="['crear-grupo']"
+                [disabled]="!groupForm.valid" mat-raised-button color="primary">
                     Guardar Grupo
                 </button>
             </div>

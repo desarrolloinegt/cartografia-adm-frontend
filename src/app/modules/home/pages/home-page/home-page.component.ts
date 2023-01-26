@@ -18,23 +18,31 @@ export class HomePageComponent {
   constructor(private permissionService:NgxPermissionsService,private auth: AuthService, private router: Router) {
     this.dataSource=new MatTableDataSource();
     this.permissionService.flushPermissions();
+    
   }
-
+  get project(){
+    return localStorage.getItem('project')||'';
+  }
   ngOnInit(){
+    localStorage.removeItem('project');
     this.id=Number(localStorage.getItem('id'));
+    this.permissionService.flushPermissions();
     this.getProjects();
   }
   getProjects(){
     this.auth.getProjects(this.id).subscribe((data)=>{
-      console.log(data);
       this.projects=data;
     });
   }
   loadProject(project:string){
+    localStorage.removeItem('project');
     this.auth.getPermissions(project,this.id).subscribe(data=>{
       this.permissions=data;
       this.permissionService.addPermission(this.permissions);
       localStorage.setItem('project',project);
     })
+    localStorage.setItem('project',project)
+    this.router.navigate(['projectHome']);
   }
+
 }

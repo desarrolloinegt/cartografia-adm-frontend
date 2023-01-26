@@ -30,9 +30,8 @@ export class EditGroupDialogComponent {
     this.editForm = this.formBuilder.group({
       id:[this.data.id,[Validators.required]],
       nombre: [this.data.nombre, [Validators.required]],
-      descripcion: [this.data.descripcion, [Validators.required]],
+      descripcion: [this.data.descripcion],
       proyecto_id:[this.data.proyecto_id,[Validators.required]],
-      jerarquia:[this.data.jerarquia,[Validators.required]]
     });
   }
 
@@ -70,7 +69,6 @@ export class EditGroupDialogComponent {
         console.log(err);
       });
     }
-    
   }
   cancelEdit(){
     this.dialogRef.close();

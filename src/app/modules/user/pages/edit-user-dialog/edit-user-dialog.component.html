@@ -88,7 +88,9 @@
                 </mat-form-field>
             </div>
             <div class="form-group">
-                <button type="submit" (click)="editUser()" [disabled]="!editForm.valid" mat-stroked-button color="primary">
+                <button
+                *ngxPermissionsOnly="['editar-usuario']"
+                type="submit" (click)="editUser()" [disabled]="!editForm.valid" mat-stroked-button color="primary">
                     Editar Usuario
                 </button>
                 <button type="submit" (click)="cancelEdit()" mat-stroked-button color="warn">

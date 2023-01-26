@@ -16,7 +16,7 @@ import { NgxPermissionsModule } from 'ngx-permissions';
     CommonModule,
     HomeRoutingModule,
     AppMaterialModule,
-    NgxPermissionsModule.forChild()
+    NgxPermissionsModule
   ]
 })
 export class HomeModule { }

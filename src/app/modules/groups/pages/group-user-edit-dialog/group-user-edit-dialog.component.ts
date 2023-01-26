@@ -64,7 +64,7 @@ export class GroupUserEditDialogComponent {
   defaultUsers(){
     for (let i = 0; i < this.users.length; i++) {
       for (let j = 0; j < this.data.usuarios.length; j++) {
-          if(this.users[i].username==this.data.usuarios[j]){
+          if(this.users[i].username==this.data.usuarios[j].username){
             this.users[i].checked=true;
           }
       }

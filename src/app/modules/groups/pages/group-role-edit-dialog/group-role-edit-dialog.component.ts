@@ -18,7 +18,6 @@ export class GroupRoleEditDialogComponent {
   roles:IRoleList[]=[]
 
   constructor(private roleService:RoleService,private groupService:GroupService ,public dialogRef:MatDialogRef<IGroupRoleAssignment>, @Inject(MAT_DIALOG_DATA) public data: IGroupRoleAssignment, private formBuilder: FormBuilder) {
-   
     this.buildForm();
     this.getRoles();
   }
@@ -64,12 +63,11 @@ export class GroupRoleEditDialogComponent {
   defaultRoles(){
     for (let i = 0; i < this.roles.length; i++) {
       for (let j = 0; j < this.data.roles.length; j++) {
-          if(this.roles[i].nombre==this.data.roles[j]){
+          if(this.roles[i].nombre==this.data.roles[j].nombre){
             this.roles[i].checked=true;
           }
       }
     }
-
   }
   cancelEdit(){
     this.dialogRef.close();

@@ -7,6 +7,7 @@ import { SurveyPagesComponent } from './pages';
 import { NewSurveyPagesComponent } from './pages/new-survey-pages/new-survey-pages.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SurveyEditDialogComponent } from './pages/survey-edit-dialog/survey-edit-dialog.component';
+import { NgxPermissionsModule } from 'ngx-permissions';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { SurveyEditDialogComponent } from './pages/survey-edit-dialog/survey-edi
     SurveysRoutingModule,
     AppMaterialModule,
     ReactiveFormsModule,
+    NgxPermissionsModule.forChild()
   ],
 })
 export class SurveysModule {}

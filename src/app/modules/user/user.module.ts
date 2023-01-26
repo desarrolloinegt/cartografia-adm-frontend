@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { EditUserDialogComponent } from './pages/edit-user-dialog/edit-user-dialog.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { NewUserPageComponent } from './pages/new-user-page/new-user-page.component';
+import { NgxPermissionsModule } from 'ngx-permissions';
 
 @NgModule({
   declarations: [UserPageComponent, EditUserDialogComponent, NewUserPageComponent],
@@ -16,7 +17,8 @@ import { NewUserPageComponent } from './pages/new-user-page/new-user-page.compon
     UserRoutingModule,
     AppMaterialModule,
     ReactiveFormsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    NgxPermissionsModule.forChild()
   ]
 })
 export class UserModule { }

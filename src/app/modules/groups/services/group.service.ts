@@ -20,12 +20,8 @@ export class GroupService {
     return this.apiService.patch('grupo/edit',data)
   }
 
-  getGroupsRoles(){
-    return this.apiService.getAll('obtenerGruposRoles');
-  }
-
-  getGroupWithoutRoles(){
-    return this.apiService.getAll('obtenerGrupoSinRol');
+  getGroupsRoles(id:number){
+    return this.apiService.getById('obtenerGruposRoles',id);
   }
 
   editGroupRoles(data:any){
@@ -36,11 +32,8 @@ export class GroupService {
   }
 
 
-  getGroupsUsers(){
-    return this.apiService.getAll('obtenerGrupoUsuarios');
-  }
-  getGroupWithoutUsers(){
-    return this.apiService.getAll('obtenerGrupoSinUsuarios');
+  getGroupsUsers(id:number){
+    return this.apiService.getById('obtenerGrupoUsuarios',id);
   }
   editGroupUsers(data:any){
     return this.apiService.patch('asignacionGrupoUsuario/edit',data);

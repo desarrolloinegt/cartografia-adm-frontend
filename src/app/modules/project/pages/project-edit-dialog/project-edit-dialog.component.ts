@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatListOption } from '@angular/material/list';
+import { IProjectDataEdit } from '@core/interfaces/i-project';
 import { ISurvey } from '@core/interfaces/i-survey';
 import { IUpm } from '@core/interfaces/i-upm';
 import { IUpmAssignmentList } from '@core/interfaces/i-upm-assignment';
@@ -17,7 +18,6 @@ import Swal from 'sweetalert2';
 export class ProjectEditDialogComponent {
   editForm!: FormGroup;
   encuestas: ISurvey[] = [];
-  upmSelected!: number[];
   public checked = false;
   selectedUpms: number[] = [];
   public upmsList: IUpm[] = [];
@@ -32,9 +32,8 @@ export class ProjectEditDialogComponent {
     progreso:0,
   };
 
-  constructor(private surveyService: SurveyService, private projectService: ProjectService, public dialogRef: MatDialogRef<string>, @Inject(MAT_DIALOG_DATA) public data: IUpmAssignmentList, private formBuilder: FormBuilder) {
+  constructor(private surveyService: SurveyService, private projectService: ProjectService, public dialogRef: MatDialogRef<string>, @Inject(MAT_DIALOG_DATA) public data: IProjectDataEdit, private formBuilder: FormBuilder) {
     this.buildForm();
-    this.getUpms();
     this.getSurveys();
   }
 
@@ -47,7 +46,7 @@ export class ProjectEditDialogComponent {
       nombre:[this.data.nombre,[Validators.required]],
       proyecto_id: [this.data.id, [Validators.required]],
       year: [this.data.year, [Validators.required,Validators.pattern(/^((\\+91-?)|0)?[0-9]{4}$/)]],
-      upms: [{ value: [], disabled: true }, [Validators.required]],
+      descripcion:[this.data.descripcion],
       encuesta_id: ['', Validators.required],
     });
   }
@@ -65,9 +64,6 @@ export class ProjectEditDialogComponent {
   get Year() {
     return this.editForm.get('year');
   }
-  get Upms() {
-    return this.editForm.get('upms');
-  }
   getSurveys() {
     this.surveyService.getSurveys().subscribe((data) => {
       this.encuestas = data;
@@ -75,20 +71,8 @@ export class ProjectEditDialogComponent {
     });
   }
  
-  changeUpmStatus(status: boolean) {
-    this.checked = status;
-    if (this.checked) {
-      this.Upms?.enable();
-    } else {
-      this.Upms?.disable();
-    }
-  }
   editProject() {
     if(this.editForm.valid){
-      if(this.Upms?.disabled){
-        this.Upms.setValue("");
-        this.Upms.enable();
-      }
       let valueEncuesta = this.Encuesta?.value.split(',');
       this.Encuesta?.setValue(valueEncuesta[0]);
       this.Nombre?.setValue(valueEncuesta[1]+' '+this.Year?.value);
@@ -104,24 +88,6 @@ export class ProjectEditDialogComponent {
 
   }
 
-  getUpms() {
-    this.projectService.getUpms().subscribe((data) => {
-      this.upmsList = data;
-      this.upmsList.forEach(dto => {
-        dto.checked = false;
-      });
-      this.defaultUpms();
-    });
-  }
-  defaultUpms() {
-    for (let i = 0; i < this.upmsList.length; i++) {
-      for (let j = 0; j < this.data.upms.length; j++) {
-        if (this.upmsList[i].nombre == this.data.upms[j]) {
-          this.upmsList[i].checked = true;
-        }
-      }
-    }
-  }
   defaulSurvey() {
     for (let i = 0; i < this.encuestas.length; i++) {
       if (this.encuestas[i].nombre == this.data.encuesta) {
@@ -130,9 +96,6 @@ export class ProjectEditDialogComponent {
     }
   }
 
-  permisoSelected(options: MatListOption[]) {
-    this.selectedUpms = options.map(o => o.value);
-  }
   cancelEdit() {
     this.dialogRef.close();
   }

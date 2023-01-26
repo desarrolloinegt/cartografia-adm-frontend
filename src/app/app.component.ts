@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Route, Router, Routes } from '@angular/router';
+import { NgxPermissionsService } from 'ngx-permissions';
+import { AuthService } from './modules';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +10,8 @@ import { Route, Router, Routes } from '@angular/router';
 })
 export class AppComponent {
   opened = true;
-
-  constructor(private router: Router) {}
+  permissions:string[]=[];
+  constructor(private router: Router,private auth:AuthService,private permissionService:NgxPermissionsService) {}
 
   get token() {
     return localStorage.getItem('token') || '';
@@ -22,6 +24,17 @@ export class AppComponent {
   get project(){
     return localStorage.getItem('project')||'';
   }
+  get id(){
+    return localStorage.getItem('id')||'';
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.permissionService.flushPermissions();
+    if(this.project && this.id){
+      this.auth.getPermissions(this.project,Number(this.id)).subscribe(data=>{
+        this.permissions=data;
+        this.permissionService.addPermission(this.permissions);
+      })
+    }
+  }
 }

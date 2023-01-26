@@ -17,7 +17,7 @@
             <div class="form-group">
                 <mat-form-field appearance="outline" class="full-width-input">
                     <mat-label [style.fontSize.px]="16">Descripcion</mat-label>
-                    <input type="text" formControlName="descripcion" placeholder="Proyecto 2026" matInput class="form-control" required />
+                    <input type="text" formControlName="descripcion" placeholder="Proyecto 2026" matInput class="form-control" />
                     <mat-error *ngIf="Descripcion?.touched && Descripcion?.hasError('required')">Descripcion es <strong>requerida</strong>
                     </mat-error>
                 </mat-form-field>
@@ -33,17 +33,9 @@
                 </mat-form-field>
             </div>
             <div class="form-group">
-                <mat-form-field appearance="outline" class="full-width-input">
-                    <mat-label [style.fontSize.px]="16">Seleccione la jerarquia</mat-label> 
-                    <mat-select formControlName="jerarquia">
-                        <mat-option *ngFor="let id of jerarquias"  [value]="id">{{id}}</mat-option>
-                    </mat-select>
-                    <mat-error *ngIf="Jerarquia?.touched && Jerarquia?.hasError('required')">Jerarquia es <strong>requerida</strong>
-                    </mat-error>                    
-                </mat-form-field>
-            </div>
-            <div class="form-group">
-                <button type="submit" (click)="editGroup()" [disabled]="!editForm.valid" mat-stroked-button color="primary">
+                <button
+                *ngxPermissionsOnly="['editar-grupo']"
+                type="submit" (click)="editGroup()" [disabled]="!editForm.valid" mat-stroked-button color="primary">
                     Editar Grupo
                 </button>
                 <button type="submit" (click)="cancelEdit()" mat-stroked-button color="warn">

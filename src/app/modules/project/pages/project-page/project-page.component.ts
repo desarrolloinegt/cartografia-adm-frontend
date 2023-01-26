@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { IProject, IProjectList, IProjectListView } from '@core/interfaces/i-project';
+import { IProject, IProjectDataEdit, IProjectList, IProjectListView } from '@core/interfaces/i-project';
 import { IUpmAssignmentList } from '@core/interfaces/i-upm-assignment';
 import { ProjectService } from '@modules/project/services/project.service';
 import Swal from 'sweetalert2';
@@ -18,16 +18,15 @@ export class ProjectPageComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   dataSource: MatTableDataSource<IProjectListView>;
-  displayedColumns: string[] = ['id', 'nombre', 'year', 'encuesta','progreso','descripcion','options'];
+  displayedColumns: string[] = ['id', 'nombre', 'year', 'encuesta','descripcion','progreso','options'];
   date=new Date((new Date()).getDate());
   
-  dataEdit:IUpmAssignmentList={
+  dataEdit:IProjectDataEdit={
     id:0,
     nombre:'',
     year:'',
-    upms:[],
     encuesta:'',
-    progreso:0
+    descripcion:''
   }
   constructor(private projectService:ProjectService, public dialogService: MatDialog) {
     this.dataSource = new MatTableDataSource();
@@ -41,16 +40,15 @@ export class ProjectPageComponent {
       this.dataSource.paginator.firstPage();
     }
   }
-  editar(id:string, nombre: string,fecha:string,encuesta:string, upms:[],progres:string) {
+  editar(id:string, nombre: string,fecha:string,encuesta:string, descripcio:string) {
     this.dataEdit.nombre=nombre;
     this.dataEdit.id=Number(id);
-    this.dataEdit.upms=upms;
     this.dataEdit.encuesta=encuesta;
     this.dataEdit.year=fecha;
-    this.dataEdit.progreso=Number(progres);
+    this.dataEdit.descripcion=descripcio;
     const dialogRef = this.dialogService.open(ProjectEditDialogComponent, {
-      height: '50rem',
-      width: '60rem',
+      height: '27rem',
+      width: '50rem',
       data: this.dataEdit
     });
     dialogRef.afterClosed().subscribe(result => {

@@ -31,7 +31,6 @@ export class AuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('project');
     localStorage.removeItem('usuario');
-
     setTimeout(() => {
       this.router.navigateByUrl('auth/login');
       this.authState.next(false);

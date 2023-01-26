@@ -43,6 +43,7 @@
       <th mat-header-cell *matHeaderCellDef>Acciones</th>
       <td mat-cell *matCellDef="let row">
         <button
+        *ngxPermissionsOnly="['editar-grupo']"
           mat-icon-button
           (click)="editar(row.id, row.nombre, row.descripcion,row.jerarquia,row.proyecto_id)"
           matTooltip="Click para Editar"
@@ -53,6 +54,7 @@
           <mat-icon aria-label="Edit">edit</mat-icon>
         </button>
         <button
+        *ngxPermissionsOnly="['desactivar-grupo']"
           mat-icon-button
           matTooltip="Click para desactivar"
           (click)="desactivar(row.id, row.nombre)"
@@ -60,6 +62,26 @@
           class="iconbutton"
         >
           <mat-icon aria-label="Delete">delete</mat-icon>
+        </button>
+        <button
+        *ngxPermissionsOnly="['ver-usuario-grupo']"
+          mat-icon-button
+          matTooltip="Click para ver usuarios"
+          (click)="verUsuarios(row.id, row.nombre)"
+          color="primary"
+          class="iconbutton"
+        >
+          <mat-icon >supervised_user_circle</mat-icon>
+        </button>
+        <button
+        *ngxPermissionsOnly="['ver-rol-grupo']"
+          mat-icon-button
+          matTooltip="Click para ver roles"
+          (click)="verRoles(row.id, row.nombre)"
+          color="primary"
+          class="iconbutton"
+        >
+          <mat-icon>list_alt</mat-icon>
         </button>
       </td>
     </ng-container>

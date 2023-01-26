@@ -35,7 +35,9 @@
             </div>
 
             <div class="form-group">
-                <button type="submit" (click)="editSurvey()" [disabled]="!editForm.valid" mat-stroked-button color="primary">
+                <button
+                *ngxPermissionsOnly="['editar-vehiculo']"
+                type="submit" (click)="editSurvey()" [disabled]="!editForm.valid" mat-stroked-button color="primary">
                     Editar Vehiculo
                 </button>
                 <button type="submit" (click)="cancelEdit()" mat-stroked-button color="warn">

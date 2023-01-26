@@ -31,7 +31,7 @@
                 </mat-form-field>
             </div>          
             <div class="form-group">
-                <button type="submit" [disabled]="!projectForm.valid" mat-raised-button color="primary">
+                <button type="submit" *ngxPermissionsOnly="['crear-proyecto']" [disabled]="!projectForm.valid" mat-raised-button color="primary">
                     Guardar Proyecto
                 </button>
             </div>

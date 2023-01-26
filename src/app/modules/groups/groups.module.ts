@@ -10,17 +10,15 @@ import { NewGroupPagesComponent } from './pages/new-group-pages';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { EditGroupDialogComponent } from './pages/edit-group-dialog/edit-group-dialog.component';
-import { GroupUserPagesComponent } from './pages-group-user/group-user-pages/group-user-pages.component';
-import { GroupRolePagesComponent } from './pages-group-role/group-role-pages/group-role-pages.component';
-import { NewGroupRolePagesComponent } from './pages-group-role/new-group-role-pages/new-group-role-pages.component';
-import { GroupRoleEditDialogComponent } from './pages-group-role/group-role-edit-dialog/group-role-edit-dialog.component';
-import { NewGroupUserPagesComponent } from './pages-group-user/new-group-user-pages/new-group-user-pages.component';
-import { GroupUserEditDialogComponent } from './pages-group-user/group-user-edit-dialog/group-user-edit-dialog.component';
+
+import { GroupUserEditDialogComponent } from './pages/group-user-edit-dialog/group-user-edit-dialog.component';
+import { GroupRoleEditDialogComponent } from './pages/group-role-edit-dialog';
+import { NgxPermissionsModule } from 'ngx-permissions';
 
 
 
 @NgModule({
-  declarations: [GroupPagesComponent, NewGroupPagesComponent, EditGroupDialogComponent, GroupUserPagesComponent, GroupRolePagesComponent, NewGroupRolePagesComponent, GroupRoleEditDialogComponent, NewGroupUserPagesComponent, GroupUserEditDialogComponent],
+  declarations: [GroupPagesComponent, NewGroupPagesComponent, EditGroupDialogComponent, GroupUserEditDialogComponent,GroupRoleEditDialogComponent],
   imports: [
     CommonModule,
     GroupsRoutingModule,
@@ -28,7 +26,8 @@ import { GroupUserEditDialogComponent } from './pages-group-user/group-user-edit
     MatIconModule,
     MatTooltipModule,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
+    NgxPermissionsModule.forChild()
   ]
 })
 export class GroupsModule { }

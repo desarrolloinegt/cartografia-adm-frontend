@@ -7,11 +7,11 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('@modules/home').then((m) => m.HomeModule),
-    canActivate: [AuthGuard],
   },
   {
     path: 'auth',
     loadChildren: () => import('@modules/auth').then((m) => AuthModule),
+
   },
   {
     path: 'user',
@@ -38,6 +38,10 @@ const routes: Routes = [
   {
     path: 'vehicle',
     loadChildren: ()=>import ('@modules/vehicle').then((m)=>m.VehicleModule),
+  },
+  {
+    path: 'projectHome',
+    loadChildren: ()=>import ('@modules/project-home').then((m)=>m.ProjecHometModule),
   },
   
   {

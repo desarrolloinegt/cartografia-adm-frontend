@@ -3,7 +3,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { IGroup } from '@core/interfaces/i-group';
+import { IGroup, IGroupRoleAssignment, IGroupUserAssignment } from '@core/interfaces/i-group';
+import { GroupRoleEditDialogComponent } from '@modules/groups/pages/group-role-edit-dialog/group-role-edit-dialog.component';
+import { GroupUserEditDialogComponent } from '@modules/groups/pages/group-user-edit-dialog/group-user-edit-dialog.component';
 import { GroupService } from '@modules/groups/services';
 import Swal from 'sweetalert2';
 import { EditGroupDialogComponent } from '../edit-group-dialog/edit-group-dialog.component';
@@ -17,7 +19,7 @@ export class GroupPagesComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   dataSource: MatTableDataSource<IGroup>;
-  displayedColumns: string[] = ['id', 'nombre', 'descripcion','jerarquia','proyecto','options'];
+  displayedColumns: string[] = ['id', 'nombre', 'descripcion','proyecto','options'];
   groupData:IGroup={
     id:0,
     nombre:'',
@@ -25,6 +27,16 @@ export class GroupPagesComponent {
     jerarquia:0,
     proyecto:'',
     proyecto_id:0
+  }
+  userData:IGroupUserAssignment={
+    id:0,
+    nombre:'',
+    usuarios:[]
+  }
+  roleData:IGroupRoleAssignment={
+    id:0,
+    nombre:'',
+    roles:[],
   }
   constructor(private groupService:GroupService, public dialogService: MatDialog) {
     this.dataSource = new MatTableDataSource();
@@ -67,7 +79,7 @@ export class GroupPagesComponent {
   }
   desactivar(id: string, nombre: string) {
     Swal.fire({
-      title: '¿Esta seguro que desea Desactivar el Proyecto: ' + nombre + '?',
+      title: '¿Esta seguro que desea Desactivar el grupo: ' + nombre + '?',
       showDenyButton: true,
       showCancelButton: true,
       confirmButtonText: 'Si',
@@ -86,5 +98,30 @@ export class GroupPagesComponent {
         Swal.fire('Cambios no guardados', '', 'info')
       }
     })
+  }
+  verUsuarios(idProyecto:string,nombre:string){
+    this.userData.id=Number(idProyecto);
+    this.userData.nombre=nombre;
+    this.groupService.getGroupsUsers(this.userData.id).subscribe(data=>{
+      this.userData.usuarios=data;
+      const dialogRef = this.dialogService.open(GroupUserEditDialogComponent, {
+        height: '30rem',
+        width: '50rem',
+        data: this.userData
+      });
+    })
+  }
+
+  verRoles(idProyecto:string,nombre:string){
+    this.roleData.id=Number(idProyecto);
+    this.roleData.nombre=nombre;
+    this.groupService.getGroupsRoles(this.roleData.id).subscribe(data=>{
+      this.roleData.roles=data;
+      const dialogRef = this.dialogService.open(GroupRoleEditDialogComponent, {
+        height: '30rem',
+        width: '50rem',
+        data: this.roleData
+      }); 
+    })  
   }
 }

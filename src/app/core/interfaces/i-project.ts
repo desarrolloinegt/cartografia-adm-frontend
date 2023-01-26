@@ -26,3 +26,8 @@ export interface IProjectListView extends IProjectCreate{
     id:number,
     progreso:number
 }
+
+export interface IProjectDataEdit extends Omit<IProjectCreate,'encuesta_id'>{
+    encuesta:string,
+    id:number
+}

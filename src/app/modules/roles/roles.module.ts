@@ -7,6 +7,7 @@ import { RolesPageComponent } from './pages';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { RolesEditDialogComponent } from './pages/roles-edit-dialog/roles-edit-dialog.component';
 import { NewRolePageComponent } from './pages/new-role-page/new-role-page.component';
+import { NgxPermissionsModule } from 'ngx-permissions';
 
 @NgModule({
   declarations: [RolesPageComponent, RolesEditDialogComponent, NewRolePageComponent],
@@ -16,6 +17,7 @@ import { NewRolePageComponent } from './pages/new-role-page/new-role-page.compon
     ReactiveFormsModule,
     AppMaterialModule,
     MatCheckboxModule,
+    NgxPermissionsModule.forChild()
   ]
 })
 export class RolesModule { }

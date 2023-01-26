@@ -10,11 +10,19 @@ export interface IGroup {
 export interface IGroupRoleAssignment{
     id:number,
     nombre:string,
-    roles:[]
+    roles:IGroupRoleList[]
 }
 
 export interface IGroupUserAssignment{
     id:number,
     nombre:string,
-    usuarios:[]
+    usuarios:IGroupUserList[]
+}
+
+export interface IGroupUserList{
+    username:string
+}
+
+export interface IGroupRoleList{
+    nombre:string
 }
