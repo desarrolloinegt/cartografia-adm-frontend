@@ -4,10 +4,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { IPermissionAssignmetList } from '@core/interfaces/i-permission-assignment';
+import { IRole, IRolePermissionsAssingment } from '@core/interfaces/i-role';
 import { RoleService } from '@modules/roles/services/role.service';
 import Swal from 'sweetalert2';
 import { RolesEditDialogComponent } from '../roles-edit-dialog/roles-edit-dialog.component';
+import { RolesPermissionEditDialogComponent } from '../roles-permission-edit-dialog/roles-permission-edit-dialog.component';
 @Component({
   selector: 'app-roles-page',
   templateUrl: './roles-page.component.html',
@@ -17,13 +18,18 @@ export class RolesPageComponent {
   
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  dataSource: MatTableDataSource<IPermissionAssignmetList>;
-  rolesPermiso:IPermissionAssignmetList={
-    rol_id:0,
+  dataSource: MatTableDataSource<IRole>;
+  rolesPermisos:IRolePermissionsAssingment={
+    id:0,
     nombre:'',
     permisos:[]
   };
-  displayedColumns: string[] = ['rol_id', 'nombre', 'permisos', 'options'];
+  rolEdit:IRole={
+    nombre:'',
+    id:0,
+    checked:false
+  }
+  displayedColumns: string[] = ['id', 'nombre', 'options'];
 
   constructor(private roleService:RoleService,private formBuilder: FormBuilder, public dialogService: MatDialog) {
     this.dataSource = new MatTableDataSource();
@@ -36,14 +42,13 @@ export class RolesPageComponent {
       this.dataSource.paginator.firstPage();
     }
   }
-  editar(id:string, nombre: string, permisos:[]) {
-    this.rolesPermiso.nombre=nombre;
-    this.rolesPermiso.rol_id=Number(id);
-    this.rolesPermiso.permisos=permisos;
+  editar(id:string, nombre: string) {
+    this.rolEdit.id=Number(id);
+    this.rolEdit.nombre=nombre;
     const dialogRef = this.dialogService.open(RolesEditDialogComponent, {
-      height: '50rem',
+      height: '15rem',
       width: '60rem',
-      data: this.rolesPermiso
+      data: this.rolEdit
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result===1){
@@ -56,11 +61,11 @@ export class RolesPageComponent {
   }
 
   cargarRoles(){
-    this.roleService.getRolesPermisos().subscribe((data)=>{ 
+    this.roleService.getRoles().subscribe((data)=>{ 
       this.dataSource=new MatTableDataSource(data);
     });
   }
-  desactivar(id: string, rol: string,permisos:[]) {
+  desactivar(id: string, rol: string) {
     Swal.fire({
       title: '¿Esta seguro que desea Desactivar el rol: ' + rol + '?',
       showDenyButton: true,
@@ -81,5 +86,18 @@ export class RolesPageComponent {
         Swal.fire('Cambios no guardados', '', 'info')
       }
     })
+  }
+  verPermisos(id:string,nombre:string){
+    this.rolesPermisos.id=Number(id);
+    this.rolesPermisos.nombre=nombre;
+    this.roleService.getRolesPermisos(this.rolesPermisos.id).subscribe(data=>{
+      this.rolesPermisos.permisos=data;
+      const dialogRef = this.dialogService.open(RolesPermissionEditDialogComponent, {
+        height: '50rem',
+        width: '60rem',
+        data: this.rolesPermisos
+      });
+    });
+     
   }
 }

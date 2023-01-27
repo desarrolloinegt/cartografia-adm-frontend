@@ -20,9 +20,9 @@ export class NewVehiclePageComponent {
 
   private buildForm() {
     this.vehicleForm = this.formBuilder.group({
-      placa: ['', Validators.required],
+      placa: ['', [Validators.required,Validators.pattern(/^[A-Z]{1}([0-9]){3}[A-Z]{3}$/)]],
       modelo: ['', Validators.required],
-      year: ['', Validators.required],
+      year: ['', [Validators.required,Validators.pattern(/^((\\+91-?)|0)?[0-9]{4}$/)]],
     });
   }
 

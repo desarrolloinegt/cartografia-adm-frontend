@@ -23,9 +23,7 @@ export class GroupUserEditDialogComponent {
     this.getUsers();
   }
   
-  submit(){
-
-  }
+  submit(){}
 
   private buildForm(){
     this.editForm = this.formBuilder.group({

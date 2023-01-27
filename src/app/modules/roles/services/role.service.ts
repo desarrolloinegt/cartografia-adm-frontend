@@ -20,8 +20,8 @@ export class RoleService {
     return this.apiService.store('asignarPermiso',data);
   }
 
-  getRolesPermisos(){
-    return this.apiService.getAll('asignacionesRolPermiso');
+  getRolesPermisos(id:number){
+    return this.apiService.getById('asignacionesRolPermiso',id);
   }
 
   desactiveRole(id:number){

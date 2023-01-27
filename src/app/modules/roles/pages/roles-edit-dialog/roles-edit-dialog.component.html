@@ -15,19 +15,6 @@
             </div>
             
             <div class="form-group">
-                <mat-checkbox [checked]="checked" (change)="changePermisoStatus($event.checked)" class="example-margin" >
-                    Cambiar Permisos
-                </mat-checkbox>
-            </div>
-            <div class="example-section">
-                <mat-label>Permisos</mat-label>
-                <mat-selection-list formControlName="permisos" #permisosLis (selectionChange)="permisoSelected(permisosLis.selectedOptions.selected)">
-                    <mat-list-option [selected]="permiso.checked"  *ngFor="let permiso of permisosList" [value]="permiso.id" >
-                      {{permiso.alias}}
-                    </mat-list-option>
-                </mat-selection-list>
-            </div>
-            <div class="form-group">
                 <button type="submit" 
                 *ngxPermissionsOnly="['editar-rol']"
                 (click)="editRole()" [disabled]="!editForm.valid" mat-stroked-button color="primary">

@@ -9,15 +9,18 @@ import { EditUserDialogComponent } from './pages/edit-user-dialog/edit-user-dial
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { NewUserPageComponent } from './pages/new-user-page/new-user-page.component';
 import { NgxPermissionsModule } from 'ngx-permissions';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { SuperadminPageComponent } from './pages/superadmin-page/superadmin-page.component';
 
 @NgModule({
-  declarations: [UserPageComponent, EditUserDialogComponent, NewUserPageComponent],
+  declarations: [UserPageComponent, EditUserDialogComponent, NewUserPageComponent, SuperadminPageComponent],
   imports: [
     CommonModule,
     UserRoutingModule,
     AppMaterialModule,
     ReactiveFormsModule,
     MatCheckboxModule,
+    MatTooltipModule,
     NgxPermissionsModule.forChild()
   ]
 })

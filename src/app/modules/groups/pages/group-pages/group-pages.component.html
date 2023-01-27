@@ -64,7 +64,7 @@
           <mat-icon aria-label="Delete">delete</mat-icon>
         </button>
         <button
-        *ngxPermissionsOnly="['ver-usuario-grupo']"
+        *ngxPermissionsOnly="['asignar-usuario-grupo']"
           mat-icon-button
           matTooltip="Ver usuarios"
           (click)="verUsuarios(row.id, row.nombre)"
@@ -74,7 +74,7 @@
           <mat-icon >supervised_user_circle</mat-icon>
         </button>
         <button
-        *ngxPermissionsOnly="['ver-rol-grupo']"
+        *ngxPermissionsOnly="['asignar-rol-grupo']"
           mat-icon-button
           matTooltip="Ver politicas"
           (click)="verRoles(row.id, row.nombre)"

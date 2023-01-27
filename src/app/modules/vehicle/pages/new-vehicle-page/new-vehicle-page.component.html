@@ -20,6 +20,9 @@
             >Placa del vehiculo es
             <strong>requerida</strong>
             </mat-error>
+            <mat-error *ngIf="placa?.touched && placa?.hasError('pattern')"
+            >Placa debe tener la siguiente secuencia: <strong>A123ABC</strong>
+            </mat-error>
         </mat-form-field>
         </div>
         <div class="form-group">
@@ -43,7 +46,7 @@
         <mat-form-field appearance="outline" class="full-width-input">
             <mat-label [style.fontSize.px]="16">Año</mat-label>
             <input
-            type="text"
+            type="number"
             formControlName="year"
             placeholder="2018"
             matInput
@@ -52,6 +55,9 @@
             />
           <mat-error *ngIf="year?.touched && year?.hasError('required')"
             >Año del vehiculo es <strong>requerido</strong>
+            </mat-error>
+            <mat-error *ngIf="year?.touched && year?.hasError('pattern')"
+            >Año del vehiculo debe tener 4 <strong>digitos</strong>
             </mat-error>
         </mat-form-field>
         </div>

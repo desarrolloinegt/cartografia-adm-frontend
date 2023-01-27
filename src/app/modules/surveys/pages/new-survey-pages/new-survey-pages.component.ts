@@ -20,7 +20,7 @@ export class NewSurveyPagesComponent {
   private buildForm() {
     this.surveyForm = this.formBuilder.group({
       nombre: ['', Validators.required],
-      descripcion: ['', [Validators.required]],
+      descripcion: [''],
     });
   }
   get Nombre() {

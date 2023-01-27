@@ -8,6 +8,7 @@ import { IUser } from '@core/interfaces/i-user';
 import Swal from 'sweetalert2';
 import { MatDialog } from '@angular/material/dialog';
 import { EditUserDialogComponent } from '../edit-user-dialog';
+import { SuperadminPageComponent } from '../superadmin-page/superadmin-page.component';
 export interface UserData {
   id: string;
   DPI: string;
@@ -70,6 +71,13 @@ export class UserPageComponent {
       if(result===1){
         this.cargarUsuarios();
       } 
+    });
+  }
+  superAdmin(id:string,nombre:string){
+    const dialogRef = this.dialogService.open(SuperadminPageComponent,{
+      height:'12rem',
+      width:'40rem',
+      data:{id:id,nombre:nombre}
     });
   }
   desactivar(id: string, username: string) {

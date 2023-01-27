@@ -1,15 +1,16 @@
-import { IPermission } from "./i-permission";
+import { IPermission } from "./i-permission"
 
 export interface IRole {  
-    nombre: string;
-}
-
-export interface IroleByUser extends IRole{
     id:number,
-}
-
-export interface IRoleList{
-    id:number,
-    nombre:string,
+    nombre: string,
     checked:boolean
+}
+
+export interface IRolePermissionsAssingment extends Omit<IRole,'checked'>{
+    permisos:IPermission[]
+}
+
+export interface IRolePermissionsAssingmentCreate{
+    id:number,
+    permisos:number[]
 }
