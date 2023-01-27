@@ -1,8 +1,14 @@
 <div class="header">
   <h1>Roles</h1>
-  <a mat-fab color="accent" routerLink="create">
-    <mat-icon aria-label="add">add</mat-icon>
-  </a>
+  <button
+    mat-fab
+    color="primary"
+    *ngxPermissionsOnly="['crear-grupo']"
+    matTooltip="Click para crear"
+    (click)="open()"
+    class="iconbutton">
+<mat-icon>add</mat-icon>
+</button>
 </div>
 
 <mat-form-field>

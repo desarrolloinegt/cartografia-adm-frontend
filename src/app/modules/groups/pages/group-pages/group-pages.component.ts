@@ -9,6 +9,7 @@ import { GroupUserEditDialogComponent } from '@modules/groups/pages/group-user-e
 import { GroupService } from '@modules/groups/services';
 import Swal from 'sweetalert2';
 import { EditGroupDialogComponent } from '../edit-group-dialog/edit-group-dialog.component';
+import { NewGroupPagesComponent } from '../new-group-pages';
 
 @Component({
   selector: 'app-group-pages',
@@ -38,9 +39,11 @@ export class GroupPagesComponent {
     nombre:'',
     roles:[],
   }
+
   constructor(private groupService:GroupService, public dialogService: MatDialog) {
     this.dataSource = new MatTableDataSource();
   }
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -49,6 +52,7 @@ export class GroupPagesComponent {
       this.dataSource.paginator.firstPage();
     }
   }
+
   editar(id:string, nombre: string, descripcion:string,jerarquia:string,proyecto_id:string) {
     this.groupData.id=Number(id);
     this.groupData.nombre=nombre;
@@ -68,6 +72,19 @@ export class GroupPagesComponent {
       } 
     });
   }
+
+  open() {
+    const dialogRef = this.dialogService.open(NewGroupPagesComponent, {
+      height: '30rem',
+      width: '50rem',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result==1){
+        this.cargarGrupos();
+      } 
+    });
+  }
+  
   ngOnInit() {
     this.cargarGrupos();
   }
@@ -77,6 +94,7 @@ export class GroupPagesComponent {
       this.dataSource=new MatTableDataSource(data);
     });
   }
+
   desactivar(id: string, nombre: string) {
     Swal.fire({
       title: '¿Esta seguro que desea Desactivar el grupo: ' + nombre + '?',
@@ -99,6 +117,7 @@ export class GroupPagesComponent {
       }
     })
   }
+
   verUsuarios(idProyecto:string,nombre:string){
     this.userData.id=Number(idProyecto);
     this.userData.nombre=nombre;
