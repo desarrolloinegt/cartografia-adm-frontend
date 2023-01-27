@@ -9,6 +9,7 @@ import { IUpmAssignment } from '@core/interfaces/i-upm-assignment';
 import { ProjectService } from '@modules/project/services/project.service';
 import { SurveyService } from '@modules/surveys';
 import Swal from 'sweetalert2';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-new-project-page',
@@ -33,7 +34,7 @@ export class NewProjectPageComponent {
     proyecto_id: 0,
     upms: []
   }
-  constructor(private projectService: ProjectService, private formBuilder: FormBuilder, private surveyService: SurveyService) {
+  constructor(private projectService: ProjectService, private formBuilder: FormBuilder, private surveyService: SurveyService, public dialogRef: MatDialogRef<NewProjectPageComponent>) {
     this.buildForm();
     this.cargarEncuestas();
   }
@@ -52,9 +53,11 @@ export class NewProjectPageComponent {
   get Encuesta() {
     return this.projectForm.get('encuesta');
   }
+
   get Descripcion() {
     return this.projectForm.get('descripcion');
   }
+
   cargarEncuestas() {
     this.surveyService.getSurveys().subscribe((data) => {
       this.encuestas = data;
@@ -71,10 +74,14 @@ export class NewProjectPageComponent {
         this.projectService.createProject(this.project).subscribe((resp) => {
           if (resp.status == true) {
             Swal.fire('Ok!', 'Proyecto creado Correctamente', 'success');
+            this.dialogRef.close(1);
           }
         });
       }
-
     }
+  }
+
+  cancelAdd() {
+    this.dialogRef.close();
   }
 }

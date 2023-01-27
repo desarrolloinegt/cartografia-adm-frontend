@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { IUser } from '@core/interfaces/i-user';
 import { UserService } from '@modules/user/services';
 import Swal from 'sweetalert2';
@@ -12,7 +13,7 @@ import { PasswordValidation } from '../user-page';
 })
 export class NewUserPageComponent {
   registerForm!: FormGroup;
-  constructor(private userServide: UserService, private formBuilder: FormBuilder){
+  constructor(private userServide: UserService, private formBuilder: FormBuilder, public dialogRef: MatDialogRef<NewUserPageComponent>){
     this.buildForm();
   }
 
@@ -29,18 +30,25 @@ export class NewUserPageComponent {
     });
   }
   user!: IUser;
+
   registerUser() {
     if (this.registerForm.valid) {
       this.user = this.registerForm.value;
       this.userServide.newUser(this.user).subscribe((resp) => {
         if (resp.status == true) {
           Swal.fire('Ok!', resp.message, 'success')
+          this.dialogRef.close(1);
         }
       }, (err) => {
         console.log(err);
       });
     }
   }
+
+  cancelAdd(){
+    this.dialogRef.close();
+  }
+
   get DPI() {
     return this.registerForm.get('DPI');
   }

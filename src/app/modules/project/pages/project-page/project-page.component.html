@@ -1,8 +1,15 @@
 <div class="header">
   <h1>Proyectos</h1>
-  <a mat-fab color="accent" routerLink="create">
-    <mat-icon aria-label="add" oncli>add</mat-icon>
-  </a>
+  <button
+  mat-fab
+  color="primary"
+  *ngxPermissionsOnly="['crear-proyecto']"
+  matTooltip="Click para crear"
+  (click)="open()"
+  class="iconbutton"
+>
+  <mat-icon>add</mat-icon>
+</button>
 </div>
 <mat-form-field>
   <mat-label>Buscar</mat-label>

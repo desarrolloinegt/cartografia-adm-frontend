@@ -8,6 +8,7 @@ import { IUser } from '@core/interfaces/i-user';
 import Swal from 'sweetalert2';
 import { MatDialog } from '@angular/material/dialog';
 import { EditUserDialogComponent } from '../edit-user-dialog';
+import { NewUserPageComponent } from '../new-user-page';
 export interface UserData {
   id: string;
   DPI: string;
@@ -58,6 +59,18 @@ export class UserPageComponent {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  open() {
+    const dialogRef = this.dialogService.open(NewUserPageComponent, {
+      height: '50rem',
+      width: '60rem',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result==1){
+        this.cargarUsuarios();
+      } 
+    });
   }
 
   editar(id: string, DPI: string, nombres: string, apellidos: string, email: string, codigo_usuario: string, username: string) {

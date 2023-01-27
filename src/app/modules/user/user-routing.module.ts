@@ -8,10 +8,6 @@ const routes: Routes = [
     path: '',
     component: UserPageComponent
   },
-  {
-    path: 'create',
-    component: NewUserPageComponent
-  }
 ];
 
 @NgModule({

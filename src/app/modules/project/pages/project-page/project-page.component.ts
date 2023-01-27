@@ -40,6 +40,18 @@ export class ProjectPageComponent {
       this.dataSource.paginator.firstPage();
     }
   }
+
+  open() {
+    const dialogRef = this.dialogService.open(ProjectPageComponent, {
+      height:'50rem',
+      width: '60rem',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result == 1) {
+        this.cargarProyectos();
+      }
+    })
+  }
   editar(id:string, nombre: string,fecha:string,encuesta:string, descripcio:string) {
     this.dataEdit.nombre=nombre;
     this.dataEdit.id=Number(id);

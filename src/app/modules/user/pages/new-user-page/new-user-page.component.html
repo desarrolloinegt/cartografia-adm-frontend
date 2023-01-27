@@ -1,6 +1,3 @@
-<br />
-<br />
-<br />
 <div class="card">
   <div class="card-body">
     <form [formGroup]="registerForm" (ngSubmit)="registerUser()" >
@@ -77,6 +74,12 @@
         *ngxPermissionsOnly="['crear-usuario']"
         [disabled]="!registerForm.valid" mat-raised-button color="primary">
           Guardar Usuario
+        </button>
+        <br />
+        <button
+         *ngxPermissionsOnly="['crear-usuario']"
+        type="submit" (click)="cancelAdd()" mat-stroked-button color="warn">
+            Cancelar
         </button>
       </div>
     </form>
