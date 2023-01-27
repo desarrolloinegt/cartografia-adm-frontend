@@ -34,4 +34,11 @@ export class UserService {
   editUser(data:any): Observable<any>{
     return this.apiService.patch('usuario/edit',data);
   }
+
+  isAdmin(id:number){
+    return this.apiService.getById('isAdmin',id);
+  }
+  assignAdmin(id:number,estado:string){
+    return this.apiService.store('asignarAdmin',{id:id,cadena:estado})
+  }
 }

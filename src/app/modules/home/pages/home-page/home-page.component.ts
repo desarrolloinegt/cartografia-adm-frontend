@@ -17,8 +17,6 @@ export class HomePageComponent {
   id:number=0;
   constructor(private permissionService:NgxPermissionsService,private auth: AuthService, private router: Router) {
     this.dataSource=new MatTableDataSource();
-    this.permissionService.flushPermissions();
-    
   }
   get project(){
     return localStorage.getItem('project')||'';
@@ -26,7 +24,6 @@ export class HomePageComponent {
   ngOnInit(){
     localStorage.removeItem('project');
     this.id=Number(localStorage.getItem('id'));
-    this.permissionService.flushPermissions();
     this.getProjects();
   }
   getProjects(){

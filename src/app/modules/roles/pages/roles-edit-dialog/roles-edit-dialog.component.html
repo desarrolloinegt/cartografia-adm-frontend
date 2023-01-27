@@ -6,7 +6,7 @@
         <form [formGroup]="editForm" (submit)="submit()">
             <div class="form-group">
                 <mat-form-field appearance="outline" class="full-width-input">
-                    <mat-label>Nombre del rol</mat-label>
+                    <mat-label>Nombre de la politica</mat-label>
                     <input type="text" formControlName="nombre" matInput placeholder="admin"
                         class="form-control" required />
                     <mat-error *ngIf="Nombre?.touched && Nombre?.hasError('required')">Nombre es <strong>requerido</strong>
@@ -15,23 +15,10 @@
             </div>
             
             <div class="form-group">
-                <mat-checkbox [checked]="checked" (change)="changePermisoStatus($event.checked)" class="example-margin" >
-                    Cambiar Permisos
-                </mat-checkbox>
-            </div>
-            <div class="example-section">
-                <mat-label>Permisos</mat-label>
-                <mat-selection-list formControlName="permisos" #permisosLis (selectionChange)="permisoSelected(permisosLis.selectedOptions.selected)">
-                    <mat-list-option [selected]="permiso.checked"  *ngFor="let permiso of permisosList" [value]="permiso.id" >
-                      {{permiso.alias}}
-                    </mat-list-option>
-                </mat-selection-list>
-            </div>
-            <div class="form-group">
                 <button type="submit" 
                 *ngxPermissionsOnly="['editar-rol']"
                 (click)="editRole()" [disabled]="!editForm.valid" mat-stroked-button color="primary">
-                    Editar Usuario
+                    Editar Politica
                 </button>
                 <button type="submit" (click)="cancelEdit()" mat-stroked-button color="warn">
                     Cancelar

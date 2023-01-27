@@ -3,8 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatListOption } from '@angular/material/list';
 import { IPermission } from '@core/interfaces/i-permission';
-import { IRole } from '@core/interfaces/i-role';
-import { IPermissionAssignment } from '@core/interfaces/i-permission-assignment';
+import { IRole, IRolePermissionsAssingment, IRolePermissionsAssingmentCreate } from '@core/interfaces/i-role';
 import { RoleService } from '@modules/roles/services/role.service';
 import Swal from 'sweetalert2';
 @Component({
@@ -16,11 +15,13 @@ export class NewRolePageComponent {
   public permisos:IPermission[]=[];
   idRol:number=0;
   rol:IRole={
-    nombre:''
+    nombre:'',
+    id:0,
+    checked:false
   }
   selectedPermision!:number[];
-  asignacionPermisoRol:IPermissionAssignment={
-    rol_id:0,
+  asignacionPermisoRol:IRolePermissionsAssingmentCreate={
+    id:0,
     permisos:[]
   };
   rolForm!:FormGroup;
@@ -53,10 +54,10 @@ export class NewRolePageComponent {
     this.rol.nombre=this.Nombre?.value;
     this.roleService.createRol(this.rol).subscribe((resp)=>{
       if(resp.status==true){
-        this.asignacionPermisoRol.rol_id=resp.id_rol;
+        this.asignacionPermisoRol.id=resp.id_rol;
         this.roleService.assignPermisoToRol(this.asignacionPermisoRol).subscribe((res)=>{
           if(res.status==true){
-            Swal.fire('Ok!', res.message, 'success');
+            Swal.fire('Ok!', resp.message, 'success');
           }
         },(err) => {
           console.log(err);

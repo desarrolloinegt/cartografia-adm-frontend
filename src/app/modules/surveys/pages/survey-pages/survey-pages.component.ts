@@ -40,7 +40,7 @@ export class SurveyPagesComponent {
     this.surveyData.descripcion=descripcion;
     this.surveyData.id=Number(id);
     const dialogRef = this.dialogService.open(SurveyEditDialogComponent, {
-      height: '30rem',
+      height: '20rem',
       width: '50rem',
       data: this.surveyData
     });

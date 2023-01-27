@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 import { MatDialog } from '@angular/material/dialog';
 import { EditUserDialogComponent } from '../edit-user-dialog';
 import { NewUserPageComponent } from '../new-user-page';
+import { SuperadminPageComponent } from '../superadmin-page/superadmin-page.component';
 export interface UserData {
   id: string;
   DPI: string;
@@ -36,7 +37,6 @@ export class UserPageComponent {
 
   constructor(private userServide: UserService, private formBuilder: FormBuilder, public dialogService: MatDialog) {
     this.dataSource = new MatTableDataSource();
-   
   }
   ngOnInit() {
     this.cargarUsuarios();
@@ -85,6 +85,13 @@ export class UserPageComponent {
       } 
     });
   }
+  superAdmin(id:string,nombre:string){
+    const dialogRef = this.dialogService.open(SuperadminPageComponent,{
+      height:'12rem',
+      width:'40rem',
+      data:{id:id,nombre:nombre}
+    });
+  }
   desactivar(id: string, username: string) {
     Swal.fire({
       title: '¿Esta seguro que desea Desactivar el usuario: ' + username + '?',
@@ -127,7 +134,6 @@ export class PasswordValidation {
         }
       }
     }
-
     return null;
   }
 }

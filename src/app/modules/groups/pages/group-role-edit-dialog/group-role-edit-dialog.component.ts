@@ -2,7 +2,7 @@ import { Component,Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { IGroupRoleAssignment } from '@core/interfaces/i-group';
-import { IRoleList } from '@core/interfaces/i-role';
+import { IRole } from '@core/interfaces/i-role';
 import { GroupService } from '@modules/groups/services';
 import { RoleService } from '@modules/roles/services/role.service';
 import Swal from 'sweetalert2';
@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
 export class GroupRoleEditDialogComponent {
   editForm!:FormGroup;
   public checked = false;
-  roles:IRoleList[]=[]
+  roles:IRole[]=[]
 
   constructor(private roleService:RoleService,private groupService:GroupService ,public dialogRef:MatDialogRef<IGroupRoleAssignment>, @Inject(MAT_DIALOG_DATA) public data: IGroupRoleAssignment, private formBuilder: FormBuilder) {
     this.buildForm();
