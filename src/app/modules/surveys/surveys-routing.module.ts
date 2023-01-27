@@ -7,10 +7,6 @@ const routes: Routes = [
     path: '',
     component: SurveyPagesComponent
   },
-  {
-    path: 'create',
-    component: NewSurveyPagesComponent
-  },
 ];
 
 @NgModule({

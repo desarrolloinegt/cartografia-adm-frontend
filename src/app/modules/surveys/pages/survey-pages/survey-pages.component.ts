@@ -5,8 +5,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ISurvey } from '@core/interfaces/i-survey';
 import { SurveyService } from '@modules/surveys/services';
-import { NgxPermissionsService } from 'ngx-permissions';
 import Swal from 'sweetalert2';
+import { NewSurveyPagesComponent } from '../new-survey-pages';
 import { SurveyEditDialogComponent } from '../survey-edit-dialog';
 
 @Component({
@@ -27,6 +27,7 @@ export class SurveyPagesComponent {
   constructor(private surveyService:SurveyService, public dialogService: MatDialog) {
     this.dataSource = new MatTableDataSource();
   }
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -35,6 +36,19 @@ export class SurveyPagesComponent {
       this.dataSource.paginator.firstPage();
     }
   }
+
+  open() {
+    const dialogRef = this.dialogService.open(NewSurveyPagesComponent, {
+      height: '20rem',
+      width: '50rem',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result==1){
+        this.cargarEncuestas();
+      } 
+    });
+  }
+
   editar(id:string, nombre: string, descripcion:string) {
     this.surveyData.nombre=nombre;
     this.surveyData.descripcion=descripcion;
@@ -50,6 +64,7 @@ export class SurveyPagesComponent {
       } 
     });
   }
+
   ngOnInit() {
     this.cargarEncuestas();
   }
@@ -59,6 +74,7 @@ export class SurveyPagesComponent {
       this.dataSource=new MatTableDataSource(data);
     });
   }
+
   desactivar(id: string, nombre: string) {
     Swal.fire({
       title: '¿Esta seguro que desea Desactivar el Proyecto: ' + nombre + '?',

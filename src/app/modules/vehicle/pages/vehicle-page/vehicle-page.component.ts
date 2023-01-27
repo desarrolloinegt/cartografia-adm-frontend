@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { IVehicle } from '@core/interfaces/i-vehicle';
 import { VehicleService } from '@modules/vehicle/services';
 import Swal from 'sweetalert2';
+import { NewVehiclePageComponent } from '../new-vehicle-page';
 import { VehicleEditDialogComponent } from '../vehicle-edit-dialog';
 
 @Component({
@@ -39,6 +40,18 @@ export class VehiclePageComponent {
   
   ngOnInit() {
     this.cargarVehiculo();
+  }
+
+  open() {
+    const dialogRef = this.dialogService.open(NewVehiclePageComponent, {
+      height: '30rem',
+      width: '50rem',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result==1){
+        this.cargarVehiculo();
+      } 
+    });
   }
 
   cargarVehiculo() {

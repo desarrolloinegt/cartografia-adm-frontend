@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { MatListOption } from '@angular/material/list';
 import { IPermission } from '@core/interfaces/i-permission';
 import { IRole, IRolePermissionsAssingment, IRolePermissionsAssingmentCreate } from '@core/interfaces/i-role';
@@ -25,11 +25,12 @@ export class NewRolePageComponent {
     permisos:[]
   };
   rolForm!:FormGroup;
-  constructor(private roleService: RoleService, private formBuilder: FormBuilder, public dialogService: MatDialog) {
+  constructor(private roleService: RoleService, private formBuilder: FormBuilder, public dialogRef: MatDialogRef<NewRolePageComponent>) {
     this.cargarPermisos();
     
     this.buildForm();
   }
+
   cargarPermisos(){
     this.roleService.getPermisions().subscribe((data)=>{
       this.permisos=data; 
@@ -42,9 +43,11 @@ export class NewRolePageComponent {
       permisos:['',[Validators.required]]
     });
   }
+
   get Nombre() {
     return this.rolForm.get('nombre');
   }
+
   get Permisos() {
     return this.rolForm.get('permisos');
   }
@@ -58,12 +61,17 @@ export class NewRolePageComponent {
         this.roleService.assignPermisoToRol(this.asignacionPermisoRol).subscribe((res)=>{
           if(res.status==true){
             Swal.fire('Ok!', resp.message, 'success');
+            this.dialogRef.close(1);
           }
         },(err) => {
           console.log(err);
         });
       }
     });
+  }
+
+  cancelAdd(){
+    this.dialogRef.close();
   }
 
   permisoSelected(options: MatListOption[]){

@@ -1,35 +1,64 @@
-<br />
-<br />
-<br />
 <div class="card">
-    <div class="card-body">
-        <form [formGroup]="rolForm" (submit)="createRol()">
-            <div class="form-group">
-                <mat-form-field appearance="outline" class="full-width-input">
-                    <mat-label [style.fontSize.px]="16">Ingrese Nombre de la politica</mat-label>
-                    <input type="text" formControlName="nombre" matInput placeholder="qa" class="form-control"
-                        required />
-                    <mat-error *ngIf="Nombre?.touched && Nombre?.hasError('required')">Nombre de politica es <strong>requerido</strong>
-                    </mat-error>
-                </mat-form-field>
-            </div>
-            <div class="form-group">
-                <button type="submit"
-                *ngxPermissionsOnly="['crear-rol']"
-                [disabled]="!rolForm.valid" mat-raised-button color="primary">
-                    Guardar Politica
-                </button>
-            </div>
-            <br />
-            <br />
-            <div class="example-section">
-                <mat-label>Permisos</mat-label>
-                <mat-selection-list formControlName="permisos" #permisosList (selectionChange)="permisoSelected(permisosList.selectedOptions.selected)">
-                    <mat-list-option  *ngFor="let permiso of permisos" [value]="permiso.id" >
-                      {{permiso.alias}}
-                    </mat-list-option>
-                </mat-selection-list>
-            </div>
-        </form>
-    </div>
+  <div class="card-body">
+    <form [formGroup]="rolForm" (submit)="createRol()">
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label [style.fontSize.px]="16"
+            >Ingrese Nombre de la politica</mat-label
+          >
+          <input
+            type="text"
+            formControlName="nombre"
+            matInput
+            placeholder="qa"
+            class="form-control"
+            required
+          />
+          <mat-error *ngIf="Nombre?.touched && Nombre?.hasError('required')"
+            >Nombre de politica es <strong>requerido</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <button
+          type="submit"
+          *ngxPermissionsOnly="['crear-rol']"
+          [disabled]="!rolForm.valid"
+          mat-raised-button
+          color="primary"
+        >
+          Guardar Politica
+        </button>
+        <br />
+        <button
+          *ngxPermissionsOnly="['crear-rol']"
+          type="submit"
+          (click)="cancelAdd()"
+          mat-stroked-button
+          color="warn"
+        >
+          Cancelar
+        </button>
+      </div>
+      <br />
+      <br />
+      <div class="example-section">
+        <mat-label>Permisos</mat-label>
+        <mat-selection-list
+          formControlName="permisos"
+          #permisosList
+          (selectionChange)="
+            permisoSelected(permisosList.selectedOptions.selected)
+          "
+        >
+          <mat-list-option
+            *ngFor="let permiso of permisos"
+            [value]="permiso.id"
+          >
+            {{ permiso.alias }}
+          </mat-list-option>
+        </mat-selection-list>
+      </div>
+    </form>
+  </div>
 </div>

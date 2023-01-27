@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { IRole, IRolePermissionsAssingment } from '@core/interfaces/i-role';
 import { RoleService } from '@modules/roles/services/role.service';
 import Swal from 'sweetalert2';
+import { NewRolePageComponent } from '../new-role-page/new-role-page.component';
 import { RolesEditDialogComponent } from '../roles-edit-dialog/roles-edit-dialog.component';
 import { RolesPermissionEditDialogComponent } from '../roles-permission-edit-dialog/roles-permission-edit-dialog.component';
 @Component({
@@ -34,6 +35,7 @@ export class RolesPageComponent {
   constructor(private roleService:RoleService,private formBuilder: FormBuilder, public dialogService: MatDialog) {
     this.dataSource = new MatTableDataSource();
   }
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -42,6 +44,7 @@ export class RolesPageComponent {
       this.dataSource.paginator.firstPage();
     }
   }
+
   editar(id:string, nombre: string) {
     this.rolEdit.id=Number(id);
     this.rolEdit.nombre=nombre;
@@ -56,8 +59,21 @@ export class RolesPageComponent {
       } 
     });
   }
+
   ngOnInit() {
     this.cargarRoles();
+  }
+
+  open() {
+    const dialogRef = this.dialogService.open(NewRolePageComponent, {
+      height: '50rem',
+      width: '60rem',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result==1){
+        this.cargarRoles();
+      } 
+    });
   }
 
   cargarRoles(){
@@ -65,6 +81,7 @@ export class RolesPageComponent {
       this.dataSource=new MatTableDataSource(data);
     });
   }
+
   desactivar(id: string, rol: string) {
     Swal.fire({
       title: '¿Esta seguro que desea Desactivar el rol: ' + rol + '?',
@@ -87,6 +104,7 @@ export class RolesPageComponent {
       }
     })
   }
+
   verPermisos(id:string,nombre:string){
     this.rolesPermisos.id=Number(id);
     this.rolesPermisos.nombre=nombre;
@@ -97,7 +115,6 @@ export class RolesPageComponent {
         width: '60rem',
         data: this.rolesPermisos
       });
-    });
-     
+    }); 
   }
 }

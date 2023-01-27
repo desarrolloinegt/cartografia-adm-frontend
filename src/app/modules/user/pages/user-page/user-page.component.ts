@@ -38,9 +38,11 @@ export class UserPageComponent {
   constructor(private userServide: UserService, private formBuilder: FormBuilder, public dialogService: MatDialog) {
     this.dataSource = new MatTableDataSource();
   }
+
   ngOnInit() {
     this.cargarUsuarios();
   }
+
   cargarUsuarios() {
     this.userServide.getAllUsers().subscribe(data => {
       this.dataSource =new MatTableDataSource(data);
@@ -85,6 +87,7 @@ export class UserPageComponent {
       } 
     });
   }
+
   superAdmin(id:string,nombre:string){
     const dialogRef = this.dialogService.open(SuperadminPageComponent,{
       height:'12rem',
@@ -92,6 +95,7 @@ export class UserPageComponent {
       data:{id:id,nombre:nombre}
     });
   }
+
   desactivar(id: string, username: string) {
     Swal.fire({
       title: '¿Esta seguro que desea Desactivar el usuario: ' + username + '?',
@@ -116,7 +120,6 @@ export class UserPageComponent {
     })
   }
 }
-
 export class PasswordValidation {
   static MatchPassword(AC: AbstractControl) {
     const formGroup = AC.parent;

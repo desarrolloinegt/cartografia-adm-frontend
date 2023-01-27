@@ -1,53 +1,61 @@
-<br />
-<br />
-<br />
 <div class="card">
-    <div class="card-body">
+  <div class="card-body">
     <form [formGroup]="surveyForm" (submit)="createSurvey()">
-        <div class="form-group">
+      <div class="form-group">
         <mat-form-field appearance="outline" class="full-width-input">
-            <mat-label [style.fontSize.px]="16">Ingrese el Nombre de la Encuesta</mat-label>
-            <input
+          <mat-label [style.fontSize.px]="16"
+            >Ingrese el Nombre de la Encuesta</mat-label
+          >
+          <input
             type="text"
             formControlName="nombre"
             matInput
             placeholder="ENEI"
             class="form-control"
-            required/>
+            required
+          />
           <mat-error *ngIf="Nombre?.touched && Nombre?.hasError('required')"
             >Nombre de Encuesta es
             <strong>requerido</strong>
-            </mat-error>
+          </mat-error>
         </mat-form-field>
-        </div>
-        <div class="form-group">
+      </div>
+      <div class="form-group">
         <mat-form-field appearance="outline" class="full-width-input">
-            <mat-label [style.fontSize.px]="16">Descripcion</mat-label>
-            <input
+          <mat-label [style.fontSize.px]="16">Descripcion</mat-label>
+          <input
             type="text"
             formControlName="descripcion"
             placeholder="Encuesta creada para proyecto ENEI año 2024"
             matInput
             class="form-control"
-            />
-            <mat-error
+        />
+        <mat-error
             *ngIf="Descripcion?.touched && Descripcion?.hasError('required')"
             >Descripcion es <strong>requerida</strong>
-            </mat-error>
+        </mat-error>
         </mat-form-field>
-        </div>
-
-        <div class="form-group">
-        <button
-        *ngxPermissionsOnly="['crear-encuesta']"
-            type="submit"
-            [disabled]="!surveyForm.valid"
-            mat-raised-button
-            color="primary"
-        >
-            Guardar Encuesta
-        </button>
-        </div>
-    </form>
     </div>
+
+    <div class="form-group">
+        <button
+          *ngxPermissionsOnly="['crear-encuesta']"
+        type="submit"
+        [disabled]="!surveyForm.valid"
+        mat-raised-button
+        color="primary">
+        Guardar Encuesta
+        </button>
+        <br />
+        <button
+          *ngxPermissionsOnly="['crear-encuesta']"
+        type="submit"
+        (click)="cancelAdd()"
+        mat-stroked-button
+        color="warn">
+        Cancelar
+        </button>
+    </div>
+    </form>
+</div>
 </div>

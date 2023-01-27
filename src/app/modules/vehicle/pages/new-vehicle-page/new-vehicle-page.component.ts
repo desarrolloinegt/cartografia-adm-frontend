@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { VehicleService } from '@modules/vehicle/services';
 import Swal from 'sweetalert2';
 
@@ -13,7 +14,8 @@ export class NewVehiclePageComponent {
 
   constructor(
     private vehicleService: VehicleService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    public dialogRef: MatDialogRef<NewVehiclePageComponent>
   ) {
     this.buildForm();
   }
@@ -44,6 +46,7 @@ export class NewVehiclePageComponent {
         (resp) => {
           if (resp.status == true) {
             Swal.fire('Ok!', resp.message, 'success');
+            this.dialogRef.close(1);
           }
         },
         (error) => {
@@ -51,5 +54,9 @@ export class NewVehiclePageComponent {
         }
       );
     }
+  }
+  
+  cancelAdd(){
+    this.dialogRef.close();
   }
 }

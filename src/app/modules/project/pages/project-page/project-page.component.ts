@@ -7,6 +7,7 @@ import { IProject, IProjectDataEdit, IProjectList, IProjectListView } from '@cor
 import { IUpmAssignmentList } from '@core/interfaces/i-upm-assignment';
 import { ProjectService } from '@modules/project/services/project.service';
 import Swal from 'sweetalert2';
+import { NewProjectPageComponent } from '../new-project-page';
 import { ProjectEditDialogComponent } from '../project-edit-dialog';
 
 @Component({
@@ -42,9 +43,9 @@ export class ProjectPageComponent {
   }
 
   open() {
-    const dialogRef = this.dialogService.open(ProjectPageComponent, {
-      height:'50rem',
-      width: '60rem',
+    const dialogRef = this.dialogService.open(NewProjectPageComponent, {
+      height:'27rem',
+      width: '50rem',
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result == 1) {
@@ -52,6 +53,7 @@ export class ProjectPageComponent {
       }
     })
   }
+
   editar(id:string, nombre: string,fecha:string,encuesta:string, descripcio:string) {
     this.dataEdit.nombre=nombre;
     this.dataEdit.id=Number(id);
