@@ -62,7 +62,7 @@ export class EditGroupDialogComponent {
     if(this.editForm.valid){
       this.groupService.editGroup(this.editForm.value).subscribe((resp)=>{
         if(resp.status==true){
-          Swal.fire('Ok!', resp.message, 'success');
+          Swal.fire('Ok!', 'Rol editado correctamente', 'success');
           this.dialogRef.close(1);
         }
       },(err) => {

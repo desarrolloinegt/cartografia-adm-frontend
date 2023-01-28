@@ -41,7 +41,7 @@ export class GroupRoleEditDialogComponent {
     if(this.editForm.valid){
       this.groupService.editGroupRoles(this.editForm.value).subscribe((resp)=>{
         if(resp.status==true){
-          Swal.fire('Ok!', resp.message, 'success');
+          Swal.fire('Ok!', 'Politicas guardadas correctamente', 'success');
           this.dialogRef.close(1);
         }
       },(err) => {

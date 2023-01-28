@@ -16,6 +16,8 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import {MatMenuModule} from '@angular/material/menu';
 import { HttpErrorInterceptor } from '@core/interceptors/HttpErrorInterceptor.interceptor';
 import { NgxPermissionsModule } from 'ngx-permissions';
+import {MatTabsModule} from '@angular/material/tabs';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -29,6 +31,8 @@ import { NgxPermissionsModule } from 'ngx-permissions';
     MatDialogModule,
     MatCheckboxModule,
     MatMenuModule,
+    MatTabsModule,
+    DragDropModule,
     NgxPermissionsModule.forRoot()
   ],
 

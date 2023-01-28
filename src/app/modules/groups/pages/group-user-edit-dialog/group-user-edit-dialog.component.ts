@@ -40,7 +40,7 @@ export class GroupUserEditDialogComponent {
     if(this.editForm.valid){
       this.groupService.editGroupUsers(this.editForm.value).subscribe((resp)=>{
         if(resp.status==true){
-          Swal.fire('Ok!', resp.message, 'success');
+          Swal.fire('Ok!', 'Usuarios guardados correctamente', 'success');
           this.dialogRef.close(1);
         }
       },(err) => {

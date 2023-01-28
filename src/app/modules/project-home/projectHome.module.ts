@@ -9,13 +9,17 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { HomeProjectPageComponent } from './pages/home-project-page/home-project-page.component';
 import { NgxPermissionsModule } from 'ngx-permissions';
+import { MatTabsModule } from '@angular/material/tabs';
+import { GroupProjectComponent } from './components/group-project/group-project.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
 @NgModule({
   declarations: [
     
   
-    HomeProjectPageComponent
+    HomeProjectPageComponent,
+              GroupProjectComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +29,9 @@ import { NgxPermissionsModule } from 'ngx-permissions';
     MatSelectModule,
     MatCheckboxModule,
     MatTooltipModule,
-    NgxPermissionsModule
+    NgxPermissionsModule,
+    MatTabsModule,
+    DragDropModule
   ]
 })
 export class ProjecHometModule { }

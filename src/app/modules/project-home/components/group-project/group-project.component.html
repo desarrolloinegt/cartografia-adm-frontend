@@ -1,0 +1,97 @@
+<div class="header">
+  <button mat-fab color="accent" routerLink="create">
+    <mat-icon aria-label="add">add</mat-icon>
+  </button>
+  <button (click)="guardarJerarquias()" mat-fab color="primary">
+    <mat-icon>save</mat-icon>
+  </button>
+</div>
+  <div class="mat-elevation-z8 table_div">
+    <br>
+    <mat-label class="orden_label"><strong>Ordene los grupos de mayor a menor</strong> </mat-label>
+    <table class="table" mat-table [dataSource]="dataSource"
+    #table
+     cdkDropList
+     (cdkDropListDropped)="drop($event)"
+     cdkDropListData="datasource"
+    [cdkDropListDisabled]="dragDisabled"
+     >
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
+      </ng-container>
+  
+      <!-- nombre Column -->
+      <ng-container matColumnDef="nombre" sticky>
+        <mat-header-cell *matHeaderCellDef>Nombre</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <mat-icon class="dragCursor" (mousedown)="dragDisabled = false;">reorder</mat-icon>
+          <span>{{ row.nombre }}</span>
+        </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="jerarquia">
+        <mat-header-cell *matHeaderCellDef>Jerarquia</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.jerarquia }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="descripcion">
+        <mat-header-cell *matHeaderCellDef>Descripcion</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.descripcion }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="options">
+        <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button
+          *ngxPermissionsOnly="['editar-grupo']"
+            mat-icon-button
+            (click)="editar(row.id, row.nombre, row.descripcion,row.proyecto_id)"
+            matTooltip="Editar"
+            matTooltipPosition="right"
+            color="primary"
+            class="iconbutton"
+          >
+            <mat-icon aria-label="Edit">edit</mat-icon>
+          </button>
+          <button
+          *ngxPermissionsOnly="['desactivar-grupo']"
+            mat-icon-button
+            matTooltip="Desactivar"
+            (click)="desactivar(row.id, row.nombre)"
+            color="warn"
+            class="iconbutton"
+          >
+            <mat-icon aria-label="Delete">delete</mat-icon>
+          </button>
+          <button
+          *ngxPermissionsOnly="['asignar-usuario-grupo']"
+            mat-icon-button
+            matTooltip="Ver usuarios"
+            (click)="verUsuarios(row.id, row.nombre)"
+            color="primary"
+            class="iconbutton"
+          >
+            <mat-icon >supervised_user_circle</mat-icon>
+          </button>
+          <button
+          *ngxPermissionsOnly="['asignar-rol-grupo']"
+            mat-icon-button
+            matTooltip="Ver politicas"
+            (click)="verRoles(row.id, row.nombre)"
+            color="primary"
+            class="iconbutton"
+          >
+            <mat-icon>list_alt</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"
+      cdkDrag
+      [cdkDragData]="row">
+      </mat-row>
+    </table>
+   
+  </div>
+
+  

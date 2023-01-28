@@ -39,7 +39,7 @@ export class RolesEditDialogComponent {
       console.log(this.editForm.value)
       this.roleService.editRole(this.editForm.value).subscribe((resp)=>{
         if(resp.status==true){
-          Swal.fire('Ok!', resp.message, 'success');
+          Swal.fire('Ok!', 'Politica actualizada', 'success');
           this.dialogRef.close(1);
         }
       },(err) => {

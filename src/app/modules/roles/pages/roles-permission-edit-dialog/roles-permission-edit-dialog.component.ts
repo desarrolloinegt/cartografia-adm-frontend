@@ -54,7 +54,7 @@ export class RolesPermissionEditDialogComponent {
       this.roleService.assignPermisoToRol(this.editForm.value).subscribe(data=>{
         if(data.status==true){
           this.dialogRef.close(1);
-          Swal.fire('Ok!', data.message, 'success');
+          Swal.fire('Ok!','Permisos actualizados', 'success');
         }
       })
     }

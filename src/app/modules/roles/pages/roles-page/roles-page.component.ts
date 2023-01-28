@@ -84,7 +84,7 @@ export class RolesPageComponent {
 
   desactivar(id: string, rol: string) {
     Swal.fire({
-      title: '¿Esta seguro que desea Desactivar el rol: ' + rol + '?',
+      title: '¿Esta seguro que desea Desactivar la politica: ' + rol + '?',
       showDenyButton: true,
       showCancelButton: true,
       confirmButtonText: 'Si',

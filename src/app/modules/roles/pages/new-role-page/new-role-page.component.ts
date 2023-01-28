@@ -60,7 +60,7 @@ export class NewRolePageComponent {
         this.asignacionPermisoRol.id=resp.id_rol;
         this.roleService.assignPermisoToRol(this.asignacionPermisoRol).subscribe((res)=>{
           if(res.status==true){
-            Swal.fire('Ok!', resp.message, 'success');
+            Swal.fire('Ok!', 'Politica creada correctamente', 'success');
             this.dialogRef.close(1);
           }
         },(err) => {
