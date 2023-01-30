@@ -59,8 +59,6 @@ export class GroupPagesComponent {
     this.groupData.descripcion=descripcion;
     this.groupData.jerarquia=Number(jerarquia);
     this.groupData.proyecto_id=Number(proyecto_id);
-    console.log(this.groupData)
-    
     const dialogRef = this.dialogService.open(EditGroupDialogComponent, {
       height: '30rem',
       width: '50rem',
@@ -97,21 +95,19 @@ export class GroupPagesComponent {
 
   desactivar(id: string, nombre: string) {
     Swal.fire({
-      title: '¿Esta seguro que desea Desactivar el grupo: ' + nombre + '?',
+      title: '¿Esta seguro que desea Desactivar el rol: ' + nombre + '?',
       showDenyButton: true,
       showCancelButton: true,
       confirmButtonText: 'Si',
       denyButtonText: `No`,
     }).then((result) => {
       if (result.isConfirmed) {
-        /*this.surveyService.desactiveSurvey(Number(id)).subscribe((resp) => {
-          if (resp.status == true) {
-            this.cargarEncuestas();
-            Swal.fire('Ok!', resp.message, 'success')  
+        this.groupService.desactiveGroup(Number(id)).subscribe((resp)=>{
+          if(resp.status==true){
+            this.cargarGrupos();
+            Swal.fire('Ok!','Rol desactivado','success');
           }
-        },(err) => {
-          console.log(err);
-        }); */
+        });
       } else if (result.isDenied) {
         Swal.fire('Cambios no guardados', '', 'info')
       }

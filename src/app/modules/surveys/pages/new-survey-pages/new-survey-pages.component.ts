@@ -34,7 +34,7 @@ export class NewSurveyPagesComponent {
   get Descripcion() {
     return this.surveyForm.get('descripcion');
   }
-
+  submit(){}
   createSurvey() {
     if (this.surveyForm.valid) {
       this.surveyService.create(this.surveyForm.value).subscribe(

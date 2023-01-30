@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-body">
-    <form [formGroup]="rolForm" (submit)="createRol()">
+    <form [formGroup]="rolForm" (submit)="submit()">
       <div class="form-group">
         <mat-form-field appearance="outline" class="full-width-input">
           <mat-label [style.fontSize.px]="16"
@@ -10,7 +10,7 @@
             type="text"
             formControlName="nombre"
             matInput
-            placeholder="qa"
+            placeholder="Supervisor"
             class="form-control"
             required
           />
@@ -26,6 +26,7 @@
           [disabled]="!rolForm.valid"
           mat-raised-button
           color="primary"
+          (click)="createRol()"
         >
           Guardar Politica
         </button>

@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-body">
-    <form [formGroup]="groupForm" (submit)="createGroup()">
+    <form [formGroup]="groupForm" (submit)="submit()">
       <div class="form-group">
         <mat-form-field appearance="outline" class="full-width-input">
           <mat-label [style.fontSize.px]="16"
@@ -10,7 +10,7 @@
             type="text"
             formControlName="nombre"
             matInput
-            placeholder="Grupo Supervisores ENEI"
+            placeholder="Supervisores ENEI"
             class="form-control"
             required
           />
@@ -53,6 +53,7 @@
           [disabled]="!groupForm.valid"
           mat-raised-button
           color="primary"
+          (click)="createGroup()"
         >
           Guardar Rol
         </button>

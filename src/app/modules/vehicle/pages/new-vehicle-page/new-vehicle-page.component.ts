@@ -40,6 +40,7 @@ export class NewVehiclePageComponent {
     return this.vehicleForm.get('year');
   }
 
+  submit(){}
   createVehicle() {
     if (this.vehicleForm.valid) {
       this.vehicleService.createVehicle(this.vehicleForm.value).subscribe(

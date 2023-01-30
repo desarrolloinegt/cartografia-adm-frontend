@@ -16,4 +16,8 @@ export class ProjectHomeService {
   guardarJerarquias(data:IGroup[]){
     return this.apiService.patch('jerarquias',data);
   }
+
+  getIdProject(project:string){
+    return this.apiService.getById('proyectoId',project);
+  }
 }

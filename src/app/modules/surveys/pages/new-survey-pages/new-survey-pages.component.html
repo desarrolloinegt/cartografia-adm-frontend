@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-body">
-    <form [formGroup]="surveyForm" (submit)="createSurvey()">
+    <form [formGroup]="surveyForm" (submit)="submit()">
       <div class="form-group">
         <mat-form-field appearance="outline" class="full-width-input">
           <mat-label [style.fontSize.px]="16"
@@ -43,6 +43,7 @@
         type="submit"
         [disabled]="!surveyForm.valid"
         mat-raised-button
+        (click)="createSurvey()"
         color="primary">
         Guardar Encuesta
         </button>

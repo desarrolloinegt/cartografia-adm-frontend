@@ -31,6 +31,7 @@ export class NewUserPageComponent {
   }
   user!: IUser;
 
+  submit(){}
   registerUser() {
     if (this.registerForm.valid) {
       this.user = this.registerForm.value;

@@ -41,6 +41,10 @@ export class GroupService {
   assignGroupUsers(data:any){
     return this.apiService.store('asignarGrupoUsuario',data)
   }
+
+  desactiveGroup(id:number){
+    return this.apiService.desactive('grupo',id);
+  }
  
  
 }

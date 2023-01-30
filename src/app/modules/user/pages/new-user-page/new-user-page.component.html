@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-body">
-    <form [formGroup]="registerForm" (ngSubmit)="registerUser()">
+    <form [formGroup]="registerForm" (ngSubmit)="submit()">
       <div class="form-group">
         <mat-form-field appearance="outline" class="full-width-input">
           <mat-label [style.fontSize.px]="16">Ingrese su DPI</mat-label>
@@ -153,6 +153,7 @@
           *ngxPermissionsOnly="['crear-usuario']"
           [disabled]="!registerForm.valid"
           mat-raised-button
+          (click)="registerUser()"
           color="primary">
           Guardar Usuario
         </button>

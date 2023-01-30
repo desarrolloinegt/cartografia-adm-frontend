@@ -51,6 +51,9 @@ export class NewGroupPagesComponent {
       this.projects=data;
     })
   }
+  submit(){
+    
+  }
   createGroup(){ 
     if(this.groupForm.valid){
       this.groupService.create(this.groupForm.value).subscribe((resp)=>{

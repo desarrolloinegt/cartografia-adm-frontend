@@ -52,6 +52,9 @@ export class NewRolePageComponent {
     return this.rolForm.get('permisos');
   }
 
+  submit(){
+
+  }
   createRol(){ 
     this.asignacionPermisoRol.permisos=this.selectedPermision;
     this.rol.nombre=this.Nombre?.value;

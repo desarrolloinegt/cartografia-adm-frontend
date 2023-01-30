@@ -12,6 +12,7 @@ import { NgxPermissionsModule } from 'ngx-permissions';
 import { MatTabsModule } from '@angular/material/tabs';
 import { GroupProjectComponent } from './components/group-project/group-project.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { NewGroupProjectComponent } from './components/dialogs/new-group-project/new-group-project.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     
   
     HomeProjectPageComponent,
-              GroupProjectComponent
+              GroupProjectComponent,
+              NewGroupProjectComponent
   ],
   imports: [
     CommonModule,

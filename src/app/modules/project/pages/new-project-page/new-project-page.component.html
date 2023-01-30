@@ -1,6 +1,6 @@
 <div class="card">
 <div class="card-body">
-    <form [formGroup]="projectForm" (submit)="createProject()">
+    <form [formGroup]="projectForm" (submit)="submit()">
     <div class="form-group">
         <mat-form-field appearance="outline" class="full-width-input">
         <mat-label [style.fontSize.px]="16">Seleccione una Encuesta</mat-label>
@@ -49,6 +49,7 @@
           *ngxPermissionsOnly="['crear-proyecto']"
         [disabled]="!projectForm.valid"
         mat-raised-button
+        (click)="createProject()"
         color="primary">
         Guardar Proyecto
         </button>

@@ -63,6 +63,7 @@ export class NewProjectPageComponent {
       this.encuestas = data;
     });
   }
+  submit(){}
   createProject() {
     if (this.projectForm.valid) {
       let valueEncuesta = this.Encuesta?.value.split(',');
