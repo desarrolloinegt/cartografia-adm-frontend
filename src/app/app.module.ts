@@ -18,6 +18,7 @@ import { HttpErrorInterceptor } from '@core/interceptors/HttpErrorInterceptor.in
 import { NgxPermissionsModule } from 'ngx-permissions';
 import {MatTabsModule} from '@angular/material/tabs';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { TokenInterceptor } from '@core/interceptors/token.interceptor';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -38,7 +39,8 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true},
-    {provide:HTTP_INTERCEPTORS,useClass:HttpErrorInterceptor,multi:true}
+    {provide:HTTP_INTERCEPTORS,useClass:TokenInterceptor,multi:true},
+    {provide:HTTP_INTERCEPTORS,useClass:HttpErrorInterceptor,multi:true}, 
   ],
   bootstrap: [AppComponent],
 })

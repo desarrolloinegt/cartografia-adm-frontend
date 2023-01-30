@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { NONE_TYPE } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -38,5 +39,9 @@ export class ApiService {
 
   patch(path: string, data: any): Observable<any> {
     return this.http.patch(`${this.apiUrl}${path}`, data);
+  }
+
+  logout(){
+    return this.http.post(`${this.apiUrl}logout`,NONE_TYPE);
   }
 }
