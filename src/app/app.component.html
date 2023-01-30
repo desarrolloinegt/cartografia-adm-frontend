@@ -19,17 +19,18 @@
         <mat-icon class="routeIcon menu-icon">home</mat-icon>
         <span [style.fontSize.px]="14">Inicio</span>
       </a>
-
-      <a mat-list-item *ngxPermissionsOnly="['ver-usuario']" class="menu-list-item" routerLink="user">
-        <mat-icon class="routeIcon menu-icon">person</mat-icon>
-        <span [style.fontSize.px]="14">Usuarios</span>
+      <a mat-list-item *ngIf="project" class="menu-list-item" routerLink="projectHome">
+        <mat-icon class="routeIcon menu-icon">folder</mat-icon>
+        <span [style.fontSize.px]="14"><strong>{{project}}</strong></span>
       </a>
-
       <a mat-list-item *ngxPermissionsOnly="['ver-proyecto']" class="menu-list-item" routerLink="project">
         <mat-icon class="routeIcon menu-icon">folder</mat-icon>
         <span [style.fontSize.px]="14">Proyectos</span>
       </a>
-
+      <a mat-list-item *ngxPermissionsOnly="['ver-usuario']" class="menu-list-item" routerLink="user">
+        <mat-icon class="routeIcon menu-icon">person</mat-icon>
+        <span [style.fontSize.px]="14">Usuarios</span>
+      </a>
       <a mat-list-item *ngxPermissionsOnly="['ver-rol']" class="menu-list-item" routerLink="rol">
         <mat-icon class="routeIcon menu-icon">supervisor_account</mat-icon>
         <span [style.fontSize.px]="14">Politicas</span>

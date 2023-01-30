@@ -10,6 +10,7 @@ import { AuthService } from './modules';
 })
 export class AppComponent {
   opened = true;
+  permissionsProject:string[]=[];
   permissionsAdmin:string[]=[];
   constructor(private router: Router,private auth:AuthService,private permissionService:NgxPermissionsService) {}
 
@@ -30,10 +31,15 @@ export class AppComponent {
 
   ngOnInit() {
     this.permissionService.flushPermissions();
-    if(this.id){
+    if(this.id && !this.project){
       this.auth.getPermissionAdmin(Number(this.id)).subscribe(data=>{
         this.permissionsAdmin=data;
         this.permissionService.addPermission(this.permissionsAdmin);
+      })
+    }else if(this.id && this.project){
+      this.auth.getPermissions(this.project,Number(this.id)).subscribe(data=>{
+        this.permissionsProject=data;
+        this.permissionService.addPermission(this.permissionsProject);
       })
     }
   }

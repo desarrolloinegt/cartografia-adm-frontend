@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { IProject, IProjectAssignment } from '@core/interfaces/i-project';
 import { AuthService } from '@modules/auth';
 import { NgxPermissionsService } from 'ngx-permissions';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-home-page',
@@ -15,7 +16,7 @@ export class HomePageComponent {
   public projects: IProjectAssignment[] = [];
   dataSource: MatTableDataSource<IProject>;
   id:number=0;
-  constructor(private permissionService:NgxPermissionsService,private auth: AuthService, private router: Router) {
+  constructor(private permissionService:NgxPermissionsService,private auth: AuthService, private router: Router,private appComponente:AppComponent) {
     this.dataSource=new MatTableDataSource();
   }
   get project(){
@@ -23,6 +24,7 @@ export class HomePageComponent {
   }
   ngOnInit(){
     localStorage.removeItem('project');
+    this.appComponente.ngOnInit()
     this.id=Number(localStorage.getItem('id'));
     this.getProjects();
   }
@@ -33,6 +35,7 @@ export class HomePageComponent {
   }
   loadProject(project:string){
     localStorage.removeItem('project');
+    this.permissionService.flushPermissions();
     this.auth.getPermissions(project,this.id).subscribe(data=>{
       this.permissions=data;
       this.permissionService.addPermission(this.permissions);
