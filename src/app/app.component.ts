@@ -10,9 +10,27 @@ import { AuthService } from './modules';
 })
 export class AppComponent {
   opened = true;
-  permissionsProject:string[]=[];
-  permissionsAdmin:string[]=[];
-  constructor(private router: Router,private auth:AuthService,private permissionService:NgxPermissionsService) {}
+  permissionsProject: string[] = [];
+  permissionsAdmin: string[] = [];
+  constructor(
+    private router: Router,
+    private auth: AuthService,
+    private permissionService: NgxPermissionsService
+  ) {
+    this.initializeApp();
+  }
+
+  initializeApp() {
+    this.auth.authState.subscribe((state) => {
+      console.log(state);
+      if (state) {
+        this.router.navigate(['home']);
+      }
+      else {
+        this.router.navigate(['auth/login'])
+      }
+    });
+  }
 
   get token() {
     return localStorage.getItem('token') || '';
@@ -22,25 +40,27 @@ export class AppComponent {
     return localStorage.getItem('usuario') || '';
   }
 
-  get project(){
-    return localStorage.getItem('project')||'';
+  get project() {
+    return localStorage.getItem('project') || '';
   }
-  get id(){
-    return localStorage.getItem('id')||'';
+  get id() {
+    return localStorage.getItem('id') || '';
   }
 
   ngOnInit() {
     this.permissionService.flushPermissions();
-    if(this.id && !this.project){
-      this.auth.getPermissionAdmin(Number(this.id)).subscribe(data=>{
-        this.permissionsAdmin=data;
+    if (this.id && !this.project) {
+      this.auth.getPermissionAdmin(Number(this.id)).subscribe((data) => {
+        this.permissionsAdmin = data;
         this.permissionService.addPermission(this.permissionsAdmin);
-      })
-    }else if(this.id && this.project){
-      this.auth.getPermissions(this.project,Number(this.id)).subscribe(data=>{
-        this.permissionsProject=data;
-        this.permissionService.addPermission(this.permissionsProject);
-      })
+      });
+    } else if (this.id && this.project) {
+      this.auth
+        .getPermissions(this.project, Number(this.id))
+        .subscribe((data) => {
+          this.permissionsProject = data;
+          this.permissionService.addPermission(this.permissionsProject);
+        });
     }
   }
 }

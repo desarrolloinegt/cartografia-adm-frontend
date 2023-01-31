@@ -8,9 +8,18 @@ import { ApiService } from '@core/services/api.service';
   providedIn: 'root',
 })
 export class AuthService {
-  private authState = new BehaviorSubject<boolean>(false);
+  public authState = new BehaviorSubject<boolean>(false);
 
-  constructor(private router: Router, private apiService: ApiService) {}
+  constructor(private router: Router, private apiService: ApiService) {
+    this.ifLoggedIn();
+  }
+
+  ifLoggedIn() {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.authState.next(true);
+    }
+  }
 
   get isLogged(): Observable<boolean> {
     return this.authState.asObservable();

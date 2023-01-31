@@ -24,13 +24,16 @@ export class SurveyPagesComponent {
     nombre:'',
     descripcion:''
   }
+
+  public filterValue:any; 
+
   constructor(private surveyService:SurveyService, public dialogService: MatDialog) {
     this.dataSource = new MatTableDataSource();
   }
 
   applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = this.filterValue.trim().toLowerCase();
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();

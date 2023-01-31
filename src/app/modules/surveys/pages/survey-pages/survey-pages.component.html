@@ -1,4 +1,78 @@
-<div class="header">
+<div class="grid-container">
+    <div class="frow-container">
+        <div class="frow row-start">
+            <div class="col-sm-1-1 col-sm-6-12 col-md-6-12">
+                <h2>Encuestas</h2>
+            </div>
+            <div class="col-sm-1-1 col-sm-3-12 col-md-3-12">
+                <mat-form-field [style.fontSize.px]="12" appearence="outline" class="fluid">
+                    <mat-label [style.fontSize.px]="14">Buscar</mat-label>
+                    <input matInput (keyup)="applyFilter($event)" placeholder="Ejemplo: ENEI" #input>
+                    <mat-icon matSuffix>search</mat-icon>
+                    <!-- <button *ngIf="filterValue" mat-button matSuffix mat-icon-button aria-label="clear" (click)="filterValue=''; applyFilter($event)">
+                        <mat-icon>close</mat-icon>
+                    </button> -->
+                </mat-form-field>
+            </div>
+            <div class="col-sm-1-1 col-sm-3-12 col-md-3-12" style="text-align: right;">
+                <button mat-flat-button color="accent" style="margin-right: 8px;" (click)="open()">
+                    Agregar
+                </button>
+            </div>
+        </div>
+        <div>
+            <table mat-table [dataSource]="dataSource" matSort class="fluid">
+
+                <!-- ID Column -->
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef>ID</th>
+                    <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+                </ng-container>
+        
+                <!-- nombre Column -->
+                <ng-container matColumnDef="nombre">
+                    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                    <td mat-cell *matCellDef="let row"> {{row.nombre}} </td>
+                </ng-container>
+        
+                <!-- Descripcion Column -->
+                <ng-container matColumnDef="descripcion">
+                    <th mat-header-cell *matHeaderCellDef>Descripcion</th>
+                    <td mat-cell *matCellDef="let row"> {{row.descripcion}} </td>
+                </ng-container>   
+        
+                <ng-container matColumnDef="options">
+                    <th mat-header-cell *matHeaderCellDef>Acciones</th>
+                    <td mat-cell *matCellDef="let row">
+                        <button 
+                        *ngxPermissionsOnly="['editar-encuesta']"
+                        mat-icon-button (click)="editar(row.id,row.nombre,row.descripcion)"
+                            matTooltip="Click para Editar" matTooltipPosition="right" color="primary" class="iconbutton">
+                            <mat-icon aria-label="Edit">edit</mat-icon>
+                        </button>
+                        <button
+                        *ngxPermissionsOnly="['desactivar-encuesta']"
+                        mat-icon-button matTooltip="Click para desactivar"
+                            (click)="desactivar(row.id,row.nombre)" color="warn" class="iconbutton">
+                            <mat-icon aria-label="Delete">delete</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+        
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        
+                <!-- Row shown when there is no matching data. -->
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" colspan="4">No hay resultados de "{{input.value}}"</td>
+                </tr>
+            </table>
+        
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Seleccionar encuestas por pagina"></mat-paginator>
+        </div>
+    </div>
+</div>
+<!-- <div class="header">
     <h1>Encuestas</h1>
     <button
     mat-fab
@@ -9,59 +83,8 @@
     class="iconbutton">
     <mat-icon>add</mat-icon>
   </button>
-</div>
-<mat-form-field>
-    <mat-label>Buscar</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ej. ENEI" #input>
+</div> -->
 
-</mat-form-field>
 <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" matSort>
-
-        <!-- ID Column -->
-        <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef>ID</th>
-            <td mat-cell *matCellDef="let row"> {{row.id}} </td>
-        </ng-container>
-
-        <!-- nombre Column -->
-        <ng-container matColumnDef="nombre">
-            <th mat-header-cell *matHeaderCellDef> Nombre </th>
-            <td mat-cell *matCellDef="let row"> {{row.nombre}} </td>
-        </ng-container>
-
-        <!-- Descripcion Column -->
-        <ng-container matColumnDef="descripcion">
-            <th mat-header-cell *matHeaderCellDef>Descripcion</th>
-            <td mat-cell *matCellDef="let row"> {{row.descripcion}} </td>
-        </ng-container>   
-
-        <ng-container matColumnDef="options">
-            <th mat-header-cell *matHeaderCellDef>Acciones</th>
-            <td mat-cell *matCellDef="let row">
-                <button 
-                *ngxPermissionsOnly="['editar-encuesta']"
-                mat-icon-button (click)="editar(row.id,row.nombre,row.descripcion)"
-                    matTooltip="Click para Editar" matTooltipPosition="right" color="primary" class="iconbutton">
-                    <mat-icon aria-label="Edit">edit</mat-icon>
-                </button>
-                <button
-                *ngxPermissionsOnly="['desactivar-encuesta']"
-                mat-icon-button matTooltip="Click para desactivar"
-                    (click)="desactivar(row.id,row.nombre)" color="warn" class="iconbutton">
-                    <mat-icon aria-label="Delete">delete</mat-icon>
-                </button>
-            </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-        <!-- Row shown when there is no matching data. -->
-        <tr class="mat-row" *matNoDataRow>
-            <td class="mat-cell" colspan="4">No hay resultados de "{{input.value}}"</td>
-        </tr>
-    </table>
-
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+    
 </div>
