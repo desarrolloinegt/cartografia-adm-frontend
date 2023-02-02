@@ -13,6 +13,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { GroupProjectComponent } from './components/group-project/group-project.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NewGroupProjectComponent } from './components/dialogs/new-group-project/new-group-project.component';
+import { UpmsComponent } from './components/upms/upms.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { NewGroupProjectComponent } from './components/dialogs/new-group-project
   
     HomeProjectPageComponent,
               GroupProjectComponent,
-              NewGroupProjectComponent
+              NewGroupProjectComponent,
+              UpmsComponent,
   ],
   imports: [
     CommonModule,

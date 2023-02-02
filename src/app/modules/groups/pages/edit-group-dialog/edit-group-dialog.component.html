@@ -34,7 +34,6 @@
             </div>
             <div class="form-group">
                 <button
-                *ngxPermissionsOnly="['editar-grupo']"
                 type="submit" (click)="editGroup()" [disabled]="!editForm.valid" mat-stroked-button color="primary">
                     Editar Grupo
                 </button>

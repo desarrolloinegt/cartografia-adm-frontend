@@ -19,9 +19,6 @@ export class HomePageComponent {
   constructor(private permissionService:NgxPermissionsService,private auth: AuthService, private router: Router,private appComponente:AppComponent) {
     this.dataSource=new MatTableDataSource();
   }
-  get project(){
-    return localStorage.getItem('project')||'';
-  }
   ngOnInit(){
     localStorage.removeItem('project');
     this.appComponente.ngOnInit()
@@ -44,5 +41,4 @@ export class HomePageComponent {
     localStorage.setItem('project',project)
     this.router.navigate(['projectHome']);
   }
-
 }

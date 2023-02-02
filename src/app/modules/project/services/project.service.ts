@@ -18,8 +18,8 @@ export class ProjectService {
     return this.apiService.desactive('proyecto',id);
   }
 
-  getUpms(){
-    return this.apiService.getAll('upms')
+  getUpms(id:number){
+    return this.apiService.getById('obtenerUpmsProyecto',id)
   }
 
   createProject(data:any){
@@ -36,5 +36,8 @@ export class ProjectService {
 
   projectFinish(id:number){
     return this.apiService.desactive('finalizarProyecto',id);
+  }
+  sustituirUpm(data:any){
+    return this.apiService.patch('sustituirUpm',data)
   }
 }

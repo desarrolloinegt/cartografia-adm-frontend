@@ -22,9 +22,8 @@ export class AppComponent {
 
   initializeApp() {
     this.auth.authState.subscribe((state) => {
-      console.log(state);
       if (state) {
-        this.router.navigate(['home']);
+        //this.router.navigate(['home']);
       }
       else {
         this.router.navigate(['auth/login'])
