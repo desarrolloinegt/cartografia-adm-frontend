@@ -3,14 +3,15 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { IGroup, IGroupRoleAssignment, IGroupUserAssignment } from '@core/interfaces/i-group';
+import { IGroup, IGroupRoleAssignment, IGroupUserAssignment, IGroupUserAssignmentFile } from '@core/interfaces/i-group';
 import { GroupRoleEditDialogComponent } from '@modules/groups/pages/group-role-edit-dialog/group-role-edit-dialog.component';
 import { GroupUserEditDialogComponent } from '@modules/groups/pages/group-user-edit-dialog/group-user-edit-dialog.component';
 import { GroupService } from '@modules/groups/services';
 import Swal from 'sweetalert2';
+import * as XLSX from 'xlsx';
 import { EditGroupDialogComponent } from '../edit-group-dialog/edit-group-dialog.component';
 import { NewGroupPagesComponent } from '../new-group-pages';
-
+type AOA = any[];
 @Component({
   selector: 'app-group-pages',
   templateUrl: './group-pages.component.html',
@@ -20,27 +21,30 @@ export class GroupPagesComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   dataSource: MatTableDataSource<IGroup>;
-  displayedColumns: string[] = ['id', 'nombre', 'descripcion','proyecto','options'];
-  groupData:IGroup={
-    id:0,
-    nombre:'',
-    descripcion:'',
-    jerarquia:0,
-    proyecto:'',
-    proyecto_id:0
+  data: AOA = [];
+  displayedColumns: string[] = ['id', 'nombre', 'descripcion', 'proyecto', 'options'];
+  groupData: IGroup = {
+    id: 0,
+    nombre: '',
+    descripcion: '',
+    jerarquia: 0,
+    proyecto: '',
+    proyecto_id: 0
   }
-  userData:IGroupUserAssignment={
-    id:0,
-    nombre:'',
-    usuarios:[]
+  userData: IGroupUserAssignment = {
+    username: '',
+    grupo_id:0,
   }
-  roleData:IGroupRoleAssignment={
-    id:0,
-    nombre:'',
-    roles:[],
+  roleData: IGroupRoleAssignment = {
+    id: 0,
+    nombre: '',
+    roles: [],
   }
-
-  constructor(private groupService:GroupService, public dialogService: MatDialog) {
+  userDataFile:IGroupUserAssignmentFile={
+    grupo_id:0,
+    usuarios:[],
+  }
+  constructor(private groupService: GroupService, public dialogService: MatDialog) {
     this.dataSource = new MatTableDataSource();
   }
 
@@ -53,21 +57,21 @@ export class GroupPagesComponent {
     }
   }
 
-  editar(id:string, nombre: string, descripcion:string,jerarquia:string,proyecto_id:string) {
-    this.groupData.id=Number(id);
-    this.groupData.nombre=nombre;
-    this.groupData.descripcion=descripcion;
-    this.groupData.jerarquia=Number(jerarquia);
-    this.groupData.proyecto_id=Number(proyecto_id);
+  editar(id: string, nombre: string, descripcion: string, jerarquia: string, proyecto_id: string) {
+    this.groupData.id = Number(id);
+    this.groupData.nombre = nombre;
+    this.groupData.descripcion = descripcion;
+    this.groupData.jerarquia = Number(jerarquia);
+    this.groupData.proyecto_id = Number(proyecto_id);
     const dialogRef = this.dialogService.open(EditGroupDialogComponent, {
-      height: '30rem',
+      height: '20rem',
       width: '50rem',
       data: this.groupData
     });
     dialogRef.afterClosed().subscribe(result => {
-      if(result===1){
+      if (result === 1) {
         this.cargarGrupos();
-      } 
+      }
     });
   }
 
@@ -77,19 +81,19 @@ export class GroupPagesComponent {
       width: '50rem',
     });
     dialogRef.afterClosed().subscribe(result => {
-      if(result==1){
+      if (result == 1) {
         this.cargarGrupos();
-      } 
+      }
     });
   }
-  
+
   ngOnInit() {
     this.cargarGrupos();
   }
 
-  cargarGrupos(){
-    this.groupService.getGroups().subscribe((data)=>{ 
-      this.dataSource=new MatTableDataSource(data);
+  cargarGrupos() {
+    this.groupService.getGroups().subscribe((data) => {
+      this.dataSource = new MatTableDataSource(data);
     });
   }
 
@@ -102,10 +106,10 @@ export class GroupPagesComponent {
       denyButtonText: `No`,
     }).then((result) => {
       if (result.isConfirmed) {
-        this.groupService.desactiveGroup(Number(id)).subscribe((resp)=>{
-          if(resp.status==true){
+        this.groupService.desactiveGroup(Number(id)).subscribe((resp) => {
+          if (resp.status == true) {
             this.cargarGrupos();
-            Swal.fire('Ok!','Rol desactivado','success');
+            Swal.fire('Ok!', 'Rol desactivado', 'success');
           }
         });
       } else if (result.isDenied) {
@@ -114,29 +118,85 @@ export class GroupPagesComponent {
     })
   }
 
-  verUsuarios(idProyecto:string,nombre:string){
-    this.userData.id=Number(idProyecto);
-    this.userData.nombre=nombre;
-    this.groupService.getGroupsUsers(this.userData.id).subscribe(data=>{
-      this.userData.usuarios=data;
-      const dialogRef = this.dialogService.open(GroupUserEditDialogComponent, {
-        height: '30rem',
-        width: '50rem',
-        data: this.userData
-      });
-    })
+  verUsuarios(idProyecto: string, nombre: string) {
+    this.userData.grupo_id = Number(idProyecto);
+    const dialogRef = this.dialogService.open(GroupUserEditDialogComponent, {
+      height: '40rem',
+      width: '50rem',
+      data: this.userData
+    });
+
   }
 
-  verRoles(idProyecto:string,nombre:string){
-    this.roleData.id=Number(idProyecto);
-    this.roleData.nombre=nombre;
-    this.groupService.getGroupsRoles(this.roleData.id).subscribe(data=>{
-      this.roleData.roles=data;
+  verRoles(idProyecto: string, nombre: string) {
+    this.roleData.id = Number(idProyecto);
+    this.roleData.nombre = nombre;
+    this.groupService.getGroupsRoles(this.roleData.id).subscribe(data => {
+      this.roleData.roles = data;
       const dialogRef = this.dialogService.open(GroupRoleEditDialogComponent, {
         height: '30rem',
         width: '50rem',
         data: this.roleData
-      }); 
-    })  
+      });
+    })
+  }
+
+  async addUser(id:string){
+    const { value: username } = await Swal.fire({
+      title: 'Usuario',
+      input:"text",
+      inputPlaceholder:"juan2022",
+      confirmButtonText: 'Agregar Usuario',
+      showCancelButton: true,
+      inputLabel: 'Ingrese el nombre de usuario',
+    })
+    if (username) {
+      this.userData.grupo_id=Number(id);
+      this.userData.username=username;
+      this.groupService.addUserToGroup(this.userData).subscribe(resp=>{
+        if(resp.status==true){
+          Swal.fire('Ok!', resp.message, 'success');
+        }
+      });
+    }
+  }
+
+  async addFile(id:string){
+    const { value: file } = await Swal.fire({
+      title: 'Seleccione archivo',
+      input: 'file',
+      inputAttributes: {
+        'accept': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      }
+    })
+    
+    if (file) {
+      this.userDataFile.grupo_id=Number(id);
+      const reader: FileReader = new FileReader();
+      reader.onload = (e:any) => {
+        const bstr: string = e.target.result;
+        const wb: XLSX.WorkBook = XLSX.read(bstr, { type: 'binary' });
+  
+        /* grab first sheet */
+        const wsname: string = wb.SheetNames[0];
+        const ws: XLSX.WorkSheet = wb.Sheets[wsname];
+        /* save data */
+        this.data = <AOA>(XLSX.utils.sheet_to_json(ws, { header: 1 }));
+        this.generateJsonUsers();
+      }
+      reader.readAsBinaryString(file);
+    }
+  }
+
+  generateJsonUsers(){
+    this.data.forEach(dto=>{
+      this.userDataFile.usuarios.push(dto.toString());
+    })
+    
+    this.groupService.assignGroupUsersFile(this.userDataFile).subscribe(resp=>{
+      if(resp.status==true){
+        Swal.fire('Ok',resp.message,'success');
+      }
+    })
   }
 }

@@ -30,3 +30,8 @@ export interface IProjectDataEdit extends Omit<IProjectCreate,'encuesta_id'>{
     encuesta:string,
     id:number
 }
+
+export interface IProjectUserAssingment {
+    usuario_id:number,
+    proyecto_id:number
+}

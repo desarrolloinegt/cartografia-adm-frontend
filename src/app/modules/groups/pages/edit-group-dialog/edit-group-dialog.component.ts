@@ -20,7 +20,6 @@ export class EditGroupDialogComponent {
   jerarquias=IHierarchy.getHierarchys();
   constructor(private groupService:GroupService,private projectService:ProjectService,public dialogRef:MatDialogRef<IGroup>, @Inject(MAT_DIALOG_DATA) public data: IGroup, private formBuilder: FormBuilder) {
     this.buildForm();
-    this.getProjects();
   }
   
   submit(){
@@ -31,7 +30,6 @@ export class EditGroupDialogComponent {
       id:[this.data.id,[Validators.required]],
       nombre: [this.data.nombre, [Validators.required]],
       descripcion: [this.data.descripcion],
-      proyecto_id:[this.data.proyecto_id,[Validators.required]],
     });
   }
 
@@ -45,18 +43,10 @@ export class EditGroupDialogComponent {
   get Descripcion() {
     return this.editForm.get('descripcion');
   }
-
-  get ProyectoId() {
-    return this.editForm.get('proyecto_id');
-  }
   get Jerarquia() {
     return this.editForm.get('jerarquia');
   }
-  getProjects(){
-    this.projectService.getProjectView().subscribe(data=>{
-      this.projects=data;
-    })
-  }
+ 
 
   editGroup(){
     if(this.editForm.valid){

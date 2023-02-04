@@ -1,32 +1,27 @@
 <br />
 <br />
-<div class="form-group">
-    <mat-form-field appearance="outline" class="full-width-input">
-    <mat-label [style.fontSize.px]="16">Seleccione un Rol</mat-label>
-    <mat-select formControlName="roles">
-        <!-- <mat-option
-          *ngFor="let rol of roles"
-        [value]="rol.id + ',' + rol.nombre"
-        >{{ rol.nombre }}</mat-option> -->
-    </mat-select>
-      <!-- <mat-error *ngIf="Rol?.touched && Rol?.hasError('required')"
-        >Rol es <strong>requerido</strong>
-    </mat-error>  -->
-    </mat-form-field>
-</div>
-
-<div class="frow">
-    <div class="col-sm-1-1 col-sm-6-12 col-md-6-12">
-        <button mat-flat-button color="accent" style="margin-right: 8px;">
-            <mat-icon>arrow_upward</mat-icon>
-            Subir archivo xls
+<div class="container">
+    <div>
+        <mat-form-field appearance="outline" >
+            <mat-label [style.fontSize.px]="16">Seleccione un Rol</mat-label>
+            <mat-select #rol>
+                <mat-option *ngFor="let group of groups" [value]="group.id + ',' + group.nombre">
+                    {{ group.nombre }}
+                </mat-option> 
+            </mat-select>
+        </mat-form-field>
+    </div>
+    
+    <div>
+        <button [disabled]="!rol.value" mat-flat-button color="accent">
+            <mat-icon>arrow_downward</mat-icon>
+            Descargar Plantilla
         </button>
     </div>
-
-    <div class="col-sm-1-1 col-sm-6-12 col-md-6-12">
-        <button mat-flat-button color="accent" style="margin-right: 8px;">
-            <mat-icon>arrow_downward</mat-icon>
-            Descargar
+    <div class="upms">
+        <button mat-flat-button color="accent">
+            <mat-icon>arrow_upward</mat-icon>
+            Cargar Archivo
         </button>
     </div>
 </div>

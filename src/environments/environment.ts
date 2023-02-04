@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   api: {
    //host: 'http://localhost/api/'
-    host: 'https://cartografia-backend.onrender.com/api/'
+   host: 'https://cartografia-backend.onrender.com/api/'
   },
 };
 

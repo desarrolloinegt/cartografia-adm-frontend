@@ -41,7 +41,6 @@
             mat-icon-button
             (click)="editar(row.id, row.nombre, row.descripcion,row.proyecto_id)"
             matTooltip="Editar"
-            matTooltipPosition="right"
             color="primary"
             class="iconbutton"
           >
@@ -66,6 +65,14 @@
             class="iconbutton"
           >
             <mat-icon >supervised_user_circle</mat-icon>
+          </button>
+          <button mat-icon-button matTooltip="Agregar usuario" color="primary"
+          (click)="addUser(row.id)">
+            <mat-icon>add</mat-icon>
+          </button>
+          <button mat-icon-button matTooltip="Cargar archivo" color="primary"
+          (click)="addFile(row.id)">
+            <mat-icon>arrow_upward</mat-icon>
           </button>
           <button
           *ngxPermissionsOnly="['asignar-rol-grupo']"

@@ -1,5 +1,5 @@
 <div class="card">
-    <h3 mat-dialog-title>Encuesta: {{data.nombre}}</h3>
+    <h3 mat-dialog-title>Rol: {{data.nombre}}</h3>
     <br>
     <br>
     <div class="card-body">
@@ -20,16 +20,6 @@
                     <input type="text" formControlName="descripcion" placeholder="Proyecto 2026" matInput class="form-control" />
                     <mat-error *ngIf="Descripcion?.touched && Descripcion?.hasError('required')">Descripcion es <strong>requerida</strong>
                     </mat-error>
-                </mat-form-field>
-            </div>
-            <div class="form-group">
-                <mat-form-field appearance="outline" class="full-width-input">
-                    <mat-label [style.fontSize.px]="16">Seleccione un proyecto</mat-label>
-                    <mat-select formControlName="proyecto_id">
-                        <mat-option *ngFor="let project of projects"  [value]="project.id">{{project.nombre}}</mat-option>
-                    </mat-select>
-                    <mat-error *ngIf="ProyectoId?.touched && ProyectoId?.hasError('required')">Proyecto es <strong>requerida</strong>
-                    </mat-error>                    
                 </mat-form-field>
             </div>
             <div class="form-group">
