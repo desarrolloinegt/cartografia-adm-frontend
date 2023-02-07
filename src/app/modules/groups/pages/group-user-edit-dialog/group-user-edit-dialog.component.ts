@@ -1,6 +1,9 @@
-import { Component,Inject } from '@angular/core';
+import { Component, Inject, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { IGroupUserAssignment } from '@core/interfaces/i-group';
 import { IUserList } from '@core/interfaces/i-user';
 import { GroupService } from '@modules/groups/services';
@@ -13,63 +16,68 @@ import Swal from 'sweetalert2';
   styleUrls: ['./group-user-edit-dialog.component.scss']
 })
 export class GroupUserEditDialogComponent {
-  editForm!:FormGroup;
-  public checked = false;
-  users:IUserList[]=[]
 
-  constructor(private userService:UserService,private groupService:GroupService ,public dialogRef:MatDialogRef<IGroupUserAssignment>, @Inject(MAT_DIALOG_DATA) public data: IGroupUserAssignment, private formBuilder: FormBuilder) {
-   
-    this.buildForm();
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+  dataSource: MatTableDataSource<String>;
+
+  userData: IGroupUserAssignment = {
+    grupo_id: 0,
+    username: '',
+  }
+  displayedColumns: string[] = ['username', 'options'];
+  constructor(private userService: UserService, private groupService: GroupService, public dialogRef: MatDialogRef<IGroupUserAssignment>, @Inject(MAT_DIALOG_DATA) public data: IGroupUserAssignment, private formBuilder: FormBuilder) {
+    this.dataSource = new MatTableDataSource();
     this.getUsers();
   }
-  
-  submit(){}
 
-  private buildForm(){
-    this.editForm = this.formBuilder.group({
-      grupo_id:[this.data.id,[Validators.required]],
-      usuarios:[[],[Validators.required]]
+  submit() { }
+
+  editGroup() {
+
+  }
+
+  getUsers() {
+    this.groupService.getGroupsUsers(this.data.grupo_id).subscribe(data => {
+      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     });
   }
-
-  get Roles(){
-    return this.editForm.get('roles');
-  }
-
-  editGroup(){   
-    if(this.editForm.valid){
-      this.groupService.editGroupUsers(this.editForm.value).subscribe((resp)=>{
-        if(resp.status==true){
-          Swal.fire('Ok!', 'Usuarios guardados correctamente', 'success');
-          this.dialogRef.close(1);
-        }
-      },(err) => {
-        console.log(err);
-      });
-    }
-  }
-
-  getUsers(){
-    this.userService.getAllUserListView().subscribe((data)=>{
-      this.users=data;
-      this.users.forEach(dto=>{
-        dto.checked=false;
-      });
-      this.defaultUsers();
-    });
-    
-  }
-  defaultUsers(){
-    for (let i = 0; i < this.users.length; i++) {
-      for (let j = 0; j < this.data.usuarios.length; j++) {
-          if(this.users[i].username==this.data.usuarios[j].username){
-            this.users[i].checked=true;
-          }
-      }
-    }
-
-  }
-  cancelEdit(){
+  cancelEdit() {
     this.dialogRef.close();
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
+  eliminarUsuario(username: string) {
+    Swal.fire({
+      title: '¿Esta seguro que desea eliminar el usuario: ' + username + ' de este grupo?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Si',
+      denyButtonText: `No`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.userData.grupo_id = this.data.grupo_id;
+        this.userData.username = username;
+        this.groupService.deleteUserToGroup(this.userData).subscribe(resp => {
+          if (resp.status == true) {
+            Swal.fire('Ok', resp.message, 'success');
+            this.getUsers();
+          }
+        });
+      } else if (result.isDenied) {
+        Swal.fire('Cambios no guardados', '', 'info')
+      }
+    })
+
   }
 }

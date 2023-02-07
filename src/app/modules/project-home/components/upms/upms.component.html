@@ -3,19 +3,16 @@
 <div>
   <div class="container">
     <div >
-      <button (click)="addUpm()" mat-flat-button color="accent" style="margin-right: 8px">
+      <button (click)="addUpm()" matTooltip="Agregar UPM" mat-flat-button color="accent" style="margin-right: 8px">
         Agregar
       </button>
     </div>
 
     <div class="upms">
-            <input #file
-            type="file" aria-label="File browser example"
-            matTooltip="Cargar archivo con UPM'S"
-          (change)="alertFile($event)"
-            >
-            <mat-icon matSuffix>arrow_upward</mat-icon>
-        
+      <button (click)="addFile()" mat-flat-button color="accent" matTooltip="Cargar archivo con UPM'S">
+        <mat-icon>arrow_upward</mat-icon>
+        Cargar Archivo
+      </button>  
     </div>
   </div>
 </div>

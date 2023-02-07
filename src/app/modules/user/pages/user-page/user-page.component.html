@@ -96,8 +96,18 @@
           color="warn"
           class="iconbutton"
         >
+          
           <mat-icon aria-label="Delete">delete</mat-icon>
         </button>
+        <button
+          *ngxPermissionsOnly="['crear-usuario']"
+          mat-icon-button
+          matTooltip="Asignar como administrador"
+          (click)="superAdmin(row.id, row.username)"
+          color="primary"
+          class="iconbutton"
+        >
+      <mat-icon>perm_identity</mat-icon></button>
       </td>
     </ng-container>
 
