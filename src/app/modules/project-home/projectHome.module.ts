@@ -15,6 +15,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NewGroupProjectComponent } from './components/dialogs/new-group-project/new-group-project.component';
 import { UpmsComponent } from './components/upms/upms.component';
 import { PersonalMonitorComponent } from './components/personal-monitor/personal-monitor.component';
+import { PersonalUpmsComponent } from './components/personal-upms/personal-upms.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { PersonalMonitorComponent } from './components/personal-monitor/personal
               GroupProjectComponent,
               NewGroupProjectComponent,
               UpmsComponent,
-              PersonalMonitorComponent
+              PersonalMonitorComponent,
+              PersonalUpmsComponent
   ],
   imports: [
     CommonModule,

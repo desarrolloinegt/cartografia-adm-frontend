@@ -2,7 +2,7 @@
 <br />
 <div class="container">
     <div>
-        <mat-form-field appearance="outline" >
+        <mat-form-field appearance="outline" style="width: 25rem;" >
             <mat-label [style.fontSize.px]="16">Seleccione un Rol</mat-label>
             <mat-select #rol>
                 <mat-option *ngFor="let group of groups" [value]="group.id + ',' + group.nombre">
@@ -11,15 +11,14 @@
             </mat-select>
         </mat-form-field>
     </div>
-    
     <div>
-        <button [disabled]="!rol.value" mat-flat-button color="accent">
+        <button (click)="getUsers(rol.value)" [disabled]="!rol.value" mat-flat-button color="accent">
             <mat-icon>arrow_downward</mat-icon>
             Descargar Plantilla
         </button>
     </div>
     <div class="upms">
-        <button mat-flat-button color="accent">
+        <button  mat-flat-button color="accent">
             <mat-icon>arrow_upward</mat-icon>
             Cargar Archivo
         </button>

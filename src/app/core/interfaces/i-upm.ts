@@ -14,4 +14,9 @@ export interface AssignmentUpmProject {
     upm_anterior:number,
     upm_nuevo:string,
   }
+
+  export interface IUpmUserAssignment{
+    personal:string,
+    upm:string
+  }
   

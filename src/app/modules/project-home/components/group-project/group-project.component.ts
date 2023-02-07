@@ -157,11 +157,12 @@ export class GroupProjectComponent {
     }
   }
 
-  generateJsonUsers(){
+  async generateJsonUsers(){
+    this.userDataFile.usuarios=[];
     this.data.forEach(dto=>{
       this.userDataFile.usuarios.push(dto.toString());
     })
-    
+    this.userDataFile.usuarios=this.userDataFile.usuarios.filter(Boolean);
     this.groupService.assignGroupUsersFile(this.userDataFile).subscribe(resp=>{
       if(resp.status==true){
         Swal.fire('Ok',resp.message,'success');

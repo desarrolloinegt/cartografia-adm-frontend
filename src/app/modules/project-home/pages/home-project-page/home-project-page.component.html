@@ -18,10 +18,17 @@
                     <app-upms></app-upms>
                 </mat-tab>
                 
-                <mat-tab label="Asignar Personal">
+                <mat-tab label="Asignar Personal y UPM's">
+                    <br>
+                    <hr>
+                    <label [style.fontSize.px]="16">Personal</label>
                     <app-personal-monitor></app-personal-monitor>
+                    <br>
+                    <hr>
+                    <label [style.fontSize.px]="16">UPM's</label>
+                    <app-personal-upms></app-personal-upms>
                 </mat-tab>
-                <mat-tab label="Asignar UPM'S a Monitor">Content 3</mat-tab>
+                <mat-tab label="Asignar UPM'S"><app-personal-upms></app-personal-upms> </mat-tab>
                 <mat-tab label="Equipos de Campo">Content 3</mat-tab>
             </mat-tab-group>
         </div>

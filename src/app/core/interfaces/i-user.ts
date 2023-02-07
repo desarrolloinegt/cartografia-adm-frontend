@@ -14,3 +14,8 @@ export interface IUserList{
   checked:boolean
 }
 
+export interface IPersonalAssignment{
+  encargado:string,
+  personal:string
+}
+
