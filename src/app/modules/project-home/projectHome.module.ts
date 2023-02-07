@@ -20,6 +20,7 @@ import { PersonalUpmsComponent } from './components/personal-upms/personal-upms.
     NewGroupProjectComponent,
     UpmsComponent,
     PersonalMonitorComponent,
+    PersonalUpmsComponent
   ],
   imports: [
     CommonModule,
