@@ -1,5 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -23,19 +28,32 @@ export interface UserData {
 @Component({
   selector: 'app-user-page',
   templateUrl: './user-page.component.html',
-  styleUrls: ['./user-page.component.scss']
+  styleUrls: ['./user-page.component.scss'],
 })
 export class UserPageComponent {
   hide = true;
   public passwordType = 'password';
   public loading = false;
-  
-  displayedColumns: string[] = ['id', 'DPI', 'nombres', 'apellidos', 'username', 'email', 'codigo_usuario', 'options'];
+
+  displayedColumns: string[] = [
+    'id',
+    'DPI',
+    'nombres',
+    'apellidos',
+    'username',
+    'email',
+    'codigo_usuario',
+    'options',
+  ];
   dataSource: MatTableDataSource<UserData>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private userServide: UserService, private formBuilder: FormBuilder, public dialogService: MatDialog) {
+  constructor(
+    private userServide: UserService,
+    private formBuilder: FormBuilder,
+    public dialogService: MatDialog
+  ) {
     this.dataSource = new MatTableDataSource();
   }
 
@@ -44,10 +62,10 @@ export class UserPageComponent {
   }
 
   cargarUsuarios() {
-    this.userServide.getAllUsers().subscribe(data => {
-      this.dataSource =new MatTableDataSource(data);
-      this.dataSource.paginator=this.paginator;
-      this.dataSource.sort=this.sort;
+    this.userServide.getAllUsers().subscribe((data) => {
+      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     });
   }
 
@@ -70,31 +88,47 @@ export class UserPageComponent {
       height: '50rem',
       width: '60rem',
     });
-    dialogRef.afterClosed().subscribe(result => {
-      if(result==1){
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result == 1) {
         this.cargarUsuarios();
-      } 
+      }
     });
   }
 
-  editar(id: string, DPI: string, nombres: string, apellidos: string, email: string, codigo_usuario: string, username: string) {
+  editar(
+    id: string,
+    DPI: string,
+    nombres: string,
+    apellidos: string,
+    email: string,
+    codigo_usuario: string,
+    username: string
+  ) {
     const dialogRef = this.dialogService.open(EditUserDialogComponent, {
       height: '50rem',
       width: '60rem',
-      data: { id: id, DPI: DPI, nombres: nombres, apellidos: apellidos, email: email, codigo_usuario: codigo_usuario, username: username }
+      data: {
+        id: id,
+        DPI: DPI,
+        nombres: nombres,
+        apellidos: apellidos,
+        email: email,
+        codigo_usuario: codigo_usuario,
+        username: username,
+      },
     });
-    dialogRef.afterClosed().subscribe(result => {
-      if(result===1){
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === 1) {
         this.cargarUsuarios();
-      } 
+      }
     });
   }
 
-  superAdmin(id:string,nombre:string){
-    const dialogRef = this.dialogService.open(SuperadminPageComponent,{
-      height:'12rem',
-      width:'40rem',
-      data:{id:id,nombre:nombre}
+  superAdmin(id: string, nombre: string) {
+    const dialogRef = this.dialogService.open(SuperadminPageComponent, {
+      height: '12rem',
+      width: '40rem',
+      data: { id: id, nombre: nombre },
     });
   }
 
@@ -107,19 +141,22 @@ export class UserPageComponent {
       denyButtonText: `No`,
     }).then((result) => {
       if (result.isConfirmed) {
-        this.userServide.desactiveUser(Number(id)).subscribe((resp) => {
-          if (resp.status == true) {
-            this.cargarUsuarios();
-            Swal.fire('Ok!', 'Usuario Desactivado', 'success')  
+        this.userServide.desactiveUser(Number(id)).subscribe(
+          (resp) => {
+            if (resp.status == true) {
+              this.cargarUsuarios();
+              Swal.fire('Ok!', 'Usuario Desactivado', 'success');
+            }
+          },
+          (err) => {
+            this.loading = false;
+            console.log(err);
           }
-        },(err) => {
-          this.loading = false;
-          console.log(err);
-        }); 
+        );
       } else if (result.isDenied) {
-        Swal.fire('Cambios no guardados', '', 'info')
+        Swal.fire('Cambios no guardados', '', 'info');
       }
-    })
+    });
   }
 }
 export class PasswordValidation {
@@ -142,4 +179,3 @@ export class PasswordValidation {
     return null;
   }
 }
-

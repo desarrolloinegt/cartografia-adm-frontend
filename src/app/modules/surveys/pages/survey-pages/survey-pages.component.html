@@ -15,7 +15,7 @@
                 </mat-form-field>
             </div>
             <div class="col-sm-1-1 col-sm-3-12 col-md-3-12" style="text-align: right;">
-                <button mat-flat-button color="accent" style="margin-right: 8px;" (click)="open()">
+                <button *ngxPermissionsOnly="['crear-encuesta']" mat-flat-button color="accent" style="margin-right: 8px;" (click)="open()">
                     Agregar
                 </button>
             </div>
@@ -72,19 +72,4 @@
         </div>
     </div>
 </div>
-<!-- <div class="header">
-    <h1>Encuestas</h1>
-    <button
-    mat-fab
-    color="primary"
-    *ngxPermissionsOnly="['crear-encuesta']"
-    matTooltip="Click para crear"
-    (click)="open()"
-    class="iconbutton">
-    <mat-icon>add</mat-icon>
-  </button>
-</div> -->
 
-<div class="mat-elevation-z8">
-    
-</div>
