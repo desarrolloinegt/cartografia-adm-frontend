@@ -57,3 +57,15 @@ body {
   cursor: pointer;
 }
 
+.cell-pointer:hover {
+  cursor: pointer; 
+}
+
+.full-width-table{
+  width: 100%;
+}
+
+.selected-row:hover {
+  background-color: beige;
+}
+

@@ -16,7 +16,7 @@ import { SurveyEditDialogComponent } from '../survey-edit-dialog';
 })
 export class SurveyPagesComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatSort, {static: true}) sort!: MatSort;
   dataSource: MatTableDataSource<string>;
   displayedColumns: string[] = ['id', 'nombre', 'descripcion','options'];
   surveyData:ISurvey={
