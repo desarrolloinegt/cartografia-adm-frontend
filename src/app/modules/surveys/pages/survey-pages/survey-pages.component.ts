@@ -80,7 +80,7 @@ export class SurveyPagesComponent {
 
   desactivar(id: string, nombre: string) {
     Swal.fire({
-      title: '¿Esta seguro que desea Desactivar el Proyecto: ' + nombre + '?',
+      title: '¿Esta seguro que desea Desactivar la encuesta: ' + nombre + '?',
       showDenyButton: true,
       showCancelButton: true,
       confirmButtonText: 'Si',
