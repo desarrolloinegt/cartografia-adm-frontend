@@ -81,11 +81,15 @@
             >
               <mat-icon >supervised_user_circle</mat-icon>
             </button>
-            <button mat-icon-button matTooltip="Agregar usuario" color="primary"
+            <button 
+            *ngxPermissionsOnly="['asignar-usuario-grupo']"
+            mat-icon-button matTooltip="Agregar usuario" color="primary"
               (click)="addUser(row.id)">
                 <mat-icon>add</mat-icon>
               </button>
-              <button mat-icon-button matTooltip="Cargar archivo" color="primary"
+              <button 
+              *ngxPermissionsOnly="['asignar-usuario-grupo']"
+              mat-icon-button matTooltip="Cargar archivo" color="primary"
               (click)="addFile(row.id)">
                 <mat-icon>arrow_upward</mat-icon>
               </button>
