@@ -118,6 +118,7 @@ export class GroupProjectComponent {
       inputPlaceholder: "juan2022",
       confirmButtonText: 'Agregar Usuario',
       showCancelButton: true,
+      cancelButtonText:"Cancelar",
       inputLabel: 'Ingrese el nombre de usuario',
     })
     if (username) {
