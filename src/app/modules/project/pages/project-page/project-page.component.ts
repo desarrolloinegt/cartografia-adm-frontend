@@ -42,7 +42,7 @@ export class ProjectPageComponent {
     }
   }
 
-  open() {
+  openProject() {
     const dialogRef = this.dialogService.open(NewProjectPageComponent, {
       height:'27rem',
       width: '50rem',
