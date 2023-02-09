@@ -3,7 +3,7 @@
 
 <mat-form-field  class="find" >
     <mat-label>Buscar</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ej. ENEI" #input />
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ejemplo. juan2022" #input />
   </mat-form-field>
   <div class="mat-elevation-z8 table">
     <table mat-table [dataSource]="dataSource" matSort>
@@ -19,7 +19,7 @@
             *ngxPermissionsOnly="['editar-grupo']"
             mat-icon-button
             (click)="eliminarUsuario(row.username)"
-            matTooltip="Editar"
+            matTooltip="Eliminar"
             matTooltipPosition="right"
             color="warn"
             class="iconbutton"
