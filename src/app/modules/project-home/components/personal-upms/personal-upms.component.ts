@@ -7,6 +7,7 @@ import { GroupService } from '@modules/groups';
 import { ExcelService } from '@modules/project-home/services/excel.service';
 import { ProjectHomeService } from '@modules/project-home/services/project-home.service';
 import { ProjectService } from '@modules/project/services/project.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-personal-upms',
@@ -70,5 +71,28 @@ export class PersonalUpmsComponent {
       this.datos.push(this.userUpm);
     }
     this.excelService.exportAsExcelFile(this.datos,'AsignacionUPMS');
+  }
+  async addFile() {
+    const { value: file } = await Swal.fire({
+      title: 'Seleccione archivo',
+      input: 'file',
+      inputAttributes: {
+        'accept': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      }
+    })
+
+    if (file) {
+      /*const reader: FileReader = new FileReader();
+      reader.onload = (e: any) => {
+        const bstr: string = e.target.result;
+        const wb: XLSX.WorkBook = XLSX.read(bstr, { type: 'binary' });
+
+        
+        const wsname: string = wb.SheetNames[0];
+        const ws: XLSX.WorkSheet = wb.Sheets[wsname];
+        this.data = <AOA>(XLSX.utils.sheet_to_json(ws, { header: 1 }));
+        this.generateJson();*/
+    }
+    //reader.readAsBinaryString(file);
   }
 }
