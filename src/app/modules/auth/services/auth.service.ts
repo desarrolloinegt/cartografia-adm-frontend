@@ -61,6 +61,6 @@ export class AuthService {
   }
 
   getPermissionAdmin(id:number){
-    return this.apiService.getById('obtenerPermisosAdmin',id);
+    return this.apiService.getById('obtenerPermisosDirectos',id);
   }
 }
