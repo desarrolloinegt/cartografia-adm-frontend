@@ -14,7 +14,8 @@ import Swal from 'sweetalert2';
 import { MatDialog } from '@angular/material/dialog';
 import { EditUserDialogComponent } from '../edit-user-dialog';
 import { NewUserPageComponent } from '../new-user-page';
-import { SuperadminPageComponent } from '../superadmin-page/superadmin-page.component';
+import { IRoleUserAssignment } from '@core/interfaces/i-role';
+import { RolesUserDialogComponent } from '../roles-user-dialog/roles-user-dialog.component';
 export interface UserData {
   id: string;
   DPI: string;
@@ -53,6 +54,11 @@ export class UserPageComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
+  roleUserData:IRoleUserAssignment={
+    id:0,
+    nombre:'',
+    roles:[]
+  }
   constructor(
     private userServide: UserService,
     private formBuilder: FormBuilder,
@@ -132,12 +138,18 @@ export class UserPageComponent {
     });
   }
 
-  superAdmin(id: string, nombre: string) {
-    const dialogRef = this.dialogService.open(SuperadminPageComponent, {
-      height: '12rem',
-      width: '40rem',
-      data: { id: id, nombre: nombre },
+  rolesUser(id: string, nombre: string) {
+    this.roleUserData.id=Number(id),
+    this.roleUserData.nombre=nombre;
+    this.userServide.getUserRoles(this.roleUserData.id).subscribe((resp)=>{
+      this.roleUserData.roles=resp;
+      const dialogRef = this.dialogService.open(RolesUserDialogComponent, {
+        height: '40rem',
+        width: '40rem',
+        data: this.roleUserData,
+      });
     });
+    
   }
 
   desactivar(id: string, username: string) {

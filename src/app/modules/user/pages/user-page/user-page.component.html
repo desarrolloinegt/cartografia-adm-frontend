@@ -112,8 +112,8 @@
             <button
               *ngxPermissionsOnly="['crear-usuario']"
               mat-icon-button
-              matTooltip="Asignar como administrador"
-              (click)="superAdmin(row.id, row.username)"
+              matTooltip="Politicas del usuario"
+              (click)="rolesUser(row.id, row.username)"
               color="primary"
               class="iconbutton"
             >

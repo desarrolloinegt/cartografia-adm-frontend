@@ -2,8 +2,8 @@ export interface IUser {
   DPI: string;
   nombres: string;
   apellidos: string;
-  description: string;
-  phone: string;
+  descripcion: string;
+  telefono: string;
   email: string;
   codigo_usuario: number;
   password: string;

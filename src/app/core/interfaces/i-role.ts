@@ -14,3 +14,14 @@ export interface IRolePermissionsAssingmentCreate{
     id:number,
     permisos:number[]
 }
+
+export interface IRoleUserAssignment{
+    id:number,
+    nombre:string,
+    roles:IRole[]
+}
+
+export interface IRoleUserAssignmentCreate{
+    id:number,
+    roles:number[]
+}

@@ -1,5 +1,7 @@
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { IRoleUserAssignment, IRoleUserAssignmentCreate } from '@core/interfaces/i-role';
+import { IUser } from '@core/interfaces/i-user';
 import { ApiService } from '@core/services/api.service';
 import { Observable, of } from 'rxjs';
 
@@ -10,7 +12,7 @@ export class UserService {
 
   constructor(private apiService: ApiService) { }
 
-  newUser(newUser: any): Observable<any> {
+  newUser(newUser: IUser): Observable<any> {
     return this.apiService.store('registro', newUser);
   }
 
@@ -31,14 +33,14 @@ export class UserService {
     return this.apiService.desactive('usuario',id);
   }
 
-  editUser(data:any): Observable<any>{
+  editUser(data:IUser): Observable<any>{
     return this.apiService.patch('usuario/edit',data);
   }
 
-  isAdmin(id:number){
-    return this.apiService.getById('isAdmin',id);
+  getUserRoles(id:number){
+    return this.apiService.getById('obtenerRolesUser',id);
   }
-  assignAdmin(id:number,estado:string){
-    return this.apiService.store('asignarAdmin',{id:id,cadena:estado})
+  assignRole(data:IRoleUserAssignmentCreate){
+    return this.apiService.patch('asignarRoleUser',data);
   }
 }

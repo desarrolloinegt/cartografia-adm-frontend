@@ -12,7 +12,6 @@ export interface IGroupRoleAssignment{
     nombre:string,
     roles:IGroupRoleList[]
 }
-
 export interface IGroupUserAssignment{
     grupo_id:number,
     username:string,
