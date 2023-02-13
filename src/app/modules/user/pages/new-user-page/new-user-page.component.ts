@@ -25,9 +25,8 @@ export class NewUserPageComponent {
       DPI: ['', [Validators.required, Validators.pattern(/^((\\+91-?)|0)?[0-9]{13}$/)]],
       nombres: ['', [Validators.required]],
       apellidos: ['', [Validators.required]],
-      description: ['', [Validators.required]],
-      phone: ['', [Validators.required, Validators.pattern(/^((\\+91-?)|0)?[0-9]{8,30}$/)]],
-      phoneConfirm: ['', [Validators.required, Validators.pattern(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=.*[$@$!%*?&])(?=[^A-Z]*[A-Z]).{8,30}$/), PhoneValidation.MatchPhone]],
+      descripcion: [''],
+      telefono: ['', [Validators.required, Validators.pattern(/^((\\+91-?)|0)?[0-9]{8}$/)]],
       email: ['', [Validators.required, Validators.email]],
       codigo_usuario: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.pattern(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=.*[$@$!%*?&])(?=[^A-Z]*[A-Z]).{8,30}$/)]],
@@ -46,8 +45,6 @@ export class NewUserPageComponent {
           Swal.fire('Ok!', resp.message, 'success')
           this.dialogRef.close(1);
         }
-      }, (err) => {
-        console.log(err);
       });
     }
   }
@@ -89,15 +86,11 @@ export class NewUserPageComponent {
   }
 
   get Description() {
-    return this.registerForm.get('description');
+    return this.registerForm.get('descripcion');
   }
 
   get Phone() {
-    return this.registerForm.get('phone');
-  }
-
-  get PhoneConfirm() {
-    return this.registerForm.get('phoneConfirm');
+    return this.registerForm.get('telefono');
   }
 
   changePasswordType() {

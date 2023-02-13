@@ -17,7 +17,7 @@
         </button>
       </div>
     </div>
-    <div class="mat-elevation-z8">
+    <div class="mat-elevation-z8 table">
       <table mat-table [dataSource]="dataSource" matSort class="fluid">
         <!-- ID Column -->
         <ng-container matColumnDef="id">
@@ -51,14 +51,14 @@
     
         <!-- Description Column -->
         <ng-container matColumnDef="description">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Descripcion</th>
-          <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.description }}</td>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Observaciones</th>
+          <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.descripcion }}</td>
         </ng-container>
 
         <!-- Phone Column -->
         <ng-container matColumnDef="phone">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Telefono</th>
-          <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.phone }}</td>
+          <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.telefono }}</td>
         </ng-container>
 
         <!-- Email Column -->
@@ -85,8 +85,8 @@
                   row.DPI,
                   row.nombres,
                   row.apellidos,
-                  row.description,
-                  row.phone,
+                  row.descripcion,
+                  row.telefono,
                   row.email,
                   row.codigo_usuario,
                   row.username

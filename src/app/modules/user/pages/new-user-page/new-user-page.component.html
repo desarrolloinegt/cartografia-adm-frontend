@@ -54,10 +54,10 @@
 
       <div class="form-group">
         <mat-form-field appearance="outline" class="full-width-input">
-          <mat-label [style.fontSize.px]="16">Ingrese una Descripcion</mat-label>
+          <mat-label [style.fontSize.px]="16">Observaciones(Opcional)</mat-label>
           <input
           type="text"
-          formControlName="description"
+          formControlName="descripcion"
           matInput
           placeholder="usuario administrador de roles"
           class="form-control">
@@ -67,10 +67,10 @@
       <div class="form-group">
         <mat-form-field appearance="outline" class="full-width-input">
           <mat-label [style.fontSize.px]="16">Ingrese un Telefono</mat-label>
-          <input type="number" formControlName="phone" matInput placeholder="7761 - 3656" class="form-control" required/>
+          <input type="number" formControlName="telefono" matInput placeholder="7761 - 3656" class="form-control" required/>
           <mat-error *ngIf="Phone?.touched && Phone?.hasError('required')">Telefono es <strong>requerido</strong></mat-error>
 
-          <mat-error *ngIf="PhoneConfirm?.touched && PhoneConfirm?.hasError('pattern')">
+          <mat-error *ngIf="Phone?.touched && Phone?.hasError('pattern')">
             <strong>Telefono debe tener 8 digitos</strong>
           </mat-error>
         </mat-form-field>

@@ -27,8 +27,8 @@ export class EditUserDialogComponent {
       DPI: [this.data.DPI, [Validators.required, Validators.pattern(/^((\\+91-?)|0)?[0-9]{13}$/)]],
       nombres: [this.data.nombres, [Validators.required]],
       apellidos: [this.data.apellidos, [Validators.required]],
-      description: [this.data.description, [Validators.required]],
-      phone: [this.data.phone, [Validators.required]],
+      descripcion: [this.data.description],
+      telefono: [this.data.phone, [Validators.required,Validators.pattern(/^((\\+91-?)|0)?[0-9]{8}$/)]],
       email: [this.data.email, [Validators.required, Validators.email]],
       codigo_usuario: [this.data.codigo_usuario, [Validators.required]],
       password: [{value:'',disabled:true}, [ Validators.pattern(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=.*[$@$!%*?&])(?=[^A-Z]*[A-Z]).{8,30}$/)]],
@@ -73,11 +73,11 @@ export class EditUserDialogComponent {
   }
 
   get Description() {
-    return this.editForm.get('description');
+    return this.editForm.get('descripcion');
   }
 
   get Phone() {
-    return this.editForm.get('phone');
+    return this.editForm.get('telefono');
   }
   submit(){
 
@@ -107,9 +107,6 @@ export class EditUserDialogComponent {
           Swal.fire('Ok!', data.message, 'success');
           this.dialogRef.close(1);
         }
-      },(err) => {
-        this.loading = false;
-        console.log(err);
       });
       this.Password?.disable();
     }
