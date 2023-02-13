@@ -49,6 +49,18 @@
           <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.username }}</td>
         </ng-container>
     
+        <!-- Description Column -->
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Descripcion</th>
+          <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.description }}</td>
+        </ng-container>
+
+        <!-- Phone Column -->
+        <ng-container matColumnDef="phone">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Telefono</th>
+          <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.phone }}</td>
+        </ng-container>
+
         <!-- Email Column -->
         <ng-container matColumnDef="email">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
@@ -73,6 +85,8 @@
                   row.DPI,
                   row.nombres,
                   row.apellidos,
+                  row.description,
+                  row.phone,
                   row.email,
                   row.codigo_usuario,
                   row.username

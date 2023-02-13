@@ -4,7 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { IUser } from '@core/interfaces/i-user';
 import { UserService } from '@modules/user/services';
 import Swal from 'sweetalert2';
-import { PasswordValidation } from '../user-page';
+import { PasswordValidation, PhoneValidation } from '../user-page';
 
 @Component({
   selector: 'app-new-user-page',
@@ -13,6 +13,9 @@ import { PasswordValidation } from '../user-page';
 })
 export class NewUserPageComponent {
   registerForm!: FormGroup;
+
+  public passwordType = 'password'
+
   constructor(private userServide: UserService, private formBuilder: FormBuilder, public dialogRef: MatDialogRef<NewUserPageComponent>){
     this.buildForm();
   }
@@ -22,6 +25,9 @@ export class NewUserPageComponent {
       DPI: ['', [Validators.required, Validators.pattern(/^((\\+91-?)|0)?[0-9]{13}$/)]],
       nombres: ['', [Validators.required]],
       apellidos: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      phone: ['', [Validators.required, Validators.pattern(/^((\\+91-?)|0)?[0-9]{8,30}$/)]],
+      phoneConfirm: ['', [Validators.required, Validators.pattern(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=.*[$@$!%*?&])(?=[^A-Z]*[A-Z]).{8,30}$/), PhoneValidation.MatchPhone]],
       email: ['', [Validators.required, Validators.email]],
       codigo_usuario: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.pattern(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=.*[$@$!%*?&])(?=[^A-Z]*[A-Z]).{8,30}$/)]],
@@ -57,22 +63,44 @@ export class NewUserPageComponent {
   get Nombres() {
     return this.registerForm.get('nombres');
   }
+
   get Email() {
     return this.registerForm.get('email');
   }
+
   get CodigoUsuario() {
     return this.registerForm.get('codigo_usuario');
   }
+
   get Password() {
     return this.registerForm.get('password');
   }
+
   get PasswordConfirm() {
     return this.registerForm.get('passwordConfirm');
   }
+
   get Username() {
     return this.registerForm.get('username');
   }
+
   get Apellidos() {
     return this.registerForm.get('apellidos');
+  }
+
+  get Description() {
+    return this.registerForm.get('description');
+  }
+
+  get Phone() {
+    return this.registerForm.get('phone');
+  }
+
+  get PhoneConfirm() {
+    return this.registerForm.get('phoneConfirm');
+  }
+
+  changePasswordType() {
+    this.passwordType = this.passwordType == 'text' ? 'password' : 'text';
   }
 }

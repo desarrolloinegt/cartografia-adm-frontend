@@ -21,6 +21,8 @@ export interface UserData {
   nombres: string;
   apellidos: string;
   username: string;
+  description: string;
+  phone: string;
   email: string;
   codigo_usuario: string;
 }
@@ -41,6 +43,8 @@ export class UserPageComponent {
     'nombres',
     'apellidos',
     'username',
+    'description',
+    'phone',
     'email',
     'codigo_usuario',
     'options',
@@ -85,7 +89,7 @@ export class UserPageComponent {
 
   open() {
     const dialogRef = this.dialogService.open(NewUserPageComponent, {
-      height: '50rem',
+      height: '58rem',
       width: '60rem',
     });
     dialogRef.afterClosed().subscribe((result) => {
@@ -100,18 +104,22 @@ export class UserPageComponent {
     DPI: string,
     nombres: string,
     apellidos: string,
+    description: string,
+    phone: string,
     email: string,
     codigo_usuario: string,
     username: string
   ) {
     const dialogRef = this.dialogService.open(EditUserDialogComponent, {
-      height: '50rem',
+      height: '60rem',
       width: '60rem',
       data: {
         id: id,
         DPI: DPI,
         nombres: nombres,
         apellidos: apellidos,
+        description: description,
+        phone: phone,
         email: email,
         codigo_usuario: codigo_usuario,
         username: username,
@@ -171,6 +179,27 @@ export class PasswordValidation {
         const confirmPassword = confirmPasswordControl.value;
         if (password !== confirmPassword) {
           return { matchPassword: true };
+        } else {
+          return null;
+        }
+      }
+    }
+    return null;
+  }
+}
+
+export class PhoneValidation {
+  static MatchPhone(AC: AbstractControl) {
+    const formGroup = AC.parent;
+    if (formGroup) {
+      const phoneControl = formGroup.get('phone'); // to get value in input tag
+      const confirmPhoneControl = formGroup.get('phoneConfirm'); // to get value in input tag
+
+      if (phoneControl && confirmPhoneControl) {
+        const phone = phoneControl.value;
+        const confirmPhone = confirmPhoneControl.value;
+        if (phone !== confirmPhone) {
+          return { matchPhone: true };
         } else {
           return null;
         }

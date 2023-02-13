@@ -27,6 +27,8 @@ export class EditUserDialogComponent {
       DPI: [this.data.DPI, [Validators.required, Validators.pattern(/^((\\+91-?)|0)?[0-9]{13}$/)]],
       nombres: [this.data.nombres, [Validators.required]],
       apellidos: [this.data.apellidos, [Validators.required]],
+      description: [this.data.description, [Validators.required]],
+      phone: [this.data.phone, [Validators.required]],
       email: [this.data.email, [Validators.required, Validators.email]],
       codigo_usuario: [this.data.codigo_usuario, [Validators.required]],
       password: [{value:'',disabled:true}, [ Validators.pattern(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=.*[$@$!%*?&])(?=[^A-Z]*[A-Z]).{8,30}$/)]],
@@ -37,6 +39,7 @@ export class EditUserDialogComponent {
   get Id(){
     return this.editForm.get('id');
   }
+
   get DPI() {
     return this.editForm.get('DPI');
   }
@@ -44,23 +47,37 @@ export class EditUserDialogComponent {
   get Nombres() {
     return this.editForm.get('nombres');
   }
+  
   get Email() {
     return this.editForm.get('email');
   }
+
   get CodigoUsuario() {
     return this.editForm.get('codigo_usuario');
   }
+
   get Password() {
     return this.editForm.get('password');
   }
+
   get PasswordConfirm() {
     return this.editForm.get('passwordConfirm');
   }
+
   get Username() {
     return this.editForm.get('username');
   }
+
   get Apellidos() {
     return this.editForm.get('apellidos');
+  }
+
+  get Description() {
+    return this.editForm.get('description');
+  }
+
+  get Phone() {
+    return this.editForm.get('phone');
   }
   submit(){
 

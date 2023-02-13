@@ -14,6 +14,7 @@
                             digitos</strong> </mat-error>
                 </mat-form-field>
             </div>
+
             <div class="form-group">
                 <mat-form-field appearance="outline" class="full-width-input">
                     <mat-label>Ingrese su Nombre</mat-label>
@@ -23,6 +24,7 @@
                         <strong>requeridos</strong> </mat-error>
                 </mat-form-field>
             </div>
+
             <div class="form-group">
                 <mat-form-field appearance="outline" class="full-width-input">
                     <mat-label>Ingrese su Apellido</mat-label>
@@ -32,6 +34,27 @@
                         <strong>requeridos</strong> </mat-error>
                 </mat-form-field>
             </div>
+
+            <div class="form-group">
+                <mat-form-field appearance="outline" class="full-width-input">
+                    <mat-label>Ingrese una Descripcion</mat-label>
+                    <input type="text" formControlName="description" matInput
+                        placeholder="Usuario administrador de roles" class="form-control">
+                </mat-form-field>
+            </div>
+
+            <div class="form-group">
+                <mat-form-field appearance="outline" class="full-width-input">
+                    <mat-label>Ingrese Telefono</mat-label>
+                    <input type="number" formControlName="phone" matInput
+                        placeholder="7761 - 3656" class="form-control" required />
+                    <mat-error *ngIf="Phone?.touched && Phone?.hasError('required')">
+                        Telefono es
+                        <strong>requerido</strong> 
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
             <div class="form-group">
                 <mat-form-field appearance="outline" class="full-width-input">
                     <mat-label>Ingrese su Email</mat-label>
@@ -41,6 +64,7 @@
                     </mat-error>
                 </mat-form-field>
             </div>
+
             <div class="form-group">
                 <mat-form-field appearance="outline" class="full-width-input">
                     <mat-label>Ingrese el Codigo de Usuario</mat-label>
@@ -50,6 +74,7 @@
                         es <strong>requerido</strong> </mat-error>
                 </mat-form-field>
             </div>
+
             <div class="form-group">
                 <mat-form-field appearance="outline" class="full-width-input">
                     <mat-label>Ingrese el nombre de Usuario</mat-label>
@@ -59,6 +84,7 @@
                         <strong>requerido</strong> </mat-error>
                 </mat-form-field>
             </div>
+
             <div class="form-group">
                 <mat-checkbox [checked]="checked" class="example-margin" (change)="passwordStatus($event.checked)">
                     Cambiar Contraseña
@@ -74,6 +100,7 @@
                         </strong> </mat-error>
                 </mat-form-field>
             </div>
+
             <div class="form-group">
                 <mat-form-field appearance="outline" class="full-width-input">
                     <mat-label>Confirme contraseña</mat-label>
@@ -87,6 +114,7 @@
                         </strong> </mat-error>
                 </mat-form-field>
             </div>
+
             <div class="form-group">
                 <button
                 *ngxPermissionsOnly="['editar-usuario']"

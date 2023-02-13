@@ -18,6 +18,7 @@
           </mat-error>
         </mat-form-field>
       </div>
+
       <div class="form-group">
         <mat-form-field appearance="outline" class="full-width-input">
           <mat-label [style.fontSize.px]="16">Ingrese su Nombre</mat-label>
@@ -33,6 +34,7 @@
           </mat-error>
         </mat-form-field>
       </div>
+
       <div class="form-group">
         <mat-form-field appearance="outline" class="full-width-input">
           <mat-label [style.fontSize.px]="16">Ingrese su Apellido</mat-label>
@@ -49,6 +51,31 @@
           </mat-error>
         </mat-form-field>
       </div>
+
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label [style.fontSize.px]="16">Ingrese una Descripcion</mat-label>
+          <input
+          type="text"
+          formControlName="description"
+          matInput
+          placeholder="usuario administrador de roles"
+          class="form-control">
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label [style.fontSize.px]="16">Ingrese un Telefono</mat-label>
+          <input type="number" formControlName="phone" matInput placeholder="7761 - 3656" class="form-control" required/>
+          <mat-error *ngIf="Phone?.touched && Phone?.hasError('required')">Telefono es <strong>requerido</strong></mat-error>
+
+          <mat-error *ngIf="PhoneConfirm?.touched && PhoneConfirm?.hasError('pattern')">
+            <strong>Telefono debe tener 8 digitos</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
       <div class="form-group">
         <mat-form-field appearance="outline" class="full-width-input">
           <mat-label [style.fontSize.px]="16">Ingrese su Email</mat-label>
@@ -64,6 +91,7 @@
           </mat-error>
         </mat-form-field>
       </div>
+
       <div class="form-group">
         <mat-form-field appearance="outline" class="full-width-input">
           <mat-label [style.fontSize.px]="16"
@@ -82,6 +110,7 @@
           </mat-error>
         </mat-form-field>
       </div>
+
       <div class="form-group">
         <mat-form-field appearance="outline" class="full-width-input">
           <mat-label [style.fontSize.px]="16">Ingrese el Nombre de Usuario</mat-label>
@@ -97,56 +126,44 @@
           </mat-error>
         </mat-form-field>
       </div>
+
       <div class="form-group">
         <mat-form-field appearance="outline" class="full-width-input">
           <mat-label [style.fontSize.px]="16">Ingrese Contraseña</mat-label>
-          <input
-            type="password"
-            formControlName="password"
-            matInput
-            class="form-control"
-            required/>
-          <mat-error *ngIf="Password?.touched && Password?.hasError('required')"
-            >Contraseña es <strong>requerido</strong>
-          </mat-error>
-          <mat-error *ngIf="Password?.touched && Password?.hasError('pattern')"
-            >Contraseña debe tener al menos
-            <strong>
-              8 caracteres, letras minusculas, letras mayusculas, numeros y
-              caracteres especiales
-            </strong>
+          <input matInput type="{{passwordType}}" formControlName="password" class="form-control" required/>
+          <a *ngIf="passwordType=='password'" matSuffix mat-icon-button aria-label="Clear" (click)="changePasswordType()">
+            <mat-icon>visibility</mat-icon>
+          </a>
+          
+          <a *ngIf="passwordType=='text'" matSuffix mat-icon-button aria-label="Clear" (click)="changePasswordType()">
+            <mat-icon>visibility_off</mat-icon>
+          </a>
+          
+          <mat-error *ngIf="Password?.touched && Password?.hasError('required')">Contraseña es <strong>requerida</strong></mat-error>
+          
+          <mat-error *ngIf="Password?.touched && Password?.hasError('pattern')">Contraseña debe tener al menos<strong>
+              8 caracteres, letras minusculas, letras mayusculas, numeros y caracteres especiales</strong>
           </mat-error>
         </mat-form-field>
       </div>
+
       <div class="form-group">
         <mat-form-field appearance="outline" class="full-width-input">
           <mat-label [style.fontSize.px]="16">Confirme Contraseña</mat-label>
-          <input
-            type="password"
-            formControlName="passwordConfirm"
-            matInput
-            class="form-control"
-            required/>
+          <input matInput type="{{passwordType}}" formControlName="passwordConfirm" class="form-control" required/>
+            <a *ngIf="passwordType=='password'" matSuffix mat-icon-button aria-label="Clear" (click)="changePasswordType()"></a>
+            
+            <a *ngIf="passwordType=='text'" matSuffix mat-icon-button aria-label="Clear" (click)="changePasswordType()"></a>
 
-          <mat-error
-            *ngIf="
-              PasswordConfirm?.touched && PasswordConfirm?.hasError('required')">Contraseña es <strong>requerido</strong>
-          </mat-error>
-          <mat-error
-            *ngIf="
-              PasswordConfirm?.touched && PasswordConfirm?.hasError('pattern')">Contraseña debe tener al menos
-            <strong>
-              8 caracteres, letras minusculas, letras mayusculas, numeros y
-              caracteres especiales
-            </strong>
-          </mat-error>
-          <mat-error
-            *ngIf="
-              PasswordConfirm?.touched &&
-              PasswordConfirm?.hasError('matchPassword')"><strong> Las contraseñas no coinciden </strong>
-          </mat-error>
+            <mat-error *ngIf="PasswordConfirm?.touched && PasswordConfirm?.hasError('required')">Confirmar contraseña es <strong>requerido</strong></mat-error>
+
+            <mat-error *ngIf="PasswordConfirm?.touched && PasswordConfirm?.hasError('pattern')">Contraseña debe tener al menos
+              <strong>8 caracteres, letras minusculas, letras mayusculas, numeros y caracteres especiales</strong></mat-error>
+
+            <mat-error *ngIf="PasswordConfirm?.touched && PasswordConfirm?.hasError('matchPassword')"><strong> Las contraseñas no coinciden</strong></mat-error>
         </mat-form-field>
       </div>
+
       <div class="form-group">
         <button
           type="submit"
