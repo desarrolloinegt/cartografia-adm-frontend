@@ -7,6 +7,7 @@ import { GroupService } from '@modules/groups';
 import { ExcelService } from '@modules/project-home/services/excel.service';
 import { ProjectHomeService } from '@modules/project-home/services/project-home.service';
 import { ProjectService } from '@modules/project/services/project.service';
+import Swal from 'sweetalert2';
 import * as XLSX from 'xlsx';
 type AOA = any[][];
 @Component({
@@ -17,18 +18,18 @@ type AOA = any[][];
 export class PersonalMonitorComponent {
   groups!: IGroup[];
   idProject!: number;
-  users:IPersonalAssignment={
-    personal:'',
-    encargado:''
+  users: IPersonalAssignment = {
+    personal: '',
+    encargado: ''
   }
-  usersFile:IPersonalAssignment[]=[];
-  usernames:IUserList[]=[]
+  usersFile: IPersonalAssignment[] = [];
+  usernames: IUserList[] = []
   projectUserAssignment: IProjectUserAssingment = {
     usuario_id: 0,
     proyecto_id: 0
   }
- 
-  constructor(private groupService: GroupService, private projectHomeService: ProjectHomeService,private projectService:ProjectService,private excelService:ExcelService) {
+
+  constructor(private groupService: GroupService, private projectHomeService: ProjectHomeService, private projectService: ProjectService, private excelService: ExcelService) {
 
   }
   ngOnInit() {
@@ -38,27 +39,50 @@ export class PersonalMonitorComponent {
       this.projectHomeService.getIdProject(localStorage.getItem('project') || '').subscribe(data => {
         this.projectUserAssignment.proyecto_id = data;
         this.getGroupsMinor();
-      }); 
+      });
     }
     this.projectHomeService.getIdProject(localStorage.getItem('project') || '').subscribe(data => {
       this.idProject = data;
     });
-    
+
   }
-  async getGroupsMinor(){
+  async getGroupsMinor() {
     this.groupService.getGroupsMinor(this.projectUserAssignment).subscribe(data => {
       this.groups = data;
     });
   }
 
-  getUsers(grupo:string){
-    let str=grupo.split(',');
+  getUsers(grupo: string) {
+    let str = grupo.split(',');
     this.groupService.getGroupsUsers(Number(str[0])).subscribe(data => {
-      this.usernames=data;
-      this.usernames.forEach(data=>{
-        this.usersFile.push(this.users={encargado:'',personal:data.username});
+      this.usernames = data;
+      this.usernames.forEach(data => {
+        this.usersFile.push(this.users = { encargado: '', personal: data.username });
       })
-     this.excelService.exportAsExcelFile(this.usersFile,str[1]);
+      this.excelService.exportAsExcelFile(this.usersFile, str[1]);
     });
+  }
+  async addFile() {
+    const { value: file } = await Swal.fire({
+      title: 'Seleccione archivo',
+      input: 'file',
+      inputAttributes: {
+        'accept': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      }
+    })
+
+    if (file) {
+      /*const reader: FileReader = new FileReader();
+      reader.onload = (e: any) => {
+        const bstr: string = e.target.result;
+        const wb: XLSX.WorkBook = XLSX.read(bstr, { type: 'binary' });
+
+        
+        const wsname: string = wb.SheetNames[0];
+        const ws: XLSX.WorkSheet = wb.Sheets[wsname];
+        this.data = <AOA>(XLSX.utils.sheet_to_json(ws, { header: 1 }));
+        this.generateJson();*/
+    }
+    //reader.readAsBinaryString(file);
   }
 }
