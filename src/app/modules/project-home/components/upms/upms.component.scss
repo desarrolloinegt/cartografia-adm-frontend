@@ -41,17 +41,7 @@ ul {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-
 .container{
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.upms{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font: 1rem/1.5 "PT Sans", Arial, sans-serif;
-    color: #5a5a5a;
+    justify-content:flex-end;
 }

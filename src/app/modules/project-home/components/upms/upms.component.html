@@ -2,14 +2,17 @@
 <br>
 <div>
   <div class="container">
-    <div >
-      <button (click)="addUpm()" mat-flat-button color="accent" style="margin-right: 8px">
-        Agregar
+    <div>
+      <button (click)="addUpm()" mat-flat-button color="accent">
+        <mat-icon>add</mat-icon>
+        Crear UPM
       </button>
     </div>
-
-    <div class="upms">
-      <button (click)="addFile()" mat-flat-button color="accent">
+  </div>
+  <br>
+  <div class="container">
+    <div>
+      <button (click)="addFile()" mat-flat-button color="accent" >
         <mat-icon>arrow_upward</mat-icon>
         Cargar Archivo de UPM
       </button>  
