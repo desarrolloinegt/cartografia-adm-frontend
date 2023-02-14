@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PersonalMonitorComponent } from './personal-monitor.component';
+import { AsignarPersonalComponent } from './asignar-personal.component';
 
 describe('GroupProjectComponent', () => {
-let component: PersonalMonitorComponent;
-let fixture: ComponentFixture<PersonalMonitorComponent>;
+let component: AsignarPersonalComponent;
+let fixture: ComponentFixture<AsignarPersonalComponent>;
 
 beforeEach(async () => {
     await TestBed.configureTestingModule({
-    declarations: [PersonalMonitorComponent],
+    declarations: [AsignarPersonalComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(PersonalMonitorComponent);
+    fixture = TestBed.createComponent(AsignarPersonalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
 });

@@ -10,8 +10,8 @@ import { GroupProjectComponent } from './components/group-project/group-project.
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NewGroupProjectComponent } from './components/dialogs/new-group-project/new-group-project.component';
 import { UpmsComponent } from './components/upms/upms.component';
-import { PersonalMonitorComponent } from './components/personal-monitor/personal-monitor.component';
-import { PersonalUpmsComponent } from './components/personal-upms/personal-upms.component';
+import { AsignarPersonalComponent } from './components/asignar-personal/asignar-personal.component';
+import { EncargadoUpmsComponent } from './components/encargado-upms/encargado-upms.component';
 
 @NgModule({
   declarations: [
@@ -19,8 +19,8 @@ import { PersonalUpmsComponent } from './components/personal-upms/personal-upms.
     GroupProjectComponent,
     NewGroupProjectComponent,
     UpmsComponent,
-    PersonalMonitorComponent,
-    PersonalUpmsComponent
+    AsignarPersonalComponent,
+    EncargadoUpmsComponent
   ],
   imports: [
     CommonModule,

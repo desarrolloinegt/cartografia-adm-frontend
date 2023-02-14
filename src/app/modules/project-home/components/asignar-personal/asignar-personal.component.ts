@@ -1,76 +1,63 @@
-import { Component } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-import { IGroup } from '@core/interfaces/i-group';
+import { Component, ViewChild } from '@angular/core';
+import { IGroup, IGroupUserAssignment } from '@core/interfaces/i-group';
 import { IProjectUserAssingment } from '@core/interfaces/i-project';
-import { IUpmUserAssignment } from '@core/interfaces/i-upm';
+import { IPersonalAssignment, IUserList } from '@core/interfaces/i-user';
 import { GroupService } from '@modules/groups';
 import { ExcelService } from '@modules/project-home/services/excel.service';
 import { ProjectHomeService } from '@modules/project-home/services/project-home.service';
 import { ProjectService } from '@modules/project/services/project.service';
 import Swal from 'sweetalert2';
-
+import * as XLSX from 'xlsx';
+type AOA = any[][];
 @Component({
-  selector: 'app-personal-upms',
-  templateUrl: './personal-upms.component.html',
-  styleUrls: ['./personal-upms.component.scss']
+  selector: 'app-asignar-personal',
+  templateUrl: './asignar-personal.component.html',
+  styleUrls: ['./asignar-personal.component.scss'],
 })
-export class PersonalUpmsComponent {
+export class AsignarPersonalComponent {
   groups!: IGroup[];
- 
-  datos:IUpmUserAssignment[]=[
-  ];
-  userUpm:IUpmUserAssignment={
-    personal:'',
-    upm:''
-  };
-  nameUpms: string[] = [];
   idProject!: number;
+  users:object[]=[];
+  nameGroup:string='';
+  usernames: IUserList[] = []
   projectUserAssignment: IProjectUserAssingment = {
     usuario_id: 0,
     proyecto_id: 0
   }
-  constructor(private groupService: GroupService, private projectHomeService: ProjectHomeService, private projectService: ProjectService,private excelService:ExcelService) {
-  }
 
+  constructor(private groupService: GroupService, private projectHomeService: ProjectHomeService, private projectService: ProjectService, private excelService: ExcelService) {
+
+  }
   ngOnInit() {
     let idUsuario = localStorage.getItem('id');
     if (Number(idUsuario)) {
       this.projectUserAssignment.usuario_id = Number(idUsuario);
       this.projectHomeService.getIdProject(localStorage.getItem('project') || '').subscribe(data => {
         this.projectUserAssignment.proyecto_id = data;
-        this.idProject=data;
         this.getGroupsMinor();
       });
     }
-  }
+    this.projectHomeService.getIdProject(localStorage.getItem('project') || '').subscribe(data => {
+      this.idProject = data;
+    });
 
+  }
   async getGroupsMinor() {
     this.groupService.getGroupsMinor(this.projectUserAssignment).subscribe(data => {
       this.groups = data;
     });
   }
 
-  async cargarUpmsAsignadas() {
-    if (Number(this.idProject)) {
-      this.projectService.getUpms(this.idProject).subscribe(resp => {
-        resp.forEach((element:any) => {
-          this.nameUpms.push(element.upm);
-        });
-        this.createFile();
-      });
-    }
-  }
-
-  createFile() {
-    this.datos=[];
-    for (let index = 0; index < this.nameUpms.length; index++) {
-      this.userUpm={
-        personal:' ',
-        upm:this.nameUpms[index]
-      }
-      this.datos.push(this.userUpm);
-    }
-    this.excelService.exportAsExcelFile(this.datos,'AsignacionUPMS');
+  getUsers(grupo: string) {
+    let str = grupo.split(',');
+    this.users[0]={encargado:'',usuario:str[1]};
+    this.groupService.getGroupsUsers(Number(str[0])).subscribe(data => {
+      this.usernames = data;
+      this.usernames.forEach(data => {
+        this.users.push({ encargado: '',usuario: data.username });
+      })
+      this.excelService.exportAsExcelFile(this.users, str[1]);
+    });
   }
   async addFile() {
     const { value: file } = await Swal.fire({

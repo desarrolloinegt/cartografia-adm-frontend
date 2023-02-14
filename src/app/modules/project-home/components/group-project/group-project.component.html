@@ -1,6 +1,6 @@
 <div class="mat-elevation-z8 table_div">
-  <br>
-  <br>
+  <br />
+  <br />
   <mat-label class="orden_label"
     ><strong>Ordene los grupos de mayor a menor</strong>
   </mat-label>
@@ -21,7 +21,7 @@
     </ng-container>
 
     <!-- nombre Column -->
-    <ng-container matColumnDef="nombre" sticky>
+    <ng-container matColumnDef="nombre">
       <mat-header-cell *matHeaderCellDef>Nombre</mat-header-cell>
       <mat-cell *matCellDef="let row">
         <mat-icon class="dragCursor" (mousedown)="dragDisabled = false"
@@ -30,9 +30,9 @@
         <span>{{ row.nombre }}</span>
       </mat-cell>
     </ng-container>
-
-    <ng-container matColumnDef="jerarquia">
-      <mat-header-cell *matHeaderCellDef>Jerarquia</mat-header-cell>
+    <!-- Jerarquia Column -->
+    <ng-container matColumnDef="jerarquia" sticky>
+      <mat-header-cell *matHeaderCellDef>Orden</mat-header-cell>
       <mat-cell *matCellDef="let row">{{ row.jerarquia }}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="descripcion">
@@ -63,7 +63,7 @@
           <mat-icon aria-label="Delete">delete</mat-icon>
         </button>
         <button
-          *ngxPermissionsOnly="['asignar-usuario-grupo']"
+          *ngxPermissionsOnly="['ver-usuario-grupo']"
           mat-icon-button
           matTooltip="Ver usuarios"
           (click)="verUsuarios(row.id, row.nombre)"
@@ -73,6 +73,7 @@
           <mat-icon>supervised_user_circle</mat-icon>
         </button>
         <button
+          *ngxPermissionsOnly="['asignar-usuario-grupo']"
           mat-icon-button
           matTooltip="Agregar usuario"
           color="primary"
@@ -81,6 +82,7 @@
           <mat-icon>add</mat-icon>
         </button>
         <button
+          *ngxPermissionsOnly="['asignar-usuario-grupo']"
           mat-icon-button
           matTooltip="Cargar archivo"
           color="primary"

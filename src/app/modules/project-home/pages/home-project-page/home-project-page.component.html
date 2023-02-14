@@ -16,24 +16,11 @@
         <div>
             <mat-tab-group
             color="accent">
-                <mat-tab label="Roles" ><app-group-project></app-group-project></mat-tab>
-                <mat-tab label="UPM">
+                <mat-tab label="Roles" *ngxPermissionsOnly="['crear-grupo']" ><app-group-project></app-group-project></mat-tab>
+                <mat-tab label="UPM"  *ngxPermissionsOnly="['ver-upms']">
                     <app-upms></app-upms>
                 </mat-tab>
                 
-                <mat-tab label="Asignar Personal y UPM">
-                    <br>
-                    <hr>
-                    <br>
-                    <h1 [style.fontSize.px]="20">Personal</h1>
-                    <app-personal-monitor></app-personal-monitor>
-                    <br>
-                    <hr>
-                    <br>
-                    <h1 [style.fontSize.px]="20">UPM's</h1>
-                    <app-personal-upms></app-personal-upms>
-                </mat-tab>
-                <mat-tab label="Asignar UPM"><app-personal-upms></app-personal-upms> </mat-tab>
                 <mat-tab label="Equipos de Campo">Content 3</mat-tab>
             </mat-tab-group>
         </div>
