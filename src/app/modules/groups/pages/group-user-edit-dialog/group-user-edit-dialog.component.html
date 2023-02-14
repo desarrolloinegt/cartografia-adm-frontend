@@ -16,7 +16,7 @@
         <th mat-header-cell *matHeaderCellDef>Acciones</th>
         <td mat-cell *matCellDef="let row">
           <button
-            *ngxPermissionsOnly="['editar-grupo']"
+            *ngxPermissionsOnly="['eliminar-usuario-grupo']"
             mat-icon-button
             (click)="eliminarUsuario(row.username)"
             matTooltip="Eliminar"

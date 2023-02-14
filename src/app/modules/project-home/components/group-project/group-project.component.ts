@@ -21,7 +21,7 @@ export class GroupProjectComponent {
   @ViewChild('table', { static: true }) table!: MatTable<IGroup>;
   dataSource!: IGroup[];
   data: AOA = [];
-  displayedColumns: string[] = ['nombre', 'descripcion', 'options'];
+  displayedColumns: string[] = ['nombre','jerarquia', 'descripcion', 'options'];
   dragDisabled = true;
   project: string = '';
   group: IGroup = {
