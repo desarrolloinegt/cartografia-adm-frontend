@@ -33,7 +33,6 @@ export class EditUserDialogComponent {
       codigo_usuario: [this.data.codigo_usuario, [Validators.required]],
       password: [{value:'',disabled:true}, [ Validators.pattern(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=.*[$@$!%*?&])(?=[^A-Z]*[A-Z]).{8,30}$/)]],
       passwordConfirm: [{value:'',disabled:true}, [Validators.pattern(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=.*[$@$!%*?&])(?=[^A-Z]*[A-Z]).{8,30}$/), PasswordValidation.MatchPassword]],
-      username: [this.data.username, [Validators.required]]
     });
   }
   get Id(){
@@ -62,10 +61,6 @@ export class EditUserDialogComponent {
 
   get PasswordConfirm() {
     return this.editForm.get('passwordConfirm');
-  }
-
-  get Username() {
-    return this.editForm.get('username');
   }
 
   get Apellidos() {
