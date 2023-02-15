@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { IGroup } from '@core/interfaces/i-group';
 import { IProjectUserAssingment } from '@core/interfaces/i-project';
@@ -7,6 +9,7 @@ import { GroupService } from '@modules/groups';
 import { ExcelService } from '@modules/project-home/services/excel.service';
 import { ProjectHomeService } from '@modules/project-home/services/project-home.service';
 import { ProjectService } from '@modules/project/services/project.service';
+import { IUserList } from '@core/interfaces/i-user';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -16,9 +19,14 @@ import Swal from 'sweetalert2';
 })
 export class EncargadoUpmsComponent {
   groups!: IGroup[];
- 
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+  users: IUserList[] = []
+  dataSource: MatTableDataSource<IGroup>;
+  displayedColumns: string[] = ['encargado', 'upm', 'options'];
   datos:IUpmUserAssignment[]=[
   ];
+
   userUpm:IUpmUserAssignment={
     personal:'',
     upm:''
@@ -30,6 +38,7 @@ export class EncargadoUpmsComponent {
     proyecto_id: 0
   }
   constructor(private groupService: GroupService, private projectHomeService: ProjectHomeService, private projectService: ProjectService,private excelService:ExcelService) {
+    this.dataSource=new MatTableDataSource();
   }
 
   ngOnInit() {
@@ -43,14 +52,26 @@ export class EncargadoUpmsComponent {
       });
     }
   }
-
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
   async getGroupsMinor() {
     this.groupService.getGroupsMinor(this.projectUserAssignment).subscribe(data => {
       this.groups = data;
     });
   }
 
-  async cargarUpmsAsignadas() {
+  async cargarUpmsAsignadas(grupo:string) {
+    let str=grupo.split(",");
+    this.groupService.getGroupsUsers(Number(str[0])).subscribe(data => {
+      this.users = data;
+      this.users.forEach(data => {
+        //this.users.push({ encargado: '',usuario: data.username });
+      })});
     if (Number(this.idProject)) {
       this.projectService.getUpms(this.idProject).subscribe(resp => {
         resp.forEach((element:any) => {

@@ -110,23 +110,6 @@
           </mat-error>
         </mat-form-field>
       </div>
-
-      <div class="form-group">
-        <mat-form-field appearance="outline" class="full-width-input">
-          <mat-label [style.fontSize.px]="16">Ingrese el Nombre de Usuario</mat-label>
-          <input
-            type="text"
-            formControlName="username"
-            matInput
-            placeholder="usuario2023"
-            class="form-control"
-            required/>
-          <mat-error *ngIf="Username?.touched && Username?.hasError('required')"
-            >Nombre de usuario es <strong>requerido</strong>
-          </mat-error>
-        </mat-form-field>
-      </div>
-
       <div class="form-group">
         <mat-form-field appearance="outline" class="full-width-input">
           <mat-label [style.fontSize.px]="16">Ingrese Contraseña</mat-label>

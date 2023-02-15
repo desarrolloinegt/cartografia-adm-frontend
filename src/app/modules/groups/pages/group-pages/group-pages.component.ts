@@ -32,8 +32,10 @@ export class GroupPagesComponent {
     proyecto_id: 0
   }
   userData: IGroupUserAssignment = {
-    username: '',
+    nombres: '',
     grupo_id:0,
+    apellidos:'',
+    codigo_usuario:0
   }
   roleData: IGroupRoleAssignment = {
     id: 0,
@@ -142,18 +144,18 @@ export class GroupPagesComponent {
   }
 
   async addUser(id:string){
-    const { value: username } = await Swal.fire({
+    const { value: codigo_usuario } = await Swal.fire({
       title: 'Usuario',
-      input:"text",
-      inputPlaceholder:"juan2022",
+      input:"number",
+      inputPlaceholder:"9875",
       confirmButtonText: 'Agregar Usuario',
       showCancelButton: true,
       cancelButtonText:"Cancelar",
-      inputLabel: 'Ingrese el nombre de usuario',
+      inputLabel: 'Ingrese el codigo de usuario',
     })
-    if (username) {
+    if (codigo_usuario) {
       this.userData.grupo_id=Number(id);
-      this.userData.username=username;
+      this.userData.codigo_usuario=codigo_usuario;
       this.groupService.addUserToGroup(this.userData).subscribe(resp=>{
         if(resp.status==true){
           Swal.fire('Ok!', resp.message, 'success');
@@ -164,6 +166,7 @@ export class GroupPagesComponent {
 
   async addFile(id:string){
     const { value: file } = await Swal.fire({
+      html:'<label>El archivo debe tener una lista con los codigo de usuario</label>',
       title: 'Seleccione archivo',
       input: 'file',
       inputAttributes: {
@@ -190,10 +193,11 @@ export class GroupPagesComponent {
   }
 
   generateJsonUsers(){
+    this.userDataFile.usuarios=[];
     this.data.forEach(dto=>{
       this.userDataFile.usuarios.push(dto.toString());
     })
-    
+    this.userDataFile.usuarios=this.userDataFile.usuarios.filter(Boolean);
     this.groupService.assignGroupUsersFile(this.userDataFile).subscribe(resp=>{
       if(resp.status==true){
         Swal.fire('Ok',resp.message,'success');
