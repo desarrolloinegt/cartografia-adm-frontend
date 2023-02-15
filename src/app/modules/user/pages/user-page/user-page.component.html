@@ -44,12 +44,6 @@
           <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.apellidos }}</td>
         </ng-container>
     
-        <!-- Username Column -->
-        <ng-container matColumnDef="username">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Usuario</th>
-          <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.username }}</td>
-        </ng-container>
-    
         <!-- Description Column -->
         <ng-container matColumnDef="description">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Observaciones</th>
@@ -70,7 +64,7 @@
     
         <!-- CodigoUsuario Column -->
         <ng-container matColumnDef="codigo_usuario">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Codigo</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Codigo de usuario</th>
           <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.codigo_usuario }}</td>
         </ng-container>
     

@@ -30,8 +30,8 @@ export class LoginPageComponent {
     }
   }
 
-  get Username() {
-    return this.loginForm.get('username');
+  get CodigoUsuario() {
+    return this.loginForm.get('codigo_usuario');
   }
 
   get Password() {
@@ -73,7 +73,7 @@ export class LoginPageComponent {
 
   private buildForm() {
     this.loginForm = this.formBuilder.group({
-      username: ['', [Validators.required]],
+      codigo_usuario: ['', [Validators.required]],
       password: ['', [Validators.required]],
     });
   }

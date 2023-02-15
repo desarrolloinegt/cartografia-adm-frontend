@@ -34,8 +34,10 @@ export class GroupProjectComponent {
   };
 
   userData: IGroupUserAssignment = {
-    username: '',
+    nombres: '',
     grupo_id: 0,
+    apellidos:'',
+    codigo_usuario:0
   }
   roleData: IGroupRoleAssignment = {
     id: 0,
@@ -112,18 +114,18 @@ export class GroupProjectComponent {
     });
   }
   async addUser(id: string) {
-    const { value: username } = await Swal.fire({
+    const { value: codigo_usuario } = await Swal.fire({
       title: 'Usuario',
-      input: "text",
+      input: "number",
       inputPlaceholder: "juan2022",
       confirmButtonText: 'Agregar Usuario',
       showCancelButton: true,
       cancelButtonText:"Cancelar",
-      inputLabel: 'Ingrese el nombre de usuario',
+      inputLabel: 'Ingrese el codigo de usuario',
     })
-    if (username) {
+    if (codigo_usuario) {
       this.userData.grupo_id = Number(id);
-      this.userData.username = username;
+      this.userData.codigo_usuario = codigo_usuario;
       this.groupService.addUserToGroup(this.userData).subscribe(resp => {
         if (resp.status == true) {
           Swal.fire('Ok!', resp.message, 'success');
@@ -133,6 +135,7 @@ export class GroupProjectComponent {
   }
   async addFile(id:string){
     const { value: file } = await Swal.fire({
+      html:'<label>El archivo debe tener una lista con los codigo de usuario</label>',
       title: 'Seleccione archivo',
       input: 'file',
       inputAttributes: {
@@ -193,11 +196,6 @@ export class GroupProjectComponent {
   cargarGrupos() {
     this.projectHomeService.getGroupsProject(this.project).subscribe(data => {
       this.dataSource = data;
-      for (let i = 0; i < this.dataSource.length; i++) {
-        if (this.dataSource[i].jerarquia == 0) {
-          this.dataSource[i].jerarquia = (this.dataSource.length) - i;
-        }
-      }
     });
   }
 

@@ -39,15 +39,13 @@ export class UserPageComponent {
   public loading = false;
 
   displayedColumns: string[] = [
-    'id',
+    'codigo_usuario',
     'DPI',
     'nombres',
     'apellidos',
-    'username',
     'description',
     'phone',
     'email',
-    'codigo_usuario',
     'options',
   ];
   dataSource: MatTableDataSource<UserData>;

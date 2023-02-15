@@ -18,9 +18,9 @@
           <br><br>
           <form [formGroup]="loginForm" (ngSubmit)="sendLogin()">
             <mat-form-field class="fluid" [style.fontSize.px]="14" appearance="outline">
-              <mat-label [style.fontSize.px]="16" >Usuario</mat-label>
-              <input matInput type="text" formControlName="username"/>
-              <mat-error *ngIf="Username?.touched && Username?.hasError('required')"> Usuario es <strong>requerido</strong></mat-error> 
+              <mat-label [style.fontSize.px]="16" >Codigo de usuario</mat-label>
+              <input matInput type="number" formControlName="codigo_usuario"/>
+              <mat-error *ngIf="CodigoUsuario?.touched && CodigoUsuario?.hasError('required')"> El codigo de usuario es <strong>requerido</strong></mat-error> 
               <mat-icon matSuffix>account_circle</mat-icon>
             </mat-form-field>
 

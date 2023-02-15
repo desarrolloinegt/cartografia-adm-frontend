@@ -23,9 +23,11 @@ export class GroupUserEditDialogComponent {
 
   userData: IGroupUserAssignment = {
     grupo_id: 0,
-    username: '',
+    nombres: '',
+    apellidos:'',
+    codigo_usuario:0,
   }
-  displayedColumns: string[] = ['username', 'options'];
+  displayedColumns: string[] = ['nombres','apellidos', 'options'];
   constructor(private userService: UserService, private groupService: GroupService, public dialogRef: MatDialogRef<IGroupUserAssignment>, @Inject(MAT_DIALOG_DATA) public data: IGroupUserAssignment, private formBuilder: FormBuilder) {
     this.dataSource = new MatTableDataSource();
     this.getUsers();
@@ -57,9 +59,9 @@ export class GroupUserEditDialogComponent {
     }
   }
 
-  eliminarUsuario(username: string) {
+  eliminarUsuario(id:string,nombres: string,apellidos:string) {
     Swal.fire({
-      title: '¿Esta seguro que desea eliminar el usuario: ' + username + ' de este grupo?',
+      title: '¿Esta seguro que desea eliminar el usuario: ' + nombres +' '+apellidos+ ' de este grupo?',
       showDenyButton: true,
       showCancelButton: true,
       confirmButtonText: 'Si',
@@ -67,7 +69,7 @@ export class GroupUserEditDialogComponent {
     }).then((result) => {
       if (result.isConfirmed) {
         this.userData.grupo_id = this.data.grupo_id;
-        this.userData.username = username;
+        this.userData.codigo_usuario = Number(id);
         this.groupService.deleteUserToGroup(this.userData).subscribe(resp => {
           if (resp.status == true) {
             Swal.fire('Ok', resp.message, 'success');

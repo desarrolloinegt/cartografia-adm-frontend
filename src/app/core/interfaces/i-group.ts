@@ -14,7 +14,9 @@ export interface IGroupRoleAssignment{
 }
 export interface IGroupUserAssignment{
     grupo_id:number,
-    username:string,
+    nombres:string,
+    apellidos:string,
+    codigo_usuario:number
 }
 export interface IGroupUserAssignmentFile{
     grupo_id:number,
