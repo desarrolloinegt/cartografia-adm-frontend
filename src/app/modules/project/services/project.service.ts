@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { AssignmentUpmProjectSustituir } from '@core/interfaces/i-upm';
 import { ApiService } from '@core/services/api.service';
 
 @Injectable({
@@ -37,7 +38,7 @@ export class ProjectService {
   projectFinish(id:number){
     return this.apiService.desactive('finalizarProyecto',id);
   }
-  sustituirUpm(data:any){
+  sustituirUpm(data:AssignmentUpmProjectSustituir){
     return this.apiService.patch('sustituirUpm',data)
   }
 }

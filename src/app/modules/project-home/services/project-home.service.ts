@@ -28,4 +28,8 @@ export class ProjectHomeService {
   chargeUpmsChief(data:any){
     return this.apiService.store('obtenerUpmPersonal',data);
   }
+
+  verDetalleSustitucion(id:number){
+    return this.apiService.getById('detalleSustitucion',id);
+  }
 }
