@@ -66,7 +66,7 @@ export class EncargadoUpmsComponent {
   verPlantilla(){
     Swal.fire({
       text: 'Ejemplo de plantilla',
-      imageUrl: './assets/EjemploPlantillaUPMUsuario.png',
+      imageUrl: 'assets/EjemploPlantillaUPMUsuario.png',
       imageWidth: 460,
       imageHeight: 200,
       imageAlt: 'Ejemplo del archivo de carga',

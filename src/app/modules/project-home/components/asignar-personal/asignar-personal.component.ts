@@ -110,7 +110,7 @@ export class AsignarPersonalComponent {
   verPlantilla(){
     Swal.fire({
       text: 'Ejemplo de plantilla',
-      imageUrl: './assets/EjemploPlantillaPersonal.png',
+      imageUrl: 'assets/EjemploPlantillaPersonal.png',
       imageWidth: 375,
       imageHeight: 250,
       imageAlt: 'Ejemplo del archivo de carga',
