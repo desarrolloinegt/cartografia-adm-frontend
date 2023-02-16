@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { IGroup } from '@core/interfaces/i-group';
+import { IGroup, IGroupUserAssignment } from '@core/interfaces/i-group';
 import { IProjectUserAssingment } from '@core/interfaces/i-project';
 import { IUpmUserAssignment } from '@core/interfaces/i-upm';
 import { GroupService } from '@modules/groups';
@@ -10,8 +10,9 @@ import { ExcelService } from '@modules/project-home/services/excel.service';
 import { ProjectHomeService } from '@modules/project-home/services/project-home.service';
 import { ProjectService } from '@modules/project/services/project.service';
 import { IUserList } from '@core/interfaces/i-user';
+import * as XLSX from 'xlsx';
 import Swal from 'sweetalert2';
-
+type AOA = any[][];
 @Component({
   selector: 'app-encargado-upms',
   templateUrl: './encargado-upms.component.html',
@@ -21,16 +22,12 @@ export class EncargadoUpmsComponent {
   groups!: IGroup[];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  users: IUserList[] = []
+  users: IGroupUserAssignment[] = []
+  data: AOA = [[1, 2], [3, 4]];
   dataSource: MatTableDataSource<IGroup>;
-  displayedColumns: string[] = ['encargado', 'upm', 'options'];
-  datos:IUpmUserAssignment[]=[
-  ];
-
-  userUpm:IUpmUserAssignment={
-    personal:'',
-    upm:''
-  };
+  displayedColumns: string[] = ['nombres','apellidos', 'upm', 'options'];
+  datos:IUpmUserAssignment[]=[];
+  dataFile:Object[]=[];
   nameUpms: string[] = [];
   idProject!: number;
   projectUserAssignment: IProjectUserAssingment = {
@@ -49,6 +46,7 @@ export class EncargadoUpmsComponent {
         this.projectUserAssignment.proyecto_id = data;
         this.idProject=data;
         this.getGroupsMinor();
+        this.cargarUpmChief();
       });
     }
   }
@@ -65,35 +63,50 @@ export class EncargadoUpmsComponent {
     });
   }
 
+  verPlantilla(){
+    Swal.fire({
+      text: 'Ejemplo de plantilla',
+      imageUrl: '../assets/EjemploPlantillaUPMUsuario.png',
+      imageWidth: 460,
+      imageHeight: 200,
+      imageAlt: 'Ejemplo del archivo de carga',
+    })
+  }
   async cargarUpmsAsignadas(grupo:string) {
+   
+    this.nameUpms=[];
     let str=grupo.split(",");
-    this.groupService.getGroupsUsers(Number(str[0])).subscribe(data => {
-      this.users = data;
-      this.users.forEach(data => {
-        //this.users.push({ encargado: '',usuario: data.username });
-      })});
     if (Number(this.idProject)) {
       this.projectService.getUpms(this.idProject).subscribe(resp => {
         resp.forEach((element:any) => {
           this.nameUpms.push(element.upm);
         });
-        this.createFile();
+        this.cargarUsuarios(str[0],str[1]);
       });
     }
   }
+  cargarUsuarios(idGrupo:string,nameGroup:string){
+    this.users=[];
+    this.groupService.getGroupsUsers(Number(idGrupo)).subscribe(data => {
+      this.users = data;
+      this.createFile(nameGroup);
+    });
+  }
 
-  createFile() {
-    this.datos=[];
+  createFile(nameGroup:string) {
+    this.dataFile=[];
     for (let index = 0; index < this.nameUpms.length; index++) {
-      this.userUpm={
-        personal:' ',
-        upm:this.nameUpms[index]
-      }
-      this.datos.push(this.userUpm);
+        
+        this.dataFile.push({upm:this.nameUpms[index],codigo_usuario:'',nombres:'',apellidos:''});
+      
     }
-    this.excelService.exportAsExcelFile(this.datos,'AsignacionUPMS');
+    for (let index = 0; index < this.users.length; index++) {
+      this.dataFile.push({codigo_usuario:this.users[index].codigo_usuario,nombres:this.users[index].nombres,apellidos:this.users[index].apellidos});
+    }
+    this.excelService.exportAsExcelFile(this.dataFile,'AsignacionUPMS'+nameGroup);
   }
   async addFile() {
+    this.data=[];
     const { value: file } = await Swal.fire({
       title: 'Seleccione archivo',
       input: 'file',
@@ -103,17 +116,39 @@ export class EncargadoUpmsComponent {
     })
 
     if (file) {
-      /*const reader: FileReader = new FileReader();
+      const reader: FileReader = new FileReader();
       reader.onload = (e: any) => {
         const bstr: string = e.target.result;
         const wb: XLSX.WorkBook = XLSX.read(bstr, { type: 'binary' });
-
-        
         const wsname: string = wb.SheetNames[0];
         const ws: XLSX.WorkSheet = wb.Sheets[wsname];
         this.data = <AOA>(XLSX.utils.sheet_to_json(ws, { header: 1 }));
-        this.generateJson();*/
+        this.generateJson();
     }
-    //reader.readAsBinaryString(file);
+    reader.readAsBinaryString(file);}
+  }
+  generateJson(){
+    let array:any=[];
+    this.data=this.data.filter(Boolean);
+    this.data.forEach(dto=>{
+      if(dto[0] && dto[1]){
+        array.push({upm:dto[0],codigo_usuario:dto[1],proyecto_id:this.idProject})
+      }
+    });
+    this.projectHomeService.assignChiefUpms(array).subscribe(resp=>{
+      if(resp.status==true){
+        this.cargarUpmChief();
+        console.log(resp.errores)
+        Swal.fire('Ok!', resp.message, 'success');
+      }
+    })
+  }
+  cargarUpmChief(){
+    let idUsuario = localStorage.getItem('id');
+    this.projectHomeService.chargeUpmsChief({proyecto_id:this.idProject,usuario_id:idUsuario}).subscribe(resp=>{
+      this.dataSource=new MatTableDataSource(resp); 
+      this.dataSource.paginator=this.paginator;
+      this.dataSource.sort=this.sort;
+    });
   }
 }

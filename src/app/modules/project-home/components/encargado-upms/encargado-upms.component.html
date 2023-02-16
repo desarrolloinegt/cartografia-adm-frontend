@@ -1,3 +1,6 @@
+<div class="title">
+  <h1>Asignacion de UPMS a encargado</h1>
+</div>
 <br />
 <br />
 <div class="container"> 
@@ -29,6 +32,7 @@
             Agregar
           </button>
         </div>
+        
         <br>
         <div class="upms">
             <button (click)="addFile()" mat-flat-button color="accent">
@@ -36,6 +40,18 @@
                 Cargar Archivo
             </button>
         </div>
+        <br>
+        <div>
+          <button
+          (click)="verPlantilla()"
+          mat-flat-button
+          color="accent"
+          style="margin-right: 8px"
+        >
+        <mat-icon>remove_red_eye</mat-icon>
+          Ver ejemplo de archivo de carga
+        </button>
+      </div>
     </div>
 </div>
 <br>
@@ -53,15 +69,18 @@
       <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource" matSort class="fluid">
           <!-- ID Column -->
-          <ng-container matColumnDef="encargado">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Encargado</th>
-            <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.id }}</td>
+          <ng-container matColumnDef="nombres">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombres</th>
+            <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.nombres }}</td>
           </ng-container>
-      
+          <ng-container matColumnDef="apellidos">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Apellidos</th>
+            <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.apellidos }}</td>
+          </ng-container>
           <!-- nombre Column -->
           <ng-container matColumnDef="upm">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>UPM</th>
-            <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.nombre }}</td>
+            <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.upm }}</td>
           </ng-container>
       
           <ng-container matColumnDef="options">

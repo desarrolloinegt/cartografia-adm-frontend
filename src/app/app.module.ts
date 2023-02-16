@@ -12,13 +12,13 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { SpinnerModule } from '@core/spinner/spinner.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SpinnerInterceptor } from '@core/interceptors/spinner.interceptor';
-import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import {MatMenuModule} from '@angular/material/menu';
 import { HttpErrorInterceptor } from '@core/interceptors/HttpErrorInterceptor.interceptor';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import {MatTabsModule} from '@angular/material/tabs';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { TokenInterceptor } from '@core/interceptors/token.interceptor';
+import {MatTreeModule} from '@angular/material/tree';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -34,6 +34,7 @@ import { TokenInterceptor } from '@core/interceptors/token.interceptor';
     MatMenuModule,
     MatTabsModule,
     DragDropModule,
+    MatTreeModule,
     NgxPermissionsModule.forRoot()
   ],
 
