@@ -2,16 +2,11 @@
 <br>
 <div>
   <div class="container">
-    <div>
+    <div class="header">
       <button (click)="addUpm()" mat-flat-button color="accent">
         <mat-icon>add</mat-icon>
         Crear UPM
       </button>
-    </div>
-  </div>
-  <br>
-  <div class="container">
-    <div>
       <button (click)="addFile()" mat-flat-button color="accent" >
         <mat-icon>arrow_upward</mat-icon>
         Cargar Archivo de UPM
@@ -77,8 +72,5 @@
     </tr>
   </table>
 
-  <mat-paginator
-  #paginator
-    [pageSizeOptions]="[10, 25, 100]"
-  ></mat-paginator>
+  <mat-paginator #paginator [pageSizeOptions]="[10, 25, 100]" showFirstLastButtons></mat-paginator>
 </div>
