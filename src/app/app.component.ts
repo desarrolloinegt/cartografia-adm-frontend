@@ -1,4 +1,6 @@
+import { FlatTreeControl } from '@angular/cdk/tree';
 import { Component } from '@angular/core';
+import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { Route, Router, Routes } from '@angular/router';
 import { NgxPermissionsService } from 'ngx-permissions';
 import { AuthService } from './modules';
@@ -12,6 +14,8 @@ export class AppComponent {
   opened = true;
   permissionsProject: string[] = [];
   permissionsAdmin: string[] = [];
+
+
   constructor(
     private router: Router,
     private auth: AuthService,
@@ -19,7 +23,9 @@ export class AppComponent {
   ) {
     this.initializeApp();
   }
+  
 
+  
   initializeApp() {
     this.auth.authState.subscribe((state) => {
       if (state) {

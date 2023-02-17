@@ -8,6 +8,7 @@ import { AssignmentUpmProject, AssignmentUpmProjectSustituir } from '@core/inter
 import { ProjectHomeService } from '@modules/project-home/services/project-home.service';
 import { ProjectService } from '@modules/project/services/project.service';
 import Swal from 'sweetalert2';
+import { __values } from 'tslib';
 import * as XLSX from 'xlsx';
 type AOA = any[];
 @Component({
@@ -32,7 +33,9 @@ export class UpmsComponent {
   upmDataSust: AssignmentUpmProjectSustituir = {
     proyecto_id: 0,
     upm_nuevo: '',
-    upm_anterior: 0
+    upm_anterior: 0,
+    descripcion:'',
+    usuario_id:0
   }
   constructor(private formBuilder: FormBuilder, public dialog: MatDialog, private homeProjectService: ProjectHomeService, private projectService: ProjectService) {
     this.dataSource = new MatTableDataSource();
@@ -96,16 +99,29 @@ export class UpmsComponent {
   async sustituirUpm(id: string) {
     this.upmDataSust.proyecto_id = this.idProject;
     this.upmDataSust.upm_anterior = Number(id);
-    const { value: upm } = await Swal.fire({
-      title: 'UPM',
-      input: "text",
-      inputPlaceholder: "AEE001122337A2",
-      confirmButtonText: 'Ok',
-      showCancelButton: true,
-      inputLabel: 'Ingrese la UPM',
+    const { value: formValues } = await Swal.fire({
+      title: 'Sustituir upms',
+      html:
+        '<span>Ingrese el upm</span>'+
+        '<input type="text" style="width:80%;"  placeholder="AEE123456789A1" id="upm" class="swal2-input">' +
+        '<br>'+
+        '<span>Ingrese el motivo de sustitucion</span>'+
+        '<textarea id="descripcion" style="width:80%;" placeholder="No se puede acceder al lugar" class="swal2-input"></textarea>',
+      showCancelButton:true,
+      cancelButtonText:'Cancelar',
+      preConfirm: () => {
+        return [
+          document.getElementById('upm'),
+          document.getElementById('descripcion')
+        ]
+      }
     })
-    if (upm) {
+    if (formValues) {
+      let upm=(formValues[0] as HTMLInputElement).value
+      let descripcion=(formValues[1] as HTMLInputElement).value
       this.upmDataSust.upm_nuevo = upm;
+      this.upmDataSust.descripcion=descripcion;
+      this.upmDataSust.usuario_id=Number(localStorage.getItem('id'));
       this.projectService.sustituirUpm(this.upmDataSust).subscribe(resp => {
         if (resp.status == true) {
           this.cargarUpmsAsignadas();
@@ -161,6 +177,18 @@ export class UpmsComponent {
     });
   }
 
-
+  verDetalles(id:String){
+    if (Number(id)) {
+      this.homeProjectService.verDetalleSustitucion(Number(id)).subscribe(resp=>{
+        Swal.fire({
+          title: 'Descripcion',
+          html:`UPM nuevo: <b>${resp.nombre}</b>, ` +
+          `<br><span>Usuario modificador: ${resp.codigo_usuario}</span> ` +
+          `<br><span>Fecha: ${resp.fecha}</span> `+
+          `<br><p>Motivo: ${resp.descripcion}</p>`,
+        });
+      })
+    }
+  }
 }
 

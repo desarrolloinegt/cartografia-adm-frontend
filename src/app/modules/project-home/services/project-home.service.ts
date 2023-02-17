@@ -20,4 +20,16 @@ export class ProjectHomeService {
   getIdProject(project:string){
     return this.apiService.getById('proyectoId',project);
   }
+  
+  assignChiefUpms(data:any){
+    return this.apiService.store('asignarUpmPersonal',data);
+  }
+
+  chargeUpmsChief(data:any){
+    return this.apiService.store('obtenerUpmPersonal',data);
+  }
+
+  verDetalleSustitucion(id:number){
+    return this.apiService.getById('detalleSustitucion',id);
+  }
 }

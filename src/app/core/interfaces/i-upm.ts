@@ -13,6 +13,8 @@ export interface AssignmentUpmProject {
     proyecto_id:number,
     upm_anterior:number,
     upm_nuevo:string,
+    descripcion:string,
+    usuario_id:number,
   }
 
   export interface IUpmUserAssignment{

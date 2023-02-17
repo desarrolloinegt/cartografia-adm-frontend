@@ -1,5 +1,5 @@
-<br>
-<br>
+<br />
+<br />
 <div>
   <div class="container">
     <div class="header">
@@ -10,12 +10,12 @@
       <button (click)="addFile()" mat-flat-button color="accent" >
         <mat-icon>arrow_upward</mat-icon>
         Cargar Archivo de UPM
-      </button>  
+      </button>
     </div>
   </div>
 </div>
-<br>
-<br>
+<br />
+<br />
 <mat-form-field>
   <mat-label>Buscar</mat-label>
   <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input />
@@ -42,22 +42,54 @@
 
     <!-- Estado Column -->
     <ng-container matColumnDef="estado">
-        <th mat-header-cell *matHeaderCellDef>Estado</th>
-        <td mat-cell *matCellDef="let row"><button mat-stroked-button color="primary" class="estado">{{ row.estado }}</button></td>
-      </ng-container>
+      <th mat-header-cell *matHeaderCellDef>Estado</th>
+      <td mat-cell *matCellDef="let row">
+        <button
+          mat-stroked-button
+          color="primary"
+          class="estado"
+          *ngIf="row.estado == 'Cargado'"
+        >
+          {{ row.estado }}
+        </button>
+        <button
+          mat-stroked-button
+          color="warn"
+          class="estado"
+          *ngIf="row.estado == 'Sustituido'"
+        >
+          {{ row.estado }}
+        </button>
+      </td>
+    </ng-container>
     <ng-container matColumnDef="options">
       <th mat-header-cell *matHeaderCellDef>Acciones</th>
       <td mat-cell *matCellDef="let row">
-        
+        <div>
           <button
+          *ngIf="row.estado == 'Cargado'"
             mat-icon-button
             matTooltip="Reemplazar"
             color="primary"
             class="iconbutton"
             (click)="sustituirUpm(row.id)"
           >
-            <mat-icon >loop</mat-icon>
+            <mat-icon>loop</mat-icon>
           </button>
+        </div>
+
+        <div>
+          <button
+            *ngIf="row.estado == 'Sustituido'"
+            mat-icon-button
+            matTooltip="Ver detalles"
+            color="primary"
+            class="iconbutton"
+            (click)="verDetalles(row.id)"
+          >
+            <mat-icon>receipt</mat-icon>
+          </button>
+        </div>
       </td>
     </ng-container>
 
