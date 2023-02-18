@@ -9,7 +9,8 @@ import { ProjectService } from '@modules/project/services/project.service';
 import Swal from 'sweetalert2';
 import { NewProjectPageComponent } from '../new-project-page';
 import { ProjectEditDialogComponent } from '../project-edit-dialog';
-
+import * as XLSX from 'xlsx';
+type AOA = any[];
 @Component({
   selector: 'app-project-page',
   templateUrl: './project-page.component.html',
@@ -19,6 +20,7 @@ export class ProjectPageComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   dataSource: MatTableDataSource<IProjectListView>;
+  data: AOA = [[1, 2], [3, 4]];
   displayedColumns: string[] = ['id', 'nombre', 'year', 'encuesta','descripcion','progreso','options'];
   date=new Date((new Date()).getDate());
   
@@ -80,6 +82,7 @@ export class ProjectPageComponent {
       this.dataSource=new MatTableDataSource(data);
     });
   }
+
   desactivar(id: string, nombre: string) {
     Swal.fire({
       title: '¿Esta seguro que desea Desactivar el Proyecto: ' + nombre + '?',
@@ -124,4 +127,86 @@ export class ProjectPageComponent {
       }
     })
   }
+
+  async addFileUpm(){
+    this.fileAlert(1);
+  }
+  async addFileDepartment(){
+    this.fileAlert(2);
+  }
+
+  async addFileMunicipios(){
+    this.fileAlert(3);
+  }
+
+  async fileAlert(type:number){
+    this.data=[];
+    const { value: file } = await Swal.fire({
+      title: 'Seleccione archivo',
+      input: 'file',
+      inputAttributes: {
+        'accept': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      }
+    })
+
+    if (file) {
+      const reader: FileReader = new FileReader();
+      reader.onload = (e: any) => {
+        const bstr: string = e.target.result;
+        const wb: XLSX.WorkBook = XLSX.read(bstr, { type: 'binary' });
+        const wsname: string = wb.SheetNames[0];
+        const ws: XLSX.WorkSheet = wb.Sheets[wsname];
+        this.data = <AOA>(XLSX.utils.sheet_to_json(ws, { header: 1 }));
+        this.generateJson(type);
+    }
+    reader.readAsBinaryString(file);}
+  }
+
+  generateJson(type:number){
+    let array:any[]=[];
+    if(type==1){
+      this.data.forEach(dto => {
+        if(dto[0] && dto[1]){
+          array.push({municipio_id:dto[0],nombre:dto[1]});
+        }
+        
+      })
+      array=array.filter(Boolean);
+      this.projectService.createUpms(array).subscribe((resp) => {
+        if (resp.status == true) {
+          console.log(resp.errores)
+          Swal.fire('Ok!', resp.message, 'success');
+        }
+      });
+    } else if(type==2){
+      this.data.forEach(dto => {
+        if(dto[0]){
+          array.push({nombre:dto[0]});
+        }
+      });
+      array=array.filter(Boolean);
+      this.projectService.createDepartments(array).subscribe((resp) => {
+        if (resp.status == true) {
+          console.log(resp.errores)
+          Swal.fire('Ok!', resp.message, 'success');
+        }
+      });
+      
+    } else if(type==3){
+      this.data.forEach(dto => {
+        if(dto[0] && dto[1]){
+          array.push({departamento_id:dto[0],nombre:dto[1]});
+        }
+      });
+      
+      array=array.filter(Boolean);
+      this.projectService.createMunicipios(array).subscribe((resp) => {
+        if (resp.status == true) {
+          console.log(resp.errores)
+          Swal.fire('Ok!', resp.message, 'success');
+        }
+      });
+    }
+  }
+
 }

@@ -8,7 +8,6 @@ import { AssignmentUpmProject, AssignmentUpmProjectSustituir } from '@core/inter
 import { ProjectHomeService } from '@modules/project-home/services/project-home.service';
 import { ProjectService } from '@modules/project/services/project.service';
 import Swal from 'sweetalert2';
-import { __values } from 'tslib';
 import * as XLSX from 'xlsx';
 type AOA = any[];
 @Component({
@@ -168,6 +167,7 @@ export class UpmsComponent {
       })
 
     }
+    this.assignment.upms=this.assignment.upms.filter(Boolean);
     console.log(this.assignment)
     this.projectService.assignUpmToProject(this.assignment).subscribe((resp) => {
       if (resp.status == true) {

@@ -40,4 +40,16 @@ export class ProjectService {
   sustituirUpm(data:AssignmentUpmProjectSustituir){
     return this.apiService.patch('sustituirUpm',data)
   }
+
+  createUpms(data:any){
+    return this.apiService.store('cargarUpms',data);
+  }
+
+  createDepartments(data:any){
+    return this.apiService.store('cargarDepartamentos',data);
+  }
+
+  createMunicipios(data:any){
+    return this.apiService.store('cargarMunicipios',data);
+  }
 }
