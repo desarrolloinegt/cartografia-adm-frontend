@@ -85,7 +85,7 @@
             <button 
             *ngxPermissionsOnly="['asignar-usuario-grupo']"
             mat-icon-button matTooltip="Agregar usuario" color="primary"
-              (click)="addUser(row.id)">
+              (click)="addUser(row.id,row.proyecto)">
                 <mat-icon>add</mat-icon>
               </button>
               <button 

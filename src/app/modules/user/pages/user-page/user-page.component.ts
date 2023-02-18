@@ -139,7 +139,7 @@ export class UserPageComponent {
   rolesUser(id: string, nombre: string) {
     this.roleUserData.id=Number(id),
     this.roleUserData.nombre=nombre;
-    this.userServide.getUserRoles(this.roleUserData.id).subscribe((resp)=>{
+    this.userServide.getUserPolicys(this.roleUserData.id).subscribe((resp)=>{
       this.roleUserData.roles=resp;
       const dialogRef = this.dialogService.open(RolesUserDialogComponent, {
         height: '40rem',

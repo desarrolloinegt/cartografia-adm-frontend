@@ -17,7 +17,7 @@
             </div>
             <div class="example-section">
                 <mat-label>Politicas</mat-label>
-                <mat-selection-list formControlName="roles" #rolesList>
+                <mat-selection-list formControlName="politicas" #rolesList>
                     <mat-list-option [selected]="rol.checked"  *ngFor="let rol of roles" [value]="rol.id" >
                       {{rol.nombre}}
                     </mat-list-option>

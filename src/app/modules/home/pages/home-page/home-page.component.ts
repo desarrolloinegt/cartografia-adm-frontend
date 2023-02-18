@@ -34,6 +34,7 @@ export class HomePageComponent {
     localStorage.removeItem('project');
     this.permissionService.flushPermissions();
     this.auth.getPermissions(project,this.id).subscribe(data=>{
+      console.log(data)
       this.permissions=data;
       this.permissionService.addPermission(this.permissions);
       localStorage.setItem('project',project);

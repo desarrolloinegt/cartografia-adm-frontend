@@ -10,7 +10,7 @@ export class ProjectHomeService {
   constructor(private apiService:ApiService) { }
 
   getGroupsProject(projecto:string){
-    return this.apiService.getById('obtenerGruposProyecto',projecto);
+    return this.apiService.getById('obtenerRolesProyecto',projecto);
   }
 
   guardarJerarquias(data:IGroup[]){
@@ -28,7 +28,17 @@ export class ProjectHomeService {
   chargeUpmsChief(data:any){
     return this.apiService.store('obtenerUpmPersonal',data);
   }
+  getUpmsAssgined(data:any){
+    return this.apiService.store('obtenerUpmsAsignados',data);
+  }
 
+  getUsersAssigned(data:any){
+    return this.apiService.store('obtenerPersonalAsignado',data);
+  }
+
+  assignPersonal(data:any){
+    return this.apiService.store('',data);
+  }
   verDetalleSustitucion(id:number){
     return this.apiService.getById('detalleSustitucion',id);
   }

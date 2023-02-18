@@ -56,13 +56,12 @@ export class NewGroupPagesComponent {
   }
   createGroup(){ 
     if(this.groupForm.valid){
+      console.log(this.groupForm.value)
       this.groupService.create(this.groupForm.value).subscribe((resp)=>{
         if(resp.status==true){
           Swal.fire('Ok!', resp.message, 'success');
           this.dialogRef.close(1);
         }
-      }, (err) => {
-        console.log(err);
       });
     }
   }   

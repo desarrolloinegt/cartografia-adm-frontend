@@ -77,7 +77,7 @@ export class RolesPageComponent {
   }
 
   cargarRoles(){
-    this.roleService.getRoles().subscribe((data)=>{ 
+    this.roleService.getPolicys().subscribe((data)=>{ 
       this.dataSource=new MatTableDataSource(data);
     });
   }
@@ -91,14 +91,12 @@ export class RolesPageComponent {
       denyButtonText: `No`,
     }).then((result) => {
       if (result.isConfirmed) {
-        this.roleService.desactiveRole(Number(id)).subscribe((resp) => {
+        this.roleService.desactivePolicy(Number(id)).subscribe((resp) => {
           if (resp.status == true) {
             this.cargarRoles();
-            Swal.fire('Ok!', 'Rol Desactivado', 'success')  
+            Swal.fire('Ok!',resp.message, 'success')  
           }
-        },(err) => {
-          console.log(err);
-        }); 
+        }) 
       } else if (result.isDenied) {
         Swal.fire('Cambios no guardados', '', 'info')
       }
@@ -108,7 +106,7 @@ export class RolesPageComponent {
   verPermisos(id:string,nombre:string){
     this.rolesPermisos.id=Number(id);
     this.rolesPermisos.nombre=nombre;
-    this.roleService.getRolesPermisos(this.rolesPermisos.id).subscribe(data=>{
+    this.roleService.getPolicyPermissions(this.rolesPermisos.id).subscribe(data=>{
       this.rolesPermisos.permisos=data;
       const dialogRef = this.dialogService.open(RolesPermissionEditDialogComponent, {
         height: '50rem',

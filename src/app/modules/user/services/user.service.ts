@@ -37,10 +37,10 @@ export class UserService {
     return this.apiService.patch('usuario/edit',data);
   }
 
-  getUserRoles(id:number){
-    return this.apiService.getById('obtenerRolesUser',id);
+  getUserPolicys(id:number){
+    return this.apiService.getById('obtenerPoliticaUser',id);
   }
-  assignRole(data:IRoleUserAssignmentCreate){
-    return this.apiService.patch('asignarRoleUser',data);
+  assignUserPolicys(data:IRoleUserAssignmentCreate){
+    return this.apiService.patch('asignarPoliticaUser',data);
   }
 }

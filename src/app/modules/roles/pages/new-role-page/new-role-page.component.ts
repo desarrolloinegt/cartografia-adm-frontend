@@ -55,13 +55,13 @@ export class NewRolePageComponent {
   submit(){
 
   }
-  createRol(){ 
+  createPolicy(){ 
     this.asignacionPermisoRol.permisos=this.selectedPermision;
     this.rol.nombre=this.Nombre?.value;
     this.roleService.createRol(this.rol).subscribe((resp)=>{
       if(resp.status==true){
         this.asignacionPermisoRol.id=resp.id_rol;
-        this.roleService.assignPermisoToRol(this.asignacionPermisoRol).subscribe((res)=>{
+        this.roleService.assignPermisoToPolicy(this.asignacionPermisoRol).subscribe((res)=>{
           if(res.status==true){
             Swal.fire('Ok!', 'Politica creada correctamente', 'success');
             this.dialogRef.close(1);

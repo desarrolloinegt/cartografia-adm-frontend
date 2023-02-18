@@ -13,26 +13,26 @@ export class RoleService {
   }
   
   createRol(nombre:any){
-    return this.apiService.store('rol',nombre);
+    return this.apiService.store('politica',nombre);
   }
 
-  assignPermisoToRol(data:any){
+  assignPermisoToPolicy(data:any){
     return this.apiService.store('asignarPermiso',data);
   }
 
-  getRolesPermisos(id:number){
-    return this.apiService.getById('asignacionesRolPermiso',id);
+  getPolicyPermissions(id:number){
+    return this.apiService.getById('obtenerPoliticaPermisos',id);
   }
 
-  desactiveRole(id:number){
-    return this.apiService.desactive('rol',id);
+  desactivePolicy(id:number){
+    return this.apiService.desactive('politica',id);
   }
 
-  editRole(data:any){
-    return this.apiService.patch('rol/edit',data);
+  editPolicy(data:any){
+    return this.apiService.patch('politica/edit',data);
   }
 
-  getRoles(){
-    return this.apiService.getAll('roles');
+  getPolicys(){
+    return this.apiService.getAll('politicas');
   }
 }

@@ -72,23 +72,25 @@ export class EncargadoUpmsComponent {
       imageAlt: 'Ejemplo del archivo de carga',
     })
   }
-  async cargarUpmsAsignadas(grupo:string) {
-   
+  async getUpmsAsignn(grupo:string) {
+    let idUsuario = localStorage.getItem('id');
     this.nameUpms=[];
     let str=grupo.split(",");
     if (Number(this.idProject)) {
-      this.projectService.getUpms(this.idProject).subscribe(resp => {
+      this.projectHomeService.getUpmsAssgined({proyecto_id:this.idProject,usuario_id:idUsuario}).subscribe(resp => {
         resp.forEach((element:any) => {
           this.nameUpms.push(element.upm);
         });
-        this.cargarUsuarios(str[0],str[1]);
+        this.getUsersAssign(str[0],str[1]);
       });
     }
   }
-  cargarUsuarios(idGrupo:string,nameGroup:string){
+  getUsersAssign(idGrupo:string,nameGroup:string){
     this.users=[];
-    this.groupService.getGroupsUsers(Number(idGrupo)).subscribe(data => {
-      this.users = data;
+    let idUsuario = localStorage.getItem('id');
+    this.projectHomeService.getUsersAssigned({grupo_id:idGrupo,usuario_id:idUsuario}).subscribe(resp=>{
+      console.log(resp)
+      this.users = resp;
       this.createFile(nameGroup);
     });
   }

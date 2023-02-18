@@ -28,8 +28,8 @@ export class GroupRoleEditDialogComponent {
 
   private buildForm(){
     this.editForm = this.formBuilder.group({
-      grupo_id:[this.data.id,[Validators.required]],
-      roles:[[],[Validators.required]]
+      rol_id:[this.data.id,[Validators.required]],
+      politicas:[[],[Validators.required]]
     });
   }
 
@@ -44,14 +44,12 @@ export class GroupRoleEditDialogComponent {
           Swal.fire('Ok!', 'Politicas guardadas correctamente', 'success');
           this.dialogRef.close(1);
         }
-      },(err) => {
-        console.log(err);
       });
     }
   }
 
   getRoles(){
-    this.roleService.getRoles().subscribe((resp)=>{
+    this.roleService.getPolicys().subscribe((resp)=>{
       this.roles=resp;
       this.roles.forEach(dto=>{
         dto.checked=false;

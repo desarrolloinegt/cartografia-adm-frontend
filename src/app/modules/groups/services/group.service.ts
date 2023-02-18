@@ -11,47 +11,48 @@ export class GroupService {
   constructor(private apiService:ApiService) { }
 
   getGroups(){
-    return this.apiService.getAll('grupos');
+    return this.apiService.getAll('roles');
   }
 
   create(data:any){
-    return this.apiService.store('grupo',data);
+    return this.apiService.store('rol',data);
   }
 
   editGroup(data:any){
-    return this.apiService.patch('grupo/edit',data)
-  }
-
-  getGroupsRoles(id:number){
-    return this.apiService.getById('obtenerGruposRoles',id);
-  }
-
-  editGroupRoles(data:any){
-    return this.apiService.patch('asignacionGrupoRol/edit',data)
-  }
-  assignGroupRoles(data:any){
-    return this.apiService.store('asignarGrupoRol',data);
-  }
-
-
-  getGroupsUsers(id:number){
-    return this.apiService.getById('obtenerGrupoUsuarios',id);
-  }
-  addUserToGroup(data:IGroupUserAssignment){
-    return this.apiService.store('asignacionGrupoUsuario',data);
-  }
-  assignGroupUsersFile(data:IGroupUserAssignmentFile){
-    return this.apiService.store('asignarGruposUsuarios',data)
-  }
-  deleteUserToGroup(data:IGroupUserAssignment){
-    return this.apiService.patch('eliminarUsuarioGrupo',data)
+    return this.apiService.patch('rol/edit',data)
   }
 
   desactiveGroup(id:number){
-    return this.apiService.desactive('grupo',id);
+    return this.apiService.desactive('rol',id);
   }
+
+
+  getGroupsRoles(id:number){
+    return this.apiService.getById('obtenerRolPoliticas',id);
+  }
+
+  editGroupRoles(data:any){
+    return this.apiService.patch('asignarRolPoliticas',data)
+  }
+
+
+
+  getGroupsUsers(id:number){
+    return this.apiService.getById('obtenerUsuariosRol',id);
+  }
+  addUserToGroup(data:IGroupUserAssignment){
+    return this.apiService.store('asignacionUsuarioRol',data);
+  }
+  assignGroupUsersFile(data:IGroupUserAssignmentFile){
+    return this.apiService.store('asignarUsuariosRol',data)
+  }
+  deleteUserToGroup(data:IGroupUserAssignment){
+    return this.apiService.patch('eliminarUsuarioRol',data)
+  }
+
+ 
  
   getGroupsMinor(data:IProjectUserAssingment){
-    return this.apiService.store('seleccionarGruposMenores',data)
+    return this.apiService.store('seleccionarRolesMenores',data)
   }
 }

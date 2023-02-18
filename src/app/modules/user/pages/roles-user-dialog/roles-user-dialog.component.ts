@@ -16,7 +16,7 @@ export class RolesUserDialogComponent {
   rolesList!:IRole[];
   constructor(private formBuilder:FormBuilder,private userService:UserService,private roleService:RoleService,public dialogRef:MatDialogRef<RolesUserDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: IRoleUserAssignment){
     this.buildForm();
-    this.getRoles();
+    this.getPolicys();
   }
   private buildForm(){
     this.editForm = this.formBuilder.group({
@@ -27,8 +27,8 @@ export class RolesUserDialogComponent {
   get Roles(){
     return this.editForm.get('roles');
   }
-  getRoles(){
-    this.roleService.getRoles().subscribe((resp)=>{
+  getPolicys(){
+    this.roleService.getPolicys().subscribe((resp)=>{
       this.rolesList=resp;
       this.rolesList.forEach(dto=>{
         dto.checked=false;
@@ -52,7 +52,7 @@ export class RolesUserDialogComponent {
   }
   editUser(){
     if(this.editForm.valid){
-      this.userService.assignRole(this.editForm.value).subscribe((resp)=>{
+      this.userService.assignUserPolicys(this.editForm.value).subscribe((resp)=>{
         this.dialogRef.close();
         if(resp.status==true){
           Swal.fire('Ok', resp.message, 'success');

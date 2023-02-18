@@ -31,11 +31,12 @@ export class GroupPagesComponent {
     proyecto: '',
     proyecto_id: 0
   }
-  userData: IGroupUserAssignment = {
+  userRolData: IGroupUserAssignment = {
     nombres: '',
-    grupo_id:0,
+    rol_id:0,
     apellidos:'',
-    codigo_usuario:0
+    codigo_usuario:0,
+    proyecto:''
   }
   roleData: IGroupRoleAssignment = {
     id: 0,
@@ -43,7 +44,7 @@ export class GroupPagesComponent {
     roles: [],
   }
   userDataFile:IGroupUserAssignmentFile={
-    grupo_id:0,
+    rol_id:0,
     usuarios:[],
   }
   constructor(private groupService: GroupService, public dialogService: MatDialog) {
@@ -121,11 +122,11 @@ export class GroupPagesComponent {
   }
 
   verUsuarios(idProyecto: string, nombre: string) {
-    this.userData.grupo_id = Number(idProyecto);
+    this.userRolData.rol_id = Number(idProyecto);
     const dialogRef = this.dialogService.open(GroupUserEditDialogComponent, {
       height: '40rem',
       width: '50rem',
-      data: this.userData
+      data: this.userRolData
     });
 
   }
@@ -143,7 +144,7 @@ export class GroupPagesComponent {
     })
   }
 
-  async addUser(id:string){
+  async addUser(id:string,proyecto:string){
     const { value: codigo_usuario } = await Swal.fire({
       title: 'Usuario',
       input:"number",
@@ -154,9 +155,11 @@ export class GroupPagesComponent {
       inputLabel: 'Ingrese el codigo de usuario',
     })
     if (codigo_usuario) {
-      this.userData.grupo_id=Number(id);
-      this.userData.codigo_usuario=codigo_usuario;
-      this.groupService.addUserToGroup(this.userData).subscribe(resp=>{
+      this.userRolData.rol_id=Number(id);
+      this.userRolData.codigo_usuario=codigo_usuario;
+      this.userRolData.proyecto=proyecto;
+      console.log(this.userRolData)
+      this.groupService.addUserToGroup(this.userRolData).subscribe(resp=>{
         if(resp.status==true){
           Swal.fire('Ok!', resp.message, 'success');
         }
@@ -175,7 +178,7 @@ export class GroupPagesComponent {
     })
     
     if (file) {
-      this.userDataFile.grupo_id=Number(id);
+      this.userDataFile.rol_id=Number(id);
       const reader: FileReader = new FileReader();
       reader.onload = (e:any) => {
         const bstr: string = e.target.result;

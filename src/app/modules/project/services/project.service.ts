@@ -22,7 +22,6 @@ export class ProjectService {
   getUpms(id:number){
     return this.apiService.getById('obtenerUpmsProyecto',id)
   }
-
   createProject(data:any){
     return this.apiService.store('proyecto',data);
   }

@@ -61,10 +61,11 @@ export class AsignarPersonalComponent {
   }
 
   getUsers(grupo: string) {
+    let idUsuario =Number(localStorage.getItem('id'));
     let str = grupo.split(',');
     this.users=[];
     this.usernames=[];
-    this.groupService.getGroupsUsers(Number(str[0])).subscribe(data => {
+    this.projectHomeService.getUsersAssigned({grupo_id:Number(str[0]),usuario_id:idUsuario}).subscribe(data => {
       this.usernames = data;
       this.usernames.forEach(data => {
         this.users.push({ encargado: '',codigo_usario: data.codigo_usuario,nombres:data.nombres,apellidos:data.apellidos});
@@ -103,7 +104,11 @@ export class AsignarPersonalComponent {
           array.push({codigo_superior:dto[0],codigo_inferior:dto[1],proyecto_id:this.idProject,usuario_id:idUsuario});
         }
       });
-      console.log(array)
+      this.projectHomeService.assignPersonal(array).subscribe(resp=>{
+        if(resp.status==true){
+          Swal.fire('Ok!', resp.message, 'success');
+        }
+      });
     }
   }
 

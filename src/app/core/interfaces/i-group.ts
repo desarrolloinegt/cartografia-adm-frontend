@@ -13,13 +13,14 @@ export interface IGroupRoleAssignment{
     roles:IGroupRoleList[]
 }
 export interface IGroupUserAssignment{
-    grupo_id:number,
+    rol_id:number,
     nombres:string,
     apellidos:string,
-    codigo_usuario:number
+    codigo_usuario:number,
+    proyecto:string
 }
 export interface IGroupUserAssignmentFile{
-    grupo_id:number,
+    rol_id:number,
     usuarios:string[]
 }
 

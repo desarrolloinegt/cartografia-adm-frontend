@@ -49,7 +49,7 @@ export class LoginPageComponent {
             this.router.navigateByUrl('/home');
             console.log(resp.proyectos);
             localStorage.setItem('id', resp.id);
-            this.charguePermissionAdmin(resp.id);
+            this.charguePermission(resp.id);
           } else {
             console.log('Error Inesperado');
           }
@@ -61,7 +61,7 @@ export class LoginPageComponent {
     }
   }
 
-  charguePermissionAdmin(id:string){
+  charguePermission(id:string){
     this.auth.getPermissionAdmin(Number(id)).subscribe(data=>{
       this.permissionsAdmin=data;
       this.permissionService.addPermission(this.permissionsAdmin);

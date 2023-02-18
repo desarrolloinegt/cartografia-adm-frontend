@@ -35,9 +35,10 @@ export class GroupProjectComponent {
 
   userData: IGroupUserAssignment = {
     nombres: '',
-    grupo_id: 0,
+    rol_id: 0,
     apellidos:'',
-    codigo_usuario:0
+    codigo_usuario:0,
+    proyecto:''
   }
   roleData: IGroupRoleAssignment = {
     id: 0,
@@ -46,7 +47,7 @@ export class GroupProjectComponent {
   }
 
   userDataFile:IGroupUserAssignmentFile={
-    grupo_id:0,
+    rol_id:0,
     usuarios:[],
   }
 
@@ -124,7 +125,7 @@ export class GroupProjectComponent {
       inputLabel: 'Ingrese el codigo de usuario',
     })
     if (codigo_usuario) {
-      this.userData.grupo_id = Number(id);
+      this.userData.rol_id = Number(id);
       this.userData.codigo_usuario = codigo_usuario;
       this.groupService.addUserToGroup(this.userData).subscribe(resp => {
         if (resp.status == true) {
@@ -144,7 +145,7 @@ export class GroupProjectComponent {
     })
     
     if (file) {
-      this.userDataFile.grupo_id=Number(id);
+      this.userDataFile.rol_id=Number(id);
       const reader: FileReader = new FileReader();
       reader.onload = (e:any) => {
         const bstr: string = e.target.result;
@@ -200,7 +201,7 @@ export class GroupProjectComponent {
   }
 
   verUsuarios(id: string, nombre: string) {
-    this.userData.grupo_id = Number(id);
+    this.userData.rol_id = Number(id);
     const dialogRef = this.dialogService.open(GroupUserEditDialogComponent, {
       height: '40rem',
       width: '50rem',

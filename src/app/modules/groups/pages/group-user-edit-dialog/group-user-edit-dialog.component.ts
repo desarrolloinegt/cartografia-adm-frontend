@@ -22,10 +22,11 @@ export class GroupUserEditDialogComponent {
   dataSource: MatTableDataSource<String>;
 
   userData: IGroupUserAssignment = {
-    grupo_id: 0,
+    rol_id: 0,
     nombres: '',
     apellidos:'',
     codigo_usuario:0,
+    proyecto:''
   }
   displayedColumns: string[] = ['nombres','apellidos', 'options'];
   constructor(private userService: UserService, private groupService: GroupService, public dialogRef: MatDialogRef<IGroupUserAssignment>, @Inject(MAT_DIALOG_DATA) public data: IGroupUserAssignment, private formBuilder: FormBuilder) {
@@ -40,7 +41,7 @@ export class GroupUserEditDialogComponent {
   }
 
   getUsers() {
-    this.groupService.getGroupsUsers(this.data.grupo_id).subscribe(data => {
+    this.groupService.getGroupsUsers(this.data.rol_id).subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -68,7 +69,7 @@ export class GroupUserEditDialogComponent {
       denyButtonText: `No`,
     }).then((result) => {
       if (result.isConfirmed) {
-        this.userData.grupo_id = this.data.grupo_id;
+        this.userData.rol_id = this.data.rol_id;
         this.userData.codigo_usuario = Number(id);
         this.groupService.deleteUserToGroup(this.userData).subscribe(resp => {
           if (resp.status == true) {

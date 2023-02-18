@@ -14,64 +14,92 @@
       </h4>
       <mat-divider></mat-divider>
     </div>
-    <mat-nav-list >
+    <mat-nav-list>
       <a mat-list-item class="menu-list-item" routerLink="home">
         <mat-icon class="routeIcon menu-icon">home</mat-icon>
         <span [style.fontSize.px]="14">Inicio</span>
       </a>
-      <a mat-list-item *ngIf="project" class="menu-list-item" routerLink="projectHome">
+      <a
+        mat-list-item
+        *ngIf="project"
+        class="menu-list-item"
+        routerLink="projectHome"
+      >
         <mat-icon class="routeIcon menu-icon">folder</mat-icon>
-        <span [style.fontSize.px]="14"><strong>{{project}}</strong></span>
+        <span [style.fontSize.px]="14">
+          <strong >Administracion 
+            <br>
+            {{ project }}
+          </strong>
+          </span>
       </a>
-      <mat-accordion class="example-headers-align" *ngIf="project"  multi>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title><mat-icon>vertical_split</mat-icon> Asignaciones </mat-panel-title>
-          </mat-expansion-panel-header>
-          <div>
-            <a mat-list-item class="menu-list-item" routerLink="projectHome/assignUpmChief">
-              Asignar Upms a
-              <br>
-               Encargado
-            </a>
-          </div>
-          <div>
-            <a mat-list-item class="menu-list-item" routerLink=""> 
-              Asignar Upms a 
-              <br>
-              Personal
-            </a>
-          </div>  
-          <div>
-            <a mat-list-item class="menu-list-item" routerLink="projectHome/assignPersonal"> 
-              Asignar Personal
-           </a>
-          </div>
-        </mat-expansion-panel>
-      </mat-accordion>
-      
-      <a mat-list-item *ngxPermissionsOnly="['ver-proyecto']" class="menu-list-item" routerLink="project">
+
+      <div *ngIf="project">
+        <a
+          mat-list-item
+          class="menu-list-item"
+          routerLink="projectHome/assignPersonal"
+        >
+          <mat-icon class="routeIcon menu-icon">people_outline</mat-icon>
+          <span [style.fontSize.px]="14">Carga de personal</span>
+        </a>
+        <a mat-list-item class="menu-list-item" routerLink="projectHome/assignUpmChief">
+          <mat-icon class="routeIcon menu-icon">work</mat-icon>
+          <span [style.fontSize.px]="14">Carga de trabajo</span>
+        </a>
+      </div>
+      <a
+        mat-list-item
+        *ngxPermissionsOnly="['ver-proyecto']"
+        class="menu-list-item"
+        routerLink="project"
+      >
         <mat-icon class="routeIcon menu-icon">folder</mat-icon>
         <span [style.fontSize.px]="14">Proyectos</span>
       </a>
-      <a mat-list-item *ngxPermissionsOnly="['ver-usuario']" class="menu-list-item" routerLink="user">
+      <a
+        mat-list-item
+        *ngxPermissionsOnly="['ver-usuario']"
+        class="menu-list-item"
+        routerLink="user"
+      >
         <mat-icon class="routeIcon menu-icon">person</mat-icon>
         <span [style.fontSize.px]="14">Usuarios</span>
       </a>
-      <a mat-list-item *ngxPermissionsOnly="['ver-rol']" class="menu-list-item" routerLink="rol">
+      <a
+        mat-list-item
+        *ngxPermissionsOnly="['ver-rol']"
+        class="menu-list-item"
+        routerLink="rol"
+      >
         <mat-icon class="routeIcon menu-icon">supervisor_account</mat-icon>
         <span [style.fontSize.px]="14">Politicas</span>
       </a>
 
-      <a mat-list-item *ngxPermissionsOnly="['ver-encuesta']" class="menu-list-item" routerLink="surveys">
+      <a
+        mat-list-item
+        *ngxPermissionsOnly="['ver-encuesta']"
+        class="menu-list-item"
+        routerLink="surveys"
+      >
         <mat-icon class="routeIcon menu-icon">question_answer</mat-icon>
         <span [style.fontSize.px]="14">Encuestas</span>
       </a>
-      <a mat-list-item *ngxPermissionsOnly="['ver-grupo']" class="menu-list-item" routerLink="group">
+      <a
+        mat-list-item
+        *ngxPermissionsOnly="['ver-grupo']"
+        class="menu-list-item"
+        routerLink="group"
+      >
         <mat-icon class="routeIcon menu-icon">group</mat-icon>
         <span [style.fontSize.px]="14">Roles</span>
       </a>
-      <a mat-list-item *ngxPermissionsOnly="['ver-vehiculo']" class="menu-list-item" routerLink="vehicle">
+      <a
+        mat-list-item
+        *ngxPermissionsOnly="['ver-vehiculo']"
+        class="menu-list-item"
+        routerLink="vehicle"
+      >
         <mat-icon class="routeIcon menu-icon">commute</mat-icon>
         <span [style.fontSize.px]="14">Vehículos</span>
       </a>
@@ -84,7 +112,7 @@
   </mat-sidenav>
   <mat-sidenav-content style="background-color: white">
     <app-spinner></app-spinner>
-    <mat-toolbar color="primary" style="z-index: 99" *ngIf="token != '' ">
+    <mat-toolbar color="primary" style="z-index: 99" *ngIf="token != ''">
       <button
         type="button"
         aria-label="Toggle sidenav"
