@@ -65,10 +65,10 @@ export class AsignarPersonalComponent {
     let str = grupo.split(',');
     this.users=[];
     this.usernames=[];
-    this.projectHomeService.getUsersAssigned({grupo_id:Number(str[0]),usuario_id:idUsuario}).subscribe(data => {
+    this.projectHomeService.getUsersAssigned({rol_id:Number(str[0]),proyecto_id:this.idProject,usuario_id:idUsuario}).subscribe(data => {
       this.usernames = data;
       this.usernames.forEach(data => {
-        this.users.push({ encargado: '',codigo_usario: data.codigo_usuario,nombres:data.nombres,apellidos:data.apellidos});
+        this.users.push({ encargado: '',codigo_usuario: data.codigo_usuario,nombres:data.nombres,apellidos:data.apellidos});
       })
       this.excelService.exportAsExcelFile(this.users, str[1]);
     });

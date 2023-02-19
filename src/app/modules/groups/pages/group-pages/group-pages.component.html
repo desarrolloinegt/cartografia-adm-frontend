@@ -90,8 +90,8 @@
               </button>
               <button 
               *ngxPermissionsOnly="['asignar-usuario-grupo']"
-              mat-icon-button matTooltip="Cargar archivo" color="primary"
-              (click)="addFile(row.id)">
+              mat-icon-button matTooltip="Cargar archivo de usuarios" color="primary"
+              (click)="addFile(row.id,row.proyecto)">
                 <mat-icon>arrow_upward</mat-icon>
               </button>
             <button

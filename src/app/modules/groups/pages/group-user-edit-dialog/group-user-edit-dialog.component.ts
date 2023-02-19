@@ -28,7 +28,7 @@ export class GroupUserEditDialogComponent {
     codigo_usuario:0,
     proyecto:''
   }
-  displayedColumns: string[] = ['nombres','apellidos', 'options'];
+  displayedColumns: string[] = ['codigo_usuario','nombres','apellidos', 'options'];
   constructor(private userService: UserService, private groupService: GroupService, public dialogRef: MatDialogRef<IGroupUserAssignment>, @Inject(MAT_DIALOG_DATA) public data: IGroupUserAssignment, private formBuilder: FormBuilder) {
     this.dataSource = new MatTableDataSource();
     this.getUsers();

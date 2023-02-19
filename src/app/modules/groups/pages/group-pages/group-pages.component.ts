@@ -46,6 +46,7 @@ export class GroupPagesComponent {
   userDataFile:IGroupUserAssignmentFile={
     rol_id:0,
     usuarios:[],
+    proyecto:''
   }
   constructor(private groupService: GroupService, public dialogService: MatDialog) {
     this.dataSource = new MatTableDataSource();
@@ -167,7 +168,7 @@ export class GroupPagesComponent {
     }
   }
 
-  async addFile(id:string){
+  async addFile(id:string,proyecto:string){
     const { value: file } = await Swal.fire({
       html:'<label>El archivo debe tener una lista con los codigo de usuario</label>',
       title: 'Seleccione archivo',
@@ -179,6 +180,7 @@ export class GroupPagesComponent {
     
     if (file) {
       this.userDataFile.rol_id=Number(id);
+      this.userDataFile.proyecto=proyecto;
       const reader: FileReader = new FileReader();
       reader.onload = (e:any) => {
         const bstr: string = e.target.result;
@@ -198,7 +200,7 @@ export class GroupPagesComponent {
   generateJsonUsers(){
     this.userDataFile.usuarios=[];
     this.data.forEach(dto=>{
-      this.userDataFile.usuarios.push(dto.toString());
+      this.userDataFile.usuarios.push(dto[0]);
     })
     this.userDataFile.usuarios=this.userDataFile.usuarios.filter(Boolean);
     this.groupService.assignGroupUsersFile(this.userDataFile).subscribe(resp=>{

@@ -21,7 +21,8 @@ export interface IGroupUserAssignment{
 }
 export interface IGroupUserAssignmentFile{
     rol_id:number,
-    usuarios:string[]
+    usuarios:string[],
+    proyecto:string
 }
 
 export interface IGroupUserList{

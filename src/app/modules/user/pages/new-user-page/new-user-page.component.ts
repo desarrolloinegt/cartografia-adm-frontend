@@ -31,7 +31,6 @@ export class NewUserPageComponent {
       codigo_usuario: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.pattern(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=.*[$@$!%*?&])(?=[^A-Z]*[A-Z]).{8,30}$/)]],
       passwordConfirm: ['', [Validators.required, Validators.pattern(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=.*[$@$!%*?&])(?=[^A-Z]*[A-Z]).{8,30}$/), PasswordValidation.MatchPassword]],
-      username: ['', [Validators.required]]
     });
   }
   user!: IUser;

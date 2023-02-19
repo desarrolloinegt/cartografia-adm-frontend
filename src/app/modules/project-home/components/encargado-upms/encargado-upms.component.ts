@@ -88,8 +88,7 @@ export class EncargadoUpmsComponent {
   getUsersAssign(idGrupo:string,nameGroup:string){
     this.users=[];
     let idUsuario = localStorage.getItem('id');
-    this.projectHomeService.getUsersAssigned({grupo_id:idGrupo,usuario_id:idUsuario}).subscribe(resp=>{
-      console.log(resp)
+    this.projectHomeService.getUsersAssigned({proyecto_id:this.idProject,rol_id:idGrupo,usuario_id:idUsuario}).subscribe(resp=>{
       this.users = resp;
       this.createFile(nameGroup);
     });

@@ -49,6 +49,7 @@ export class GroupProjectComponent {
   userDataFile:IGroupUserAssignmentFile={
     rol_id:0,
     usuarios:[],
+    proyecto:''
   }
 
   constructor(private projectHomeService: ProjectHomeService, private groupService: GroupService, private dialogService: MatDialog) {
@@ -126,6 +127,7 @@ export class GroupProjectComponent {
     })
     if (codigo_usuario) {
       this.userData.rol_id = Number(id);
+      this.userData.proyecto=this.project;
       this.userData.codigo_usuario = codigo_usuario;
       this.groupService.addUserToGroup(this.userData).subscribe(resp => {
         if (resp.status == true) {
@@ -146,6 +148,7 @@ export class GroupProjectComponent {
     
     if (file) {
       this.userDataFile.rol_id=Number(id);
+      this.userDataFile.proyecto=this.project;
       const reader: FileReader = new FileReader();
       reader.onload = (e:any) => {
         const bstr: string = e.target.result;
@@ -165,7 +168,7 @@ export class GroupProjectComponent {
   async generateJsonUsers(){
     this.userDataFile.usuarios=[];
     this.data.forEach(dto=>{
-      this.userDataFile.usuarios.push(dto.toString());
+      this.userDataFile.usuarios.push(dto[0]);
     })
     this.userDataFile.usuarios=this.userDataFile.usuarios.filter(Boolean);
     this.groupService.assignGroupUsersFile(this.userDataFile).subscribe(resp=>{
