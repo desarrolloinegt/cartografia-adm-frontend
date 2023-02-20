@@ -25,7 +25,7 @@ export class EncargadoUpmsComponent {
   users: IGroupUserAssignment[] = []
   data: AOA = [[1, 2], [3, 4]];
   dataSource: MatTableDataSource<IGroup>;
-  displayedColumns: string[] = ['nombres','apellidos', 'upm', 'options'];
+  displayedColumns: string[] = ['rol','encargado', 'upm', 'options'];
   datos:IUpmUserAssignment[]=[];
   dataFile:Object[]=[];
   nameUpms: string[] = [];

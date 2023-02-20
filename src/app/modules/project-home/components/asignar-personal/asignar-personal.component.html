@@ -59,11 +59,11 @@
           <!-- ID Column -->
           <ng-container matColumnDef="encargado">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Encargado</th>
-            <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.nombres }}</td>
+            <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.encargado }}</td>
           </ng-container>
-          <ng-container matColumnDef="personal">
+          <ng-container matColumnDef="empleado">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Personal</th>
-            <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.apellidos }}</td>
+            <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.empleado }}</td>
           </ng-container>
           <ng-container matColumnDef="options">
             <th mat-header-cell *matHeaderCellDef>Opciones</th>

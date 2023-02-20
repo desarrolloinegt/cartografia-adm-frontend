@@ -68,16 +68,19 @@
       </div>
       <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource" matSort class="fluid">
-          <!-- ID Column -->
-          <ng-container matColumnDef="nombres">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombres</th>
-            <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.nombres }}</td>
+
+          <!-- Rol Column -->
+          <ng-container matColumnDef="rol">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Rol</th>
+            <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.rol }}</td>
           </ng-container>
-          <ng-container matColumnDef="apellidos">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Apellidos</th>
-            <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.apellidos }}</td>
+          <!-- Names Column -->
+          <ng-container matColumnDef="encargado">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Encargado</th>
+            <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.encargado }}</td>
           </ng-container>
-          <!-- nombre Column -->
+
+          <!-- upm Column -->
           <ng-container matColumnDef="upm">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>UPM</th>
             <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.upm }}</td>

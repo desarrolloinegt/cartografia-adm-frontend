@@ -1,4 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { IGroup, IGroupUserAssignment } from '@core/interfaces/i-group';
 import { IProjectUserAssingment } from '@core/interfaces/i-project';
@@ -17,6 +19,8 @@ type AOA = any[][];
 })
 export class AsignarPersonalComponent {
   groups!: IGroup[];
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
   idProject!: number;
   data: AOA = [[1, 2], [3, 4]];
   users:object[]=[];
@@ -26,7 +30,7 @@ export class AsignarPersonalComponent {
     proyecto_id: 0
   }
   dataSource: MatTableDataSource<string>;
-  displayedColumns: string[] = ['encargado','personal', 'options'];
+  displayedColumns: string[] = ['encargado','empleado', 'options'];
 
   constructor(private groupService: GroupService, private projectHomeService: ProjectHomeService, private projectService: ProjectService, private excelService: ExcelService) {
     this.dataSource=new MatTableDataSource();
@@ -39,6 +43,7 @@ export class AsignarPersonalComponent {
         this.projectUserAssignment.proyecto_id = data;
         this.idProject=data;
         this.getGroupsMinor();
+        this.getChiefEmployee();
       });
     }
     this.projectHomeService.getIdProject(localStorage.getItem('project') || '').subscribe(data => {
@@ -46,6 +51,8 @@ export class AsignarPersonalComponent {
     });
 
   }
+
+  
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -104,14 +111,25 @@ export class AsignarPersonalComponent {
           array.push({codigo_superior:dto[0],codigo_inferior:dto[1],proyecto_id:this.idProject,usuario_id:idUsuario});
         }
       });
+      array=array.filter(Boolean);
       this.projectHomeService.assignPersonal(array).subscribe(resp=>{
         if(resp.status==true){
+          console.log(resp.errores);
           Swal.fire('Ok!', resp.message, 'success');
+          this.getChiefEmployee();
         }
       });
     }
   }
 
+  getChiefEmployee(){
+    let idUsuario =Number(localStorage.getItem('id'));
+    this.projectHomeService.getChiefEmployee({usuario_id:idUsuario,proyecto_id:this.idProject}).subscribe(resp=>{
+      this.dataSource=new MatTableDataSource(resp); 
+      this.dataSource.paginator=this.paginator;
+      this.dataSource.sort=this.sort;
+    });
+  }
   verPlantilla(){
     Swal.fire({
       text: 'Ejemplo de plantilla',

@@ -32,12 +32,15 @@ export class ProjectHomeService {
     return this.apiService.store('obtenerUpmsAsignados',data);
   }
 
+  getChiefEmployee(data:any){
+    return this.apiService.store('obtenerEncargadoEmpleado',data);
+  }
   getUsersAssigned(data:any){
     return this.apiService.store('obtenerPersonalAsignado',data);
   }
 
   assignPersonal(data:any){
-    return this.apiService.store('',data);
+    return this.apiService.store('asginarPersonal',data);
   }
   verDetalleSustitucion(id:number){
     return this.apiService.getById('detalleSustitucion',id);
