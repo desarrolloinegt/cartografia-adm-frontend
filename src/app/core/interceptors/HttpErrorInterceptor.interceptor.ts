@@ -20,9 +20,12 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                 }
                 if (error.status === HttpStatusCode.Unauthorized) {
                     this.router.navigateByUrl('auth/login')
-                    return throwError(() => new Error(error.error.message));
+                    if( error.error.message!='Unauthorized'||error.error.message!='Unauthenticated'){
+                        this.Toast.fire({ icon: 'error', title: error.error.message })
+                        return throwError(() => new Error(error.error.message));
+                    }
                 }
-                this.Toast.fire({ icon: 'error', title: error.error.message })
+                this.Toast.fire({ icon: 'error',title: 'Ocurrio un error'})
                 return throwError(() => new Error('Ups algo salio mal'));
 
             })

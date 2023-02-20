@@ -31,15 +31,15 @@ export class HomePageComponent {
     });
   }
   loadProject(project:string){
-    localStorage.removeItem('project');
     this.permissionService.flushPermissions();
+    localStorage.removeItem('project');
     this.auth.getPermissions(project,this.id).subscribe(data=>{
-      console.log(data)
+      this.permissionService.flushPermissions();
       this.permissions=data;
-      this.permissionService.addPermission(this.permissions);
-      localStorage.setItem('project',project);
+      this.permissionService.addPermission(this.permissions);  
     })
-    localStorage.setItem('project',project)
+    localStorage.setItem('project',project);
     this.router.navigate(['projectHome']);
+    
   }
 }
