@@ -21,7 +21,7 @@
         </mat-form-field>
       </div>
     </div>
-    <div class="mat-elevation-z8">
+    <div class="mat-elevation-z8" *ngxPermissionsOnly="['ver-upms-cartografo']">
       <table mat-table [dataSource]="dataSource" matSort class="fluid">
         <!-- Departamento Column -->
         <ng-container matColumnDef="departamento">
@@ -67,13 +67,17 @@
           <th mat-header-cell *matHeaderCellDef></th>
           <td class="cell-pointer" mat-cell *matCellDef="let row">
             <div>
-              <button matTooltip="Iniciar UPM" matTooltipPosition="right">
+              <button
+              *ngxPermissionsOnly="['inicializar-actualizacion']"
+              matTooltip="Iniciar Actualizacion" matTooltipPosition="right">
                 <mat-icon>power_settings_new</mat-icon>
               </button>
             </div>
 
             <div>
-              <button matTooltip="Finalizar UPM" matTooltipPosition="left">
+              <button
+              *ngxPermissionsOnly="['finalizar-actualizacion']"
+              matTooltip="Finalizar UPM" matTooltipPosition="left">
                 <mat-icon aria-label="Home">done</mat-icon>
               </button>
             </div>

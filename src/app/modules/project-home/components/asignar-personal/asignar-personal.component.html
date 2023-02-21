@@ -4,10 +4,10 @@
 <br />
 <br />
 <div class="container">
-    <div>
+    <div >
         <mat-form-field appearance="outline" style="width: 25rem;" >
             <mat-label [style.fontSize.px]="16">Seleccione un Rol</mat-label>
-            <mat-select #rol>
+            <mat-select  #rol>
                 <mat-option *ngFor="let group of groups" [value]="group.id + ',' + group.nombre">
                     {{ group.nombre }}
                 </mat-option> 
@@ -16,14 +16,18 @@
     </div>
     <div>
         <div>
-            <button (click)="getUsers(rol.value)" [disabled]="!rol.value" mat-flat-button color="accent">
+            <button 
+            *ngxPermissionsOnly="['descargar-plantilla']"
+            (click)="getUsers(rol.value)" [disabled]="!rol.value" mat-flat-button color="accent">
                 <mat-icon>arrow_downward</mat-icon>
                 Descargar Plantilla
             </button>
         </div>
         <br>
         <div class="upms">
-            <button (click)="addFile()"  mat-flat-button color="accent">
+            <button 
+            *ngxPermissionsOnly="['asignar-personal']"
+            (click)="addFile()"  mat-flat-button color="accent">
                 <mat-icon>arrow_upward</mat-icon>
                 Cargar Archivo
             </button>
@@ -54,7 +58,7 @@
           </mat-form-field>
         </div>
       </div>
-      <div class="mat-elevation-z8">
+      <div class="mat-elevation-z8"  *ngxPermissionsOnly="['asignar-personal']">
         <table mat-table [dataSource]="dataSource" matSort class="fluid">
           <!-- ID Column -->
           <ng-container matColumnDef="encargado">

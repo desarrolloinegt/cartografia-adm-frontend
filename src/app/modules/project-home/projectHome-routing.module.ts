@@ -5,19 +5,33 @@ import { CartographerComponent } from './components/cartographer/cartographer.co
 import { EncargadoUpmsComponent } from './components/encargado-upms/encargado-upms.component';
 import { SupervisorComponent } from './components/supervisor/supervisor.component';
 import { HomeProjectPageComponent } from './pages';
-
+import { NgxPermissionsGuard } from 'ngx-permissions';
 const routes: Routes = [
   {
     path:'',
-    component:HomeProjectPageComponent
+    component:HomeProjectPageComponent,
   },
   {
     path:'assignPersonal',
-    component:AsignarPersonalComponent
+    component:AsignarPersonalComponent,
+    canActivate: [NgxPermissionsGuard],
+    data:{
+      permissions: {
+        only: ['asignar-personal'],
+        redirectTo: 'projectHome'
+      }
+    }
   },
   {
     path:'assignUpmChief',
-    component:EncargadoUpmsComponent
+    component:EncargadoUpmsComponent,
+    canActivate: [NgxPermissionsGuard],
+    data:{
+      permissions: {
+        only: ['asignar-upms-personal'],
+        redirectTo: 'projectHome'
+      }
+    }
   },
   {
     path: 'supervisor',
@@ -25,7 +39,14 @@ const routes: Routes = [
   },
   {
     path: 'cartografo',
-    component: CartographerComponent
+    component: CartographerComponent,
+    canActivate: [NgxPermissionsGuard],
+    data:{
+      permissions: {
+        only: ['ver-upms-cartografo'],
+        redirectTo: 'projectHome'
+      }
+    }
   }
 ];
 

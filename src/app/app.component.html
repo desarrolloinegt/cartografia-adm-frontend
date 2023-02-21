@@ -19,9 +19,12 @@
         <mat-icon class="routeIcon menu-icon">home</mat-icon>
         <span [style.fontSize.px]="14">Inicio</span>
       </a>
-      <a
+     
+<!--</a>*ngxPermissionsOnly="['administrar-proyecto']"-->
+      <div *ngIf="project">
+        <a
+        
         mat-list-item
-        *ngIf="project"
         class="menu-list-item"
         routerLink="projectHome"
       >
@@ -33,9 +36,8 @@
           </strong>
           </span>
       </a>
-
-      <div *ngIf="project">
         <a
+        *ngxPermissionsOnly="['asignar-personal']"
           mat-list-item
           class="menu-list-item"
           routerLink="projectHome/assignPersonal"
@@ -43,13 +45,15 @@
           <mat-icon class="routeIcon menu-icon">people_outline</mat-icon>
           <span [style.fontSize.px]="14">Carga de personal</span>
         </a>
-        <a mat-list-item class="menu-list-item" routerLink="projectHome/assignUpmChief">
+        <a 
+        *ngxPermissionsOnly="['asignar-upms-personal']"
+        mat-list-item class="menu-list-item" routerLink="projectHome/assignUpmChief">
           <mat-icon class="routeIcon menu-icon">work</mat-icon>
           <span [style.fontSize.px]="14">Carga de trabajo</span>
         </a>
       </div>
 
-      <div *ngIf="project">
+      <!--<div *ngIf="project">
         <a
           mat-list-item
           class="menu-list-item"
@@ -57,10 +61,11 @@
           <mat-icon class="routeIcon menu-icon">people_outline</mat-icon>
           <span [style.fontSize.px]="14">Supervisor</span>
         </a>
-      </div>
+      </div>-->
 
       <div *ngIf="project">
         <a
+        *ngxPermissionsOnly="['ver-upms-cartografo']"
           mat-list-item
           class="menu-list-item"
           routerLink="projectHome/cartografo">

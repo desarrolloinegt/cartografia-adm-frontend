@@ -52,4 +52,8 @@ export class ProjectService {
   createMunicipios(data:any){
     return this.apiService.store('cargarMunicipios',data);
   }
+
+  getUpmCartographer(data:any){
+    return this.apiService.store('obtenerUpmCartografo',data)
+  }
 }

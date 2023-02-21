@@ -15,7 +15,7 @@
         </mat-form-field>
     </div>
     <div>
-        <div>
+        <div *ngxPermissionsOnly="['descargar-plantilla']">
             <button [disabled]="!rol.value" (click)="getUpmsAsignn(rol.value)" mat-flat-button color="accent">
                 <mat-icon>arrow_downward</mat-icon>
                 Descargar Plantilla
@@ -24,6 +24,7 @@
         <br>
         <div>
             <button
+            *ngxPermissionsOnly="['asignar-upms-personal']"
             mat-flat-button
             color="accent"
             style="margin-right: 8px"
@@ -35,7 +36,9 @@
         
         <br>
         <div class="upms">
-            <button (click)="addFile()" mat-flat-button color="accent">
+            <button 
+            *ngxPermissionsOnly="['asignar-upms-personal']"
+            (click)="addFile()" mat-flat-button color="accent">
                 <mat-icon>arrow_upward</mat-icon>
                 Cargar Archivo
             </button>
@@ -66,7 +69,7 @@
           </mat-form-field>
         </div>
       </div>
-      <div class="mat-elevation-z8">
+      <div class="mat-elevation-z8" *ngxPermissionsOnly="['asignar-upms-personal']">
         <table mat-table [dataSource]="dataSource" matSort class="fluid">
 
           <!-- Rol Column -->

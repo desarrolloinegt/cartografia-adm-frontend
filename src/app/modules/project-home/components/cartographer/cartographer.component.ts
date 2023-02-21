@@ -21,7 +21,7 @@ export class CartographerComponent {
   dataSource: MatTableDataSource<String>;
   displayedColumns: string[] = ['departamento', 'municipio', 'upm', 'estado', 'options'];
   data: string[] = [];
-  idSupervisor!: number;
+  idProject!: number;
 
   assignment: AssignmentUpmProject = {
     proyecto_id: 0,
@@ -55,14 +55,14 @@ export class CartographerComponent {
     this.homeProjectService
       .getIdProject(localStorage.getItem('project') || '')
       .subscribe((data) => {
-        this.idSupervisor = data;
+        this.idProject = data;
         this.cargarUpmsAsignadas();
       });
   }
 
   cargarUpmsAsignadas() {
-    if (this.idSupervisor != 0) {
-      this.projectService.getUpms(this.idSupervisor).subscribe((resp) => {
+    if (this.idProject != 0) {
+      this.projectService.getUpmCartographer({proyecto_id:this.idProject}).subscribe((resp) => {
         this.dataSource = new MatTableDataSource(resp);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
