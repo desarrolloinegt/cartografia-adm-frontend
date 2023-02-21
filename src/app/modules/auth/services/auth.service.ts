@@ -3,6 +3,7 @@ import { BehaviorSubject, distinct, Observable, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { ILogin } from '@core/interfaces/i-login';
 import { ApiService } from '@core/services/api.service';
+import { NgxPermissionsService } from 'ngx-permissions';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,7 @@ import { ApiService } from '@core/services/api.service';
 export class AuthService {
   public authState = new BehaviorSubject<boolean>(false);
 
-  constructor(private router: Router, private apiService: ApiService) {
+  constructor(private router: Router, private apiService: ApiService,private permissionService: NgxPermissionsService) {
     this.ifLoggedIn();
   }
 
@@ -42,6 +43,7 @@ export class AuthService {
     localStorage.removeItem('project');
     localStorage.removeItem('usuario');
     localStorage.removeItem('id');
+    this.permissionService.flushPermissions();
     setTimeout(() => {
       this.router.navigateByUrl('auth/login');
       this.authState.next(false);

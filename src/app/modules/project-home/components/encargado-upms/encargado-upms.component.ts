@@ -139,7 +139,7 @@ export class EncargadoUpmsComponent {
     this.projectHomeService.assignChiefUpms(array).subscribe(resp=>{
       if(resp.status==true){
         this.cargarUpmChief();
-        console.log(resp.errores)
+        //console.log(resp.errores)
         Swal.fire('Ok!', resp.message, 'success');
       }
     })

@@ -114,7 +114,7 @@ export class AsignarPersonalComponent {
       array=array.filter(Boolean);
       this.projectHomeService.assignPersonal(array).subscribe(resp=>{
         if(resp.status==true){
-          console.log(resp.errores);
+          //console.log(resp.errores);
           Swal.fire('Ok!', resp.message, 'success');
           this.getChiefEmployee();
         }
