@@ -12,6 +12,8 @@ import { NewGroupProjectComponent } from './components/dialogs/new-group-project
 import { UpmsComponent } from './components/upms/upms.component';
 import { AsignarPersonalComponent } from './components/asignar-personal/asignar-personal.component';
 import { EncargadoUpmsComponent } from './components/encargado-upms/encargado-upms.component';
+import { SupervisorComponent } from './components/supervisor/supervisor.component';
+import { CartographerComponent } from './components/cartographer/cartographer.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { EncargadoUpmsComponent } from './components/encargado-upms/encargado-up
     NewGroupProjectComponent,
     UpmsComponent,
     AsignarPersonalComponent,
-    EncargadoUpmsComponent
+    EncargadoUpmsComponent,
+    SupervisorComponent,
+    CartographerComponent
   ],
   imports: [
     CommonModule,

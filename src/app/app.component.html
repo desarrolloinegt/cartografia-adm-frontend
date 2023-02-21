@@ -48,6 +48,27 @@
           <span [style.fontSize.px]="14">Carga de trabajo</span>
         </a>
       </div>
+
+      <div *ngIf="project">
+        <a
+          mat-list-item
+          class="menu-list-item"
+          routerLink="projectHome/supervisor">
+          <mat-icon class="routeIcon menu-icon">people_outline</mat-icon>
+          <span [style.fontSize.px]="14">Supervisor</span>
+        </a>
+      </div>
+
+      <div *ngIf="project">
+        <a
+          mat-list-item
+          class="menu-list-item"
+          routerLink="projectHome/cartografo">
+          <mat-icon class="routeIcon menu-icon">people_outline</mat-icon>
+          <span [style.fontSize.px]="14">Cartografo</span>
+        </a>
+      </div>
+
       <a
         mat-list-item
         *ngxPermissionsOnly="['ver-proyecto']"
