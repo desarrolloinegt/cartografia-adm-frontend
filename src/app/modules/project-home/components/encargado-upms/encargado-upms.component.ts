@@ -140,6 +140,15 @@ export class EncargadoUpmsComponent {
       }
     });
     array.shift();//Elimina el primer elemento que contiene las cadenas: upm,codigo_usuario
+    array = array.filter(Boolean);
+    for (let i = 0; i < array.length; i++) {
+      for (let j = i + 1; j < array.length; j++) {
+        if (array[i] != null && array[i]['upm']==array[j]['upm'] &&
+        array[i]['codigo_inferior'] == array[j]['codigo_inferior']) {
+          duplicates.push(array[i]['codigo_usuario'],array[i]['codigo_usuario']);    
+        }
+      }
+    }
     for (let i = 0; i < array.length; i++) {
       for(let j = i + 1; j < array.length; j++){
         if (array[i]['upm'] == array[j]['upm']) {
