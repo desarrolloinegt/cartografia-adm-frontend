@@ -62,7 +62,8 @@ export class GroupUserEditDialogComponent {
 
   eliminarUsuario(id:string,nombres: string,apellidos:string) {
     Swal.fire({
-      title: '¿Esta seguro que desea eliminar el usuario: ' + nombres +' '+apellidos+ ' de este grupo?',
+      title: 'Esta accion eliminara todas las asignaciones de personal y upm en la que se encuentre el usuario'+
+      ' ¿Esta seguro que desea eliminar el usuario: ' + nombres +' '+apellidos+ ' de este grupo?',
       showDenyButton: true,
       showCancelButton: true,
       confirmButtonText: 'Si',

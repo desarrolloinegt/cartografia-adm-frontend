@@ -189,4 +189,5 @@ export class EncargadoUpmsComponent {
       toast.addEventListener('mouseleave', Swal.resumeTimer)
     }
   })
+
 }

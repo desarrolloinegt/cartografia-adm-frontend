@@ -103,7 +103,8 @@ export class GroupPagesComponent {
 
   desactivar(id: string, nombre: string) {
     Swal.fire({
-      title: '¿Esta seguro que desea Desactivar el rol: ' + nombre + '?',
+      title: 'Esta accion eliminara todos los usuarios que se encuentren asignados a este rol y todas las asignaciones'
+      +' de upms y personal a dichos usuarios. ¿Esta seguro que desea Desactivar el rol: ' + nombre + '?',
       showDenyButton: true,
       showCancelButton: true,
       confirmButtonText: 'Si',
