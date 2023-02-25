@@ -1,0 +1,120 @@
+<div class="card">
+    <div class="card-body">
+    <form [formGroup]="fieldTeamForm" (submit)="submit()">
+        <div class="form-group">
+            <mat-form-field appearance="outline" class="full-width-input">
+                <mat-label [style.fontSize.px]="16">Ingrese Equipo de Campo</mat-label>
+                <input
+                type="text"
+                formControlName="equipo"
+                matInput
+                placeholder="..."
+                class="form-control"
+                required
+                />
+              <mat-error *ngIf="equipo?.touched && equipo?.hasError('required')"
+                >Equipo de Campo es
+                <strong>requerido</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="form-group">
+            <mat-form-field appearance="outline" class="full-width-input">
+                <mat-label [style.fontSize.px]="16">Ingrese Supervisor</mat-label>
+                <input
+                type="text"
+                formControlName="supervisor"
+                matInput
+                placeholder="Juan Pérez"
+                class="form-control"
+                required
+                />
+              <mat-error *ngIf="supervisor?.touched && supervisor?.hasError('required')"
+                >Supervisor de Equipo de Campo es
+                <strong>requerido</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="form-group">
+            <mat-form-field appearance="outline" class="full-width-input">
+                <mat-label [style.fontSize.px]="16">Ingrese el Nombre del Vehiculo</mat-label>
+                <input
+                type="text"
+                formControlName="vehiculo"
+                matInput
+                placeholder="Carro, Camión, Pickup"
+                class="form-control"
+                required
+                />
+              <mat-error *ngIf="vehiculo?.touched && vehiculo?.hasError('required')"
+                >Nombre del vehiculo es
+                <strong>requerido</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        
+        <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width-input">
+            <mat-label [style.fontSize.px]="16">Ingrese la Placa del Vehiculo</mat-label>
+            <input
+            type="text"
+            formControlName="placa"
+            matInput
+            placeholder="P216FMV"
+            class="form-control"
+            required
+            />
+          <mat-error *ngIf="placa?.touched && placa?.hasError('required')"
+            >Placa del vehiculo es
+            <strong>requerida</strong>
+            </mat-error>
+            <mat-error *ngIf="placa?.touched && placa?.hasError('pattern')"
+            >Placa debe tener la siguiente secuencia: <strong>A123ABC</strong>
+            </mat-error>
+        </mat-form-field>
+        </div>
+
+        <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width-input">
+            <mat-label [style.fontSize.px]="16">Ingrese el Modelo del Vehiculo</mat-label>
+            <input
+            type="text"
+            formControlName="modelo"
+            placeholder="BMW X5"    
+            matInput
+            class="form-control"
+            required
+            />
+          <mat-error *ngIf="modelo?.touched && modelo?.hasError('required')"
+            >Modelo del vehiculo es <strong>requerido</strong>
+            </mat-error>
+        </mat-form-field>
+        </div>
+
+        <div class="form-group">
+        <button
+        *ngxPermissionsOnly="['crear-equipo']"
+            type="submit"
+            [disabled]="!fieldTeamForm.valid"
+            mat-raised-button
+            (click)="createFieldTeam()"
+            color="primary"
+        >
+            Guardar Vehiculo
+        </button>
+        <br />
+        <button
+          *ngxPermissionsOnly="['crear-equipo']"
+          type="submit"
+          (click)="cancelAdd()"
+          mat-stroked-button
+          color="warn">
+          Cancelar
+        </button>
+        </div>
+    </form>
+    </div>
+</div>
+

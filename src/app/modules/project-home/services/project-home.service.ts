@@ -56,4 +56,8 @@ export class ProjectHomeService {
   cartografo(data: any) {
     return this.apiService.store('detalleCartografo', data);
   }
+
+  fieldTeam(data:any) {
+    return this.apiService.store('detalleFieldTeam', data);
+  }
 }

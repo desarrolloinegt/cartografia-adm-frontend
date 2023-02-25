@@ -74,6 +74,16 @@
         </a>
       </div>
 
+      <div *ngIf="project">
+        <a
+          mat-list-item
+          class="menu-list-item"
+          routerLink="projectHome/equipo-campo">
+          <mat-icon class="routeIcon menu-icon">my_location</mat-icon>
+          <span [style.fontSize.px]="14">Equipo de Campo</span>
+        </a>
+      </div>
+
       <a
         mat-list-item
         *ngxPermissionsOnly="['ver-proyecto']"

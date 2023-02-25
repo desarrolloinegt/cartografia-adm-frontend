@@ -4,7 +4,7 @@ import { AsignarPersonalComponent } from './components/asignar-personal/asignar-
 import { CartographerComponent } from './components/cartographer/cartographer.component';
 import { EncargadoUpmsComponent } from './components/encargado-upms/encargado-upms.component';
 import { SupervisorComponent } from './components/supervisor/supervisor.component';
-import { HomeProjectPageComponent } from './pages';
+import { FieldTeamPageComponent, HomeProjectPageComponent } from './pages';
 import { NgxPermissionsGuard } from 'ngx-permissions';
 const routes: Routes = [
   {
@@ -47,6 +47,10 @@ const routes: Routes = [
         redirectTo: 'projectHome'
       }
     }
+  },
+  {
+    path: 'equipo-campo',
+    component: FieldTeamPageComponent,
   }
 ];
 

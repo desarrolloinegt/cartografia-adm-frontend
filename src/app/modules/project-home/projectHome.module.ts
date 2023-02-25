@@ -14,6 +14,9 @@ import { AsignarPersonalComponent } from './components/asignar-personal/asignar-
 import { EncargadoUpmsComponent } from './components/encargado-upms/encargado-upms.component';
 import { SupervisorComponent } from './components/supervisor/supervisor.component';
 import { CartographerComponent } from './components/cartographer/cartographer.component';
+import { FieldTeamDialogComponent } from './pages/field-teams/field-team-dialog/field-team-dialog.component';
+import { FieldTeamPageComponent } from './pages/field-teams/field-team-page/field-team-page.component';
+import { NewFieldTeamPageComponent } from './pages/field-teams/new-field-team-page/new-field-team-page.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { CartographerComponent } from './components/cartographer/cartographer.co
     AsignarPersonalComponent,
     EncargadoUpmsComponent,
     SupervisorComponent,
-    CartographerComponent
+    CartographerComponent,
+    FieldTeamDialogComponent,
+    FieldTeamPageComponent,
+    NewFieldTeamPageComponent
   ],
   imports: [
     CommonModule,

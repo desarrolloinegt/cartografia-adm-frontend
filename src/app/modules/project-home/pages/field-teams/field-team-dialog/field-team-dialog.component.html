@@ -1,0 +1,70 @@
+<div class="card">
+    <h3 mat-dialog-title>Equipo: {{data.modelo}}</h3>
+    <br>
+    <br>
+    <div class="card-body">
+        <form [formGroup]="editForm" (submit)="submit()">
+            <div class="form-group">
+                <mat-form-field appearance="outline" class="full-width-input">
+                    <mat-label> Equipo </mat-label>
+                    <input type="text" formControlName="equipo" matInput
+                        class="form-control" required />
+                    <mat-error *ngIf="equipo?.touched && equipo?.hasError('required')">Equipo es <strong>requerido</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="form-group">
+                <mat-form-field appearance="outline" class="full-width-input">
+                    <mat-label> Supervisor </mat-label>
+                    <input type="text" formControlName="supervisor" matInput
+                        class="form-control" required />
+                    <mat-error *ngIf="supervisor?.touched && supervisor?.hasError('required')">Supervisor es <strong>requerido</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="form-group">
+                <mat-form-field appearance="outline" class="full-width-input">
+                    <mat-label> Vehiculo </mat-label>
+                    <input type="text" formControlName="vehiculo" matInput
+                        class="form-control" required />
+                    <mat-error *ngIf="vehiculo?.touched && vehiculo?.hasError('required')">Vehiculo es <strong>requerido</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            
+            <div class="form-group">
+                <mat-form-field appearance="outline" class="full-width-input">
+                    <mat-label>Placa del Vehiculo </mat-label>
+                    <input type="text" formControlName="placa" matInput
+                        class="form-control" required />
+                    <mat-error *ngIf="placa?.touched && placa?.hasError('required')">Placa es <strong>requerida</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="form-group">
+                <mat-form-field appearance="outline" class="full-width-input">
+                    <mat-label>Modelo del Vehiculo</mat-label>
+                    <input type="text" formControlName="modelo" matInput
+                        class="form-control" required />
+                    <mat-error *ngIf="modelo?.touched && modelo?.hasError('required')">Modelo es <strong>requerido</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            
+            <div class="form-group">
+                <button
+                *ngxPermissionsOnly="['editar-equipo']"
+                type="submit" (click)="editFieldTeam()" [disabled]="!editForm.valid" mat-stroked-button color="primary">
+                    Editar Equipo
+                </button>
+                <button type="submit" (click)="cancelEdit()" mat-stroked-button color="warn">
+                    Cancelar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
