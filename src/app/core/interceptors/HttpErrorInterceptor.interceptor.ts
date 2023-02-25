@@ -11,7 +11,11 @@ export class HttpErrorInterceptor implements HttpInterceptor {
             retry(1),
             catchError((error: HttpErrorResponse) => {
                 if (error.status === HttpStatusCode.Conflict) {
-                    this.Toast.fire({ icon: 'error', title: error.error.message })
+                    this.Toast.fire({ icon: 'error', title:error.error.message })
+                    return throwError(() => new Error(error.error.message));
+                }
+                if (error.status === HttpStatusCode.BadRequest) {
+                    this.Toast.fire({ icon: 'error', title:error.error.message })
                     return throwError(() => new Error(error.error.message));
                 }
                 if (error.status === HttpStatusCode.NotFound) {
@@ -20,12 +24,12 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                 }
                 if (error.status === HttpStatusCode.Unauthorized) {
                     this.router.navigateByUrl('auth/login')
-                    if( error.error.message!='Unauthorized'||error.error.message!='Unauthenticated'){
+                    if( error.error.message!='Unauthorized'&& error.error.message!='Unauthenticated/'){
                         this.Toast.fire({ icon: 'error', title: error.error.message })
                         return throwError(() => new Error(error.error.message));
                     }
                 }
-                this.Toast.fire({ icon: 'error',title: 'Ocurrio un error'})
+                this.Toast.fire({ icon: 'error',title: error.error.message})
                 return throwError(() => new Error('Ups algo salio mal'));
 
             })

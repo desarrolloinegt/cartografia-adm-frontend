@@ -40,6 +40,9 @@ export class ProjectHomeService {
   getUsersAssigned(data: any) {
     return this.apiService.store('obtenerPersonalAsignado', data);
   }
+  deleteAssingmentUsers(data:any){
+    return this.apiService.patch('eliminarAsignacionPersonal',data)
+  }
 
   assignPersonal(data: any) {
     return this.apiService.store('asginarPersonal', data);

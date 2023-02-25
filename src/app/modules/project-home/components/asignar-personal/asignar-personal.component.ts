@@ -23,17 +23,17 @@ export class AsignarPersonalComponent {
   @ViewChild(MatSort) sort!: MatSort;
   idProject!: number;
   data: AOA = [[1, 2], [3, 4]];
-  users:object[]=[];
+  users: object[] = [];
   usernames: IGroupUserAssignment[] = []
   projectUserAssignment: IProjectUserAssingment = {
     usuario_id: 0,
     proyecto_id: 0
   }
   dataSource: MatTableDataSource<string>;
-  displayedColumns: string[] = ['encargado','empleado', 'options'];
+  displayedColumns: string[] = ['encargado', 'empleado', 'options'];
 
   constructor(private groupService: GroupService, private projectHomeService: ProjectHomeService, private projectService: ProjectService, private excelService: ExcelService) {
-    this.dataSource=new MatTableDataSource();
+    this.dataSource = new MatTableDataSource();
   }
   ngOnInit() {
     let idUsuario = localStorage.getItem('id');
@@ -41,7 +41,7 @@ export class AsignarPersonalComponent {
       this.projectUserAssignment.usuario_id = Number(idUsuario);
       this.projectHomeService.getIdProject(localStorage.getItem('project') || '').subscribe(data => {
         this.projectUserAssignment.proyecto_id = data;
-        this.idProject=data;
+        this.idProject = data;
         this.getGroupsMinor();
         this.getChiefEmployee();
       });
@@ -52,7 +52,7 @@ export class AsignarPersonalComponent {
 
   }
 
-  
+
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -68,14 +68,14 @@ export class AsignarPersonalComponent {
   }
 
   getUsers(grupo: string) {
-    let idUsuario =Number(localStorage.getItem('id'));
+    let idUsuario = Number(localStorage.getItem('id'));
     let str = grupo.split(',');
-    this.users=[];
-    this.usernames=[];
-    this.projectHomeService.getUsersAssigned({rol_id:Number(str[0]),proyecto_id:this.idProject,usuario_id:idUsuario}).subscribe(data => {
+    this.users = [];
+    this.usernames = [];
+    this.projectHomeService.getUsersAssigned({ rol_id: Number(str[0]), proyecto_id: this.idProject, usuario_id: idUsuario }).subscribe(data => {
       this.usernames = data;
       this.usernames.forEach(data => {
-        this.users.push({ encargado: '',codigo_usuario: data.codigo_usuario,nombres:data.nombres,apellidos:data.apellidos});
+        this.users.push({ encargado: '', codigo_usuario: data.codigo_usuario, nombres: data.nombres, apellidos: data.apellidos });
       })
       this.excelService.exportAsExcelFile(this.users, str[1]);
     });
@@ -98,39 +98,60 @@ export class AsignarPersonalComponent {
         const ws: XLSX.WorkSheet = wb.Sheets[wsname];
         this.data = <AOA>(XLSX.utils.sheet_to_json(ws, { header: 1 }));
         this.generateJson();
+      }
+      reader.readAsBinaryString(file);
     }
-    reader.readAsBinaryString(file);
   }
-  }
-  generateJson(){
-    let idUsuario =Number(localStorage.getItem('id'));
-    if(Number(idUsuario)){
-      let array:any=[];
-      this.data.forEach(dto=>{
-        if(dto[0] && dto[1]){
-          array.push({codigo_superior:dto[0],codigo_inferior:dto[1],proyecto_id:this.idProject,usuario_id:idUsuario});
+  async generateJson() {
+    let idUsuario = Number(localStorage.getItem('id'));
+
+    if (Number(idUsuario)) {
+      let array: any = [];
+      let duplicates: String[] = [];
+      this.data.forEach(dto => {
+        if (dto[0] && dto[1]) {
+          array.push({ codigo_superior: dto[0], codigo_inferior: dto[1], proyecto_id: this.idProject, usuario_id: idUsuario });
         }
       });
-      array=array.filter(Boolean);
-      this.projectHomeService.assignPersonal(array).subscribe(resp=>{
-        if(resp.status==true){
-          //console.log(resp.errores);
-          Swal.fire('Ok!', resp.message, 'success');
-          this.getChiefEmployee();
+      array.shift();//Elimina el primer elemento que contiene las cadenas: encargado,personal
+      array = array.filter(Boolean);
+      for (let i = 0; i < array.length; i++) {
+        for (let j = i + 1; j < array.length; j++) {
+          if (array[i] != null && array[i]['codigo_superior']==array[j]['codigo_superior'] &&
+          array[i]['codigo_inferior'] == array[j]['codigo_inferior']) {
+            duplicates.push(array[i]['codigo_superior'],array[i]['codigo_inferior']);    
+          }
         }
-      });
+      }
+      for (let i = 0; i < array.length; i++) {
+        for(let j = i + 1; j < array.length; j++){
+          if (array[i]['codigo_inferior'] == array[j]['codigo_inferior']) {
+            duplicates.push(array[i]['codigo_inferior']);
+          }
+        } 
+      }
+      if (duplicates.length > 0) {
+        this.Toast.fire({ icon: 'error', title: 'Hay filas repetidas: ' + duplicates });
+      } else {
+        this.projectHomeService.assignPersonal(array).subscribe(resp => {
+          if (resp.status == true) {
+            this.Toast.fire({ icon: 'success', title: resp.message })
+            this.getChiefEmployee();
+          }
+        });
+      }
     }
   }
 
-  getChiefEmployee(){
-    let idUsuario =Number(localStorage.getItem('id'));
-    this.projectHomeService.getChiefEmployee({usuario_id:idUsuario,proyecto_id:this.idProject}).subscribe(resp=>{
-      this.dataSource=new MatTableDataSource(resp); 
-      this.dataSource.paginator=this.paginator;
-      this.dataSource.sort=this.sort;
+  getChiefEmployee() {
+    let idUsuario = Number(localStorage.getItem('id'));
+    this.projectHomeService.getChiefEmployee({ usuario_id: idUsuario, proyecto_id: this.idProject }).subscribe(resp => {
+      this.dataSource = new MatTableDataSource(resp);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     });
   }
-  verPlantilla(){
+  verPlantilla() {
     Swal.fire({
       text: 'Ejemplo de plantilla',
       imageUrl: 'assets/EjemploPlantillaPersonal.png',
@@ -139,4 +160,38 @@ export class AsignarPersonalComponent {
       imageAlt: 'Ejemplo del archivo de carga',
     })
   }
+
+  deleteAsignation(encargado_id:string,empleado_id:string,encargado:string,empleado:string){
+    Swal.fire({
+      title: 'Esta accion eliminara todas las asignaciones de personal y upms en la que se encuentre: '+empleado+
+      ' ¿Esta seguro que desea eliminar la asignacion:?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Si',
+      denyButtonText: `No`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.projectHomeService.deleteAssingmentUsers({encargado_id:encargado_id,empleado_id:empleado_id,proyecto_id:this.idProject}).subscribe(resp => {
+          if (resp.status == true) {
+            Swal.fire('Ok', resp.message, 'success');
+            this.getChiefEmployee();
+          }
+        });
+      } else if (result.isDenied) {
+        Swal.fire('Cambios no guardados', '', 'info')
+      }
+    })
+  }
+
+  Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 5000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
 }
