@@ -1,70 +1,80 @@
 <div class="card">
-    <h3 mat-dialog-title>Equipo: {{data.modelo}}</h3>
+    <h3 mat-dialog-title>Miembros: {{data.modelo}}</h3>
     <br>
     <br>
-    <div class="card-body">
-        <form [formGroup]="editForm" (submit)="submit()">
-            <div class="form-group">
-                <mat-form-field appearance="outline" class="full-width-input">
-                    <mat-label> Equipo </mat-label>
-                    <input type="text" formControlName="equipo" matInput
-                        class="form-control" required />
-                    <mat-error *ngIf="equipo?.touched && equipo?.hasError('required')">Equipo es <strong>requerido</strong>
-                    </mat-error>
-                </mat-form-field>
-            </div>
-
-            <div class="form-group">
-                <mat-form-field appearance="outline" class="full-width-input">
-                    <mat-label> Supervisor </mat-label>
-                    <input type="text" formControlName="supervisor" matInput
-                        class="form-control" required />
-                    <mat-error *ngIf="supervisor?.touched && supervisor?.hasError('required')">Supervisor es <strong>requerido</strong>
-                    </mat-error>
-                </mat-form-field>
-            </div>
-
-            <div class="form-group">
-                <mat-form-field appearance="outline" class="full-width-input">
-                    <mat-label> Vehiculo </mat-label>
-                    <input type="text" formControlName="vehiculo" matInput
-                        class="form-control" required />
-                    <mat-error *ngIf="vehiculo?.touched && vehiculo?.hasError('required')">Vehiculo es <strong>requerido</strong>
-                    </mat-error>
-                </mat-form-field>
-            </div>
-            
-            <div class="form-group">
-                <mat-form-field appearance="outline" class="full-width-input">
-                    <mat-label>Placa del Vehiculo </mat-label>
-                    <input type="text" formControlName="placa" matInput
-                        class="form-control" required />
-                    <mat-error *ngIf="placa?.touched && placa?.hasError('required')">Placa es <strong>requerida</strong>
-                    </mat-error>
-                </mat-form-field>
-            </div>
-
-            <div class="form-group">
-                <mat-form-field appearance="outline" class="full-width-input">
-                    <mat-label>Modelo del Vehiculo</mat-label>
-                    <input type="text" formControlName="modelo" matInput
-                        class="form-control" required />
-                    <mat-error *ngIf="modelo?.touched && modelo?.hasError('required')">Modelo es <strong>requerido</strong>
-                    </mat-error>
-                </mat-form-field>
-            </div>
-            
-            <div class="form-group">
-                <button
-                *ngxPermissionsOnly="['editar-equipo']"
-                type="submit" (click)="editFieldTeam()" [disabled]="!editForm.valid" mat-stroked-button color="primary">
-                    Editar Equipo
-                </button>
-                <button type="submit" (click)="cancelEdit()" mat-stroked-button color="warn">
-                    Cancelar
-                </button>
-            </div>
-        </form>
-    </div>
 </div>
+<div class="grid-container">
+    <div class="frow-container">
+      <div class="frow row-start">
+        <div class="col-sm-1-1 col-sm-3-12 col-md-3-12">
+          <mat-form-field
+            [style.fontSize.px]="12"
+            appearence="outline"
+            class="fluid"
+          >
+            <mat-label [style.fontSize.px]="14">Buscar</mat-label>
+            <input
+              matInput
+              (keyup)="applyFilter($event)"
+              placeholder="Ejemplo: AEE123456789A2"
+              #input
+            />
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="mat-elevatioin-z8">
+        <table mat-table [dataSource]="dataSource" matSort class="fluid">
+          <!-- nombre Column -->
+          <ng-container matColumnDef="codigo_usuario">
+            <th mat-header-cell *matHeaderCellDef>Codigo de usuario</th>
+            <td class="cell-pointer" mat-cell *matCellDef="let row">
+              {{ row.codigo_usuario }}
+            </td>
+          </ng-container>
+  
+          <!-- Descripcion Column -->
+          <ng-container matColumnDef="nombres">
+            <th mat-header-cell *matHeaderCellDef>Nombres</th>
+            <td class="cell-pointer" mat-cell *matCellDef="let row">
+              {{ row.nombres }}
+            </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="apellidos">
+            <th mat-header-cell *matHeaderCellDef>Apellidos</th>
+            <td class="cell-pointer" mat-cell *matCellDef="let row">
+              {{ row.apellidos }}
+            </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="options">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td class="cell-pointer" mat-cell *matCellDef="let row">
+            </td>
+          </ng-container>
+  
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr
+            class="selected-row"
+            mat-row
+            *matRowDef="let row; columns: displayedColumns"
+          ></tr>
+  
+          <!-- Row shown when there is no matching data. -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">
+              No hay resultados de "{{ input.value }}"
+            </td>
+          </tr>
+        </table>
+        <br />
+        <mat-paginator
+          [pageSizeOptions]="[5, 10, 25, 100]"
+          showFirstLastButtons
+        ></mat-paginator>
+      </div>
+    </div>
+  </div>
+  
 

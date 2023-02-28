@@ -110,7 +110,7 @@ export class AsignarPersonalComponent {
       let duplicates: String[] = [];
       this.data.forEach(dto => {
         if (dto[0] && dto[1]) {
-          array.push({ codigo_superior: dto[0], codigo_inferior: dto[1], proyecto_id: this.idProject, usuario_id: idUsuario });
+          array.push({ codigo_superior: dto[0], codigo_inferior: dto[1], proyecto_id: this.idProject });
         }
       });
       array.shift();//Elimina el primer elemento que contiene las cadenas: encargado,personal

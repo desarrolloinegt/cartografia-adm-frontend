@@ -91,8 +91,6 @@ export class VehiclePageComponent {
             this.cargarVehiculo();
             Swal.fire('Ok!', resp.message, 'success')  
           }
-        },(err) => {
-          console.log(err);
         }); 
       } else if (result.isDenied) {
         Swal.fire('Cambios no guardados', '', 'info')

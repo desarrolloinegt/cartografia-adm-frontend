@@ -30,7 +30,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                     }
                 }
                 this.Toast.fire({ icon: 'error',title: error.error.message})
-                return throwError(() => new Error('Ups algo salio mal'));
+                return throwError(() => new Error(error.error.message));
 
             })
         );

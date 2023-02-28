@@ -45,7 +45,7 @@ export class ProjectHomeService {
   }
 
   assignPersonal(data: any) {
-    return this.apiService.store('asginarPersonal', data);
+    return this.apiService.store('asignarPersonal', data);
   }
 
   verDetalleSustitucion(id: number) {
