@@ -44,7 +44,7 @@
           mat-flat-button
           color="accent"
           style="margin-right: 8px"
-          (click)="open()"
+          (click)="addTeam()"
         >
           <mat-icon>add</mat-icon>
           Crear Equipo de Campo
@@ -63,6 +63,8 @@
     </div>
   </div>
 </div>
+<br>
+<br>
 <div class="grid-container">
   <div class="frow-container">
     <div class="frow row-start">
@@ -89,7 +91,7 @@
         <ng-container matColumnDef="supervisor">
           <th mat-header-cell *matHeaderCellDef>Supervisor</th>
           <td class="cell-pointer" mat-cell *matCellDef="let row">
-            {{ row.nombres }} {{ row.apellidos }}
+           {{row.codigo_usuario}} {{ row.nombres }} {{ row.apellidos }}
           </td>
         </ng-container>
 
@@ -97,19 +99,12 @@
         <ng-container matColumnDef="vehiculo">
           <th mat-header-cell *matHeaderCellDef>Vehiculo</th>
           <td class="cell-pointer" mat-cell *matCellDef="let row">
-            {{ row.modelo }}
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="placa">
-          <th mat-header-cell *matHeaderCellDef>Placa</th>
-          <td class="cell-pointer" mat-cell *matCellDef="let row">
-            {{ row.year }}
+            {{row.modelo}} {{ row.placa }}
           </td>
         </ng-container>
 
         <ng-container matColumnDef="options">
-          <th mat-header-cell *matHeaderCellDef></th>
+          <th mat-header-cell *matHeaderCellDef>Acciones</th>
           <td class="cell-pointer" mat-cell *matCellDef="let row">
             
             <button
@@ -121,6 +116,32 @@
             >
               <mat-icon >people_outline</mat-icon>
             </button>
+            <div>
+              <button
+              *ngIf="row.placa" 
+              mat-icon-button
+              matTooltip="Cambiar Vehiculo"
+              (click)="modifyVehicle(row.id,row.placa)"
+              color="primary"
+              class="iconbutton"
+            >
+              <mat-icon >cached</mat-icon>
+            </button>
+            </div>
+            
+            <div>
+              <button
+              mat-icon-button
+              *ngIf="!row.placa"
+              matTooltip="Asignar Vehiculo"
+              (click)="addVehicle(row.id)"
+              color="primary"
+              class="iconbutton"
+            >
+              <mat-icon >directions_car</mat-icon>
+            </button>
+            </div>
+           
           </td>
         </ng-container>
 

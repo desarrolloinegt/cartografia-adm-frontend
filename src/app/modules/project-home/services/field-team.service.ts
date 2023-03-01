@@ -27,4 +27,19 @@ export class FieldTeamService {
   getUsersTeam(data:any){
     return this.apiService.store('miembrosEquipo',data);
   }
+
+  getVehicles(){
+    return this.apiService.getAll('vehiculos');
+  }
+
+  addTeam(data:any){
+    return this.apiService.store('addEquipo',data);
+  }
+  addVehicule(data:any){
+    return this.apiService.patch('addVehiculo',data);
+  }
+
+  modifyVehicle(data:any){
+    return this.apiService.patch('equipo/edit',data);
+  }
 }

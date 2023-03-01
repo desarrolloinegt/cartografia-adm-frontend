@@ -1,5 +1,5 @@
 import { Component, Inject, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder} from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -14,7 +14,6 @@ import Swal from 'sweetalert2';
   styleUrls: ['./field-team-dialog.component.scss']
 })
 export class FieldTeamDialogComponent {
-  editForm!: FormGroup;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   dataSource: MatTableDataSource<String>;
@@ -22,12 +21,10 @@ export class FieldTeamDialogComponent {
 
 
   constructor(
-    private fieldTeamService: FieldTeamService,
-    public dialogRef: MatDialogRef<IFieldTeam>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private formBuilder: FormBuilder
+    private fieldTeamService: FieldTeamService, public dialogRef: MatDialogRef<FieldTeamDialogComponent>,@Inject(MAT_DIALOG_DATA) public data: any,private formBuilder: FormBuilder
   ) {
     this.dataSource=new MatTableDataSource();
+    this.chargetUsers();
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -38,13 +35,16 @@ export class FieldTeamDialogComponent {
     }
   }
   ngOnInit(){
-    this.chargetUsers();
+   
   }
 
   chargetUsers(){
-    this.dataSource=new MatTableDataSource(this.data);
-    this.dataSource.paginator=this.paginator;
-    this.dataSource.sort=this.sort;
+    this.fieldTeamService.getUsersTeam({proyecto_id:this.data.proyecto_id,supervisor:this.data.supervisor}).subscribe((resp)=>{
+      this.dataSource = new MatTableDataSource(resp);
+      this.dataSource.sort=this.sort;
+      this.dataSource.paginator=this.paginator;
+    });
+    
   }
 
 }
