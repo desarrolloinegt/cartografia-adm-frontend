@@ -27,7 +27,7 @@ export class FieldTeamPageComponent {
   @ViewChild(MatSort) sort!: MatSort;
   data: AOA = [[1, 2], [3, 4]];
   dataSource: MatTableDataSource<String>;
-  displayedColumns: string[] = ['supervisor', 'vehiculo', 'options'];
+  displayedColumns: string[] = ['supervisor', 'vehiculo','descripcion', 'options'];
   idFieldTeam!: number;
   projectId!:number;
   roles:IRole[]=[];
@@ -140,7 +140,7 @@ export class FieldTeamPageComponent {
     Swal.fire({
       text: 'Ejemplo de plantilla',
       imageUrl: 'assets/EjemploEquipo.PNG',
-      imageWidth: 375,
+      imageWidth: 415,
       imageHeight: 260,
       imageAlt: 'Ejemplo del archivo de carga',
     })
@@ -171,8 +171,8 @@ export class FieldTeamPageComponent {
     let array: any = [];
     let duplicates: String[] = [];
     this.data.forEach(dto => {
-      if (dto[1]) {
-        array.push({ placa: dto[0], codigo_supervisor: dto[1], proyecto_id: this.idProject });
+      if (dto[2]) {
+        array.push({ placa: dto[0],descripcion:dto[1], codigo_supervisor: dto[2], proyecto_id: this.idProject });
       }
     });
     array.shift();//Elimina el primer elemento que contiene las cadenas: encargado,personal
@@ -197,11 +197,13 @@ export class FieldTeamPageComponent {
       if(!array[index]['placa']){
         array[index]['placa']=""
       }
+      if(!array[index]['descripcion']){
+        array[index]['descripcion']="";
+      }
     }
     if (duplicates.length > 0) {
       this.Toast.fire({ icon: 'error', title: 'Hay filas repetidas: ' + duplicates });
     } else {
-      console.log(array)
       this.fieldService.createFieldTeam(array).subscribe((resp)=>{
         if(resp.status==true){
           this.Toast.fire({icon:'success',title:resp.message});
@@ -232,12 +234,12 @@ export class FieldTeamPageComponent {
     this.fieldService.getVehicles().subscribe((data)=>{
       vehicles=data;
       for (let index = 0; index < vehicles.length; index++) {
-        dataFile.push({ placa: vehicles[index]['placa'], codigo_usuario: '', nombres: '', apellidos: '' });
+        dataFile.push({ placa: vehicles[index]['placa'],descripcion:'', codigo_usuario: '', nombres: '', apellidos: '' });
       }
       for (let index = 0; index < users.length; index++) {
-        dataFile.push({ placa:'', codigo_usuario: users[index].codigo_usuario, nombres: users[index].nombres, apellidos: users[index].apellidos });
+        dataFile.push({ placa:'', codigo_usuario: users[index].codigo_usuario,descripcion:'', nombres: users[index].nombres, apellidos: users[index].apellidos });
       }
-      this.excelService.exportAsExcelFile(dataFile,nombre);
+      this.excelService.exportAsExcelFile(dataFile,"Equipo Campo "+nombre);
     });
    
   }
@@ -279,6 +281,27 @@ export class FieldTeamPageComponent {
         }
       });
     }
+  }
+
+  async editTeam(user:string,descripcion:string){
+    if(!descripcion){descripcion="";}
+      
+    const { value: descrip } = await Swal.fire({
+      title: 'Editar equipo',
+      input: 'text',
+      inputValue:descripcion,
+      inputPlaceholder: 'Equipo encargado de Zona 1',
+      confirmButtonText: 'Modificar descripcion',
+      showCancelButton: true,
+      inputLabel: 'Ingrese la descripcion del equipo',
+    });
+    let data={proyecto_id:this.idProject,usuario_id:Number(user),descripcion:descrip};
+    this.fieldService.editFieldTeam(data).subscribe((resp)=>{
+      if(resp.status==true){
+        this.Toast.fire({icon:'success',title:resp.message});
+        this.cargarEquipo();
+      }
+    });
   }
   Toast = Swal.mixin({
     toast: true,

@@ -40,6 +40,6 @@ export class FieldTeamService {
   }
 
   modifyVehicle(data:any){
-    return this.apiService.patch('equipo/edit',data);
+    return this.apiService.patch('equipoVehicle/edit',data);
   }
 }
