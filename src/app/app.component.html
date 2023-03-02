@@ -66,6 +66,7 @@
 
       <div *ngIf="project">
         <a
+        *ngxPermissionsOnly="['ver-equipo-campo']"
           mat-list-item
           class="menu-list-item"
           routerLink="projectHome/equipo-campo">

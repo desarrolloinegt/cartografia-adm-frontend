@@ -52,7 +52,7 @@ export class GroupService {
 
  
  
-  getGroupsMinor(data:IProjectUserAssingment){
+  getGroupsMinor(data:any){
     return this.apiService.store('seleccionarRolesMenores',data)
   }
 }

@@ -46,20 +46,11 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Estado</th>
           <td class="cell-pointer" mat-cell *matCellDef="let row">
             <button
-              mat-stroked-button
-              color="primary"
+              style="background: white;"
+              [ngStyle]="getColor(row.cod_estado)"
               class="estado"
-              *ngIf="row.estado == 'Cargado'"
             >
-              {{ row.estado }}
-            </button>
-            <button
-              mat-stroked-button
-              color="warn"
-              class="estado"
-              *ngIf="row.estado == 'Sustituido'"
-            >
-              {{ row.estado }}
+              {{row.estado}}
             </button>
           </td>
         </ng-container>
@@ -68,14 +59,22 @@
           <td class="cell-pointer" mat-cell *matCellDef="let row">
             <div>
               <button
+              mat-flat-button
+              [disabled]="row.cod_estado!=1"
+              color="primary"
+              (click)="initActualization(row.upm)"
               *ngxPermissionsOnly="['inicializar-actualizacion']"
-              matTooltip="Iniciar Actualizacion" matTooltipPosition="right">
+                matTooltip="Iniciar Actualizacion" matTooltipPosition="right">
                 <mat-icon>power_settings_new</mat-icon>
               </button>
             </div>
 
             <div>
               <button
+              mat-flat-button
+              color="warn"
+              (click)="finishActualization(row.upm)"
+              [disabled]="row.cod_estado==1 || row.cod_estado==3 || row.cod_estado==4"
               *ngxPermissionsOnly="['finalizar-actualizacion']"
               matTooltip="Finalizar UPM" matTooltipPosition="left">
                 <mat-icon aria-label="Home">done</mat-icon>

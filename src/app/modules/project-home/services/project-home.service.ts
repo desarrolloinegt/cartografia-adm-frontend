@@ -45,7 +45,7 @@ export class ProjectHomeService {
   }
 
   assignPersonal(data: any) {
-    return this.apiService.store('asginarPersonal', data);
+    return this.apiService.store('asignarPersonal', data);
   }
 
   verDetalleSustitucion(id: number) {
@@ -62,5 +62,13 @@ export class ProjectHomeService {
 
   fieldTeam(data:any) {
     return this.apiService.store('detalleFieldTeam', data);
+  }
+
+  initActualization(data:any){
+    return this.apiService.patch('iniciarActualizacion',data);
+  }
+
+  finishActualization(data:any){
+    return this.apiService.patch('finalizarActualizacion',data);
   }
 }

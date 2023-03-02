@@ -1,0 +1,26 @@
+.container{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+.container_download{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+.title{
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+.container_options{
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-around;
+}
+.mat-mdc-form-field {
+    font-size: 14px;
+    margin: 0 3rem 0 3rem;
+    display: flex;
+}
