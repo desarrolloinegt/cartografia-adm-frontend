@@ -26,23 +26,23 @@
                     <td class="cell-pointer" mat-cell *matCellDef="let row"> {{row.upm}} </td>
                 </ng-container>
         
-                <ng-container matColumnDef="id_cartografo">
-                    <th mat-header-cell *matHeaderCellDefmat-sort-header>ID Cartografo</th>
-                    <td class="cell-pointer" mat-cell *matCellDef="let row"> {{row.id_cartografo}} </td>
+                <ng-container matColumnDef="codigo_usuario">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>ID Cartografo</th>
+                    <td class="cell-pointer" mat-cell *matCellDef="let row"> {{row.codigo_usuario}} </td>
                 </ng-container> 
 
-                <ng-container matColumnDef="nombre_cartografo">
-                    <th mat-header-cell *matHeaderCellDefmat-sort-header>Nombre Cartografo</th>
-                    <td class="cell-pointer" mat-cell *matCellDef="let row"> {{row.nombre_cartografo}} </td>
+                <ng-container matColumnDef="nombres">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre Cartografo</th>
+                    <td class="cell-pointer" mat-cell *matCellDef="let row"> {{row.nombres}} </td>
                 </ng-container> 
 
-                <ng-container matColumnDef="apellido_cartografo">
-                    <th mat-header-cell *matHeaderCellDefmat-sort-header>Apellido Cartografo</th>
-                    <td class="cell-pointer" mat-cell *matCellDef="let row"> {{row.apellido_cartografo}} </td>
+                <ng-container matColumnDef="apellidos">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Apellido Cartografo</th>
+                    <td class="cell-pointer" mat-cell *matCellDef="let row"> {{row.apellidos}} </td>
                 </ng-container> 
 
                 <ng-container matColumnDef="estado">
-                    <th mat-header-cell *matHeaderCellDefmat-sort-header>Estado</th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Estado</th>
                     <td class="cell-pointer" mat-cell *matCellDef="let row"> {{row.estado}} </td>
                 </ng-container> 
         
@@ -53,18 +53,12 @@
                         *ngxPermissionsOnly="['asignar']"
                         mat-icon-button (click)="asignar()"
                             matTooltip="Click para Asignar" matTooltipPosition="right" color="primary" class="iconbutton">
-                            <mat-icon aria-label="Edit">edit</mat-icon>
+                            <mat-icon aria-label="asignar"></mat-icon>
                         </button>
                         <button 
                         *ngxPermissionsOnly="['ver-mapa']"
                         mat-icon-button matTooltip="Click para Ver Mapa"
                             (click)="verMapa()" color="warn" class="iconbutton">
-                            <mat-icon aria-label="Delete">delete</mat-icon>
-                        </button>
-                        <button 
-                        *ngxPermissionsOnly="['integrantes']"
-                        mat-icon-button matTooltip="Click para Integrantes"
-                            (click)="verIntegrantes()" color="warn" class="iconbutton">
                             <mat-icon aria-label="Delete">delete</mat-icon>
                         </button>
                     </td>

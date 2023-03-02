@@ -17,7 +17,7 @@ export class SupervisorComponent {
 
   @ViewChild(MatSort) sort!: MatSort;
   dataSource: MatTableDataSource<String>;
-  displayedColumns: string[] = ['upm', 'id_cartografo', 'nombre_cartografo', 'apellido_cartografo', 'estado', 'options'];
+  displayedColumns: string[] = ['upm', 'codigo_usuario', 'nombres', 'apellidos', 'estado', 'options'];
   data: string[] = [];
   idSupervisor!: number;
   supervisorData: ISupervisor = {
@@ -57,7 +57,7 @@ export class SupervisorComponent {
   }
 
   cargarTabla() {
-    this.supervisorService.getDataSupervisor({projecto_id: 1}).subscribe((data) => {
+    this.supervisorService.getDataSupervisor({proyecto_id: 1}).subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
     })
   }
@@ -66,5 +66,4 @@ export class SupervisorComponent {
 
   verMapa() {}
 
-  verIntegrantes() {}
 }
