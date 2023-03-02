@@ -53,16 +53,6 @@
         </a>
       </div>
 
-      <!--<div *ngIf="project">
-        <a
-          mat-list-item
-          class="menu-list-item"
-          routerLink="projectHome/supervisor">
-          <mat-icon class="routeIcon menu-icon">people_outline</mat-icon>
-          <span [style.fontSize.px]="14">Supervisor</span>
-        </a>
-      </div>-->
-
       <div *ngIf="project">
         <a
         *ngxPermissionsOnly="['ver-upms-cartografo']"
@@ -81,6 +71,13 @@
           routerLink="projectHome/equipo-campo">
           <mat-icon class="routeIcon menu-icon">my_location</mat-icon>
           <span [style.fontSize.px]="14">Equipo de Campo</span>
+        </a>
+      </div>
+
+      <div *ngIf="project">
+        <a mat-list-item class="menu-list-item" routerLink="projectHome/supervisores">
+          <mat-icon class="routeIcon menu-icon">people_outline</mat-icon>
+          <span [style.fontSize.px]="14">Supervisores</span>
         </a>
       </div>
 

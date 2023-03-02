@@ -12,11 +12,11 @@ import { NewGroupProjectComponent } from './components/dialogs/new-group-project
 import { UpmsComponent } from './components/upms/upms.component';
 import { AsignarPersonalComponent } from './components/asignar-personal/asignar-personal.component';
 import { EncargadoUpmsComponent } from './components/encargado-upms/encargado-upms.component';
-import { SupervisorComponent } from './components/supervisor/supervisor.component';
 import { CartographerComponent } from './components/cartographer/cartographer.component';
 import { FieldTeamDialogComponent } from './pages/field-teams/field-team-dialog/field-team-dialog.component';
 import { FieldTeamPageComponent } from './pages/field-teams/field-team-page/field-team-page.component';
 import { NewFieldTeamPageComponent } from './pages/field-teams/new-field-team-page/new-field-team-page.component';
+import { SupervisorComponent } from './pages';
 
 @NgModule({
   declarations: [
@@ -26,11 +26,11 @@ import { NewFieldTeamPageComponent } from './pages/field-teams/new-field-team-pa
     UpmsComponent,
     AsignarPersonalComponent,
     EncargadoUpmsComponent,
-    SupervisorComponent,
     CartographerComponent,
     FieldTeamDialogComponent,
     FieldTeamPageComponent,
-    NewFieldTeamPageComponent
+    NewFieldTeamPageComponent,
+    SupervisorComponent
   ],
   imports: [
     CommonModule,
