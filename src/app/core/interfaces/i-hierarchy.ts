@@ -11,3 +11,15 @@ export class IHierarchy {
     }
 }
 
+export class EstadosUpm{
+    public static array= [
+        {id:1,color:"#5DADE2"},
+        {id:2,color:"#F4D03F"},
+        {id:3,color:"#229954"},
+        {id:4,color:"#E74C3C"}
+    ];
+    static getArray(){
+
+    }
+}
+

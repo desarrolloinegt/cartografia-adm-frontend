@@ -4,9 +4,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { EstadosUpm } from '@core/interfaces/i-hierarchy';
 import { AssignmentUpmProject, AssignmentUpmProjectSustituir } from '@core/interfaces/i-upm';
 import { ProjectHomeService } from '@modules/project-home/services/project-home.service';
 import { ProjectService } from '@modules/project/services/project.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-cartographer',
@@ -78,4 +80,42 @@ export class CartographerComponent {
       this.dataSource.paginator.firstPage();
     }
   }
+  getColor(estado:string){
+   for (let index = 0; index < EstadosUpm.array.length; index++) {
+    if(EstadosUpm.array[index].id==Number(estado)){
+      return {color:EstadosUpm.array[index].color,border:`1px solid ${EstadosUpm.array[index].color}`};
+    }
+   }
+   return {};
+  }
+  initActualization(upm:string){
+    let data={upm:upm,proyecto_id:this.idProject}
+    this.homeProjectService.initActualization(data).subscribe((resp)=>{
+      if(resp.status==true){
+        this.Toast.fire({icon:'success',title:resp.message});
+        this.cargarUpmsAsignadas();
+      }
+    });
+  }
+  finishActualization(upm:string){
+    let data={upm:upm,proyecto_id:this.idProject}
+    this.homeProjectService.finishActualization(data).subscribe((resp)=>{
+      if(resp.status==true){
+        this.Toast.fire({icon:'success',title:resp.message});
+        this.cargarUpmsAsignadas();
+      }
+    })
+  }
+
+  Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 5000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  });
 }
