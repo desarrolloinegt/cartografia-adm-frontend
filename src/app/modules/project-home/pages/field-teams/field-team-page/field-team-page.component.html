@@ -102,11 +102,24 @@
             {{row.modelo}} {{ row.placa }}
           </td>
         </ng-container>
-
+        <ng-container matColumnDef="descripcion">
+          <th mat-header-cell *matHeaderCellDef>Descripcion</th>
+          <td class="cell-pointer" mat-cell *matCellDef="let row">
+            {{row.descripcion }}
+          </td>
+        </ng-container>
         <ng-container matColumnDef="options">
           <th mat-header-cell *matHeaderCellDef>Acciones</th>
           <td class="cell-pointer" mat-cell *matCellDef="let row">
-            
+            <button
+            mat-icon-button
+            matTooltip="Editar descripcion"
+            color="primary"
+            class="iconbutton"
+            (click)="editTeam(row.id,row.descripcion)"
+            >
+            <mat-icon>edit</mat-icon>
+            </button>
             <button
               mat-icon-button
               matTooltip="Ver miebros de equipo"
@@ -123,6 +136,7 @@
               matTooltip="Cambiar Vehiculo"
               (click)="modifyVehicle(row.id,row.placa)"
               color="primary"
+              
               class="iconbutton"
             >
               <mat-icon >cached</mat-icon>
