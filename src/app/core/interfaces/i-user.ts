@@ -1,4 +1,5 @@
 export interface IUser {
+  id:number,
   DPI: string;
   nombres: string;
   apellidos: string;

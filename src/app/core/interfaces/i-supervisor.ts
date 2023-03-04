@@ -10,7 +10,8 @@ export interface ISupervisor {
 }
 
 export interface ISupervisorUserAssignment {
-    id: number,
+    codigo_usuario: number,
     nombre: string,
-    users: IUserList[]
+    proyecto_id:number,
+    upm:string
 }

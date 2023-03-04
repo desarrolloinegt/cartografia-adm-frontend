@@ -7,8 +7,8 @@
   <div class="container_download">
     <mat-form-field appearance="outline" style="width: 25rem">
       <mat-label [style.fontSize.px]="16">Seleccione un Rol</mat-label>
-      <mat-select #rol>
-        <mat-option
+      <mat-select  #rol >
+        <mat-option 
           *ngFor="let rol of roles"
           [value]="rol.id + ',' + rol.nombre"
         >
@@ -18,6 +18,7 @@
     </mat-form-field>
     <div>
       <button
+      *ngxPermissionsOnly="['descargar-plantilla']"
         (click)="getUsers(rol.value)"
         [disabled]="!rol.value"
         mat-flat-button
@@ -31,6 +32,7 @@
   <div class="container_options">
     <div>
       <button
+      *ngxPermissionsOnly="['crear-equipo-campo']"
         (click)="addFile()"
         mat-flat-button
         color="accent"
@@ -41,6 +43,7 @@
     </div>
     <div>
         <button
+        *ngxPermissionsOnly="['crear-equipo-campo']"
           mat-flat-button
           color="accent"
           style="margin-right: 8px"
@@ -112,6 +115,7 @@
           <th mat-header-cell *matHeaderCellDef>Acciones</th>
           <td class="cell-pointer" mat-cell *matCellDef="let row">
             <button
+            *ngxPermissionsOnly="['editar-equipo-campo']"
             mat-icon-button
             matTooltip="Editar descripcion"
             color="primary"
@@ -121,6 +125,7 @@
             <mat-icon>edit</mat-icon>
             </button>
             <button
+            *ngxPermissionsOnly="['ver-usuarios-equipo-campo']"
               mat-icon-button
               matTooltip="Ver miebros de equipo"
               (click)="seeTeam(row.id)"
@@ -129,7 +134,7 @@
             >
               <mat-icon >people_outline</mat-icon>
             </button>
-            <div>
+            <div *ngxPermissionsOnly="['agregar-vehiculo-equipo-campo']">
               <button
               *ngIf="row.placa" 
               mat-icon-button
@@ -143,7 +148,7 @@
             </button>
             </div>
             
-            <div>
+            <div *ngxPermissionsOnly="['agregar-vehiculo-equipo-campo']">
               <button
               mat-icon-button
               *ngIf="!row.placa"

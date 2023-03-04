@@ -18,7 +18,7 @@
                 </button>
             </div> -->
         </div>
-        <div class="mat-elevation-z8">
+        <div class="mat-elevation-z8 table">
             <table mat-table [dataSource]="dataSource" matSort class="fluid">
 
                 <ng-container matColumnDef="upm">
@@ -27,39 +27,47 @@
                 </ng-container>
         
                 <ng-container matColumnDef="codigo_usuario">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>ID Cartografo</th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>COD Cartografo</th>
                     <td class="cell-pointer" mat-cell *matCellDef="let row"> {{row.codigo_usuario}} </td>
                 </ng-container> 
 
                 <ng-container matColumnDef="nombres">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre Cartografo</th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombres</th>
                     <td class="cell-pointer" mat-cell *matCellDef="let row"> {{row.nombres}} </td>
                 </ng-container> 
 
                 <ng-container matColumnDef="apellidos">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Apellido Cartografo</th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Apellidos</th>
                     <td class="cell-pointer" mat-cell *matCellDef="let row"> {{row.apellidos}} </td>
                 </ng-container> 
 
                 <ng-container matColumnDef="estado">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Estado</th>
-                    <td class="cell-pointer" mat-cell *matCellDef="let row"> {{row.estado}} </td>
+                    <td class="cell-pointer" mat-cell *matCellDef="let row">
+                        <button
+                            style="background: white;"
+                            [ngStyle]="getColor(row.cod_estado)"
+                            class="estado"
+                            >
+                            {{row.estado}}
+                        </button>
+                    </td>
                 </ng-container> 
         
                 <ng-container matColumnDef="options">
                     <th mat-header-cell *matHeaderCellDef></th>
                     <td class="cell-pointer" mat-cell *matCellDef="let row">
                         <button
-                        *ngxPermissionsOnly="['asignar']"
-                        mat-icon-button (click)="asignar(row.id, row.nombre)"
-                            matTooltip="Click para Asignar" matTooltipPosition="right" color="primary" class="iconbutton">
-                            <mat-icon aria-label="group_add"></mat-icon>
+                        *ngxPermissionsOnly="['editar-cartografo-upm']"
+                        mat-icon-button (click)="asignar(row.codigo_usuario, row.nombres,row.upm)"
+                            matTooltip="Click para modificar encargado" matTooltipPosition="above" color="primary" class="iconbutton">
+                            <mat-icon>person</mat-icon>
                         </button>
                         <button 
                         *ngxPermissionsOnly="['ver-mapa']"
                         mat-icon-button matTooltip="Click para Ver Mapa"
-                            (click)="verMapa()" matTooltipPosition="right" color="primary" clas="iconbutton">
-                            <mat-icon aria-label="map">delete</mat-icon>
+                            (click)="verMapa()" matTooltipPosition="above" color="primary" clas="iconbutton">
+                            <mat-icon>my_location</mat-icon>
                         </button>
                     </td>
                 </ng-container>

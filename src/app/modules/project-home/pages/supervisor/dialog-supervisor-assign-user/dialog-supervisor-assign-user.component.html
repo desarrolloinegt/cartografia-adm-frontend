@@ -1,27 +1,21 @@
-<div class="card">
-    <h3>Asignar Usuarios</h3>
+<div class="title">
+    <h2>Asignar UPM a usuario</h2>
+    <button (click)="cancelEdit()" mat-icon-button>
+        <mat-icon>cancel</mat-icon>
+    </button>
 </div>
 <br>
 <br>
 <br>
-<div class="card-body">
-    <form [formGroup]="userAssignForm" (submit)="submit">
-        <div class="form-group">
-            <button *ngxPermissionOnly="['asignar-usuario-supervisor']"
-            type="submit" (click)="editForm()" [disabled]="!editForm.valid" mat-stroked-button color="primary">
-                Guardar
-            </button>
-            <button type="submit" (click)="cancelEdit()" mat-stroked-button color="warn">
-                Cancelar
-            </button>
-        </div>
-        <div class="example-section">
-            <mat-label>Usuarios</mat-label>
-            <mat-selection-list formControlName="usuarios" #rolesList>
-                <mat-list-option [selected]="user.button"  *ngFor="let user of users" [value]="user.id" >
-                  {{user.nombre}}
-                </mat-list-option>
-            </mat-selection-list>
-        </div>
-    </form>
+<div>
+    <h3>Usuarios</h3>
+    <br>
+    <p>Haga click en el usuario al que le desea asignar el upm</p>
+    <br>
+    <div class="container" >
+        <button mat-flat-button  class="button" *ngFor="let user of users" color="primary" (click)="editUser(user.codigo_usuario,user.nombres)">
+            <mat-icon *ngIf="user.button" color="warn">beenhere</mat-icon>
+           {{user.codigo_usuario}} - {{user.nombres}}
+        </button>
+    </div>
 </div>

@@ -16,7 +16,11 @@ import { CartographerComponent } from './components/cartographer/cartographer.co
 import { FieldTeamDialogComponent } from './pages/field-teams/field-team-dialog/field-team-dialog.component';
 import { FieldTeamPageComponent } from './pages/field-teams/field-team-page/field-team-page.component';
 import { NewFieldTeamPageComponent } from './pages/field-teams/new-field-team-page/new-field-team-page.component';
-import { SupervisorComponent } from './pages';
+import { DialogSupervisorAssignUserComponent, SupervisorComponent } from './pages';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSelectModule } from '@angular/material/select';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -31,14 +35,19 @@ import { SupervisorComponent } from './pages';
     FieldTeamPageComponent,
     NewFieldTeamPageComponent,
     SupervisorComponent,
+    DialogSupervisorAssignUserComponent
   ],
   imports: [
     CommonModule,
     ProjectRoutingModule,
     AppMaterialModule,
-    ReactiveFormsModule,
-    NgxPermissionsModule,
     DragDropModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatSelectModule,
+    MatListModule,
+    ReactiveFormsModule,
+    NgxPermissionsModule
   ],
 })
 export class ProjecHometModule {}

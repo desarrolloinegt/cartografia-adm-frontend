@@ -21,7 +21,8 @@
       </a>
      
 <!--</a>*ngxPermissionsOnly="['administrar-proyecto']"-->
-      <div *ngIf="project">
+      <div class="project" *ngIf="project">
+        <strong > {{ project }}</strong>
         <a
         
         mat-list-item
@@ -29,12 +30,7 @@
         routerLink="projectHome"
       >
         <mat-icon class="routeIcon menu-icon">folder</mat-icon>
-        <span [style.fontSize.px]="14">
-          <strong >Administracion 
-            <br>
-            {{ project }}
-          </strong>
-          </span>
+        <span [style.fontSize.px]="14">Administracion </span>
       </a>
         <a
         *ngxPermissionsOnly="['asignar-personal']"
@@ -51,9 +47,6 @@
           <mat-icon class="routeIcon menu-icon">work</mat-icon>
           <span [style.fontSize.px]="14">Carga de trabajo</span>
         </a>
-      </div>
-
-      <div *ngIf="project">
         <a
         *ngxPermissionsOnly="['ver-upms-cartografo']"
           mat-list-item
@@ -62,9 +55,6 @@
           <mat-icon class="routeIcon menu-icon">people_outline</mat-icon>
           <span [style.fontSize.px]="14">Cartografo</span>
         </a>
-      </div>
-
-      <div *ngIf="project">
         <a
         *ngxPermissionsOnly="['ver-equipo-campo']"
           mat-list-item
@@ -73,12 +63,9 @@
           <mat-icon class="routeIcon menu-icon">my_location</mat-icon>
           <span [style.fontSize.px]="14">Equipo de Campo</span>
         </a>
-      </div>
-
-      <div *ngIf="project">
-        <a mat-list-item class="menu-list-item" routerLink="projectHome/supervisores">
+        <a  *ngxPermissionsOnly="['supervisar']" mat-list-item class="menu-list-item" routerLink="projectHome/supervisores">
           <mat-icon class="routeIcon menu-icon">people</mat-icon>
-          <span [style.fontSize.px]="14">Supervisores</span>
+          <span [style.fontSize.px]="14">Supervisor</span>
         </a>
       </div>
 

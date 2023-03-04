@@ -13,15 +13,16 @@ export class SupervisorService {
     return this.apiService.store('obtenerUpmSupervisor', data)
   }
 
-  getGroupUsers(id:number) {
-    return this.apiService.getById('obtenerUsuarioAsignado', id);
+  getUsersAssigned(data: any) {
+    return this.apiService.store('obtenerCartografosSupervisor', data);
   }
 
-  addUserToGroup(data: ISupervisorUserAssignment) {
-    return this.apiService.store('asignacionSupervisorUsuario', data);
-  }
 
   editUserSupervisor(data: any) {
     return this.apiService.patch('asignarUsuarioSupervisor', data);
+  }
+
+  modifyCartographerUpm(data:any){
+    return this.apiService.patch('upmCartografoSupervisor/edit',data);
   }
 }

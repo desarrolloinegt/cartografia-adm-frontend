@@ -20,30 +20,19 @@ export class DialogSupervisorAssignUserComponent {
   constructor(
     private userService: UserService,
     private supervisorService: SupervisorService,
-    public dialogRef: MatDialogRef<ISupervisorUserAssignment>, 
-    @Inject(MAT_DIALOG_DATA),
-    public data: ISupervisorUserAssignment,
+    public dialogRef: MatDialogRef<DialogSupervisorAssignUserComponent>, 
+    @Inject(MAT_DIALOG_DATA) public data: ISupervisorUserAssignment,
     private formBuilder: FormBuilder
   ) {
-    this.buildForm();
     this.getUsers();
   }
-
   submit() {}
 
-  private buildForm() {
-    this.userAssignForm = this.formBuilder.group({
-      user_id: [this.data.id, [Validators.required]],
-
-    })
-  }
-
-  get Users() {
-    return this.userAssignForm.get('users');
-  }
+  
 
   getUsers() {
-    this.userService.getUserPolicys().subscribe((resp) => {
+    let data={proyecto_id:this.data.proyecto_id};
+    this.supervisorService.getUsersAssigned(data).subscribe((resp) => {
       this.users = resp;
       this.users.forEach(data => {
         data.button = false;
@@ -54,26 +43,37 @@ export class DialogSupervisorAssignUserComponent {
 
   defaultUsers() {
     for (let i = 0; i < this.users.length; i++) {
-      for (let j = 0; j < this.data.users.length; j++) {
-        if(this.users[i].nombres==this.data.users[j].username)
+        if(this.users[i].nombres==this.data.nombre && this.users[i].codigo_usuario==this.data.codigo_usuario)
         this.users[i].button = true;
-      }
     }
   }
 
-  editForm() {
-    if(this.userAssignForm.valid) {
-      this.supervisorService.editUserSupervisor(this.userAssignForm.value).subscribe((resp) => {
-        if(resp.status==true) {
-          Swal.fire('Ok!', 'Usuario asignado guardado correctamente', 'success');
+  editUser(codigo_usuario:number,nombre:string) {
+    if(codigo_usuario!=this.data.codigo_usuario && nombre!=this.data.nombre){
+      let data={usuario_nuevo:codigo_usuario,proyecto_id:this.data.proyecto_id,upm:this.data.upm};
+      this.supervisorService.modifyCartographerUpm(data).subscribe((resp)=>{
+        if(resp.status==true){
+          this.Toast.fire({icon:'success',title:resp.message});
           this.dialogRef.close(1);
         }
-      });
+      })
+    } else {
+      this.Toast.fire({icon:'error',title:"El usuario seleccionado ya es el encargado de el UPM"});
     }
   }
 
   cancelEdit() {
     this.dialogRef.close();
   }
-
+  Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 5000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  });
 } 
