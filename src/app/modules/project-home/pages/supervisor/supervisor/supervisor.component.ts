@@ -1,10 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ISupervisor } from '@core/interfaces/i-supervisor';
+import { ISupervisor, ISupervisorUserAssignment } from '@core/interfaces/i-supervisor';
 import { SupervisorService } from '@modules/project-home/services/supervisor.service';
+import { DialogSupervisorAssignUserComponent } from '../dialog-supervisor-assign-user';
 
 @Component({
   selector: 'app-supervisor',
@@ -23,15 +25,22 @@ export class SupervisorComponent {
   supervisorData: ISupervisor = {
     id: 0,
     upm: '',
-    id_cartografo: 0,
-    nombre_cartografo: '',
-    apellido_cartografo: '',
+    codigo_usuario: 0,
+    nombres: '',
+    apellidos: '',
     estado: '',
+  }
+
+  supervisorUserData: ISupervisorUserAssignment = {
+    id: 0,
+    nombre: '',
+    users: [],
   }
 
   constructor(
     private formBuilder: FormBuilder,
-    public supervisorService: SupervisorService
+    public supervisorService: SupervisorService,
+    public dialogService: MatDialog,
   ) {
     this.dataSource = new MatTableDataSource();
     this.buildForm();
@@ -62,7 +71,18 @@ export class SupervisorComponent {
     })
   }
 
-  asignar() {}
+  asignar(idUser: string, nombre: string) {
+    this.supervisorUserData.id = Number(idUser);
+    this.supervisorUserData.nombre = nombre;
+    this.supervisorService.getGroupUsers(this.supervisorUserData.id).subscribe(data => {
+      this.supervisorUserData.users = data;
+      const dialogRef = this.dialogService.open(DialogSupervisorAssignUserComponent, {
+        height: '50rem',
+        width: '50rem',
+        data: this.supervisorUserData
+    });
+  })
+}
 
   verMapa() {}
 

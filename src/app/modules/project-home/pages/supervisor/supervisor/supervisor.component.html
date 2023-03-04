@@ -18,7 +18,7 @@
                 </button>
             </div> -->
         </div>
-        <div class="mat-elevatioin-z8">
+        <div class="mat-elevation-z8">
             <table mat-table [dataSource]="dataSource" matSort class="fluid">
 
                 <ng-container matColumnDef="upm">
@@ -51,15 +51,15 @@
                     <td class="cell-pointer" mat-cell *matCellDef="let row">
                         <button
                         *ngxPermissionsOnly="['asignar']"
-                        mat-icon-button (click)="asignar()"
+                        mat-icon-button (click)="asignar(row.id, row.nombre)"
                             matTooltip="Click para Asignar" matTooltipPosition="right" color="primary" class="iconbutton">
-                            <mat-icon aria-label="asignar"></mat-icon>
+                            <mat-icon aria-label="group_add"></mat-icon>
                         </button>
                         <button 
                         *ngxPermissionsOnly="['ver-mapa']"
                         mat-icon-button matTooltip="Click para Ver Mapa"
-                            (click)="verMapa()" color="warn" class="iconbutton">
-                            <mat-icon aria-label="Delete">delete</mat-icon>
+                            (click)="verMapa()" matTooltipPosition="right" color="primary" clas="iconbutton">
+                            <mat-icon aria-label="map">delete</mat-icon>
                         </button>
                     </td>
                 </ng-container>

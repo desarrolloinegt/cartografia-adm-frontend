@@ -30,7 +30,7 @@ import { SupervisorComponent } from './pages';
     FieldTeamDialogComponent,
     FieldTeamPageComponent,
     NewFieldTeamPageComponent,
-    SupervisorComponent
+    SupervisorComponent,
   ],
   imports: [
     CommonModule,

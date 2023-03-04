@@ -8,6 +8,7 @@ export interface IUser {
   codigo_usuario: number;
   password: string;
   username: string;
+  button: boolean;
 }
 
 export interface IUserList{
