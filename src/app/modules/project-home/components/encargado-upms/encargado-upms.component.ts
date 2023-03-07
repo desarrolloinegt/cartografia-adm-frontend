@@ -103,7 +103,7 @@ export class EncargadoUpmsComponent {
 
     }
     for (let index = 0; index < this.users.length; index++) {
-      this.dataFile.push({ codigo_usuario: this.users[index].codigo_usuario, nombres: this.users[index].nombres, apellidos: this.users[index].apellidos });
+      this.dataFile.push({upm:"", codigo_usuario: this.users[index].codigo_usuario, nombres: this.users[index].nombres, apellidos: this.users[index].apellidos });
     }
     this.excelService.exportAsExcelFile(this.dataFile, 'AsignacionUPMS' + nameGroup);
   }

@@ -15,7 +15,7 @@
     <div class="container" >
         <button mat-flat-button  class="button" *ngFor="let user of users" color="primary" (click)="editUser(user.codigo_usuario,user.nombres)">
             <mat-icon *ngIf="user.button" color="warn">beenhere</mat-icon>
-           {{user.codigo_usuario}} - {{user.nombres}}
+           {{user.codigo_usuario}} - {{user.nombres}} {{user.apellidos}}
         </button>
     </div>
 </div>

@@ -4,7 +4,7 @@
 <br />
 <br />
 <div class="container">
-    <div >
+    <div class="container_download">
         <mat-form-field appearance="outline" style="width: 25rem;" >
             <mat-label [style.fontSize.px]="16">Seleccione un Rol</mat-label>
             <mat-select  #rol>
@@ -13,17 +13,16 @@
                 </mat-option> 
             </mat-select>
         </mat-form-field>
-    </div>
-    <div>
         <div>
-            <button 
-            *ngxPermissionsOnly="['descargar-plantilla']"
-            (click)="getUsers(rol.value)" [disabled]="!rol.value" mat-flat-button color="accent">
-                <mat-icon>arrow_downward</mat-icon>
-                Descargar Plantilla
-            </button>
+          <button 
+          *ngxPermissionsOnly="['descargar-plantilla']"
+          (click)="getUsers(rol.value)" [disabled]="!rol.value" mat-flat-button color="accent">
+              <mat-icon>arrow_downward</mat-icon>
+              Descargar Plantilla
+          </button>
         </div>
-        <br>
+    </div>
+    <div class="container_options"> 
         <div class="upms">
             <button 
             *ngxPermissionsOnly="['asignar-personal']"
@@ -32,7 +31,6 @@
                 Cargar Archivo
             </button>
         </div>
-        <br>
         <div>
             <button
             (click)="verPlantilla()"
