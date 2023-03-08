@@ -40,10 +40,8 @@ export class UserPageComponent {
 
   displayedColumns: string[] = [
     'codigo_usuario',
-    'DPI',
     'nombres',
     'apellidos',
-    'description',
     'phone',
     'email',
     'options',
