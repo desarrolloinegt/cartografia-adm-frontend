@@ -19,21 +19,16 @@
         <mat-icon class="routeIcon menu-icon">home</mat-icon>
         <span [style.fontSize.px]="14">Inicio</span>
       </a>
-     
-<!--</a>*ngxPermissionsOnly="['administrar-proyecto']"-->
+
+      <!--</a>*ngxPermissionsOnly="['administrar-proyecto']"-->
       <div class="project" *ngIf="project">
-        <strong > {{ project }}</strong>
+        <strong> {{ project }}</strong>
+        <a mat-list-item class="menu-list-item" routerLink="projectHome">
+          <mat-icon class="routeIcon menu-icon">folder</mat-icon>
+          <span [style.fontSize.px]="14">Dashboard </span>
+        </a>
         <a
-        
-        mat-list-item
-        class="menu-list-item"
-        routerLink="projectHome"
-      >
-        <mat-icon class="routeIcon menu-icon">folder</mat-icon>
-        <span [style.fontSize.px]="14">Dashboard </span>
-      </a>
-        <a
-        *ngxPermissionsOnly="['asignar-personal']"
+          *ngxPermissionsOnly="['asignar-personal']"
           mat-list-item
           class="menu-list-item"
           routerLink="projectHome/assignPersonal"
@@ -41,29 +36,39 @@
           <mat-icon class="routeIcon menu-icon">people_outline</mat-icon>
           <span [style.fontSize.px]="14">Carga de personal</span>
         </a>
-        <a 
-        *ngxPermissionsOnly="['asignar-upms-personal']"
-        mat-list-item class="menu-list-item" routerLink="projectHome/assignUpmChief">
+        <a
+          *ngxPermissionsOnly="['asignar-upms-personal']"
+          mat-list-item
+          class="menu-list-item"
+          routerLink="projectHome/assignUpmChief"
+        >
           <mat-icon class="routeIcon menu-icon">work</mat-icon>
           <span [style.fontSize.px]="14">Carga de trabajo</span>
         </a>
         <a
-        *ngxPermissionsOnly="['ver-upms-cartografo']"
+          *ngxPermissionsOnly="['ver-upms-cartografo']"
           mat-list-item
           class="menu-list-item"
-          routerLink="projectHome/cartografo">
+          routerLink="projectHome/cartografo"
+        >
           <mat-icon class="routeIcon menu-icon">people_outline</mat-icon>
           <span [style.fontSize.px]="14">Cartografo</span>
         </a>
         <a
-        *ngxPermissionsOnly="['ver-equipo-campo']"
+          *ngxPermissionsOnly="['ver-equipo-campo']"
           mat-list-item
           class="menu-list-item"
-          routerLink="projectHome/equipo-campo">
+          routerLink="projectHome/equipo-campo"
+        >
           <mat-icon class="routeIcon menu-icon">my_location</mat-icon>
           <span [style.fontSize.px]="14">Equipo de Campo</span>
         </a>
-        <a  *ngxPermissionsOnly="['supervisar']" mat-list-item class="menu-list-item" routerLink="projectHome/supervisores">
+        <a
+          *ngxPermissionsOnly="['supervisar']"
+          mat-list-item
+          class="menu-list-item"
+          routerLink="projectHome/supervisores"
+        >
           <mat-icon class="routeIcon menu-icon">people</mat-icon>
           <span [style.fontSize.px]="14">Supervisor</span>
         </a>
@@ -133,23 +138,37 @@
   </mat-sidenav>
   <mat-sidenav-content style="background-color: white">
     <app-spinner></app-spinner>
-    <mat-toolbar color="primary" style="z-index: 99" *ngIf="token != ''">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="opened = !opened"
-      >
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <span>Portal Cartografia</span>
-      <span class="spacer"></span>
-
-      <a mat-list-item class="menu-list-item" [routerLink]="['auth/logout']">
-        <mat-icon class="routeIcon menu-icon">exit_to_app</mat-icon>
-        <span [style.fontSize.px]="14">Salir</span>
-      </a>
-
+    <mat-toolbar
+      class="header_toolbar"
+      color="primary"
+      style="z-index: 99"
+      *ngIf="token != ''"
+    >
+      <div class="header_title">
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="opened = !opened"
+        >
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+        <span>Portal Cartografia</span>
+        
+      </div>
+      <div>
+        <button mat-button [matMenuTriggerFor]="menu">
+          <span>{{usuario}}</span>
+          <mat-icon>arrow_drop_down</mat-icon>
+          <mat-icon>account_circle</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item  [routerLink]="['auth/logout']">
+            <span [style.fontSize.px]="14">Salir</span>
+            <mat-icon class="routeIcon menu-icon">exit_to_app</mat-icon>
+          </button>
+        </mat-menu>
+      </div>
     </mat-toolbar>
     <div style="width: 100%; height: auto">
       <router-outlet></router-outlet>

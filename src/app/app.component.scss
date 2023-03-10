@@ -53,3 +53,13 @@ strong{
 .project{
     border: 1px solid black;
 }
+
+.header_toolbar{
+    display: flex;
+    justify-content: space-between;
+}
+
+.header_title{
+    display: flex;
+    align-items: center;
+}
