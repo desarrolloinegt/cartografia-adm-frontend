@@ -7,7 +7,6 @@
     width: 100%;
 }
 
-/* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
 mat-card { 
     max-width: 500px;
     margin: 2em auto;
@@ -39,4 +38,8 @@ mat-form-field {
 
 .mat-mdc-card {
     box-shadow: 0px 3px 5px -1px rgb(0 0 0 / 20%), 0px 6px 10px 0px rgb(0 0 0 / 14%), 0px 1px 18px 0px rgb(0 0 0 / 12%);
+}
+
+.abs-center {
+    transform: translate(30%, 25%);
 }
