@@ -144,6 +144,12 @@
       </button>
       <span>Portal Cartografia</span>
       <span class="spacer"></span>
+
+      <a mat-list-item class="menu-list-item" [routerLink]="['auth/logout']">
+        <mat-icon class="routeIcon menu-icon">exit_to_app</mat-icon>
+        <span [style.fontSize.px]="14">Salir</span>
+      </a>
+
     </mat-toolbar>
     <div style="width: 100%; height: auto">
       <router-outlet></router-outlet>
