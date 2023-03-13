@@ -308,7 +308,7 @@ export class FieldTeamPageComponent {
         }
       });
     }
-    
+  
   }
   Toast = Swal.mixin({
     toast: true,
