@@ -5,7 +5,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { IGroup, IGroupUserAssignment } from '@core/interfaces/i-group';
 import { IProjectUserAssingment } from '@core/interfaces/i-project';
 import { IUpmUserAssignment } from '@core/interfaces/i-upm';
-import { GroupService } from '@modules/groups';
 import { ExcelService } from '@modules/project-home/services/excel.service';
 import { ProjectHomeService } from '@modules/project-home/services/project-home.service';
 import { ProjectService } from '@modules/project/services/project.service';
@@ -13,6 +12,7 @@ import { IUserList } from '@core/interfaces/i-user';
 import * as XLSX from 'xlsx';
 import Swal from 'sweetalert2';
 import { async } from 'rxjs';
+import { RolService } from '@modules/rol';
 type AOA = any[][];
 @Component({
   selector: 'app-encargado-upms',
@@ -35,7 +35,7 @@ export class EncargadoUpmsComponent {
     usuario_id: 0,
     proyecto_id: 0
   }
-  constructor(private groupService: GroupService, private projectHomeService: ProjectHomeService, private projectService: ProjectService, private excelService: ExcelService) {
+  constructor(private rolService: RolService, private projectHomeService: ProjectHomeService, private projectService: ProjectService, private excelService: ExcelService) {
     this.dataSource = new MatTableDataSource();
   }
 
@@ -59,7 +59,7 @@ export class EncargadoUpmsComponent {
     }
   }
   async getGroupsMinor() {
-    this.groupService.getGroupsMinor(this.projectUserAssignment).subscribe(data => {
+    this.rolService.getGroupsMinor(this.projectUserAssignment).subscribe(data => {
       this.groups = data;
     });
   }

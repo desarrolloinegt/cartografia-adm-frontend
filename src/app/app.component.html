@@ -94,14 +94,22 @@
       </a>
       <a
         mat-list-item
-        *ngxPermissionsOnly="['ver-rol']"
+        *ngxPermissionsOnly="['ver-politica']"
         class="menu-list-item"
         routerLink="rol"
       >
-        <mat-icon class="routeIcon menu-icon">supervisor_account</mat-icon>
+        <mat-icon class="routeIcon menu-icon">view_headline</mat-icon>
         <span [style.fontSize.px]="14">Politicas</span>
       </a>
-
+      <a
+      mat-list-item
+      *ngxPermissionsOnly="['ver-rol']"
+      class="menu-list-item"
+      routerLink="group"
+    >
+      <mat-icon class="routeIcon menu-icon">group</mat-icon>
+      <span [style.fontSize.px]="14">Roles</span>
+    </a>
       <a
         mat-list-item
         *ngxPermissionsOnly="['ver-encuesta']"
@@ -111,15 +119,7 @@
         <mat-icon class="routeIcon menu-icon">question_answer</mat-icon>
         <span [style.fontSize.px]="14">Encuestas</span>
       </a>
-      <a
-        mat-list-item
-        *ngxPermissionsOnly="['ver-grupo']"
-        class="menu-list-item"
-        routerLink="group"
-      >
-        <mat-icon class="routeIcon menu-icon">group</mat-icon>
-        <span [style.fontSize.px]="14">Roles</span>
-      </a>
+      
       <a
         mat-list-item
         *ngxPermissionsOnly="['ver-vehiculo']"

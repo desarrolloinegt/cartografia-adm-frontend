@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 import { FieldTeamDialogComponent } from '../field-team-dialog';
 import { NewFieldTeamPageComponent } from '../new-field-team-page';
 import * as XLSX from 'xlsx';
-import { GroupService } from '@modules/groups';
+import { RolService } from '@modules/rol';
 import { ExcelService } from '@modules/project-home/services/excel.service';
 type AOA = any[][];
 @Component({
@@ -45,7 +45,7 @@ export class FieldTeamPageComponent {
     private formBuilder: FormBuilder,
     public dialogService: MatDialog,
     private fieldService: FieldTeamService,
-    private groupService:GroupService,
+    private rolService:RolService,
     private projectHomeService:ProjectHomeService,
     private excelService: ExcelService  
   ) {
@@ -83,7 +83,7 @@ export class FieldTeamPageComponent {
   }
 
   async getGroupsMinor() {
-    this.groupService.getGroupsMinor({proyecto_id:this.idProject}).subscribe(data => {
+    this.rolService.getGroupsMinor({proyecto_id:this.idProject}).subscribe(data => {
       this.roles = data;
     });
   }
@@ -108,13 +108,15 @@ export class FieldTeamPageComponent {
     if (formValues) {
       let user = (formValues[0] as HTMLInputElement).value;
       let placa = (formValues[1] as HTMLInputElement).value;
-      let data={codigo_usuario:user,placa:placa,proyecto_id:this.idProject};
-      this.fieldService.addTeam(data).subscribe(resp=>{
-        if(resp.status){
-          this.Toast.fire({icon:'success',title:resp.message});
-          this.cargarEquipo();
-        }
-      });
+      if(user){
+        let data={codigo_usuario:user,placa:placa,proyecto_id:this.idProject};
+        this.fieldService.addTeam(data).subscribe(resp=>{
+          if(resp.status){
+            this.Toast.fire({icon:'success',title:resp.message});
+            this.cargarEquipo();
+          }
+        });
+      }
     }
   }
 
@@ -293,15 +295,20 @@ export class FieldTeamPageComponent {
       inputPlaceholder: 'Equipo encargado de Zona 1',
       confirmButtonText: 'Modificar descripcion',
       showCancelButton: true,
+      cancelButtonText:'Cancelar',
       inputLabel: 'Ingrese la descripcion del equipo',
     });
+
     let data={proyecto_id:this.idProject,usuario_id:Number(user),descripcion:descrip};
-    this.fieldService.editFieldTeam(data).subscribe((resp)=>{
-      if(resp.status==true){
-        this.Toast.fire({icon:'success',title:resp.message});
-        this.cargarEquipo();
-      }
-    });
+    if(descrip){
+      this.fieldService.editFieldTeam(data).subscribe((resp)=>{
+        if(resp.status==true){
+          this.Toast.fire({icon:'success',title:resp.message});
+          this.cargarEquipo();
+        }
+      });
+    }
+    
   }
   Toast = Swal.mixin({
     toast: true,

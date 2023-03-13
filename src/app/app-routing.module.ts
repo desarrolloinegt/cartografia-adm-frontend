@@ -26,11 +26,11 @@ const routes: Routes = [
   },
   {
     path: 'rol',
-    loadChildren: () => import ('@modules/roles').then((m)=> m.RolesModule),
+    loadChildren: () => import ('@modules/policy').then((m)=> m.PolicyModule),
     canActivate: [NgxPermissionsGuard],
     data:{
       permissions: {
-        only: ['ver-rol'],
+        only: ['ver-politica'],
         redirectTo: 'home'
       }
     }
@@ -60,11 +60,11 @@ const routes: Routes = [
 
   {
     path: 'group',
-    loadChildren: () => import ('@modules/groups').then((m)=>m.GroupsModule),
+    loadChildren: () => import ('@modules/rol').then((m)=>m.RolModule),
     canActivate: [NgxPermissionsGuard],
     data:{
       permissions: {
-        only: ['ver-grupo'],
+        only: ['ver-rol'],
         redirectTo: 'home'
       }
     }

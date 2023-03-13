@@ -5,10 +5,10 @@ import { MatTableDataSource } from '@angular/material/table';
 import { IGroup, IGroupUserAssignment } from '@core/interfaces/i-group';
 import { IProjectUserAssingment } from '@core/interfaces/i-project';
 import { IPersonalAssignment, IUserList } from '@core/interfaces/i-user';
-import { GroupService } from '@modules/groups';
 import { ExcelService } from '@modules/project-home/services/excel.service';
 import { ProjectHomeService } from '@modules/project-home/services/project-home.service';
 import { ProjectService } from '@modules/project/services/project.service';
+import { RolService } from '@modules/rol';
 import Swal from 'sweetalert2';
 import * as XLSX from 'xlsx';
 type AOA = any[][];
@@ -32,7 +32,7 @@ export class AsignarPersonalComponent {
   dataSource: MatTableDataSource<string>;
   displayedColumns: string[] = ['encargado', 'empleado', 'options'];
 
-  constructor(private groupService: GroupService, private projectHomeService: ProjectHomeService, private projectService: ProjectService, private excelService: ExcelService) {
+  constructor(private rolService: RolService, private projectHomeService: ProjectHomeService, private projectService: ProjectService, private excelService: ExcelService) {
     this.dataSource = new MatTableDataSource();
   }
   ngOnInit() {
@@ -62,7 +62,7 @@ export class AsignarPersonalComponent {
     }
   }
   async getGroupsMinor() {
-    this.groupService.getGroupsMinor(this.projectUserAssignment).subscribe(data => {
+    this.rolService.getGroupsMinor(this.projectUserAssignment).subscribe(data => {
       this.groups = data;
     });
   }
@@ -168,6 +168,7 @@ export class AsignarPersonalComponent {
       showDenyButton: true,
       showCancelButton: true,
       confirmButtonText: 'Si',
+      cancelButtonText:'Cancelar',
       denyButtonText: `No`,
     }).then((result) => {
       if (result.isConfirmed) {

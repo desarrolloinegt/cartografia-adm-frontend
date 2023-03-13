@@ -6,9 +6,9 @@ import { AppMaterialModule } from 'src/app/app-material/app-material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomeProjectPageComponent } from './pages/home-project-page/home-project-page.component';
 import { NgxPermissionsModule } from 'ngx-permissions';
-import { GroupProjectComponent } from './components/group-project/group-project.component';
+import { RolProjectComponent } from './components/rol-project/rol-project.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { NewGroupProjectComponent } from './components/dialogs/new-group-project/new-group-project.component';
+import { NewRolProjectComponent } from './components/dialogs/new-group-project/new-rol-project.component';
 import { UpmsComponent } from './components/upms/upms.component';
 import { AsignarPersonalComponent } from './components/asignar-personal/asignar-personal.component';
 import { EncargadoUpmsComponent } from './components/encargado-upms/encargado-upms.component';
@@ -25,8 +25,8 @@ import { MatListModule } from '@angular/material/list';
 @NgModule({
   declarations: [
     HomeProjectPageComponent,
-    GroupProjectComponent,
-    NewGroupProjectComponent,
+    RolProjectComponent,
+    NewRolProjectComponent,
     UpmsComponent,
     AsignarPersonalComponent,
     EncargadoUpmsComponent,

@@ -2,7 +2,7 @@ import { Component,Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { IRole, IRoleUserAssignment } from '@core/interfaces/i-role';
-import { RoleService } from '@modules/roles/services/role.service';
+import { PolicyService } from '@modules/policy/services/policy.service';
 import { UserService } from '@modules/user/services';
 import Swal from 'sweetalert2';
 
@@ -14,7 +14,7 @@ import Swal from 'sweetalert2';
 export class RolesUserDialogComponent {
   editForm!:FormGroup;
   rolesList!:IRole[];
-  constructor(private formBuilder:FormBuilder,private userService:UserService,private roleService:RoleService,public dialogRef:MatDialogRef<RolesUserDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: IRoleUserAssignment){
+  constructor(private formBuilder:FormBuilder,private userService:UserService,private policyService:PolicyService,public dialogRef:MatDialogRef<RolesUserDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: IRoleUserAssignment){
     this.buildForm();
     this.getPolicys();
   }
@@ -28,7 +28,7 @@ export class RolesUserDialogComponent {
     return this.editForm.get('roles');
   }
   getPolicys(){
-    this.roleService.getPolicys().subscribe((resp)=>{
+    this.policyService.getPolicys().subscribe((resp)=>{
       this.rolesList=resp;
       this.rolesList.forEach(dto=>{
         dto.checked=false;
