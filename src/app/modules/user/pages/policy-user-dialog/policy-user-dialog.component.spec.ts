@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RolesUserDialogComponent } from './roles-user-dialog.component';
+import { RolesUserDialogComponent } from './policy-user-dialog.component';
 
 describe('RolesUserDialogComponent', () => {
   let component: RolesUserDialogComponent;

@@ -8,8 +8,8 @@ import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-roles-user-dialog',
-  templateUrl: './roles-user-dialog.component.html',
-  styleUrls: ['./roles-user-dialog.component.scss']
+  templateUrl: './policy-user-dialog.component.html',
+  styleUrls: ['./policy-user-dialog.component.scss']
 })
 export class RolesUserDialogComponent {
   editForm!:FormGroup;
@@ -21,23 +21,23 @@ export class RolesUserDialogComponent {
   private buildForm(){
     this.editForm = this.formBuilder.group({
       id:[this.data.id,[Validators.required]],
-      roles:[[],[Validators.required]]
+      politicas:[[],[Validators.required]]
     });
   }
-  get Roles(){
-    return this.editForm.get('roles');
+  get Policys(){
+    return this.editForm.get('politicas');
   }
   getPolicys(){
-    this.policyService.getPolicys().subscribe((resp)=>{
+    this.policyService.getPolicysSystem().subscribe((resp)=>{
       this.rolesList=resp;
       this.rolesList.forEach(dto=>{
         dto.checked=false;
       });
-      this.defaultPermision();
+      this.defaultPolicys();
     });
     
   }
-  defaultPermision(){
+  defaultPolicys(){
     for (let i = 0; i < this.rolesList.length; i++) {
       for (let j = 0; j < this.data.roles.length; j++) {
           if(this.rolesList[i].nombre==this.data.roles[j].nombre){

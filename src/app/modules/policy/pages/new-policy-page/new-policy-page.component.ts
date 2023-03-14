@@ -14,27 +14,42 @@ import Swal from 'sweetalert2';
 export class NewPolicyPageComponent {
   public permisos:IPermission[]=[];
   idRol:number=0;
+  policySystem:boolean;
   rol:IRole={
     nombre:'',
     id:0,
-    checked:false
+    checked:false,
+    politica_sistema:-1
   }
   selectedPermision!:number[];
   asignacionPermisoRol:IRolePermissionsAssingmentCreate={
     id:0,
-    permisos:[]
+    permisos:[],
   };
   rolForm!:FormGroup;
   constructor(private policyService: PolicyService, private formBuilder: FormBuilder, public dialogRef: MatDialogRef<NewPolicyPageComponent>) {
+    this.policySystem=false;
     this.cargarPermisos();
-    
     this.buildForm();
   }
 
   cargarPermisos(){
-    this.policyService.getPermisions().subscribe((data)=>{
-      this.permisos=data; 
-    });
+    if(this.policySystem){
+      this.policyService.getPermissionsSystem().subscribe((data)=>{
+        this.permisos=[];
+        this.permisos=data; 
+      });
+    } else {
+      this.policyService.getPermissionsProject().subscribe((data)=>{
+        this.permisos=[];
+        this.permisos=data;
+      })
+    }
+  }
+
+  changePermission(status:boolean){
+    this.policySystem=status;
+    this.cargarPermisos();
   }
 
   private buildForm(){
@@ -58,17 +73,26 @@ export class NewPolicyPageComponent {
   createPolicy(){ 
     this.asignacionPermisoRol.permisos=this.selectedPermision;
     this.rol.nombre=this.Nombre?.value;
-    this.policyService.createRol(this.rol).subscribe((resp)=>{
-      if(resp.status==true){
-        this.asignacionPermisoRol.id=resp.id_rol;
-        this.policyService.assignPermisoToPolicy(this.asignacionPermisoRol).subscribe((res)=>{
-          if(res.status==true){
-            Swal.fire('Ok!', 'Politica creada correctamente', 'success');
-            this.dialogRef.close(1);
-          }
-        });
-      }
-    });
+    if(this.policySystem){
+      this.rol.politica_sistema=1;
+    }
+    if(!this.policySystem) {
+      this.rol.politica_sistema=0;
+    }
+    if(this.rol.politica_sistema==0 || this.rol.politica_sistema==1){
+      console.log(this.rol)
+      this.policyService.createRol(this.rol).subscribe((resp)=>{
+        if(resp.status==true){
+          this.asignacionPermisoRol.id=resp.id_rol;
+          this.policyService.assignPermisoToPolicy(this.asignacionPermisoRol).subscribe((res)=>{
+            if(res.status==true){
+              Swal.fire('Ok!', 'Politica creada correctamente', 'success');
+              this.dialogRef.close(1);
+            }
+          });
+        }
+      });
+    }
   }
 
   cancelAdd(){

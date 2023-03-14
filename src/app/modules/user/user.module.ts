@@ -10,7 +10,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { NewUserPageComponent } from './pages/new-user-page/new-user-page.component';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { RolesUserDialogComponent } from './pages/roles-user-dialog/roles-user-dialog.component';
+import { RolesUserDialogComponent } from './pages/policy-user-dialog/policy-user-dialog.component';
 
 @NgModule({
   declarations: [UserPageComponent, EditUserDialogComponent, NewUserPageComponent,  RolesUserDialogComponent],

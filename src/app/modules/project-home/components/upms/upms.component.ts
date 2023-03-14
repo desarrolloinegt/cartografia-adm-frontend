@@ -8,6 +8,7 @@ import {
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { EstadosUpm } from '@core/interfaces/i-hierarchy';
 import {
   AssignmentUpmProject,
   AssignmentUpmProjectSustituir,
@@ -92,7 +93,14 @@ export class UpmsComponent {
       });
     }
   }
-
+  getColor(estado: string) {
+    for (let index = 0; index < EstadosUpm.array.length; index++) {
+      if (EstadosUpm.array[index].id == Number(estado)) {
+        return { color: EstadosUpm.array[index].color, border: `1px solid ${EstadosUpm.array[index].color}` };
+      }
+    }
+    return {};
+  }
   async addUpm() {
     const { value: upm } = await Swal.fire({
       title: 'UPM',

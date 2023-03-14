@@ -11,6 +11,14 @@ export class PolicyService {
   getPermisions(){
     return this.apiService.getAll('permisos');
   }
+
+  getPermissionsSystem(){
+    return this.apiService.getAll('permisosSistema');
+  }
+
+  getPermissionsProject(){
+    return this.apiService.getAll('permisosProyecto');
+  }
   
   createRol(nombre:any){
     return this.apiService.store('politica',nombre);
@@ -34,5 +42,13 @@ export class PolicyService {
 
   getPolicys(){
     return this.apiService.getAll('politicas');
+  }
+
+  getPolicysSystem(){
+    return this.apiService.getAll('politicasSistema');
+  }
+
+  getPolicysProject(){
+    return this.apiService.getAll('politicasProyecto');
   }
 }

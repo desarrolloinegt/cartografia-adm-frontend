@@ -107,17 +107,17 @@
                 *ngxPermissionsOnly="['desactivar-usuario']"
                 mat-icon-button
                 matTooltip="Click para desactivar"
-                (click)="desactivar(row.id, row.username)"
+                (click)="desactivar(row.id, row.nombres+' '+row.apellidos)"
                 color="warn"
                 class="iconbutton"
               >
                 <mat-icon aria-label="Delete">delete</mat-icon>
               </button>
               <button
-                *ngxPermissionsOnly="['crear-usuario']"
+                *ngxPermissionsOnly="['asignar-usuario-politica']"
                 mat-icon-button
                 matTooltip="Politicas del sistema"
-                (click)="rolesUser(row.id, row.username)"
+                (click)="rolesUser(row.id, row.nombres+' '+row.apellidos)"
                 color="primary"
                 class="iconbutton"
               >

@@ -45,6 +45,13 @@
       <br />
       <div class="example-section">
         <mat-label>Permisos</mat-label>
+        <br>
+        <br>
+        <div class="change_permission">
+          <mat-checkbox [checked]="policySystem" (change)="changePermission($event.checked)" class="example-margin">
+              Presionar si es una politica de sistema
+          </mat-checkbox>
+        </div>
         <mat-selection-list
           formControlName="permisos"
           #permisosList

@@ -40,6 +40,7 @@ export class RolService {
   getGroupsUsers(id:number){
     return this.apiService.getById('obtenerUsuariosRol',id);
   }
+
   addUserToGroup(data:IGroupUserAssignment){
     return this.apiService.store('asignacionUsuarioRol',data);
   }

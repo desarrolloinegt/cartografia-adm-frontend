@@ -15,7 +15,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { EditUserDialogComponent } from '../edit-user-dialog';
 import { NewUserPageComponent } from '../new-user-page';
 import { IRoleUserAssignment } from '@core/interfaces/i-role';
-import { RolesUserDialogComponent } from '../roles-user-dialog/roles-user-dialog.component';
+import { RolesUserDialogComponent } from '../policy-user-dialog/policy-user-dialog.component';
 export interface UserData {
   id: string;
   DPI: string;

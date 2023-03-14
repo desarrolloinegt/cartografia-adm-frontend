@@ -7,7 +7,7 @@
         <form [formGroup]="editForm" (submit)="submit()">
             <div class="form-group">
                 <button
-                *ngxPermissionsOnly="['asignar-rol-grupo']"
+                *ngxPermissionsOnly="['asignar-usuario-politica']"
                 type="submit" (click)="editUser()" [disabled]="!editForm.valid" mat-stroked-button color="primary">
                     Guardar
                 </button>
@@ -16,8 +16,11 @@
                 </button>
             </div>
             <div class="example-section">
+                <br>
+                <br>
                 <mat-label>Politicas</mat-label>
-                <mat-selection-list formControlName="roles" #permisosLis>
+                <br>
+                <mat-selection-list formControlName="politicas" #permisosLis>
                     <mat-list-option [selected]="rol.checked"  *ngFor="let rol of rolesList" [value]="rol.id" >
                       {{rol.nombre}}
                     </mat-list-option>

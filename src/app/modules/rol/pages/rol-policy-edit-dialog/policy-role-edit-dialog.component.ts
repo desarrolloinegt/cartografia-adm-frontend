@@ -49,7 +49,7 @@ export class PolicyRoleEditDialogComponent {
   }
 
   getRoles(){
-    this.policyService.getPolicys().subscribe((resp)=>{
+    this.policyService.getPolicysProject().subscribe((resp)=>{
       this.roles=resp;
       this.roles.forEach(dto=>{
         dto.checked=false;

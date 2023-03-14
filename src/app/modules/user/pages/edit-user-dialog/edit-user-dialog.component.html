@@ -1,5 +1,5 @@
 <div class="card">
-    <h3 mat-dialog-title>Usuario: {{data.username}}</h3>
+    <h3 mat-dialog-title>Usuario: {{data.nombres}} {{data.apellidos}}</h3>
     <br>
     <div class="card-body">
         <form [formGroup]="editForm" (submit)="submit()">

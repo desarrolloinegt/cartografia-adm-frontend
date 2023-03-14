@@ -29,14 +29,23 @@ export class PolicyPermissionEditDialogComponent {
     return this.editForm.get('permisos');
   }
   getPermisos(){
-    this.policyService.getPermisions().subscribe((resp)=>{
-      this.permisosList=resp;
-      this.permisosList.forEach(dto=>{
-        dto.checked=false;
+    if(this.data.politica_sistema==0){
+      this.policyService.getPermissionsProject().subscribe((resp)=>{
+        this.permisosList=resp;
+        this.permisosList.forEach(dto=>{
+          dto.checked=false;
+        });
+        this.defaultPermision();
       });
-      this.defaultPermision();
-    });
-    
+    } else if(this.data.politica_sistema==1) {
+      this.policyService.getPermissionsSystem().subscribe((resp)=>{
+        this.permisosList=resp;
+        this.permisosList.forEach(dto=>{
+          dto.checked=false;
+        });
+        this.defaultPermision();
+      });
+    }
   }
   defaultPermision(){
     for (let i = 0; i < this.permisosList.length; i++) {

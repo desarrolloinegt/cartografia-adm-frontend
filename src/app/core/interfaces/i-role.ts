@@ -3,7 +3,8 @@ import { IPermission } from "./i-permission"
 export interface IRole {  
     id:number,
     nombre: string,
-    checked:boolean
+    checked:boolean,
+    politica_sistema:number
 }
 
 export interface IRolePermissionsAssingment extends Omit<IRole,'checked'>{
@@ -12,7 +13,7 @@ export interface IRolePermissionsAssingment extends Omit<IRole,'checked'>{
 
 export interface IRolePermissionsAssingmentCreate{
     id:number,
-    permisos:number[]
+    permisos:number[],
 }
 
 export interface IRoleUserAssignment{

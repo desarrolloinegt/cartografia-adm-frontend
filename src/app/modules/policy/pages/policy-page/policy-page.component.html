@@ -55,7 +55,7 @@
               <button mat-icon-button matTooltip="Permisos"
               *ngxPermissionsOnly="['editar-politica']"
               matTooltipPosition = "right"
-              (click)="verPermisos(row.id,row.nombre)" color="primary" class="iconbutton">
+              (click)="verPermisos(row.id,row.nombre,row.politica_sistema)" color="primary" class="iconbutton">
                 <mat-icon >list_alt</mat-icon>
               </button>  
             </div>

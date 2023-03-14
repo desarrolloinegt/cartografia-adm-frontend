@@ -48,22 +48,8 @@
     <ng-container matColumnDef="estado">
       <th mat-header-cell *matHeaderCellDef>Estado</th>
       <td mat-cell *matCellDef="let row">
-        <button
-          mat-stroked-button
-          color="primary"
-          class="estado"
-          *ngIf="row.estado == 'Cargado'"
-        >
-          {{ row.estado }}
-        </button>
-        <button
-          mat-stroked-button
-          color="warn"
-          class="estado"
-          *ngIf="row.estado == 'Sustituido'"
-        >
-          {{ row.estado }}
-        </button>
+        <button mat-stroked-button style="background: white;"
+        [ngStyle]="getColor(row.cod_estado)" >{{row.estado}}</button>
       </td>
     </ng-container>
     <ng-container matColumnDef="options">

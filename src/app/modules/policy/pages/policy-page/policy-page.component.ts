@@ -23,12 +23,14 @@ export class PolicyPageComponent {
   rolesPermisos:IRolePermissionsAssingment={
     id:0,
     nombre:'',
-    permisos:[]
+    permisos:[],
+    politica_sistema:-1
   };
   rolEdit:IRole={
     nombre:'',
     id:0,
-    checked:false
+    checked:false,
+    politica_sistema:-1
   }
   displayedColumns: string[] = ['id', 'nombre', 'options'];
 
@@ -67,7 +69,7 @@ export class PolicyPageComponent {
   open() {
     const dialogRef = this.dialogService.open(NewPolicyPageComponent, {
       height: '50rem',
-      width: '60rem',
+      width: '40rem',
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result==1){
@@ -79,6 +81,8 @@ export class PolicyPageComponent {
   cargarRoles(){
     this.policyService.getPolicys().subscribe((data)=>{ 
       this.dataSource=new MatTableDataSource(data);
+      this.dataSource.sort=this.sort;
+      this.dataSource.paginator=this.paginator;
     });
   }
 
@@ -103,14 +107,15 @@ export class PolicyPageComponent {
     })
   }
 
-  verPermisos(id:string,nombre:string){
+  verPermisos(id:string,nombre:string,politica_sistema:string){
     this.rolesPermisos.id=Number(id);
     this.rolesPermisos.nombre=nombre;
+    this.rolesPermisos.politica_sistema=Number(politica_sistema);
     this.policyService.getPolicyPermissions(this.rolesPermisos.id).subscribe(data=>{
       this.rolesPermisos.permisos=data;
       const dialogRef = this.dialogService.open(PolicyPermissionEditDialogComponent, {
         height: '50rem',
-        width: '60rem',
+        width: '40rem',
         data: this.rolesPermisos
       });
     }); 
