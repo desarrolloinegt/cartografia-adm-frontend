@@ -63,7 +63,7 @@
           <mat-icon aria-label="Delete">delete</mat-icon>
         </button>
         <button
-          *ngxPermissionsOnly="['ver-usuario-rol']"
+          *ngxPermissionsOnly="['ver-usuario-rol-proyecto']"
           mat-icon-button
           matTooltip="Ver usuarios"
           (click)="verUsuarios(row.id, row.nombre)"
@@ -73,7 +73,7 @@
           <mat-icon>supervised_user_circle</mat-icon>
         </button>
         <button
-          *ngxPermissionsOnly="['asignar-usuario-rol']"
+          *ngxPermissionsOnly="['asignar-usuario-rol-proyecto']"
           mat-icon-button
           matTooltip="Agregar usuario"
           color="primary"
@@ -82,7 +82,7 @@
           <mat-icon>add</mat-icon>
         </button>
         <button
-          *ngxPermissionsOnly="['asignar-usuario-rol']"
+          *ngxPermissionsOnly="['asignar-usuario-rol-proyecto']"
           mat-icon-button
           matTooltip="Cargar archivo de usuarios"
           color="primary"
@@ -91,7 +91,7 @@
           <mat-icon>arrow_upward</mat-icon>
         </button>
         <button
-          *ngxPermissionsOnly="['asignar-rol-politica']"
+          *ngxPermissionsOnly="['asignar-rol-politica-proyecto']"
           mat-icon-button
           matTooltip="Ver politicas"
           (click)="verRoles(row.id, row.nombre)"

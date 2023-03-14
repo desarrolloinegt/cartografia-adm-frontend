@@ -7,7 +7,7 @@
         <form [formGroup]="editForm" (submit)="submit()">
             <div class="form-group">
                 <button
-                *ngxPermissionsOnly="['asignar-rol-politica']"
+                *ngxPermissionsOnly="['asignar-rol-politica','asignar-rol-politica-proyecto'] "
                 type="submit" (click)="editGroup()" [disabled]="!editForm.valid" mat-stroked-button color="primary">
                     Guardar
                 </button>
