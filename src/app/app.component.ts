@@ -68,4 +68,11 @@ export class AppComponent {
         });
     }
   }
+  styleNav(){
+    if(this.opened){
+      return {margin:"0.5em"};
+    }else {
+      return {margin:"0","text-alignn":"center"};
+    }
+  }
 }

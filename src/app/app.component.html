@@ -1,139 +1,181 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav
-    [(opened)]="opened"
-    class="sidenav"
-    mode="side"
-    *ngIf="token != ''"
-  >
-    <div style="text-align: center; padding-top: 1em">
-      <mat-icon class="icon-user" [style.fontSize.px]="32"
-        >account_circle</mat-icon
-      >
-      <h4 style="padding-bottom: 20px">
-        <strong>{{ usuario }}</strong>
-      </h4>
+<mat-sidenav-container class="sidenav-container" autosize="">
+  <mat-sidenav #sidenav opened="true" mode="side" *ngIf="token != ''">
+    <mat-nav-list [style]="styleNav()">
+      <mat-list-item style="text-align: center; padding-top: 2em; height: 70px">
+        <mat-icon class="icon-user">account_circle</mat-icon>
+        <h4 *ngIf="opened" style="padding-bottom: 40px">
+          <strong>{{ usuario }}</strong>
+        </h4>
+      </mat-list-item>
       <mat-divider></mat-divider>
-    </div>
-    <mat-nav-list>
-      <a mat-list-item class="menu-list-item" routerLink="home">
-        <mat-icon class="routeIcon menu-icon">home</mat-icon>
-        <span [style.fontSize.px]="14">Inicio</span>
-      </a>
-
+      <mat-list-item>
+        <a class="menu_item" style="text-decoration: none" routerLink="home">
+          <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
+            >home</mat-icon
+          >
+          <span *ngIf="opened" [style.fontSize.px]="14">Inicio</span>
+        </a>
+      </mat-list-item>
       <!--</a>*ngxPermissionsOnly="['administrar-proyecto']"-->
       <div class="project" *ngIf="project">
         <strong> {{ project }}</strong>
-        <a mat-list-item class="menu-list-item" routerLink="projectHome">
-          <mat-icon class="routeIcon menu-icon">folder</mat-icon>
-          <span [style.fontSize.px]="14">Dashboard </span>
+        <a
+          class="menu_item"
+          style="text-decoration: none"
+          routerLink="projectHome"
+        >
+          <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
+            >folder</mat-icon
+          >
+          <span *ngIf="opened" [style.fontSize.px]="14">Dashboard </span>
         </a>
         <a
           *ngxPermissionsOnly="['asignar-personal']"
-          mat-list-item
-          class="menu-list-item"
+          class="menu_item"
+          style="text-decoration: none"
           routerLink="projectHome/assignPersonal"
         >
-          <mat-icon class="routeIcon menu-icon">people_outline</mat-icon>
-          <span [style.fontSize.px]="14">Carga de personal</span>
+          <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
+            >people_outline</mat-icon
+          >
+          <span *ngIf="opened" [style.fontSize.px]="14">Carga de personal</span>
         </a>
         <a
           *ngxPermissionsOnly="['asignar-upms-personal']"
-          mat-list-item
-          class="menu-list-item"
+          class="menu_item"
+          style="text-decoration: none"
           routerLink="projectHome/assignUpmChief"
         >
-          <mat-icon class="routeIcon menu-icon">work</mat-icon>
-          <span [style.fontSize.px]="14">Carga de trabajo</span>
+          <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
+            >work</mat-icon
+          >
+          <span *ngIf="opened" [style.fontSize.px]="14">Carga de trabajo</span>
         </a>
         <a
           *ngxPermissionsOnly="['ver-upms-cartografo']"
-          mat-list-item
-          class="menu-list-item"
+          class="menu_item"
+          style="text-decoration: none"
           routerLink="projectHome/cartografo"
         >
-          <mat-icon class="routeIcon menu-icon">people_outline</mat-icon>
-          <span [style.fontSize.px]="14">Cartografo</span>
+          <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
+            >people_outline</mat-icon
+          >
+          <span *ngIf="opened" [style.fontSize.px]="14">Cartografo</span>
         </a>
         <a
           *ngxPermissionsOnly="['ver-equipo-campo']"
-          mat-list-item
-          class="menu-list-item"
+          class="menu_item"
+          style="text-decoration: none"
           routerLink="projectHome/equipo-campo"
         >
-          <mat-icon class="routeIcon menu-icon">my_location</mat-icon>
-          <span [style.fontSize.px]="14">Equipo de Campo</span>
+          <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
+            >my_location</mat-icon
+          >
+          <span *ngIf="opened" [style.fontSize.px]="14">Equipo de Campo</span>
         </a>
         <a
           *ngxPermissionsOnly="['supervisar']"
-          mat-list-item
-          class="menu-list-item"
+          class="menu_item"
+          style="text-decoration: none"
           routerLink="projectHome/supervisores"
         >
-          <mat-icon class="routeIcon menu-icon">people</mat-icon>
-          <span [style.fontSize.px]="14">Supervisor</span>
+          <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
+            >people</mat-icon
+          >
+          <span *ngIf="opened" [style.fontSize.px]="14">Supervisor</span>
         </a>
       </div>
+      <mat-list-item *ngIf="!project">
+        <a
+          *ngxPermissionsOnly="['ver-proyecto']"
+          class="menu_item"
+          style="text-decoration: none"
+          routerLink="project"
+        >
+          <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
+            >folder</mat-icon
+          >
+          <span *ngIf="opened" [style.fontSize.px]="14">Proyectos</span>
+        </a>
+      </mat-list-item>
+      <mat-list-item *ngIf="!project">
+        <a
+          *ngxPermissionsOnly="['ver-usuario']"
+          class="menu_item"
+          style="text-decoration: none"
+          routerLink="user"
+        >
+          <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
+            >person</mat-icon
+          >
+          <span *ngIf="opened" [style.fontSize.px]="14">Usuarios</span>
+        </a>
+      </mat-list-item>
+      <mat-list-item *ngIf="!project">
+        <a
+          *ngxPermissionsOnly="['ver-politica']"
+          class="menu_item"
+          style="text-decoration: none"
+          routerLink="rol"
+        >
+          <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
+            >view_headline</mat-icon
+          >
+          <span *ngIf="opened" [style.fontSize.px]="14">Politicas</span>
+        </a>
+      </mat-list-item>
+      <mat-list-item *ngIf="!project">
+        <a
+          *ngxPermissionsOnly="['ver-rol']"
+          class="menu_item"
+          style="text-decoration: none"
+          routerLink="group"
+        >
+          <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
+            >group</mat-icon
+          >
+          <span *ngIf="opened" [style.fontSize.px]="14">Roles</span>
+        </a>
+      </mat-list-item>
+      <mat-list-item *ngIf="!project">
+        <a
+          *ngxPermissionsOnly="['ver-encuesta']"
+          class="menu_item"
+          style="text-decoration: none"
+          routerLink="surveys"
+        >
+          <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
+            >question_answer</mat-icon
+          >
+          <span *ngIf="opened" [style.fontSize.px]="14">Encuestas</span>
+        </a>
+      </mat-list-item>
 
-      <a
-        mat-list-item
-        *ngxPermissionsOnly="['ver-proyecto']"
-        class="menu-list-item"
-        routerLink="project"
-      >
-        <mat-icon class="routeIcon menu-icon">folder</mat-icon>
-        <span [style.fontSize.px]="14">Proyectos</span>
-      </a>
-      <a
-        mat-list-item
-        *ngxPermissionsOnly="['ver-usuario']"
-        class="menu-list-item"
-        routerLink="user"
-      >
-        <mat-icon class="routeIcon menu-icon">person</mat-icon>
-        <span [style.fontSize.px]="14">Usuarios</span>
-      </a>
-      <a
-        mat-list-item
-        *ngxPermissionsOnly="['ver-politica']"
-        class="menu-list-item"
-        routerLink="rol"
-      >
-        <mat-icon class="routeIcon menu-icon">view_headline</mat-icon>
-        <span [style.fontSize.px]="14">Politicas</span>
-      </a>
-      <a
-      mat-list-item
-      *ngxPermissionsOnly="['ver-rol']"
-      class="menu-list-item"
-      routerLink="group"
-    >
-      <mat-icon class="routeIcon menu-icon">group</mat-icon>
-      <span [style.fontSize.px]="14">Roles</span>
-    </a>
-      <a
-        mat-list-item
-        *ngxPermissionsOnly="['ver-encuesta']"
-        class="menu-list-item"
-        routerLink="surveys"
-      >
-        <mat-icon class="routeIcon menu-icon">question_answer</mat-icon>
-        <span [style.fontSize.px]="14">Encuestas</span>
-      </a>
-      
-      <a
-        mat-list-item
-        *ngxPermissionsOnly="['ver-vehiculo']"
-        class="menu-list-item"
-        routerLink="vehicle"
-      >
-        <mat-icon class="routeIcon menu-icon">commute</mat-icon>
-        <span [style.fontSize.px]="14">Vehículos</span>
-      </a>
-
-      <a mat-list-item class="menu-list-item" [routerLink]="['auth/logout']">
-        <mat-icon class="routeIcon menu-icon">exit_to_app</mat-icon>
-        <span [style.fontSize.px]="14">Salir</span>
-      </a>
+      <mat-list-item *ngIf="!project">
+        <a
+          *ngxPermissionsOnly="['ver-vehiculo']"
+          class="menu_item"
+          style="text-decoration: none"
+          routerLink="vehicle"
+        >
+          <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
+            >commute</mat-icon
+          >
+          <span *ngIf="opened" [style.fontSize.px]="14">Vehículos</span>
+        </a>
+      </mat-list-item>
+      <mat-list-item>
+        <a
+          class="menu_item"
+          style="text-decoration: none"
+          [routerLink]="['auth/logout']"
+        >
+          <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
+            >exit_to_app</mat-icon
+          >
+          <span *ngIf="opened" [style.fontSize.px]="14">Salir</span>
+        </a>
+      </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content style="background-color: white">
@@ -154,16 +196,15 @@
           <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
         <span>Portal Cartografia</span>
-        
       </div>
       <div>
         <button mat-button [matMenuTriggerFor]="menu">
-          <span>{{usuario}}</span>
+          <span>{{ usuario }}</span>
           <mat-icon>arrow_drop_down</mat-icon>
           <mat-icon>account_circle</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item  [routerLink]="['auth/logout']">
+          <button mat-menu-item [routerLink]="['auth/logout']">
             <span [style.fontSize.px]="14">Salir</span>
             <mat-icon class="routeIcon menu-icon">exit_to_app</mat-icon>
           </button>
