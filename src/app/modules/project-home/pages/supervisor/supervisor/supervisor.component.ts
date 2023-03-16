@@ -8,6 +8,7 @@ import { EstadosUpm } from '@core/interfaces/i-hierarchy';
 import { ISupervisor, ISupervisorUserAssignment } from '@core/interfaces/i-supervisor';
 import { ProjectHomeService } from '@modules/project-home/services/project-home.service';
 import { SupervisorService } from '@modules/project-home/services/supervisor.service';
+import { DialogBitacoraComponent } from '../dialog-bitacora';
 import { DialogSupervisorAssignUserComponent } from '../dialog-supervisor-assign-user';
 
 @Component({
@@ -109,5 +110,12 @@ export class SupervisorComponent {
       }
      }
      return {};
+  }
+
+  seeBitacor(){
+    const dialogRef=this.dialogService.open(DialogBitacoraComponent,{
+      height:'40rem',
+      width:'48rem'
+    });
   }
 }
