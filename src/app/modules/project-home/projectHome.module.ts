@@ -21,6 +21,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
 import { MatListModule } from '@angular/material/list';
+import { DialogBitacoraComponent } from './pages/supervisor/dialog-bitacora/dialog-bitacora.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { MatListModule } from '@angular/material/list';
     FieldTeamPageComponent,
     NewFieldTeamPageComponent,
     SupervisorComponent,
-    DialogSupervisorAssignUserComponent
+    DialogSupervisorAssignUserComponent,
+    DialogBitacoraComponent
   ],
   imports: [
     CommonModule,

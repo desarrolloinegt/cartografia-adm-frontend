@@ -10,6 +10,11 @@
                     <input matInput (keyup)="applyFilter($event)" placeholder="Ejemplo: Juan Pérez" #input>
                     <mat-icon matSuffix>search</mat-icon>
                 </mat-form-field>
+
+                <button mat-flat-button color="accent">
+                    <mat-icon>remove_red_eye</mat-icon>
+                    Ver Bitacora
+                </button>
             </div>
             <!-- <div class="col-sm-1-1 col-sm-3-12 com-md-3-12" style="text-align: right;">
                 <button *ngxPermissionsOnly="['supervisor']" mat-flat-button color="accent" style="margin-right: 8px;" (click)="open()">
