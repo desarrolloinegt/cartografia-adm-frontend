@@ -19,7 +19,8 @@
       <!--</a>*ngxPermissionsOnly="['administrar-proyecto']"-->
       <div class="project" *ngIf="project">
         <strong> {{ project }}</strong>
-        <a
+        <mat-list-item>
+          <a
           class="menu_item"
           style="text-decoration: none"
           routerLink="projectHome"
@@ -29,19 +30,22 @@
           >
           <span *ngIf="opened" [style.fontSize.px]="14">Dashboard </span>
         </a>
+        </mat-list-item>
+       <mat-list-item  *ngxPermissionsOnly="['asignar-personal']">
         <a
-          *ngxPermissionsOnly="['asignar-personal']"
-          class="menu_item"
-          style="text-decoration: none"
-          routerLink="projectHome/assignPersonal"
+        class="menu_item"
+        style="text-decoration: none"
+        routerLink="projectHome/assignPersonal"
+      >
+        <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
+          >people_outline</mat-icon
         >
-          <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
-            >people_outline</mat-icon
-          >
-          <span *ngIf="opened" [style.fontSize.px]="14">Carga de personal</span>
-        </a>
-        <a
-          *ngxPermissionsOnly="['asignar-upms-personal']"
+        <span *ngIf="opened" [style.fontSize.px]="14">Carga de personal</span>
+      </a>
+       </mat-list-item>
+        <mat-list-item  *ngxPermissionsOnly="['asignar-upms-personal']">
+          <a
+         
           class="menu_item"
           style="text-decoration: none"
           routerLink="projectHome/assignUpmChief"
@@ -51,8 +55,10 @@
           >
           <span *ngIf="opened" [style.fontSize.px]="14">Carga de trabajo</span>
         </a>
-        <a
-          *ngxPermissionsOnly="['ver-upms-cartografo']"
+        </mat-list-item>
+        <mat-list-item *ngxPermissionsOnly="['ver-upms-cartografo']">
+          <a
+          
           class="menu_item"
           style="text-decoration: none"
           routerLink="projectHome/cartografo"
@@ -62,8 +68,10 @@
           >
           <span *ngIf="opened" [style.fontSize.px]="14">Cartografo</span>
         </a>
-        <a
-          *ngxPermissionsOnly="['ver-equipo-campo']"
+        </mat-list-item>
+        <mat-list-item  *ngxPermissionsOnly="['ver-equipo-campo']">
+          <a
+         
           class="menu_item"
           style="text-decoration: none"
           routerLink="projectHome/equipo-campo"
@@ -73,8 +81,9 @@
           >
           <span *ngIf="opened" [style.fontSize.px]="14">Equipo de Campo</span>
         </a>
-        <a
-          *ngxPermissionsOnly="['supervisar']"
+        </mat-list-item>
+        <mat-list-item *ngxPermissionsOnly="['supervisar']">
+          <a
           class="menu_item"
           style="text-decoration: none"
           routerLink="projectHome/supervisores"
@@ -84,10 +93,12 @@
           >
           <span *ngIf="opened" [style.fontSize.px]="14">Supervisor</span>
         </a>
+        </mat-list-item>
+        
       </div>
-      <mat-list-item *ngIf="!project">
+      <mat-list-item *ngxPermissionsOnly="['ver-proyecto']">
         <a
-          *ngxPermissionsOnly="['ver-proyecto']"
+          
           class="menu_item"
           style="text-decoration: none"
           routerLink="project"
@@ -98,9 +109,9 @@
           <span *ngIf="opened" [style.fontSize.px]="14">Proyectos</span>
         </a>
       </mat-list-item>
-      <mat-list-item *ngIf="!project">
+      <mat-list-item *ngxPermissionsOnly="['ver-usuario']">
         <a
-          *ngxPermissionsOnly="['ver-usuario']"
+          
           class="menu_item"
           style="text-decoration: none"
           routerLink="user"
@@ -111,9 +122,9 @@
           <span *ngIf="opened" [style.fontSize.px]="14">Usuarios</span>
         </a>
       </mat-list-item>
-      <mat-list-item *ngIf="!project">
+      <mat-list-item *ngxPermissionsOnly="['ver-politica']">
         <a
-          *ngxPermissionsOnly="['ver-politica']"
+          
           class="menu_item"
           style="text-decoration: none"
           routerLink="rol"
@@ -124,9 +135,9 @@
           <span *ngIf="opened" [style.fontSize.px]="14">Politicas</span>
         </a>
       </mat-list-item>
-      <mat-list-item *ngIf="!project">
+      <mat-list-item *ngxPermissionsOnly="['ver-rol']">
         <a
-          *ngxPermissionsOnly="['ver-rol']"
+          
           class="menu_item"
           style="text-decoration: none"
           routerLink="group"
@@ -137,9 +148,9 @@
           <span *ngIf="opened" [style.fontSize.px]="14">Roles</span>
         </a>
       </mat-list-item>
-      <mat-list-item *ngIf="!project">
+      <mat-list-item *ngxPermissionsOnly="['ver-encuesta']">
         <a
-          *ngxPermissionsOnly="['ver-encuesta']"
+          
           class="menu_item"
           style="text-decoration: none"
           routerLink="surveys"
@@ -151,9 +162,9 @@
         </a>
       </mat-list-item>
 
-      <mat-list-item *ngIf="!project">
+      <mat-list-item *ngxPermissionsOnly="['ver-vehiculo']">
         <a
-          *ngxPermissionsOnly="['ver-vehiculo']"
+          
           class="menu_item"
           style="text-decoration: none"
           routerLink="vehicle"
@@ -203,10 +214,10 @@
           <mat-icon>arrow_drop_down</mat-icon>
           <mat-icon>account_circle</mat-icon>
         </button>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item [routerLink]="['auth/logout']">
+        <mat-menu #menu="matMenu" >
+          <button  mat-menu-item [routerLink]="['auth/logout']">
             <span [style.fontSize.px]="14">Salir</span>
-            <mat-icon class="routeIcon menu-icon">exit_to_app</mat-icon>
+            <mat-icon >exit_to_app</mat-icon>
           </button>
         </mat-menu>
       </div>
