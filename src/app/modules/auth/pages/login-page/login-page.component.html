@@ -1,8 +1,8 @@
 <app-auth-header></app-auth-header>
 
 <div class="frow-container" style="padding-top: 2em;">
-  <div class="frow abs-center">
-    <div class="col-xs-1-1 col-sm-6-12 col-md-4-12">
+  <div class="frow">
+    <div class="login-container">
       <mat-card appearance="outlined" style="padding: 0;">
         <mat-card-header color="primary" class="my-header">
           <mat-card-title style="width: 100%; margin-bottom: 0;">
@@ -17,14 +17,14 @@
           <img width="120" src="./assets/icon-login.png" />
           <br><br>
           <form [formGroup]="loginForm" (ngSubmit)="sendLogin()">
-            <mat-form-field class="fluid" [style.fontSize.px]="14" appearance="outline">
+            <mat-form-field class="fluid full-width" [style.fontSize.px]="14" appearance="outline">
               <mat-label [style.fontSize.px]="16" >Codigo de usuario</mat-label>
               <input matInput type="number" formControlName="codigo_usuario"/>
               <mat-error *ngIf="CodigoUsuario?.touched && CodigoUsuario?.hasError('required')"> El codigo de usuario es <strong>requerido</strong></mat-error> 
               <mat-icon matSuffix>account_circle</mat-icon>
             </mat-form-field>
 
-            <mat-form-field class="fluid" [style.fontSize.px]="14" appearance="outline">
+            <mat-form-field class="fluid full-width" [style.fontSize.px]="14" appearance="outline">
               <mat-label [style.fontSize.px]="16">Contraseña</mat-label>
               <input matInput type="{{passwordType}}" formControlName="password"/>
               <a *ngIf="passwordType=='password'" matSuffix mat-icon-button aria-label="Clear" (click)="changePasswordType()">
@@ -46,6 +46,6 @@
         </mat-card-content>
       </mat-card>
     </div>
-    <div class="col-xs-1-1 col-sm-6-12 col-md-8-12"></div>
+    <!-- <div class="col-xs-1-1 col-sm-6-12 col-md-8-12" ></div> -->
   </div>
 </div>

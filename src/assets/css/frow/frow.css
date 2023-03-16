@@ -45,7 +45,7 @@
   .frow {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: center; 
   }
   .frow > * {
     max-width: 100%;
