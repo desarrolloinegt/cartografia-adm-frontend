@@ -3,15 +3,9 @@
     <div class="frow-container">
         <div class="frow row-start">
             <div class="col-sm-1-1 col-sm-6-12 col-md-6 12">
-                <h2>Supervisores</h2>
+                <h2>Supervisor</h2>
             </div>
             <div class="col-sm-1-1 col-sm-3-12 col-md-3-12"></div>
-            <div class="col-sm-1-1 col-sm-3-12 col-md-3-12" style="text-align: right;">
-                <button mat-flat-button (click)="seeBitacor()" color="accent">
-                    <mat-icon>remove_red_eye</mat-icon>
-                    Ver Bitacora
-                </button>
-            </div>
             <!-- <div class="col-sm-1-1 col-sm-3-12 com-md-3-12" style="text-align: right;">
                 <button *ngxPermissionsOnly="['supervisor']" mat-flat-button color="accent" style="margin-right: 8px;" (click)="open()">
                     <mat-icon>add</mat-icon>
@@ -80,6 +74,10 @@
                         mat-icon-button matTooltip="Click para Ver Mapa"
                             (click)="verMapa()" matTooltipPosition="above" color="primary" clas="iconbutton">
                             <mat-icon>my_location</mat-icon>
+                        </button>
+                        <button mat-icon-button matTooltip="Ver bitacora" color="primary" class="iconbutton"
+                        (click)="seeBitacor(row.upm)">
+                        <mat-icon>remove_red_eye</mat-icon>
                         </button>
                     </td>
                 </ng-container>

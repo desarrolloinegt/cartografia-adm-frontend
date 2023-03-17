@@ -1,5 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject, ViewChild } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -18,9 +18,8 @@ export class DialogBitacoraComponent {
   @ViewChild(MatSort) sort!: MatSort;
   dataSource: MatTableDataSource<String>;
   displayedColumns: string[] = ['upm', 'codigo_usuario', 'nombres', 'apellidos', 'estado', 'options'];
-  data: string[] = [];
   projectId:number=0;
-  constructor(public dialogRef:MatDialogRef<DialogBitacoraComponent>,private bitService:BitacoraServiceService,private projectService:ProjectHomeService){
+  constructor(public dialogRef:MatDialogRef<DialogBitacoraComponent>,private bitService:BitacoraServiceService,private projectService:ProjectHomeService, @Inject(MAT_DIALOG_DATA) public data: String){
     this.dataSource=new MatTableDataSource();
   }
 
@@ -50,7 +49,7 @@ export class DialogBitacoraComponent {
   }
 
   chargueUpms(){
-    let data={proyecto_id:this.projectId};
+    let data={proyecto_id:this.projectId,upm:this.data};
     this.bitService.getLog(data).subscribe((resp)=>{
       this.dataSource=new MatTableDataSource(resp);
       this.dataSource.paginator=this.paginator;

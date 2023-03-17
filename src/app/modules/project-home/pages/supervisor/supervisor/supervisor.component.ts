@@ -112,10 +112,11 @@ export class SupervisorComponent {
      return {};
   }
 
-  seeBitacor(){
+  seeBitacor(upm:String){
     const dialogRef=this.dialogService.open(DialogBitacoraComponent,{
       height:'40rem',
-      width:'48rem'
+      width:'48rem',
+      data:upm
     });
   }
 }

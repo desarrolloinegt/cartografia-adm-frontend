@@ -13,8 +13,8 @@
     <p>Haga click en el usuario al que le desea asignar el upm</p>
     <br>
     <div class="container" >
-        <button mat-flat-button  class="button" *ngFor="let user of users" color="primary" (click)="editUser(user.codigo_usuario,user.nombres)">
-            <mat-icon *ngIf="user.button" color="warn">beenhere</mat-icon>
+        <button mat-flat-button  class="menu_item button" *ngFor="let user of users" color="primary" (click)="editUser(user.codigo_usuario,user.nombres)">
+            <mat-icon *ngIf="user.button" [style.fontSize.px]="25" class="routeIcon menu-icon"  color="warn">beenhere</mat-icon>
            {{user.codigo_usuario}} - {{user.nombres}} {{user.apellidos}}
         </button>
     </div>

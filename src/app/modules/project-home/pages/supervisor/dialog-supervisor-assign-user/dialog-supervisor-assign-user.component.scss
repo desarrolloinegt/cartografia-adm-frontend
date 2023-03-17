@@ -23,9 +23,13 @@ h3,p{
 .button{
     display: flex;
     width: 48%;
+    align-items: center;
     height: 50px;
 }
-
+.menu-icon { 
+    height: 32px;
+    width: 32px;
+}
 @media(max-width:768px) {
     .button{
         display: flex;
