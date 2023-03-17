@@ -1,124 +1,129 @@
 <br>
-<div class="grid-container">
-  <div class="frow-container">
-    <div class="frow row-start">
-      <div class="col-sm-1-1 col-sm-6-12 col-md-6-12">
-        <h2>Proyectos</h2>
+<div class="header">
+  <div class="grid-container">
+    <div class="frow-container">
+      <div class="frow row-start">
+        <div class="col-sm-1-1 col-sm-6-12 col-md-6-12">
+          <h2>Proyectos</h2>
+        </div>
+        <div class="col-sm-1-1 col-sm-3-12 col-md-3-12"></div>
+        <div>
+          <button *ngxPermissionsOnly="['desactivado']" (click)="addFileUpm()">Cargar UPMs</button>
+          <button *ngxPermissionsOnly="['desactivado']" (click)="addFileDepartment()">Cargar Departamentos</button>
+          <button *ngxPermissionsOnly="['desactivado']" (click)="addFileMunicipios()">Cargar Municipios</button>
+        </div>
+        <div class="col-sm-1-1 col-sm-3-12 col-md-3-12" style="text-align: right;">
+          <button *ngxPermissionsOnly="['crear-proyecto']" mat-flat-button color="accent" style="margin-right: 8px;" (click)="openProject()">
+            <mat-icon>add</mat-icon>
+            Crear Proyecto
+          </button>
+        </div>
       </div>
-      <div class="col-sm-1-1 col-sm-3-12 col-md-3-12"></div>
-      <div>
-        <button *ngxPermissionsOnly="['desactivado']" (click)="addFileUpm()">Cargar UPMs</button>
-        <button *ngxPermissionsOnly="['desactivado']" (click)="addFileDepartment()">Cargar Departamentos</button>
-        <button *ngxPermissionsOnly="['desactivado']" (click)="addFileMunicipios()">Cargar Municipios</button>
-      </div>
-      <div class="col-sm-1-1 col-sm-3-12 col-md-3-12" style="text-align: right;">
-        <button *ngxPermissionsOnly="['crear-proyecto']" mat-flat-button color="accent" style="margin-right: 8px;" (click)="openProject()">
-          <mat-icon>add</mat-icon>
-          Crear Proyecto
-        </button>
+      <br>
+      <br>
+      <br>
+  
+      <div class="mat-tab">
+        <mat-form-field [style.fontSize.px]="12" appearence="outline" class="fluid">
+          <mat-label [style.fontSize.px]="14">Buscar</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ejemplo: ENEI 2023" #input>
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+        <div class="mat-elevation-z8">
+          <table mat-table [dataSource]="dataSource" matSort class="fluid">
+            <!-- ID Column -->
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+              <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.id }}</td>
+            </ng-container>
+        
+            <!-- Rol Column -->
+            <ng-container matColumnDef="nombre">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+              <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.nombre }}</td>
+            </ng-container>
+        
+            <!-- Nombres Column -->
+            <ng-container matColumnDef="year">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Año</th>
+              <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.year }}</td>
+            </ng-container>
+            <!-- encuesta Column -->
+            <ng-container matColumnDef="encuesta">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Encuesta</th>
+              <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.encuesta }}</td>
+            </ng-container>
+        
+            <!-- upms Column -->
+            <ng-container matColumnDef="descripcion">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Descripcion</th>
+              <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.descripcion }}</td>
+            </ng-container>
+        
+            <!-- progres Column -->
+            <ng-container matColumnDef="progreso">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Estado</th>
+              <td class="cell-pointer" mat-cell *matCellDef="let row">
+                <button mat-stroked-button color="warn" class="progres" *ngIf="row.progreso==0" >En progreso</button>
+                <button mat-stroked-button color="primary" class="progres" *ngIf="row.progreso==1">Finalizado</button>
+                
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="options">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td class="cell-pointer" mat-cell *matCellDef="let row">
+                
+                <div *ngIf="row.progreso==0">
+                  <button 
+                  mat-icon-button
+                  (click)="editar(row.id, row.nombre, row.year, row.encuesta, row.descripcion)"
+                  matTooltip="Editar"
+                  matTooltipPosition="right"
+                  color="primary"
+                  class="iconbutton"
+                  matTooltipPosition="above"
+                  *ngxPermissionsOnly="['desactivar-proyecto']"
+                >
+                  <mat-icon aria-label="Edit">edit</mat-icon>
+                </button>
+                </div >
+                <button
+                  mat-icon-button
+                  matTooltip="Desactivar"
+                  (click)="desactivar(row.id, row.nombre)"
+                  color="warn"
+                  class="iconbutton"
+                  matTooltipPosition="above"
+                  *ngxPermissionsOnly="['desactivar-proyecto']"
+                >
+                  <mat-icon aria-label="Delete">delete</mat-icon>
+                </button>
+                <div *ngIf="row.progreso==0">
+                  <button (click)="finalizarProject(row.id,row.nombre)" matTooltip="Finalizar Proyecto"
+                  matTooltipPosition="below" 
+                  *ngxPermissionsOnly="['finalizar-proyecto']"
+                  mat-icon-button 
+                  >
+                  <mat-icon aria-label="Home">done</mat-icon>
+                </button> 
+                </div>
+                
+              </td>
+            </ng-container>
+        
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr class="cell-pointer" mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="4">
+                No hay resultados de "{{ input.value }}"
+              </td>
+            </tr>
+          </table>
+          <br>
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"showFirstLastButtons></mat-paginator>
       </div>
     </div>
-    <br>
-    <br>
-    <br>
-    <mat-form-field [style.fontSize.px]="12" appearence="outline" class="fluid">
-      <mat-label [style.fontSize.px]="14">Buscar</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Ejemplo: ENEI 2023" #input>
-      <mat-icon matSuffix>search</mat-icon>
-    </mat-form-field>
-    <div class="mat-elevation-z8">
-      <table mat-table [dataSource]="dataSource" matSort class="fluid">
-        <!-- ID Column -->
-        <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
-          <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.id }}</td>
-        </ng-container>
-    
-        <!-- Rol Column -->
-        <ng-container matColumnDef="nombre">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
-          <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.nombre }}</td>
-        </ng-container>
-    
-        <!-- Nombres Column -->
-        <ng-container matColumnDef="year">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Año</th>
-          <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.year }}</td>
-        </ng-container>
-        <!-- encuesta Column -->
-        <ng-container matColumnDef="encuesta">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Encuesta</th>
-          <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.encuesta }}</td>
-        </ng-container>
-    
-        <!-- upms Column -->
-        <ng-container matColumnDef="descripcion">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Descripcion</th>
-          <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.descripcion }}</td>
-        </ng-container>
-    
-        <!-- progres Column -->
-        <ng-container matColumnDef="progreso">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Estado</th>
-          <td class="cell-pointer" mat-cell *matCellDef="let row">
-            <button mat-stroked-button color="warn" class="progres" *ngIf="row.progreso==0" >En progreso</button>
-            <button mat-stroked-button color="primary" class="progres" *ngIf="row.progreso==1">Finalizado</button>
-            
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="options">
-          <th mat-header-cell *matHeaderCellDef></th>
-          <td class="cell-pointer" mat-cell *matCellDef="let row">
-            
-            <div *ngIf="row.progreso==0">
-              <button 
-              mat-icon-button
-              (click)="editar(row.id, row.nombre, row.year, row.encuesta, row.descripcion)"
-              matTooltip="Editar"
-              matTooltipPosition="right"
-              color="primary"
-              class="iconbutton"
-              matTooltipPosition="above"
-              *ngxPermissionsOnly="['desactivar-proyecto']"
-            >
-              <mat-icon aria-label="Edit">edit</mat-icon>
-            </button>
-            </div >
-            <button
-              mat-icon-button
-              matTooltip="Desactivar"
-              (click)="desactivar(row.id, row.nombre)"
-              color="warn"
-              class="iconbutton"
-              matTooltipPosition="above"
-              *ngxPermissionsOnly="['desactivar-proyecto']"
-            >
-              <mat-icon aria-label="Delete">delete</mat-icon>
-            </button>
-            <div *ngIf="row.progreso==0">
-              <button (click)="finalizarProject(row.id,row.nombre)" matTooltip="Finalizar Proyecto"
-              matTooltipPosition="below" 
-              *ngxPermissionsOnly="['finalizar-proyecto']"
-              mat-icon-button 
-              >
-              <mat-icon aria-label="Home">done</mat-icon>
-            </button> 
-            </div>
-            
-          </td>
-        </ng-container>
-    
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr class="cell-pointer" mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    
-        <!-- Row shown when there is no matching data. -->
-        <tr class="mat-row" *matNoDataRow>
-          <td class="mat-cell" colspan="4">
-            No hay resultados de "{{ input.value }}"
-          </td>
-        </tr>
-      </table>
-      <br>
-      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"showFirstLastButtons></mat-paginator>
   </div>
 </div>

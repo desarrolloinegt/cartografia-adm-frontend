@@ -26,7 +26,7 @@
           routerLink="projectHome"
         >
           <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
-            >folder</mat-icon
+            >table_chart</mat-icon
           >
           <span *ngIf="opened" [style.fontSize.px]="14">Dashboard </span>
         </a>
@@ -53,7 +53,7 @@
           <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
             >work</mat-icon
           >
-          <span *ngIf="opened" [style.fontSize.px]="14">Carga de trabajo</span>
+          <span *ngIf="opened" [style.fontSize.px]="14">Asignacion de UPM</span>
         </a>
         </mat-list-item>
         <mat-list-item *ngxPermissionsOnly="['ver-upms-cartografo']">
@@ -175,18 +175,6 @@
           <span *ngIf="opened" [style.fontSize.px]="14">Vehículos</span>
         </a>
       </mat-list-item>
-      <mat-list-item>
-        <a
-          class="menu_item"
-          style="text-decoration: none"
-          [routerLink]="['auth/logout']"
-        >
-          <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
-            >exit_to_app</mat-icon
-          >
-          <span *ngIf="opened" [style.fontSize.px]="14">Salir</span>
-        </a>
-      </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content style="background-color: white">
@@ -216,7 +204,7 @@
         </button>
         <mat-menu #menu="matMenu" >
           <button  mat-menu-item [routerLink]="['auth/logout']">
-            <span [style.fontSize.px]="14">Salir</span>
+            <span [style.fontSize.px]="14">Cerrar Sesión</span>
             <mat-icon >exit_to_app</mat-icon>
           </button>
         </mat-menu>
