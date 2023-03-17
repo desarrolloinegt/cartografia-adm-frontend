@@ -1,16 +1,12 @@
+<br>
 <div class="grid-container">
     <div class="frow-container">
         <div class="frow row-start">
             <div class="col-sm-1-1 col-sm-6-12 col-md-6 12">
                 <h2>Supervisores</h2>
             </div>
-            <div class="col-sm-1-1 col-sm-3-12 col-md-3-12">
-                <mat-form-field [style.fontSize.px]="12" appearance="outline" class="fluid">
-                    <mat-label [style.fontSize.px]="14">Buscar</mat-label>
-                    <input matInput (keyup)="applyFilter($event)" placeholder="Ejemplo: Juan Pérez" #input>
-                    <mat-icon matSuffix>search</mat-icon>
-                </mat-form-field>
-
+            <div class="col-sm-1-1 col-sm-3-12 col-md-3-12"></div>
+            <div class="col-sm-1-1 col-sm-3-12 col-md-3-12" style="text-align: right;">
                 <button mat-flat-button (click)="seeBitacor()" color="accent">
                     <mat-icon>remove_red_eye</mat-icon>
                     Ver Bitacora
@@ -23,7 +19,18 @@
                 </button>
             </div> -->
         </div>
+        <br>
+        <br>
+        <br>
+        
+
         <div class="mat-elevation-z8 table">
+            <mat-form-field [style.fontSize.px]="12" appareance="outline" class="fluid">
+                <mat-label [style.fontSize.px]="14">Buscar</mat-label>
+                <input matInput (keyup)="applyFilter($event)" placeholder="Ejemplo: Juan Pérez" #input>
+                <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+            <br>
             <table mat-table [dataSource]="dataSource" matSort class="fluid">
 
                 <ng-container matColumnDef="upm">
