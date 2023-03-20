@@ -49,6 +49,17 @@ export class AuthService {
       this.authState.next(false);
     }, 1500);
   }
+  unautehnticated(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('project');
+    localStorage.removeItem('usuario');
+    localStorage.removeItem('id');
+    this.permissionService.flushPermissions();
+    setTimeout(() => {
+      this.router.navigateByUrl('auth/login');
+      this.authState.next(false);
+    }, 1500);
+  }
 
   isAuthenticated() {
     return this.authState.value;
