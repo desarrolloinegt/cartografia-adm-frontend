@@ -8,9 +8,10 @@
         </div>
         <div class="col-sm-1-1 col-sm-3-12 col-md-3-12"></div>
         <div>
-          <button *ngxPermissionsOnly="['desactivado']" (click)="addFileUpm()">Cargar UPMs</button>
-          <button *ngxPermissionsOnly="['desactivado']" (click)="addFileDepartment()">Cargar Departamentos</button>
-          <button *ngxPermissionsOnly="['desactivado']" (click)="addFileMunicipios()">Cargar Municipios</button>
+          <!--*ngxPermissionsOnly="['desactivado']"
+          <button  (click)="addFileUpm()">Cargar UPMs</button>
+          <button  (click)="addFileDepartment()">Cargar Departamentos</button>
+          <button (click)="addFileMunicipios()">Cargar Municipios</button>-->
         </div>
         <div class="col-sm-1-1 col-sm-3-12 col-md-3-12" style="text-align: right;">
           <button *ngxPermissionsOnly="['crear-proyecto']" mat-flat-button color="accent" style="margin-right: 8px;" (click)="openProject()">
