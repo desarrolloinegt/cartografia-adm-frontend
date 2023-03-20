@@ -1,11 +1,12 @@
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpStatusCode } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '@modules/auth';
 import { Observable, throwError, catchError, retry } from 'rxjs';
 import Swal from 'sweetalert2';
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
-    constructor(private router:Router) { }
+    constructor(private router:Router,private authService:AuthService) { }
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(req).pipe(
             retry(1),
@@ -23,11 +24,13 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                     return throwError(() => new Error(error.error.message));
                 }
                 if (error.status === HttpStatusCode.Unauthorized) {
-                    this.router.navigateByUrl('auth/login')
-                    if( error.error.message!='Unauthorized'&& error.error.message!='Unauthenticated/'){
+                   
+                    this.authService.unautehnticated();
+                    if( error.error.message !='Unauthenticated.'){
                         this.Toast.fire({ icon: 'error', title: error.error.message })
-                        return throwError(() => new Error(error.error.message));
                     }
+                    return throwError(() => new Error(error.error.message));
+                    
                 }
                 this.Toast.fire({ icon: 'error',title: error.error.message})
                 return throwError(() => new Error(error.error.message));
