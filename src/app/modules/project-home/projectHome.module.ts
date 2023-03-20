@@ -22,6 +22,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
 import { MatListModule } from '@angular/material/list';
 import { DialogBitacoraComponent } from './pages/supervisor/dialog-bitacora/dialog-bitacora.component';
+import { ControlDashboardComponent } from './components/control-dashboard/control-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { DialogBitacoraComponent } from './pages/supervisor/dialog-bitacora/dial
     NewFieldTeamPageComponent,
     SupervisorComponent,
     DialogSupervisorAssignUserComponent,
-    DialogBitacoraComponent
+    DialogBitacoraComponent,
+    ControlDashboardComponent
   ],
   imports: [
     CommonModule,

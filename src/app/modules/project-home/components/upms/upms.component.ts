@@ -1,21 +1,15 @@
 import { Component, ViewChild, Inject, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {
-  MatDialog,
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { EstadosUpm } from '@core/interfaces/i-hierarchy';
-import {
-  AssignmentUpmProject,
-  AssignmentUpmProjectSustituir,
-} from '@core/interfaces/i-upm';
+import { AssignmentUpmProject, AssignmentUpmProjectSustituir } from '@core/interfaces/i-upm';
 import { ProjectHomeService } from '@modules/project-home/services/project-home.service';
 import { ProjectService } from '@modules/project/services/project.service';
 import Swal from 'sweetalert2';
+
 import * as XLSX from 'xlsx';
 type AOA = any[];
 @Component({
@@ -23,9 +17,11 @@ type AOA = any[];
   templateUrl: './upms.component.html',
   styleUrls: ['./upms.component.scss'],
 })
+
 export class UpmsComponent {
   formUpms!: FormGroup;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+
   // @ViewChild('paginator') paginator: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   dataSource: MatTableDataSource<String>;
@@ -36,6 +32,7 @@ export class UpmsComponent {
     'estado',
     'options',
   ];
+
   data: string[] = [];
   idProject!: number;
 
@@ -43,6 +40,7 @@ export class UpmsComponent {
     proyecto_id: 0,
     upms: [],
   };
+
   upmDataSust: AssignmentUpmProjectSustituir = {
     proyecto_id: 0,
     upm_nuevo: '',
@@ -50,6 +48,7 @@ export class UpmsComponent {
     descripcion: '',
     usuario_id: 0,
   };
+  
   constructor(
     private formBuilder: FormBuilder,
     public dialog: MatDialog,
