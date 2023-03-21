@@ -127,7 +127,7 @@ export class ProjectPageComponent {
       }
     })
   }
-
+/*
   async addFileUpm(){
     this.fileAlert(1);
   }
@@ -166,8 +166,8 @@ export class ProjectPageComponent {
     let array:any[]=[];
     if(type==1){
       this.data.forEach(dto => {
-        if(dto[0] && dto[1]){
-          array.push({municipio_id:dto[0],nombre:dto[1]});
+        if(dto[0] && dto[2] && dto[4]){
+          array.push({municipio_id:dto[2],nombre:dto[4],departamento_id:dto[0]});
         }
         
       })
@@ -194,8 +194,8 @@ export class ProjectPageComponent {
       
     } else if(type==3){
       this.data.forEach(dto => {
-        if(dto[0] && dto[1]){
-          array.push({departamento_id:dto[0],nombre:dto[1]});
+        if(dto[0] && dto[1] && dto[2]){
+          array.push({departamento_id:dto[0],id:dto[1],nombre:dto[2 ]});
         }
       });
       
@@ -207,6 +207,6 @@ export class ProjectPageComponent {
         }
       });
     }
-  }
+  }*/
 
 }
