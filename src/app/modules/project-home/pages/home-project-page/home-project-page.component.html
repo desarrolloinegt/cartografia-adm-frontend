@@ -23,8 +23,7 @@
         <div class="mat_tab">
             <mat-tab-group color="accent">
                 <mat-tab label="Dashboard">
-                    <h1>Progreso</h1>
-                    
+                    <app-control-dashboard></app-control-dashboard>
                 </mat-tab>
                 <mat-tab label="Roles" *ngxPermissionsOnly="['crear-rol_proyecto']">
                     <app-group-project></app-group-project>
