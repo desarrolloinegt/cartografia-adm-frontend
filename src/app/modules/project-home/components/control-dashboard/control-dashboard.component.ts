@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { IDepartament } from '@core/interfaces/i-departament';
 import { ControlDashboardService } from '@modules/project-home/services/control-dashboard.service';
 import { ProjectHomeService } from '@modules/project-home/services/project-home.service';
 
@@ -9,11 +10,13 @@ import { ProjectHomeService } from '@modules/project-home/services/project-home.
 })
 export class ControlDashboardComponent {
   total:number;
+  totalProgres:number;
   finished:number;
   progress:number;
   projectId:number;
   percentajeFinished:number;
   percentajeProgress:number;
+  departments:IDepartament[];
   constructor(private projectHomeService:ProjectHomeService, private dashService:ControlDashboardService){
     this.total=0;
     this.finished=0;
@@ -21,6 +24,8 @@ export class ControlDashboardComponent {
     this.projectId=-1;
     this.percentajeFinished=0;
     this.percentajeProgress=0;
+    this.totalProgres=0;
+    this.departments=[]
   }
   ngOnInit(){
     let project=localStorage.getItem('project')||'';
@@ -36,8 +41,12 @@ export class ControlDashboardComponent {
       this.finished=resp.finalizados;
       this.total=resp.total;
       this.progress=resp.progreso;
+      this.totalProgres=this.total-this.finished;
       this.percentajeFinished=(resp.finalizados*100)/this.total;
       this.percentajeProgress=(resp.progreso*100)/this.total;
+    })
+    this.dashService.getDepartments(data).subscribe((data)=>{
+      this.departments=data;
     })
   }
   styleFinished(){

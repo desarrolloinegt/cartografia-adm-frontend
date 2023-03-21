@@ -13,4 +13,8 @@ export class ControlDashboardService {
   getData(data:any){
     return this.apiService.store('progresoUpms',data);
   }
+
+  getDepartments(data:any){
+    return this.apiService.store('departamentosProyecto',data)
+  }
 }
