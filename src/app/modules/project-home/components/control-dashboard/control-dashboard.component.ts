@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { IDepartament } from '@core/interfaces/i-departament';
 
 @Component({
   selector: 'app-control-dashboard',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./control-dashboard.component.scss']
 })
 export class ControlDashboardComponent {
+
+  constructor() {}
 
 }
