@@ -32,13 +32,13 @@
     <div class="container">
         <mat-card class="list_departments" *ngFor="let department of departments">
             <mat-card-content class="list_item">
-                <mat-form-field >
+                <a> <mat-form-field >
                     <input matInput placeholder="" readonly>
-                    <a><img class="card-img-top" src="./assets/images/xela-silueta.png" width="190" alt="Card image cap"></a>
+                    <img class="card-img-top" src="./assets/images/xela-silueta.png" width="190" alt="Card image cap">
                     <div class="card-body">
                         <h3 class="card-title">{{department.nombre}}</h3>
                     </div>
-                </mat-form-field>
+                </mat-form-field> </a>
             </mat-card-content>
         </mat-card>
     </div>
