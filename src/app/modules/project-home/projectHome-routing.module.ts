@@ -5,6 +5,7 @@ import { CartographerComponent } from './components/cartographer/cartographer.co
 import { EncargadoUpmsComponent } from './components/encargado-upms/encargado-upms.component';
 import { DialogSupervisorAssignUserComponent, FieldTeamPageComponent, HomeProjectPageComponent, SupervisorComponent } from './pages';
 import { NgxPermissionsGuard } from 'ngx-permissions';
+import { ControlDashboardDialogComponent } from './components/control-dashboard-dialog/control-dashboard-dialog.component';
 const routes: Routes = [
   {
     path:'',
@@ -61,6 +62,10 @@ const routes: Routes = [
         redirectTo: 'projectHome'
       }
     }
+  },
+  {
+    path: 'reportDashboard',
+    component: ControlDashboardDialogComponent
   }
 ];
 

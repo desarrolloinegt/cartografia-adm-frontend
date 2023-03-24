@@ -23,6 +23,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatListModule } from '@angular/material/list';
 import { DialogBitacoraComponent } from './pages/supervisor/dialog-bitacora/dialog-bitacora.component';
 import { ControlDashboardComponent } from './components/control-dashboard/control-dashboard.component';
+import { ControlDashboardDialogComponent } from './components/control-dashboard-dialog/control-dashboard-dialog.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ControlDashboardComponent } from './components/control-dashboard/contro
     SupervisorComponent,
     DialogSupervisorAssignUserComponent,
     DialogBitacoraComponent,
-    ControlDashboardComponent
+    ControlDashboardComponent,
+    ControlDashboardDialogComponent
   ],
   imports: [
     CommonModule,

@@ -71,4 +71,8 @@ export class ProjectHomeService {
   finishActualization(data:any){
     return this.apiService.patch('finalizarActualizacion',data);
   }
+
+  getIdDepartament(departament: string) {
+    return this.apiService.getById('departamentoId', departament);
+  }
 }
