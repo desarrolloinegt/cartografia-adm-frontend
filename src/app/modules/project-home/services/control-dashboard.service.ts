@@ -17,4 +17,8 @@ export class ControlDashboardService {
   getDepartments(data:any){
     return this.apiService.store('departamentosProyecto',data)
   }
+
+  getDataDepartment(data:any){
+    return this.apiService.store('dataDepartamentosProyecto',data)
+  }
 }

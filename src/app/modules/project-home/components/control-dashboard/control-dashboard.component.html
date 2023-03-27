@@ -32,7 +32,7 @@
     <div class="container">
         <mat-card class="list_departments" *ngFor="let department of departments">
             <mat-card-content class="list_item">
-                <a routerLink="reportDashboard">
+                <a [routerLink]="['reportDashboard',department.id]" >
                     <mat-form-field >
                         <input matInput placeholder="" readonly>
                         <img class="card-img-top" src="./assets/images/xela-silueta.png" width="190" alt="Card image cap">

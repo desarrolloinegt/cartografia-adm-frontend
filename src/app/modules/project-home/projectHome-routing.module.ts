@@ -64,7 +64,7 @@ const routes: Routes = [
     }
   },
   {
-    path: 'reportDashboard',
+    path: 'reportDashboard/:id',
     component: ControlDashboardDialogComponent
   }
 ];

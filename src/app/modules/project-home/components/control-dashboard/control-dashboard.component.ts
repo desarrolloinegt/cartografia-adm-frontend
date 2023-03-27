@@ -48,7 +48,7 @@ export class ControlDashboardComponent {
       this.progress = resp.progreso;
       this.totalProgres = this.total - this.finished;
       this.percentajeFinished = (resp.finalizados * 100) / this.total;
-      this.percentajeProgress = (resp.progreso * 100) / this.total;
+      this.percentajeProgress = (resp.progreso * 100) / this.totalProgres;
     });
     this.dashService.getDepartments(data).subscribe((data) => {
       this.departments = data;
