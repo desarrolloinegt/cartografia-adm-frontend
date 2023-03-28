@@ -25,12 +25,6 @@
                 <mat-tab label="Dashboard">
                     <app-control-dashboard></app-control-dashboard>
                 </mat-tab>
-                <mat-tab label="Roles" *ngxPermissionsOnly="['crear-rol_proyecto']">
-                    <app-group-project></app-group-project>
-                </mat-tab>
-                <mat-tab label="UPM" *ngxPermissionsOnly="['ver-upms']">
-                    <app-upms></app-upms>
-                </mat-tab>
             </mat-tab-group>
         </div>
     </div>

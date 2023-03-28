@@ -6,6 +6,7 @@ import { EncargadoUpmsComponent } from './components/encargado-upms/encargado-up
 import { DialogSupervisorAssignUserComponent, FieldTeamPageComponent, HomeProjectPageComponent, SupervisorComponent } from './pages';
 import { NgxPermissionsGuard } from 'ngx-permissions';
 import { ControlDashboardDialogComponent } from './components/control-dashboard-dialog/control-dashboard-dialog.component';
+import { RolesUpmUnionComponent } from './components/roles-upm-union/roles-upm-union.component';
 const routes: Routes = [
   {
     path:'',
@@ -66,6 +67,10 @@ const routes: Routes = [
   {
     path: 'reportDashboard/:id',
     component: ControlDashboardDialogComponent
+  },
+  {
+    path: 'configuracion',
+    component: RolesUpmUnionComponent
   }
 ];
 
