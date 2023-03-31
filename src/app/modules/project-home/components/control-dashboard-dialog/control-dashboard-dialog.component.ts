@@ -19,9 +19,6 @@ import { ProjectHomeService } from '@modules/project-home/services/project-home.
 export class ControlDashboardDialogComponent {
   total: number;
   totalProgres: number;
-  totalProject:number;
-  finshedTotalProject:number;
-  percentajeTotal:number;
   finished: number;
   progress: number;
   projectId: number;
@@ -59,9 +56,6 @@ export class ControlDashboardDialogComponent {
     this.percentajeFinished = 0;
     this.percentajeProgress = 0;
     this.totalProgres = 0;
-    this.totalProject=0;
-    this.finshedTotalProject=0;
-    this.percentajeTotal=0;
   }
 
   ngOnInit() {

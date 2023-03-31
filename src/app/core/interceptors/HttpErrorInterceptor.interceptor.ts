@@ -13,15 +13,20 @@ export class HttpErrorInterceptor implements HttpInterceptor {
             catchError((error: HttpErrorResponse) => {
                 if (error.status === HttpStatusCode.Conflict) {
                     this.Toast.fire({ icon: 'error', title:error.error.message })
+                    console.clear();
                     return throwError(() => new Error(error.error.message));
                 }
                 if (error.status === HttpStatusCode.BadRequest) {
                     this.Toast.fire({ icon: 'error', title:error.error.message })
+                    console.clear();
                     return throwError(() => new Error(error.error.message));
                 }
                 if (error.status === HttpStatusCode.NotFound) {
                     this.Toast.fire({ icon: 'error', title: error.error.message })
+                    this.router.navigateByUrl('home');
+                    console.clear();
                     return throwError(() => new Error(error.error.message));
+                    
                 }
                 if (error.status === HttpStatusCode.Unauthorized) {
                    
@@ -29,12 +34,13 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                     if( error.error.message !='Unauthenticated.'){
                         this.Toast.fire({ icon: 'error', title: error.error.message })
                     }
+                    console.clear();
                     return throwError(() => new Error(error.error.message));
                     
                 }
                 this.Toast.fire({ icon: 'error',title: error.error.message})
+                console.clear();
                 return throwError(() => new Error(error.error.message));
-
             })
         );
     }
