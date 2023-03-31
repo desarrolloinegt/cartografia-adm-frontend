@@ -1,7 +1,4 @@
-.table{
-    display: flex;
-    flex-direction: column;
-}
+
 
 .mat-cell:nth-child(1),
 .mat-header-cell:nth-child(1){
@@ -29,4 +26,9 @@
     padding: 0 0.4rem;
     gap: 3rem;
     text-align: center;
+}
+
+.mat_tab{
+    margin: 1.5rem;
+    border: 1px groove;
 }
