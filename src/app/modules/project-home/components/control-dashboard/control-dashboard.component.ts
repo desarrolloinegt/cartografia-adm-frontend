@@ -14,9 +14,13 @@ export class ControlDashboardComponent {
   finished: number;
   progress: number;
   projectId: number;
+  totalProject:number;
+  finshedTotalProject:number;
+  percentajeTotal:number;
   percentajeFinished: number;
   percentajeProgress: number;
   departments: IDepartament[];
+  project:string;
 
   constructor(
     private projectHomeService: ProjectHomeService,
@@ -28,6 +32,10 @@ export class ControlDashboardComponent {
     this.percentajeFinished = 0;
     this.percentajeProgress = 0;
     this.totalProgres = 0;
+    this.totalProject=0;
+    this.finshedTotalProject=0;
+    this.percentajeTotal=0;
+    this.project=localStorage.getItem('project')||'';
     this.departments = [];
   }
 
@@ -42,13 +50,15 @@ export class ControlDashboardComponent {
   getData() {
     let data = { proyecto_id: this.projectId };
     this.dashService.getData(data).subscribe((resp) => {
-      console.log(resp);
       this.finished = resp.finalizados;
       this.total = resp.total;
       this.progress = resp.progreso;
       this.totalProgres = this.total - this.finished;
       this.percentajeFinished = (resp.finalizados * 100) / this.total;
       this.percentajeProgress = (resp.progreso * 100) / this.totalProgres;
+      this.totalProject=resp.total_proyecto;
+      this.finshedTotalProject=resp.total_finalizados;
+      this.percentajeTotal=(this.finshedTotalProject*100)/this.totalProject
     });
     this.dashService.getDepartments(data).subscribe((data) => {
       this.departments = data;
@@ -61,5 +71,8 @@ export class ControlDashboardComponent {
 
   styleProgress() {
     return { 'stroke-dasharray': `${this.percentajeProgress},100` };
+  }
+  styleTotal(){
+    return { 'stroke-dasharray': `${this.percentajeTotal},100` };
   }
 }

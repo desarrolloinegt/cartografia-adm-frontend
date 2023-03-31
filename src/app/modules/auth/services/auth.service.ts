@@ -70,7 +70,7 @@ export class AuthService {
   }
 
   getPermissions(project:string,usuario_id:number){
-    return this.apiService.store('obtenerPermisos',{proyecto:project,usuario_id:usuario_id});
+    return this.apiService.store('obtenerPermisos',{proyecto:project});
   }
 
   getPermissionAdmin(id:number){

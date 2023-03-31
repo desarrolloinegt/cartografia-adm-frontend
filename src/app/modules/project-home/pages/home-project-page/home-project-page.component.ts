@@ -11,7 +11,7 @@ import { ProjectHomeService } from '@modules/project-home/services/project-home.
 
 export class HomeProjectPageComponent {
   project!:string;
-  projectId:number=0;
+  projectId:number=-1;
   roles: IRole[] = [];
   
   constructor(private router:Router,private projectHomeService:ProjectHomeService){
@@ -19,9 +19,13 @@ export class HomeProjectPageComponent {
 
   ngOnInit(){
     this.project=localStorage.getItem('project')||'';
-    if(!this.project){
-      this.router.navigateByUrl('home');
-    }
+    this.projectHomeService.getIdProject(this.project).subscribe(resp=>{
+      this.projectId=resp
+      if(this.projectId==-1 || !this.project){
+        this.router.navigateByUrl('home');
+      }
+    })
+    
   }
   
 }
