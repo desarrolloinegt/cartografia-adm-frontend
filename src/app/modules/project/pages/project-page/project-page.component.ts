@@ -29,7 +29,9 @@ export class ProjectPageComponent {
     nombre:'',
     year:'',
     encuesta:'',
-    descripcion:''
+    descripcion:'',
+    automatizacion:0,
+    encuesta_id:0
   }
   constructor(private projectService:ProjectService, public dialogService: MatDialog) {
     this.dataSource = new MatTableDataSource();
@@ -80,6 +82,8 @@ export class ProjectPageComponent {
   cargarProyectos(){
     this.projectService.getProjectView().subscribe((data)=>{ 
       this.dataSource=new MatTableDataSource(data);
+      this.dataSource.paginator=this.paginator;
+      this.dataSource.sort=this.sort;
     });
   }
 

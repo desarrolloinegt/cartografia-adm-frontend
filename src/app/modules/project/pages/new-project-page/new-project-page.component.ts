@@ -24,11 +24,13 @@ export class NewProjectPageComponent {
   pipe = new DatePipe('es-GT');
   date = new Date((new Date()).getDate());
   now = Date.now();
+  checked:boolean=false;
   project: IProjectCreate = {
     nombre: '',
     encuesta_id: 0,
     year: '',
-    descripcion:''
+    descripcion:'',
+    automatizacion:0
   };
   upmAsignment: IUpmAssignment = {
     proyecto_id: 0,
@@ -43,7 +45,8 @@ export class NewProjectPageComponent {
     this.projectForm = this.formBuilder.group({
       year: ['', [Validators.required, Validators.pattern(/^((\\+91-?)|0)?[0-9]{4}$/)]],
       encuesta: ['', [Validators.required]],
-      descripcion: ['']
+      descripcion: [''],
+      automatizacion:[0]
     });
   }
   get Year() {
@@ -71,6 +74,7 @@ export class NewProjectPageComponent {
       this.project.encuesta_id = valueEncuesta[0];
       this.project.year = this.Year?.value;
       this.project.descripcion=this.Descripcion?.value;
+      
       if (Number(this.project.encuesta_id)) {
         this.projectService.createProject(this.project).subscribe((resp) => {
           if (resp.status == true) {
@@ -84,5 +88,14 @@ export class NewProjectPageComponent {
 
   cancelAdd() {
     this.dialogRef.close();
+  }
+
+  automatize(status:boolean){
+    this.checked=status;
+    if(this.checked){
+      this.project.automatizacion=1;
+    } else{
+      this.project.automatizacion=0;
+    }
   }
 }

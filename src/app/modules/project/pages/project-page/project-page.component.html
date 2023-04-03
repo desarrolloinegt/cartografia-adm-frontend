@@ -58,7 +58,7 @@
             <!-- upms Column -->
             <ng-container matColumnDef="descripcion">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>Descripcion</th>
-              <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.descripcion }}</td>
+              <td class="cell-pointer description" mat-cell *matCellDef="let row">{{ row.descripcion }}</td>
             </ng-container>
         
             <!-- progres Column -->
@@ -71,8 +71,8 @@
               </td>
             </ng-container>
             <ng-container matColumnDef="options">
-              <th mat-header-cell *matHeaderCellDef></th>
-              <td class="cell-pointer" mat-cell *matCellDef="let row">
+              <th mat-header-cell *matHeaderCellDef>Acciones</th>
+              <td class="cell-pointer options" mat-cell  *matCellDef="let row">
                 
                 <div *ngIf="row.progreso==0">
                   <button 
