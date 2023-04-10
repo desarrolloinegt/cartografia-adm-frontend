@@ -95,7 +95,8 @@ export class ProjectPageComponent {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Desactivar'
+      confirmButtonText: 'Desactivar',
+      cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
         this.projectService.desactiveProyect(Number(id)).subscribe((resp)=> {
@@ -120,7 +121,8 @@ export class ProjectPageComponent {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Finalizar'
+      confirmButtonText: 'Finalizar',
+      cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
         this.projectService.desactiveProyect(Number(id)).subscribe((resp)=> {
