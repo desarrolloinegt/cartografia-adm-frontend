@@ -10,7 +10,7 @@
 
       <mat-divider></mat-divider>
 
-      <mat-list-item>
+      <mat-list-item [matTooltip]="toolTip('Inicio')" matTooltipPosition="right">
         <a class="menu_item" style="text-decoration: none" routerLink="home">
           <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
             >home</mat-icon
@@ -18,7 +18,7 @@
           <span *ngIf="opened" [style.fontSize.px]="14">Inicio</span>
         </a>
       </mat-list-item>
-      <!--</a>*ngxPermissionsOnly="['administrar-proyecto']"-->
+     
       <div *ngIf="project && projectId != -1">
         <mat-accordion [style]="styleNav()">
           <mat-expansion-panel expanded>
@@ -33,11 +33,12 @@
               </mat-panel-title>
             </mat-expansion-panel-header>
 
-            <mat-list-item>
+            <mat-list-item [matTooltip]="toolTip('Dashboard')" matTooltipPosition="right">
               <a
                 class="menu_item"
                 style="text-decoration: none"
                 routerLink="projectHome"
+                
               >
                 <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
                   >table_chart</mat-icon
@@ -46,7 +47,7 @@
               </a>
             </mat-list-item>
 
-            <mat-list-item *ngxPermissionsOnly="['configuracion-proyecto']">
+            <mat-list-item [matTooltip]="toolTip('Configuracion')" matTooltipPosition="right" *ngxPermissionsOnly="['configuracion-proyecto']">
               <a
                 class="menu_item"
                 style="text-decoration: none"
@@ -61,7 +62,7 @@
               </a>
             </mat-list-item>
 
-            <mat-list-item *ngxPermissionsOnly="['asignar-personal']">
+            <mat-list-item [matTooltip]="toolTip('Carga de personal')" matTooltipPosition="right" *ngxPermissionsOnly="['asignar-personal']">
               <a
                 class="menu_item"
                 style="text-decoration: none"
@@ -76,7 +77,7 @@
               </a>
             </mat-list-item>
 
-            <mat-list-item *ngxPermissionsOnly="['asignar-upms-personal']">
+            <mat-list-item [matTooltip]="toolTip('Asignacion de UPM')" matTooltipPosition="right" *ngxPermissionsOnly="['asignar-upms-personal']">
               <a
                 class="menu_item"
                 style="text-decoration: none"
@@ -91,7 +92,7 @@
               </a>
             </mat-list-item>
 
-            <mat-list-item *ngxPermissionsOnly="['ver-upms-cartografo']">
+            <mat-list-item [matTooltip]="toolTip('Cartografo')" matTooltipPosition="right" *ngxPermissionsOnly="['ver-upms-cartografo']">
               <a
                 class="menu_item"
                 style="text-decoration: none"
@@ -104,7 +105,7 @@
               </a>
             </mat-list-item>
 
-            <mat-list-item *ngxPermissionsOnly="['ver-equipo-campo']">
+            <mat-list-item [matTooltip]="toolTip('Equipo de campo')" matTooltipPosition="right" *ngxPermissionsOnly="['ver-equipo-campo']">
               <a
                 class="menu_item"
                 style="text-decoration: none"
@@ -119,7 +120,7 @@
               </a>
             </mat-list-item>
 
-            <mat-list-item *ngxPermissionsOnly="['supervisar']">
+            <mat-list-item [matTooltip]="toolTip('Supervisor')" matTooltipPosition="right" *ngxPermissionsOnly="['supervisar']">
               <a
                 class="menu_item"
                 style="text-decoration: none"
@@ -135,8 +136,8 @@
         </mat-accordion>
       </div>
 
-      <mat-list-item *ngxPermissionsOnly="['ver-proyecto']">
-        <a class="menu_item" style="text-decoration: none" routerLink="project">
+      <mat-list-item [matTooltip]="toolTip('Proyectos')" matTooltipPosition="right" *ngxPermissionsOnly="['ver-proyecto']">
+        <a class="menu_item" style="text-decoration: none" routerLink="project" >
           <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
             >folder</mat-icon
           >
@@ -144,7 +145,7 @@
         </a>
       </mat-list-item>
 
-      <mat-list-item *ngxPermissionsOnly="['ver-usuario']">
+      <mat-list-item [matTooltip]="toolTip('Usuarios')" matTooltipPosition="right" *ngxPermissionsOnly="['ver-usuario']">
         <a class="menu_item" style="text-decoration: none" routerLink="user">
           <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
             >person</mat-icon
@@ -153,7 +154,7 @@
         </a>
       </mat-list-item>
 
-      <mat-list-item *ngxPermissionsOnly="['ver-politica']">
+      <mat-list-item [matTooltip]="toolTip('Politicas')" matTooltipPosition="right" *ngxPermissionsOnly="['ver-politica']">
         <a class="menu_item" style="text-decoration: none" routerLink="rol">
           <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
             >view_headline</mat-icon
@@ -162,7 +163,7 @@
         </a>
       </mat-list-item>
 
-      <mat-list-item *ngxPermissionsOnly="['ver-rol']">
+      <mat-list-item [matTooltip]="toolTip('Roles')" matTooltipPosition="right" *ngxPermissionsOnly="['ver-rol']">
         <a class="menu_item" style="text-decoration: none" routerLink="group">
           <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
             >group</mat-icon
@@ -171,7 +172,7 @@
         </a>
       </mat-list-item>
 
-      <mat-list-item *ngxPermissionsOnly="['ver-encuesta']">
+      <mat-list-item [matTooltip]="toolTip('Encuestas')" matTooltipPosition="right" *ngxPermissionsOnly="['ver-encuesta']">
         <a class="menu_item" style="text-decoration: none" routerLink="surveys">
           <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
             >question_answer</mat-icon
@@ -180,7 +181,7 @@
         </a>
       </mat-list-item>
 
-      <mat-list-item *ngxPermissionsOnly="['ver-vehiculo']">
+      <mat-list-item [matTooltip]="toolTip('Vehiculos')" matTooltipPosition="right" *ngxPermissionsOnly="['ver-vehiculo']">
         <a class="menu_item" style="text-decoration: none" routerLink="vehicle">
           <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
             >commute</mat-icon
