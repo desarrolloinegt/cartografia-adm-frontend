@@ -85,43 +85,48 @@ export class ProjectPageComponent {
 
   desactivar(id: string, nombre: string) {
     Swal.fire({
-      title: '¿Esta seguro que desea Desactivar el Proyecto: ' + nombre + '?',
-      showDenyButton: true,
+      title: '¿Está seguro que desea desactivar el proyecto: ' + nombre + '?',
+      text: "¡Esta acción no se podrá revertir!",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Si',
-      denyButtonText: `No`,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Desactivar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.projectService.desactiveProyect(Number(id)).subscribe((resp) => {
+        this.projectService.desactiveProyect(Number(id)).subscribe((resp)=> {
           if (resp.status == true) {
             this.cargarProyectos();
-            Swal.fire('Ok!', 'Proyecto Desactivado', 'success')  
+            Swal.fire('¡Desactivado!', 'Proyecto desactivado', 'success')
           }
-        },(err) => {
-          console.log(err);
-        }); 
+        }, (error) => {
+          console.log(error);
+        });
       } else if (result.isDenied) {
         Swal.fire('Cambios no guardados', '', 'info')
       }
     })
   }
+
   finalizarProject(id:string,nombre:string){
     Swal.fire({
-      title: '¿Esta seguro que desea Finalizar el Proyecto: ' + nombre +'?',
-      showDenyButton: true,
+      title: '¿Está seguro que desea finalizar el proyecto: ' + nombre + '?',
+      text: "¡Esta acción no se podrá revertir!",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Si',
-      denyButtonText: `No`,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Finalizar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.projectService.projectFinish(Number(id)).subscribe((resp) => {
+        this.projectService.desactiveProyect(Number(id)).subscribe((resp)=> {
           if (resp.status == true) {
             this.cargarProyectos();
-            Swal.fire('Ok!', 'Proyecto Finalizado', 'success')  
+            Swal.fire('¡Finalizado!', 'Proyecto finalizado', 'success')
           }
-        },(err) => {
-          console.log(err);
-        }); 
+        }, (error) => {
+          console.log(error);
+        });
       } else if (result.isDenied) {
         Swal.fire('Cambios no guardados', '', 'info')
       }
