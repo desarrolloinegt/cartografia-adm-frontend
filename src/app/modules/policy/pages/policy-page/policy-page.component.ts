@@ -88,11 +88,14 @@ export class PolicyPageComponent {
 
   desactivar(id: string, rol: string) {
     Swal.fire({
-      title: '¿Esta seguro que desea Desactivar la politica: ' + rol + '?',
-      showDenyButton: true,
+      title: '¿Está seguro que desea desactivar la política: ' + rol + '?',
+      text: "¡Esta acción no se podrá revertir!",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Si',
-      denyButtonText: `No`,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Desactivar',
+      cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
         this.policyService.desactivePolicy(Number(id)).subscribe((resp) => {

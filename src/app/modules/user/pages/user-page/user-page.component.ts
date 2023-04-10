@@ -150,18 +150,21 @@ export class UserPageComponent {
 
   desactivar(id: string, username: string) {
     Swal.fire({
-      title: '¿Esta seguro que desea Desactivar el usuario: ' + username + '?',
-      showDenyButton: true,
+      title: '¿Está seguro que desea desactivar el usuario: ' + username + '?',
+      text: "¡Esta acción no se podrá revertir!",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Si',
-      denyButtonText: `No`,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Desactivar',
+      cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
         this.userServide.desactiveUser(Number(id)).subscribe(
           (resp) => {
             if (resp.status == true) {
               this.cargarUsuarios();
-              Swal.fire('Ok!', 'Usuario Desactivado', 'success');
+              Swal.fire('Ok!', 'Usuario desactivado', 'success');
             }
           },
           (err) => {

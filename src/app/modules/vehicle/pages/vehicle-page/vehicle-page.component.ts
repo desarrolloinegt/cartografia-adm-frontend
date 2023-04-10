@@ -79,11 +79,14 @@ export class VehiclePageComponent {
 
   desactivar(id: number, modelo: string) {
     Swal.fire({
-      title: '¿Esta seguro que desea Desactivar el Vehiculo: ' + modelo + '?',
-      showDenyButton: true,
+      title: '¿Está seguro que desea desactivar el vehículo: ' + modelo + '?',
+      text: "¡Esta acción no se podrá revertir!",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Si',
-      denyButtonText: `No`,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Desactivar',
+      cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
         this.vehicleService.desactiVehicle(Number(id)).subscribe((resp) => {

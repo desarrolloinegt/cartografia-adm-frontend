@@ -163,13 +163,14 @@ export class AsignarPersonalComponent {
 
   deleteAsignation(encargado_id:string,empleado_id:string,encargado:string,empleado:string){
     Swal.fire({
-      title: 'Esta accion eliminara todas las asignaciones de personal y upms en la que se encuentre: '+empleado+
-      ' ¿Esta seguro que desea eliminar la asignacion:?',
-      showDenyButton: true,
+      title: '¿Está seguro que desea desactivar la asignación: ' + empleado + '?',
+      text: "¡Esta acción eliminará todas las asignaciones de las tablas Personal y UPM!",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Si',
-      cancelButtonText:'Cancelar',
-      denyButtonText: `No`,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Desactivar',
+      cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
         this.projectHomeService.deleteAssingmentUsers({encargado_id:encargado_id,empleado_id:empleado_id,proyecto_id:this.idProject}).subscribe(resp => {

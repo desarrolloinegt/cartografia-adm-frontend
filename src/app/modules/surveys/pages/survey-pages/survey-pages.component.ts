@@ -82,11 +82,14 @@ export class SurveyPagesComponent {
 
   desactivar(id: string, nombre: string) {
     Swal.fire({
-      title: '¿Esta seguro que desea Desactivar la encuesta: ' + nombre + '?',
-      showDenyButton: true,
+      title: '¿Está seguro que desea desactivar la encuesta: ' + nombre + '?',
+      text: "¡Esta acción no se podrá revertir!",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Si',
-      denyButtonText: `No`,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Desactivar',
+      cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
         this.surveyService.desactiveSurvey(Number(id)).subscribe((resp) => {

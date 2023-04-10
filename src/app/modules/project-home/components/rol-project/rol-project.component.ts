@@ -80,13 +80,14 @@ export class RolProjectComponent {
   }
   desactivar(id: string, nombre: string) {
     Swal.fire({
-      title: 'Esta accion eliminara todos los usuarios que se encuentren asignados a este rol y todas las asignaciones'
-      +' de upms y personal a dichos usuarios. ¿Esta seguro que desea Desactivar el rol: ' + nombre + '?',
-      showDenyButton: true,
+      title: '¿Está seguro que desea desactivar el rol: ' + nombre + '?',
+      text: "¡Esta acción eliminará todos los usuarios que se encuentran asignados a este rol y todas las asignaciones de las tablas Personal y UPM!",
+      icon: 'warning',
       showCancelButton: true,
-      cancelButtonText:"Cancelar",
-      confirmButtonText: 'Si',
-      denyButtonText: `No`,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Desactivar',
+      cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
         this.rolService.desactiveGroup(Number(id)).subscribe((resp) => {
