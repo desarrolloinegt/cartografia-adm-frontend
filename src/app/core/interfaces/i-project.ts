@@ -18,7 +18,8 @@ export interface IProjectCreate {
     nombre:string,
     year:string,
     encuesta_id:number,
-    descripcion:string
+    descripcion:string,
+    automatizacion:number
 }
 
 export interface IProjectListView extends IProjectCreate{
@@ -26,7 +27,7 @@ export interface IProjectListView extends IProjectCreate{
     progreso:number
 }
 
-export interface IProjectDataEdit extends Omit<IProjectCreate,'encuesta_id'>{
+export interface IProjectDataEdit extends Omit<IProjectCreate,'encuesta_id|automatizacion'>{
     encuesta:string,
     id:number
 }

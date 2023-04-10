@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { IProjectCreate } from '@core/interfaces/i-project';
 import { AssignmentUpmProjectSustituir } from '@core/interfaces/i-upm';
 import { ApiService } from '@core/services/api.service';
 
@@ -22,7 +23,7 @@ export class ProjectService {
   getUpms(id:number){
     return this.apiService.getById('obtenerUpmsProyecto',id)
   }
-  createProject(data:any){
+  createProject(data:IProjectCreate){
     return this.apiService.store('proyecto',data);
   }
 

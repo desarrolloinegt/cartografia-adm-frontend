@@ -25,11 +25,13 @@ export class NewProjectPageComponent {
   pipe = new DatePipe('es-GT');
   date = new Date(new Date().getDate());
   now = Date.now();
+  checked:boolean=false;
   project: IProjectCreate = {
     nombre: '',
     encuesta_id: 0,
     year: '',
-    descripcion: '',
+    descripcion:'',
+    automatizacion:0
   };
 
   upmAsignment: IUpmAssignment = {
@@ -55,6 +57,7 @@ export class NewProjectPageComponent {
       ],
       encuesta: ['', [Validators.required]],
       descripcion: [''],
+      automatizacion:[0]
     });
   }
 
@@ -84,7 +87,8 @@ export class NewProjectPageComponent {
       this.project.nombre = valueEncuesta[1] + ' ' + this.Year?.value;
       this.project.encuesta_id = valueEncuesta[0];
       this.project.year = this.Year?.value;
-      this.project.descripcion = this.Descripcion?.value;
+      this.project.descripcion=this.Descripcion?.value;
+      
       if (Number(this.project.encuesta_id)) {
         this.projectService.createProject(this.project).subscribe((resp) => {
           if (resp.status == true) {
@@ -98,5 +102,14 @@ export class NewProjectPageComponent {
 
   cancelAdd() {
     this.dialogRef.close();
+  }
+
+  automatize(status:boolean){
+    this.checked=status;
+    if(this.checked){
+      this.project.automatizacion=1;
+    } else{
+      this.project.automatizacion=0;
+    }
   }
 }
