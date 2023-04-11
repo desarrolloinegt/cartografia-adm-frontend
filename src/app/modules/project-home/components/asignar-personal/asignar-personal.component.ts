@@ -167,8 +167,7 @@ export class AsignarPersonalComponent {
       text: "¡Esta acción eliminará todas las asignaciones de las tablas Personal y UPM!",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor: '#d33',
       confirmButtonText: 'Desactivar',
       cancelButtonText: 'Cancelar'
     }).then((result) => {

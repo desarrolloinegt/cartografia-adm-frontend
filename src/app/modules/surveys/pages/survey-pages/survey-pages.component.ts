@@ -86,8 +86,7 @@ export class SurveyPagesComponent {
       text: "¡Esta acción no se podrá revertir!",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor: '#d33',
       confirmButtonText: 'Desactivar',
       cancelButtonText: 'Cancelar'
     }).then((result) => {

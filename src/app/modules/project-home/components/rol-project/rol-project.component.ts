@@ -84,8 +84,7 @@ export class RolProjectComponent {
       text: "¡Esta acción eliminará todos los usuarios que se encuentran asignados a este rol y todas las asignaciones de las tablas Personal y UPM!",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor: '#d33',
       confirmButtonText: 'Desactivar',
       cancelButtonText: 'Cancelar'
     }).then((result) => {
