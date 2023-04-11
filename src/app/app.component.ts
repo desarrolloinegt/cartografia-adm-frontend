@@ -111,4 +111,13 @@ export class AppComponent {
       return { margin: "0", "text-alignn": "center" };
     }
   }
+
+  toolTip(text:string){
+    if(!this.opened){
+      return text;
+    } else {
+      return "";
+    }
+    
+  }
 }
