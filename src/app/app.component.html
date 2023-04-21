@@ -47,20 +47,7 @@
               </a>
             </mat-list-item>
 
-            <mat-list-item [matTooltip]="toolTip('Configuracion')" matTooltipPosition="right" *ngxPermissionsOnly="['configuracion-proyecto']">
-              <a
-                class="menu_item"
-                style="text-decoration: none"
-                routerLink="projectHome/configuracion"
-              >
-                <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
-                  >settings</mat-icon
-                >
-                <span *ngIf="opened" [style.fontSize.px]="14"
-                  >Configuración</span
-                >
-              </a>
-            </mat-list-item>
+           
 
             <mat-list-item [matTooltip]="toolTip('Carga de personal')" matTooltipPosition="right" *ngxPermissionsOnly="['asignar-personal']">
               <a
@@ -130,6 +117,20 @@
                   >people</mat-icon
                 >
                 <span *ngIf="opened" [style.fontSize.px]="14">Supervisor</span>
+              </a>
+            </mat-list-item>
+            <mat-list-item [matTooltip]="toolTip('Configuracion')" matTooltipPosition="right" *ngxPermissionsOnly="['configuracion-proyecto']">
+              <a
+                class="menu_item"
+                style="text-decoration: none"
+                routerLink="projectHome/configuracion"
+              >
+                <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
+                  >settings</mat-icon
+                >
+                <span *ngIf="opened" [style.fontSize.px]="14"
+                  >Configuración</span
+                >
               </a>
             </mat-list-item>
           </mat-expansion-panel>

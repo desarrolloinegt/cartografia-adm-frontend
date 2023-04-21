@@ -56,7 +56,7 @@
                 <a [routerLink]="['reportDashboard',department.id]" >
                     <mat-form-field >
                         <input matInput placeholder="" readonly>
-                        <img class="card-img-top" src="./assets/images/xela-silueta.png" width="190" alt="Card image cap">
+                        <img class="card-img-top"  [src]="department.image"  width="190" alt="Imagen de departamento ">
                         <div class="card-body">
                             <h3 class="card-title">{{department.nombre}}</h3>
                         </div>
