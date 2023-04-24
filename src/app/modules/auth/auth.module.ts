@@ -8,12 +8,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AuthHeaderComponent } from './components';
 import { LogoutComponent } from './pages/logout/logout.component';
 import { NgxPermissionsModule } from 'ngx-permissions';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 
 
 @NgModule({
   declarations: [
     LoginPageComponent,
-    LogoutComponent
+    LogoutComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     CommonModule,
