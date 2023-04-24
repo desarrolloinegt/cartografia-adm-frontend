@@ -1,97 +1,99 @@
 <br>
-<div class="grid-container">
-    <div class="frow-container">
-        <div class="frow row-start">
-            <div class="col-sm-1-1 col-sm-6-12 col-md-6 12">
-                <h2>Supervisor</h2>
+<div class="mat_tab">
+    <div class="grid-container">
+        <div>
+            <div class="frow row-start">
+                <div class="col-sm-1-1 col-sm-6-12 col-md-6 12">
+                    <h2>Supervisor</h2>
+                </div>
+                <div class="col-sm-1-1 col-sm-3-12 col-md-3-12"></div>
+                <!-- <div class="col-sm-1-1 col-sm-3-12 com-md-3-12" style="text-align: right;">
+                    <button *ngxPermissionsOnly="['supervisor']" mat-flat-button color="accent" style="margin-right: 8px;" (click)="open()">
+                        <mat-icon>add</mat-icon>
+                        Crear Equipo de Campo
+                    </button>
+                </div> -->
             </div>
-            <div class="col-sm-1-1 col-sm-3-12 col-md-3-12"></div>
-            <!-- <div class="col-sm-1-1 col-sm-3-12 com-md-3-12" style="text-align: right;">
-                <button *ngxPermissionsOnly="['supervisor']" mat-flat-button color="accent" style="margin-right: 8px;" (click)="open()">
-                    <mat-icon>add</mat-icon>
-                    Crear Equipo de Campo
-                </button>
-            </div> -->
-        </div>
-        <br>
-        <br>
-        <br>
-        
-
-        <div class="mat-elevation-z8 table">
-            <mat-form-field [style.fontSize.px]="12" appareance="outline" class="fluid">
-                <mat-label [style.fontSize.px]="14">Buscar</mat-label>
-                <input matInput (keyup)="applyFilter($event)" placeholder="Ejemplo: Juan Pérez" #input>
-                <mat-icon matSuffix>search</mat-icon>
-            </mat-form-field>
             <br>
-            <table mat-table [dataSource]="dataSource" matSort class="fluid">
-
-                <ng-container matColumnDef="upm">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>UPM</th>
-                    <td class="cell-pointer" mat-cell *matCellDef="let row"> {{row.upm}} </td>
-                </ng-container>
-        
-                <ng-container matColumnDef="codigo_usuario">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>COD Cartografo</th>
-                    <td class="cell-pointer" mat-cell *matCellDef="let row"> {{row.codigo_usuario}} </td>
-                </ng-container> 
-
-                <ng-container matColumnDef="nombres">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombres</th>
-                    <td class="cell-pointer" mat-cell *matCellDef="let row"> {{row.nombres}} </td>
-                </ng-container> 
-
-                <ng-container matColumnDef="apellidos">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Apellidos</th>
-                    <td class="cell-pointer" mat-cell *matCellDef="let row"> {{row.apellidos}} </td>
-                </ng-container> 
-
-                <ng-container matColumnDef="estado">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Estado</th>
-                    <td class="cell-pointer" mat-cell *matCellDef="let row">
-                        <button
-                            style="background: white;"
-                            [ngStyle]="getColor(row.cod_estado)"
-                            class="estado"
-                            >
-                            {{row.estado}}
-                        </button>
-                    </td>
-                </ng-container> 
-        
-                <ng-container matColumnDef="options">
-                    <th mat-header-cell *matHeaderCellDef></th>
-                    <td class="cell-pointer" mat-cell *matCellDef="let row">
-                        <button
-                        *ngxPermissionsOnly="['editar-cartografo-upm']"
-                        mat-icon-button (click)="asignar(row.codigo_usuario, row.nombres,row.upm)"
-                            matTooltip="Click para modificar encargado" matTooltipPosition="above" color="primary" class="iconbutton">
-                            <mat-icon>person</mat-icon>
-                        </button>
-                        <button 
-                        *ngxPermissionsOnly="['ver-mapa']"
-                        mat-icon-button matTooltip="Click para Ver Mapa"
-                            (click)="verMapa()" matTooltipPosition="above" color="primary" clas="iconbutton">
-                            <mat-icon>my_location</mat-icon>
-                        </button>
-                        <button mat-icon-button matTooltip="Ver bitacora" color="primary" class="iconbutton"
-                        (click)="seeBitacor(row.upm)">
-                        <mat-icon>remove_red_eye</mat-icon>
-                        </button>
-                    </td>
-                </ng-container>
-        
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr class="selected-row" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        
-                <!-- Row shown when there is no matching data. -->
-                <tr class="mat-row" *matNoDataRow>
-                    <td class="mat-cell" colspan="4">No hay resultados de "{{input.value}}"</td>
-                </tr>
-            </table>
             <br>
-            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+            <br>
+            
+    
+            <div class="mat-elevation-z8 table">
+                <mat-form-field [style.fontSize.px]="12" appareance="outline" class="fluid">
+                    <mat-label [style.fontSize.px]="14">Buscar</mat-label>
+                    <input matInput (keyup)="applyFilter($event)" placeholder="Ejemplo: Juan Pérez" #input>
+                    <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field>
+                <br>
+                <table mat-table [dataSource]="dataSource" matSort class="fluid">
+    
+                    <ng-container matColumnDef="upm">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>UPM</th>
+                        <td class="cell-pointer" mat-cell *matCellDef="let row"> {{row.upm}} </td>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="codigo_usuario">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>COD Cartografo</th>
+                        <td class="cell-pointer" mat-cell *matCellDef="let row"> {{row.codigo_usuario}} </td>
+                    </ng-container> 
+    
+                    <ng-container matColumnDef="nombres">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombres</th>
+                        <td class="cell-pointer" mat-cell *matCellDef="let row"> {{row.nombres}} </td>
+                    </ng-container> 
+    
+                    <ng-container matColumnDef="apellidos">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Apellidos</th>
+                        <td class="cell-pointer" mat-cell *matCellDef="let row"> {{row.apellidos}} </td>
+                    </ng-container> 
+    
+                    <ng-container matColumnDef="estado">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Estado</th>
+                        <td class="cell-pointer" mat-cell *matCellDef="let row">
+                            <button
+                                style="background: white;"
+                                [ngStyle]="getColor(row.cod_estado)"
+                                class="estado"
+                                >
+                                {{row.estado}}
+                            </button>
+                        </td>
+                    </ng-container> 
+            
+                    <ng-container matColumnDef="options">
+                        <th mat-header-cell *matHeaderCellDef></th>
+                        <td class="cell-pointer" mat-cell *matCellDef="let row">
+                            <button
+                            *ngxPermissionsOnly="['editar-cartografo-upm']"
+                            mat-icon-button (click)="asignar(row.codigo_usuario, row.nombres,row.upm)"
+                                matTooltip="Click para modificar encargado" matTooltipPosition="above" color="primary" class="iconbutton">
+                                <mat-icon>person</mat-icon>
+                            </button>
+                            <button 
+                            *ngxPermissionsOnly="['ver-mapa']"
+                            mat-icon-button matTooltip="Click para Ver Mapa"
+                                (click)="verMapa()" matTooltipPosition="above" color="primary" clas="iconbutton">
+                                <mat-icon>my_location</mat-icon>
+                            </button>
+                            <button mat-icon-button matTooltip="Ver bitacora" color="primary" class="iconbutton"
+                            (click)="seeBitacor(row.upm)">
+                            <mat-icon>remove_red_eye</mat-icon>
+                            </button>
+                        </td>
+                    </ng-container>
+            
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr class="selected-row" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            
+                    <!-- Row shown when there is no matching data. -->
+                    <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell" colspan="4">No hay resultados de "{{input.value}}"</td>
+                    </tr>
+                </table>
+                <br>
+                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+            </div>
         </div>
     </div>
 </div>

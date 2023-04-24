@@ -1,111 +1,113 @@
-<div class="title">
-  <h1>Asignacion de UPM</h1>
-</div>
-<br />
-<br />
-<div class="container"> 
-    <div class="container_download">
-        <mat-form-field appearance="outline" style="width: 25rem;" >
-            <mat-label [style.fontSize.px]="16">Seleccione un Rol</mat-label>
-            <mat-select #rol>
-                <mat-option *ngFor="let group of groups" [value]="group.id + ',' + group.nombre">
-                    {{ group.nombre }}
-                </mat-option> 
-            </mat-select>
-        </mat-form-field>
-        <div *ngxPermissionsOnly="['descargar-plantilla']">
-          <button [disabled]="!rol.value" (click)="getUpmsAsignn(rol.value)" mat-flat-button color="accent">
-              <mat-icon>arrow_downward</mat-icon>
-              Descargar Plantilla
-          </button>
+<div class="mat_tab">
+  <div class="title">
+    <h1>Asignacion de UPM</h1>
+  </div>
+  <br />
+  <br />
+  <div class="container"> 
+      <div class="container_download">
+          <mat-form-field appearance="outline" style="width: 25rem;" >
+              <mat-label [style.fontSize.px]="16">Seleccione un Rol</mat-label>
+              <mat-select #rol>
+                  <mat-option *ngFor="let group of groups" [value]="group.id + ',' + group.nombre">
+                      {{ group.nombre }}
+                  </mat-option> 
+              </mat-select>
+          </mat-form-field>
+          <div *ngxPermissionsOnly="['descargar-plantilla']">
+            <button [disabled]="!rol.value" (click)="getUpmsAsignn(rol.value)" mat-flat-button color="accent">
+                <mat-icon>arrow_downward</mat-icon>
+                Descargar Plantilla
+            </button>
+        </div>
       </div>
-    </div>
-    <div class="container_options">
-        <div>
+      <div class="container_options">
+          <div>
+              <button
+              *ngxPermissionsOnly="['asignar-upms-personal']"
+              mat-flat-button
+              color="accent"
+              style="margin-right: 8px"
+            >
+            <mat-icon>add</mat-icon>
+              Agregar
+            </button>
+          </div>
+          <div class="upms">
+              <button 
+              *ngxPermissionsOnly="['asignar-upms-personal']"
+              (click)="addFile()" mat-flat-button color="accent">
+                  <mat-icon>arrow_upward</mat-icon>
+                  Cargar Archivo
+              </button>
+          </div>
+          <div>
             <button
-            *ngxPermissionsOnly="['asignar-upms-personal']"
+            (click)="verPlantilla()"
             mat-flat-button
             color="accent"
             style="margin-right: 8px"
           >
-          <mat-icon>add</mat-icon>
-            Agregar
+          <mat-icon>remove_red_eye</mat-icon>
+            Ver ejemplo de archivo de carga
           </button>
         </div>
-        <div class="upms">
-            <button 
-            *ngxPermissionsOnly="['asignar-upms-personal']"
-            (click)="addFile()" mat-flat-button color="accent">
-                <mat-icon>arrow_upward</mat-icon>
-                Cargar Archivo
-            </button>
+      </div>
+  </div>
+  <br>
+  <div class="grid-container">
+      <div>
+        <div class="frow row-start">
+          <div class="col-sm-1-1 col-sm-3-12 col-md-3-12"></div>
         </div>
-        <div>
-          <button
-          (click)="verPlantilla()"
-          mat-flat-button
-          color="accent"
-          style="margin-right: 8px"
-        >
-        <mat-icon>remove_red_eye</mat-icon>
-          Ver ejemplo de archivo de carga
-        </button>
+        <br>
+        <mat-form-field [style.fontSize.px]="12" appearence="outline" class="fluid">
+          <mat-label [style.fontSize.px]="14">Buscar</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ejemplo: AEE123456789A2" #input>
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+        <div class="mat-elevation-z8" *ngxPermissionsOnly="['asignar-upms-personal']">
+          <table mat-table [dataSource]="dataSource" matSort class="fluid">
+  
+            <!-- Rol Column -->
+            <ng-container matColumnDef="rol">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Rol</th>
+              <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.rol }}</td>
+            </ng-container>
+            <!-- Names Column -->
+            <ng-container matColumnDef="encargado">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Encargado</th>
+              <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.encargado }}</td>
+            </ng-container>
+  
+            <!-- upm Column -->
+            <ng-container matColumnDef="upm">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>UPM</th>
+              <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.upm }}</td>
+            </ng-container>
+        
+            <ng-container matColumnDef="options">
+              <th mat-header-cell *matHeaderCellDef>Opciones</th>
+              <td class="cell-pointer" mat-cell *matCellDef="let row">
+                <button mat-icon-button matTooltip="Ver Mapa">
+                  <mat-icon>my_location</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+        
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr class="selected-row" mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="4">
+                No hay resultados de "{{ input.value }}"
+              </td>
+            </tr>
+          </table>
+          <br>
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+        </div>
       </div>
     </div>
 </div>
-<br>
-<div class="grid-container">
-    <div class="frow-container">
-      <div class="frow row-start">
-        <div class="col-sm-1-1 col-sm-3-12 col-md-3-12"></div>
-      </div>
-      <br>
-      <mat-form-field [style.fontSize.px]="12" appearence="outline" class="fluid">
-        <mat-label [style.fontSize.px]="14">Buscar</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ejemplo: AEE123456789A2" #input>
-        <mat-icon matSuffix>search</mat-icon>
-      </mat-form-field>
-      <div class="mat-elevation-z8" *ngxPermissionsOnly="['asignar-upms-personal']">
-        <table mat-table [dataSource]="dataSource" matSort class="fluid">
-
-          <!-- Rol Column -->
-          <ng-container matColumnDef="rol">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Rol</th>
-            <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.rol }}</td>
-          </ng-container>
-          <!-- Names Column -->
-          <ng-container matColumnDef="encargado">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Encargado</th>
-            <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.encargado }}</td>
-          </ng-container>
-
-          <!-- upm Column -->
-          <ng-container matColumnDef="upm">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>UPM</th>
-            <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.upm }}</td>
-          </ng-container>
-      
-          <ng-container matColumnDef="options">
-            <th mat-header-cell *matHeaderCellDef>Opciones</th>
-            <td class="cell-pointer" mat-cell *matCellDef="let row">
-              <button mat-icon-button matTooltip="Ver Mapa">
-                <mat-icon>my_location</mat-icon>
-              </button>
-            </td>
-          </ng-container>
-      
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr class="selected-row" mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-      
-          <!-- Row shown when there is no matching data. -->
-          <tr class="mat-row" *matNoDataRow>
-            <td class="mat-cell" colspan="4">
-              No hay resultados de "{{ input.value }}"
-            </td>
-          </tr>
-        </table>
-        <br>
-        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
-      </div>
-    </div>
-  </div>
