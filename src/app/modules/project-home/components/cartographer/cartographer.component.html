@@ -1,3 +1,4 @@
+<br>
 <div class="mat_tab">
   <div class="grid-container">
     <div>
@@ -5,23 +6,16 @@
         <div class="col-sm-1-1 col-sm-6-12 col-md-6-12">
           <h2>Área de Cartografo</h2>
         </div>
-        <div class="col-sm-1-1 col-sm-3-12 col-md-3-12">
-          <mat-form-field
-            [style.fontSize.px]="12"
-            appearance="outline"
-            class="fluid"
-          >
-            <mat-label [style.fontSize.px]="14">Buscar</mat-label>
-            <input
-              matInput
-              (keyup)="applyFilter($event)"
-              placeholder="Ejemplo: AEE010100005A1"
-              #input
-            />
-            <mat-icon matSuffix>search</mat-icon>
-          </mat-form-field>
-        </div>
+        <div class="col-sm-1-1 col-sm-3-12 col-md-3-12"></div>
       </div>
+      <br>
+      <br>
+      <br>
+      <mat-form-field [style.fontSize.px]="12" appearence="outline"class="fluid">
+        <mat-label [style.fontSize.px]="14">Buscar</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ejemplo: AEE010100005A1"#input/>
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
       <div class="mat-elevation-z8" *ngxPermissionsOnly="['ver-upms-cartografo']">
         <table mat-table [dataSource]="dataSource" matSort class="fluid">
           <!-- Departamento Column -->
@@ -95,11 +89,7 @@
           </tr>
         </table>
   
-        <mat-paginator
-          #paginator
-          [pageSizeOptions]="[10, 25, 100]"
-          showFirstLastButtons
-        ></mat-paginator>
+        <mat-paginator [pageSizeOptions]="[10, 25, 100]" showFirstLastButtons></mat-paginator>
       </div>
     </div>
   </div>
