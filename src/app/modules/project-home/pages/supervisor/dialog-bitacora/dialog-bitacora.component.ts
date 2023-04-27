@@ -17,7 +17,7 @@ export class DialogBitacoraComponent {
 
   @ViewChild(MatSort) sort!: MatSort;
   dataSource: MatTableDataSource<String>;
-  displayedColumns: string[] = ['upm', 'codigo_usuario', 'nombres', 'apellidos', 'estado', 'options'];
+  displayedColumns: string[] = ['upm', 'fecha', 'nombres', 'estado', 'options'];
   projectId:number=0;
   constructor(public dialogRef:MatDialogRef<DialogBitacoraComponent>,private bitService:BitacoraServiceService,private projectService:ProjectHomeService, @Inject(MAT_DIALOG_DATA) public data: String){
     this.dataSource=new MatTableDataSource();

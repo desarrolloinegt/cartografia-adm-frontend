@@ -23,12 +23,12 @@
                     <td class="cell-pointer" mat-cell *matCellDef="let row"> {{row.upm}} </td>
                 </ng-container>
         
-                <ng-container matColumnDef="codigo_usuario">
+                <ng-container matColumnDef="fecha">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha y Hora</th>
                     <td class="cell-pointer" mat-cell *matCellDef="let row"> {{row.fecha}} </td>
                 </ng-container> 
 
-                <ng-container matColumnDef="nombres">
+                <ng-container matColumnDef="estado">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Tipo</th>
                     <td class="cell-pointer" mat-cell *matCellDef="let row"><button
                         style="background: white;"
@@ -39,16 +39,9 @@
                     </button> </td>
                 </ng-container> 
 
-                <ng-container matColumnDef="apellidos">
+                <ng-container matColumnDef="nombres">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Usuario</th>
                     <td class="cell-pointer" mat-cell *matCellDef="let row"> {{row.nombres}}  {{row.apellidos}} </td>
-                </ng-container> 
-
-                <ng-container matColumnDef="estado">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Reemplazo</th>
-                    <td class="cell-pointer" mat-cell *matCellDef="let row">
-                        
-                    </td>
                 </ng-container> 
         
                 <ng-container matColumnDef="options">
