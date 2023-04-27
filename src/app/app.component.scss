@@ -70,3 +70,12 @@ strong{
     display: flex;
     align-items: center;
 }
+.options_header{
+    display: flex;
+    justify-content: space-between;
+    gap: 3rem;
+    align-items: center;
+}
+.notification{
+    padding-top: 0.6rem;
+}
