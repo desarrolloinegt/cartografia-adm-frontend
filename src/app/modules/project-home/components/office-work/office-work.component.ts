@@ -16,26 +16,14 @@ import Swal from 'sweetalert2';
   styleUrls: ['./office-work.component.scss']
 })
 export class OfficeWorkComponent {
-  formUpms!: FormGroup;
+  
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   @ViewChild(MatSort) sort!: MatSort;
   dataSource: MatTableDataSource<String>;
-  displayedColumns: string[] = ['departamento', 'municipio', 'upm', 'estado', 'options'];
+  displayedColumns: string[] = ['departamento','municipio','upm', 'supervisor', 'estado', 'fecha', 'options'];
   data: string[] = [];
   idProject!: number;
-
-  assigment: AssignmentUpmProject = {
-    proyecto_id: 0,
-    upms: []
-  };
-  upmDataSust: AssignmentUpmProjectSustituir = {
-    proyecto_id: 0,
-    upm_nuevo: '',
-    upm_anterior: 0,
-    descripcion: '',
-    usuario_id: 0
-  }
 
   constructor(
     private formBuilder: FormBuilder,
@@ -44,26 +32,22 @@ export class OfficeWorkComponent {
     private projectService: ProjectService
   ) {
     this.dataSource = new MatTableDataSource();
-    this.buildForm();
   }
 
-  private buildForm() {
-    this.formUpms = this.formBuilder.group({
-      file: [''],
-    });
-  }
+ 
 
   ngOnInit() {
     this.homeProjectService.getIdProject(localStorage.getItem('project') || '')
     .subscribe((data) => {
       this.idProject = data;
-      this.cargarUpmsAsignadas();
+      this.chargueUpmFinished();
     });
   }
 
-  cargarUpmsAsignadas() {
+  chargueUpmFinished() {
     if (this.idProject != 0) {
-      this.projectService.getUpmCartographer({proyecto_id:this.idProject}).subscribe((resp) => {
+      this.projectService.getUpmsFinished({proyecto_id:this.idProject}).subscribe((resp) => {
+        console.log(resp)
         this.dataSource = new MatTableDataSource(resp);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -86,24 +70,7 @@ export class OfficeWorkComponent {
   }
   return {};
   }
-  initActualization(upm:string){
-    let data={upm:upm,proyecto_id:this.idProject}
-    this.homeProjectService.initActualization(data).subscribe((resp)=>{
-      if(resp.status==true){
-        this.Toast.fire({icon:'success',title:resp.message});
-        this.cargarUpmsAsignadas();
-      }
-    });
-  }
-  finishActualization(upm:string){
-    let data={upm:upm,proyecto_id:this.idProject}
-    this.homeProjectService.finishActualization(data).subscribe((resp)=>{
-      if(resp.status==true){
-        this.Toast.fire({icon:'success',title:resp.message});
-        this.cargarUpmsAsignadas();
-      }
-    })
-  }
+ 
 
   Toast = Swal.mixin({
     toast: true,

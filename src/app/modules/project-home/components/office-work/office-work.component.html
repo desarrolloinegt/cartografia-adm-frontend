@@ -16,7 +16,7 @@
                 <input matInput (keyup)="applyFilter($event)" placeholder="Ejemplo: AEE010100005A1"#input/>
                 <mat-icon matSuffix>search</mat-icon>
             </mat-form-field>
-        <div class="mat-elevation-z8" *ngxPermissionsOnly="['ver-upms-cartografo']">
+        <div class="mat-elevation-z8" >
             <table mat-table [dataSource]="dataSource" matSort class="fluid">
             <!-- Departamento Column -->
             <ng-container matColumnDef="departamento">
@@ -35,7 +35,14 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>UPM</th>
                 <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.upm }}</td>
             </ng-container>
-
+            <ng-container matColumnDef="supervisor">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Supervisor</th>
+                <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.codigo_usuario }} - {{row.nombres}} {{row.apellidos}}</td>
+            </ng-container>
+            <ng-container matColumnDef="fecha">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</th>
+                <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.fecha }}</td>
+            </ng-container>
             <!-- Estado Column -->
             <ng-container matColumnDef="estado">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Estado</th>

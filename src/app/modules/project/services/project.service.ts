@@ -13,6 +13,9 @@ export class ProjectService {
   getProjects(){
     return this.apiService.getAll('obtenerUpmsProyecto');
   }
+  getUpmsFinished(data:any){
+    return this.apiService.store('upmFinishedCartographer',data);
+  }
   getProjectView(){
     return this.apiService.getAll('proyectos');
   }
