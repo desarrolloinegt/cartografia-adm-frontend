@@ -18,7 +18,7 @@
           <span *ngIf="opened" [style.fontSize.px]="14">Inicio</span>
         </a>
       </mat-list-item>
-     
+
       <div *ngIf="project && projectId != -1">
         <mat-accordion [style]="styleNav()">
           <mat-expansion-panel expanded>
@@ -46,8 +46,6 @@
                 <span *ngIf="opened" [style.fontSize.px]="14">Dashboard </span>
               </a>
             </mat-list-item>
-
-           
 
             <mat-list-item [matTooltip]="toolTip('Carga de personal')" matTooltipPosition="right" *ngxPermissionsOnly="['asignar-personal']">
               <a
@@ -119,6 +117,7 @@
                 <span *ngIf="opened" [style.fontSize.px]="14">Supervisor</span>
               </a>
             </mat-list-item>
+
             <mat-list-item [matTooltip]="toolTip('Configuracion')" matTooltipPosition="right" *ngxPermissionsOnly="['configuracion-proyecto']">
               <a
                 class="menu_item"
@@ -130,6 +129,21 @@
                 >
                 <span *ngIf="opened" [style.fontSize.px]="14"
                   >Configuración</span
+                >
+              </a>
+            </mat-list-item>
+
+            <mat-list-item [matTooltip]="toolTip('Informes')" matTooltipPosition="right">
+              <a
+                class="menu_item"
+                style="text-decoration: none"
+                routerLink="projectHome/informes"
+              >
+                <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
+                  >description</mat-icon
+                >
+                <span *ngIf="opened" [style.fontSize.px]="14"
+                  >Informes</span
                 >
               </a>
             </mat-list-item>

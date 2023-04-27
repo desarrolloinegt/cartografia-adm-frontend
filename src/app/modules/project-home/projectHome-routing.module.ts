@@ -7,6 +7,7 @@ import { DialogSupervisorAssignUserComponent, FieldTeamPageComponent, HomeProjec
 import { NgxPermissionsGuard } from 'ngx-permissions';
 import { ControlDashboardDialogComponent } from './components/control-dashboard-dialog/control-dashboard-dialog.component';
 import { RolesUpmUnionComponent } from './components/roles-upm-union/roles-upm-union.component';
+import { OfficeWorkComponent } from './components/office-work/office-work.component';
 const routes: Routes = [
   {
     path:'',
@@ -71,6 +72,10 @@ const routes: Routes = [
   {
     path: 'configuracion',
     component: RolesUpmUnionComponent
+  },
+  {
+    path: 'informes',
+    component: OfficeWorkComponent
   }
 ];
 

@@ -1,0 +1,75 @@
+<br>
+<div class="mat_tab">
+    <div class="grid-container">
+        <div>
+            <div class="frow row-start">
+                <div class="col-sm-1-1 col-sm-6-12 col-md-6-12">
+                    <h2>Área de Informes</h2>
+                </div>
+            <div class="col-sm-1-1 col-sm-3-12 col-md-3-12"></div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <mat-form-field [style.fontSize.px]="12" appearence="outline"class="fluid">
+                <mat-label [style.fontSize.px]="14">Buscar</mat-label>
+                <input matInput (keyup)="applyFilter($event)" placeholder="Ejemplo: AEE010100005A1"#input/>
+                <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+        <div class="mat-elevation-z8" *ngxPermissionsOnly="['ver-upms-cartografo']">
+            <table mat-table [dataSource]="dataSource" matSort class="fluid">
+            <!-- Departamento Column -->
+            <ng-container matColumnDef="departamento">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Departamento</th>
+                <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.departamento }}</td>
+            </ng-container>
+
+            <!-- Municipio Column -->
+            <ng-container matColumnDef="municipio">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Municipio</th>
+                <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.municipio }}</td>
+            </ng-container>
+
+            <!-- UPM Column -->
+            <ng-container matColumnDef="upm">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>UPM</th>
+                <td class="cell-pointer" mat-cell *matCellDef="let row">{{ row.upm }}</td>
+            </ng-container>
+
+            <!-- Estado Column -->
+            <ng-container matColumnDef="estado">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Estado</th>
+                <td class="cell-pointer" mat-cell *matCellDef="let row">
+                <button
+                    style="background: white;"
+                    [ngStyle]="getColor(row.cod_estado)"
+                    class="estado"
+                >
+                    {{row.estado}}
+                </button>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="options">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td class="cell-pointer" mat-cell *matCellDef="let row">
+            <button mat-icon-button (click)="crearInforme()" matTooltip="Click para Crear Informe" matTooltipPosition="right" color="primary" class="iconbutton">
+                <mat-icon aria-label="Create">create_new_folder</mat-icon>
+            </button>
+        </td>
+        </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr class="selected-row" mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No hay resultados de "{{ input.value }}"</td>
+        </tr>
+        </table>
+
+            <mat-paginator [pageSizeOptions]="[10, 25, 100]" showFirstLastButtons></mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -25,6 +25,7 @@ import { DialogBitacoraComponent } from './pages/supervisor/dialog-bitacora/dial
 import { ControlDashboardComponent } from './components/control-dashboard/control-dashboard.component';
 import { ControlDashboardDialogComponent } from './components/control-dashboard-dialog/control-dashboard-dialog.component';
 import { RolesUpmUnionComponent } from './components/roles-upm-union/roles-upm-union.component';
+import { OfficeWorkComponent } from './components/office-work/office-work.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { RolesUpmUnionComponent } from './components/roles-upm-union/roles-upm-u
     DialogBitacoraComponent,
     ControlDashboardComponent,
     ControlDashboardDialogComponent,
-    RolesUpmUnionComponent
+    RolesUpmUnionComponent,
+    OfficeWorkComponent
   ],
   imports: [
     CommonModule,
