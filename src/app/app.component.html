@@ -12,181 +12,123 @@
 
       <mat-list-item [matTooltip]="toolTip('Inicio')" matTooltipPosition="right">
         <a class="menu_item" style="text-decoration: none" routerLink="home">
-          <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
-            >home</mat-icon
-          >
+          <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon">home</mat-icon>
           <span *ngIf="opened" [style.fontSize.px]="14">Inicio</span>
         </a>
       </mat-list-item>
-     
+
       <div *ngIf="project && projectId != -1">
         <mat-accordion [style]="styleNav()">
           <mat-expansion-panel expanded>
             <mat-expansion-panel-header>
               <mat-panel-title>
-                    <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
-                    >tab</mat-icon
-                  >
-                  <span *ngIf="opened" [style.fontSize.px]="14"
-                    ><strong>{{ project }}</strong></span
-                  >
+                <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon">tab</mat-icon>
+                <span *ngIf="opened" [style.fontSize.px]="14"><strong>{{ project }}</strong></span>
               </mat-panel-title>
             </mat-expansion-panel-header>
 
             <mat-list-item [matTooltip]="toolTip('Dashboard')" matTooltipPosition="right">
-              <a
-                class="menu_item"
-                style="text-decoration: none"
-                routerLink="projectHome"
-                
-              >
-                <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
-                  >table_chart</mat-icon
-                >
+              <a class="menu_item" style="text-decoration: none" routerLink="projectHome">
+                <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon">table_chart</mat-icon>
                 <span *ngIf="opened" [style.fontSize.px]="14">Dashboard </span>
               </a>
             </mat-list-item>
 
-           
 
-            <mat-list-item [matTooltip]="toolTip('Carga de personal')" matTooltipPosition="right" *ngxPermissionsOnly="['asignar-personal']">
-              <a
-                class="menu_item"
-                style="text-decoration: none"
-                routerLink="projectHome/assignPersonal"
-              >
-                <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
-                  >people_outline</mat-icon
-                >
-                <span *ngIf="opened" [style.fontSize.px]="14"
-                  >Carga de personal</span
-                >
+
+            <mat-list-item [matTooltip]="toolTip('Carga de personal')" matTooltipPosition="right"
+              *ngxPermissionsOnly="['asignar-personal']">
+              <a class="menu_item" style="text-decoration: none" routerLink="projectHome/assignPersonal">
+                <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon">people_outline</mat-icon>
+                <span *ngIf="opened" [style.fontSize.px]="14">Carga de personal</span>
               </a>
             </mat-list-item>
 
-            <mat-list-item [matTooltip]="toolTip('Asignacion de UPM')" matTooltipPosition="right" *ngxPermissionsOnly="['asignar-upms-personal']">
-              <a
-                class="menu_item"
-                style="text-decoration: none"
-                routerLink="projectHome/assignUpmChief"
-              >
-                <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
-                  >work</mat-icon
-                >
-                <span *ngIf="opened" [style.fontSize.px]="14"
-                  >Asignacion de UPM</span
-                >
+            <mat-list-item [matTooltip]="toolTip('Asignacion de UPM')" matTooltipPosition="right"
+              *ngxPermissionsOnly="['asignar-upms-personal']">
+              <a class="menu_item" style="text-decoration: none" routerLink="projectHome/assignUpmChief">
+                <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon">work</mat-icon>
+                <span *ngIf="opened" [style.fontSize.px]="14">Asignacion de UPM</span>
               </a>
             </mat-list-item>
 
-            <mat-list-item [matTooltip]="toolTip('Cartografo')" matTooltipPosition="right" *ngxPermissionsOnly="['ver-upms-cartografo']">
-              <a
-                class="menu_item"
-                style="text-decoration: none"
-                routerLink="projectHome/cartografo"
-              >
-                <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
-                  >people_outline</mat-icon
-                >
+            <mat-list-item [matTooltip]="toolTip('Cartografo')" matTooltipPosition="right"
+              *ngxPermissionsOnly="['ver-upms-cartografo']">
+              <a class="menu_item" style="text-decoration: none" routerLink="projectHome/cartografo">
+                <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon">people_outline</mat-icon>
                 <span *ngIf="opened" [style.fontSize.px]="14">Cartografo</span>
               </a>
             </mat-list-item>
 
-            <mat-list-item [matTooltip]="toolTip('Equipo de campo')" matTooltipPosition="right" *ngxPermissionsOnly="['ver-equipo-campo']">
-              <a
-                class="menu_item"
-                style="text-decoration: none"
-                routerLink="projectHome/equipo-campo"
-              >
-                <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
-                  >my_location</mat-icon
-                >
-                <span *ngIf="opened" [style.fontSize.px]="14"
-                  >Equipo de Campo</span
-                >
+            <mat-list-item [matTooltip]="toolTip('Equipo de campo')" matTooltipPosition="right"
+              *ngxPermissionsOnly="['ver-equipo-campo']">
+              <a class="menu_item" style="text-decoration: none" routerLink="projectHome/equipo-campo">
+                <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon">my_location</mat-icon>
+                <span *ngIf="opened" [style.fontSize.px]="14">Equipo de Campo</span>
               </a>
             </mat-list-item>
 
-            <mat-list-item [matTooltip]="toolTip('Supervisor')" matTooltipPosition="right" *ngxPermissionsOnly="['supervisar']">
-              <a
-                class="menu_item"
-                style="text-decoration: none"
-                routerLink="projectHome/supervisores"
-              >
-                <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
-                  >people</mat-icon
-                >
+            <mat-list-item [matTooltip]="toolTip('Supervisor')" matTooltipPosition="right"
+              *ngxPermissionsOnly="['supervisar']">
+              <a class="menu_item" style="text-decoration: none" routerLink="projectHome/supervisores">
+                <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon">people</mat-icon>
                 <span *ngIf="opened" [style.fontSize.px]="14">Supervisor</span>
               </a>
             </mat-list-item>
-            <mat-list-item [matTooltip]="toolTip('Configuracion')" matTooltipPosition="right" *ngxPermissionsOnly="['configuracion-proyecto']">
-              <a
-                class="menu_item"
-                style="text-decoration: none"
-                routerLink="projectHome/configuracion"
-              >
-                <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
-                  >settings</mat-icon
-                >
-                <span *ngIf="opened" [style.fontSize.px]="14"
-                  >Configuración</span
-                >
+            <mat-list-item [matTooltip]="toolTip('Configuracion')" matTooltipPosition="right"
+              *ngxPermissionsOnly="['configuracion-proyecto']">
+              <a class="menu_item" style="text-decoration: none" routerLink="projectHome/configuracion">
+                <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon">settings</mat-icon>
+                <span *ngIf="opened" [style.fontSize.px]="14">Configuración</span>
               </a>
             </mat-list-item>
           </mat-expansion-panel>
         </mat-accordion>
       </div>
 
-      <mat-list-item [matTooltip]="toolTip('Proyectos')" matTooltipPosition="right" *ngxPermissionsOnly="['ver-proyecto']">
-        <a class="menu_item" style="text-decoration: none" routerLink="project" >
-          <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
-            >folder</mat-icon
-          >
+      <mat-list-item [matTooltip]="toolTip('Proyectos')" matTooltipPosition="right"
+        *ngxPermissionsOnly="['ver-proyecto']">
+        <a class="menu_item" style="text-decoration: none" routerLink="project">
+          <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon">folder</mat-icon>
           <span *ngIf="opened" [style.fontSize.px]="14">Proyectos</span>
         </a>
       </mat-list-item>
 
-      <mat-list-item [matTooltip]="toolTip('Usuarios')" matTooltipPosition="right" *ngxPermissionsOnly="['ver-usuario']">
+      <mat-list-item [matTooltip]="toolTip('Usuarios')" matTooltipPosition="right"
+        *ngxPermissionsOnly="['ver-usuario']">
         <a class="menu_item" style="text-decoration: none" routerLink="user">
-          <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
-            >person</mat-icon
-          >
+          <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon">person</mat-icon>
           <span *ngIf="opened" [style.fontSize.px]="14">Usuarios</span>
         </a>
       </mat-list-item>
 
-      <mat-list-item [matTooltip]="toolTip('Politicas')" matTooltipPosition="right" *ngxPermissionsOnly="['ver-politica']">
+      <mat-list-item [matTooltip]="toolTip('Politicas')" matTooltipPosition="right"
+        *ngxPermissionsOnly="['ver-politica']">
         <a class="menu_item" style="text-decoration: none" routerLink="rol">
-          <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
-            >view_headline</mat-icon
-          >
+          <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon">view_headline</mat-icon>
           <span *ngIf="opened" [style.fontSize.px]="14">Politicas</span>
         </a>
       </mat-list-item>
 
       <mat-list-item [matTooltip]="toolTip('Roles')" matTooltipPosition="right" *ngxPermissionsOnly="['ver-rol']">
         <a class="menu_item" style="text-decoration: none" routerLink="group">
-          <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
-            >group</mat-icon
-          >
+          <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon">group</mat-icon>
           <span *ngIf="opened" [style.fontSize.px]="14">Roles</span>
         </a>
       </mat-list-item>
 
-      <mat-list-item [matTooltip]="toolTip('Encuestas')" matTooltipPosition="right" *ngxPermissionsOnly="['ver-encuesta']">
+      <mat-list-item [matTooltip]="toolTip('Encuestas')" matTooltipPosition="right"
+        *ngxPermissionsOnly="['ver-encuesta']">
         <a class="menu_item" style="text-decoration: none" routerLink="surveys">
-          <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
-            >question_answer</mat-icon
-          >
+          <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon">question_answer</mat-icon>
           <span *ngIf="opened" [style.fontSize.px]="14">Encuestas</span>
         </a>
       </mat-list-item>
 
-      <mat-list-item [matTooltip]="toolTip('Vehiculos')" matTooltipPosition="right" *ngxPermissionsOnly="['ver-vehiculo']">
+      <mat-list-item [matTooltip]="toolTip('Vehiculos')" matTooltipPosition="right"
+        *ngxPermissionsOnly="['ver-vehiculo']">
         <a class="menu_item" style="text-decoration: none" routerLink="vehicle">
-          <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon"
-            >commute</mat-icon
-          >
+          <mat-icon [style.fontSize.px]="25" class="routeIcon menu-icon">commute</mat-icon>
           <span *ngIf="opened" [style.fontSize.px]="14">Vehículos</span>
         </a>
       </mat-list-item>
@@ -195,29 +137,29 @@
 
   <mat-sidenav-content style="background-color: white">
     <app-spinner></app-spinner>
-    <mat-toolbar
-      class="header_toolbar"
-      color="primary"
-      style="z-index: 99"
-      *ngIf="token != ''"
-    >
+    <mat-toolbar class="header_toolbar" color="primary" style="z-index: 99" *ngIf="token != ''">
       <div class="header_title">
-        <button
-          type="button"
-          aria-label="Toggle sidenav"
-          mat-icon-button
-          (click)="opened = !opened"
-        >
+        <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="opened = !opened">
           <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
         <span>Portal Cartografia</span>
       </div>
-      <div>
+      <div class="options_header">
+        <div class="notification">
+          <button  mat-icon-button  [matBadge]="notifications" matBadgeColor="warn" [matMenuTriggerFor]="notificationsMenu">
+            <mat-icon [style.fontSize.px]="22" >notifications</mat-icon>
+          </button>
+        </div>
+       
+        <mat-menu #notificationsMenu="matMenu">
+          <h1>Hola</h1>
+        </mat-menu>
         <button mat-button [matMenuTriggerFor]="menu">
           <span>{{ usuario }}</span>
           <mat-icon>arrow_drop_down</mat-icon>
           <mat-icon>account_circle</mat-icon>
         </button>
+
         <mat-menu #menu="matMenu">
           <button mat-menu-item [routerLink]="['auth/logout']">
             <span [style.fontSize.px]="14">Cerrar Sesión</span>

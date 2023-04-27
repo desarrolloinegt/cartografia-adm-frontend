@@ -20,7 +20,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { TokenInterceptor } from '@core/interceptors/token.interceptor';
 import { MatTreeModule } from '@angular/material/tree';
 import { DrawerRailModule } from 'angular-material-rail-drawer';
-
+import {MatBadgeModule} from '@angular/material/badge';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -38,6 +38,7 @@ import { DrawerRailModule } from 'angular-material-rail-drawer';
     DragDropModule,
     MatTreeModule,
     DrawerRailModule,
+    MatBadgeModule,
     NgxPermissionsModule.forRoot(),
   ],
 

@@ -17,7 +17,7 @@ export class AppComponent {
   permissionsProject: string[] = [];
   permissionsAdmin: string[] = [];
   projectId: number = 1;
-
+  notifications:number;
   constructor(
     private router: Router,
     private auth: AuthService,
@@ -25,6 +25,7 @@ export class AppComponent {
     private projectHomeService: ProjectHomeService
   ) {
     this.initializeApp();
+    this.notifications=0;
   }
 
 
