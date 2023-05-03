@@ -47,6 +47,7 @@ import {MatBadgeModule} from '@angular/material/badge';
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
   ],
+  
   bootstrap: [AppComponent],
 })
 export class AppModule {}
